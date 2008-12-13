@@ -1,0 +1,58 @@
+# ChangeLog for dev-lang/mono-basic
+# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/mono-basic/ChangeLog,v 1.11 2008/11/23 19:57:28 loki_val Exp $
+
+  23 Nov 2008; Peter Alfredsen <loki_val@gentoo.org> mono-basic-2.0.ebuild:
+  Kill libdir cruft
+
+*mono-basic-2.0 (19 Nov 2008)
+
+  19 Nov 2008; Peter Alfredsen <loki_val@gentoo.org>
+  -mono-basic-1.2.3.ebuild, -mono-basic-1.2.5.ebuild,
+  +mono-basic-2.0.ebuild:
+  Bump for mono-2, remove crufty slag.
+
+*mono-basic-1.9 (31 May 2008)
+
+  31 May 2008; Jurek Bartuszek <jurek@gentoo.org> +mono-basic-1.9.ebuild:
+  Version bump
+
+*mono-basic-1.2.6 (14 Dec 2007)
+
+  14 Dec 2007; Jurek Bartuszek <jurek@gentoo.org> +mono-basic-1.2.6.ebuild:
+  Version bump
+
+*mono-basic-1.2.5 (10 Sep 2007)
+
+  10 Sep 2007; Jurek Bartuszek <jurek@gentoo.org> +mono-basic-1.2.5.ebuild:
+  Version bump
+
+  03 Aug 2007; Christian Faulhammer <opfer@gentoo.org>
+  mono-basic-1.2.4.ebuild:
+  stable x86, bug 186771
+
+  02 Aug 2007; Jurek Bartuszek <jurek@gentoo.org> mono-basic-1.2.4.ebuild:
+  Added test restriction
+
+  01 Aug 2007; <metalgod@gentoo.org> mono-basic-1.2.4.ebuild:
+  Added ~amd64 keyword. Closes bug #186133
+
+*mono-basic-1.2.4 (21 Jun 2007)
+
+  21 Jun 2007; Jurek Bartuszek <jurek@gentoo.org> mono-basic-1.2.3.ebuild,
+  +mono-basic-1.2.4.ebuild:
+  - Version bump (1.2.4)
+  - Ebuild coding style cleanup
+  - Fixed mono dependency (fixing bug #182805)
+
+  07 Apr 2007; Saleem Abdulrasool <compnerd@gentoo.org>
+  mono-basic-1.2.3.ebuild:
+  Bump dependency on mono to 1.2.3 as per bug #173656
+
+*mono-basic-1.2.3 (11 Feb 2007)
+
+  11 Feb 2007; Saleem Abdulrasool <compnerd@gentoo.org> +metadata.xml,
+  +mono-basic-1.2.3.ebuild:
+  Initial import of mono-basic, ebuild by Saleem Abdulrasool
+  <compnerd@gentoo.org>
+

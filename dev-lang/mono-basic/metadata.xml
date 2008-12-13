@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
+<pkgmetadata>
+	<herd>dotnet</herd>
+	<maintainer>
+		<email>compnerd@gentoo.org</email>
+		<name>Saleem Abdulrasool</name>
+	</maintainer>
+	<longdescription lang="en">
+		Visual Basic .NET compiler and runtime
+	</longdescription>
+</pkgmetadata>
+

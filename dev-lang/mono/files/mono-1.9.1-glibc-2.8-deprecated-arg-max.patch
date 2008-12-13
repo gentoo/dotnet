@@ -1,0 +1,21 @@
+--- mono/io-layer/wapi_glob.c.orig	2008-06-13 21:22:30.000000000 -0700
++++ mono/io-layer/wapi_glob.c	2008-06-13 21:31:59.000000000 -0700
+@@ -266,6 +266,9 @@
+ 	u_int newsize, len;
+ 	char *copy;
+ 	const gchar *p;
++	long arglen;
++
++	arglen = sysconf(_SC_ARG_MAX);
+ 
+ 	newsize = sizeof(*pathv) * (2 + pglob->gl_pathc + pglob->gl_offs);
+ 	pathv = pglob->gl_pathv ? realloc((char *)pglob->gl_pathv, newsize) :
+@@ -300,7 +303,7 @@
+ 	pathv[pglob->gl_offs + pglob->gl_pathc] = NULL;
+ 
+ 	if ((pglob->gl_flags & WAPI_GLOB_LIMIT) &&
+-	    newsize + *limitp >= ARG_MAX) {
++	    newsize + *limitp >= arglen) {
+ 		errno = 0;
+ 		return(WAPI_GLOB_NOSPACE);
+ 	}
