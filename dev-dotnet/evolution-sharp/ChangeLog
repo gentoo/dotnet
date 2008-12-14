@@ -1,0 +1,154 @@
+# ChangeLog for dev-dotnet/evolution-sharp
+# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-dotnet/evolution-sharp/ChangeLog,v 1.31 2008/12/04 21:16:13 dsd Exp $
+
+  04 Dec 2008; Daniel Drake <dsd@gentoo.org> metadata.xml:
+  Drop maintainership. I'll still help on bugs, but probably not on a timely
+  fashion. Others are encouraged to commit to or take over this package.
+
+  09 Nov 2008; Diego Pettenò <flameeyes@gentoo.org> ChangeLog:
+  Sign commit (key expired).
+
+  09 Nov 2008; Diego Pettenò <flameeyes@gentoo.org>
+  +files/evolution-sharp-0.18.0-respectlibdir.patch,
+  evolution-sharp-0.18.0.ebuild:
+  Add a patch to properly respect libdir; before the pkg-config file was
+  updated by the installed files were still in /usr/lib rather than
+  /usr/lib64. Submitted as upstream bug #559977.
+
+  01 Nov 2008; Daniel Drake <dsd@gentoo.org> evolution-sharp-0.18.0.ebuild:
+  Remove broken TestCal.exe program from compilation
+
+*evolution-sharp-0.18.0 (31 Oct 2008)
+
+  31 Oct 2008; Daniel Drake <dsd@gentoo.org> +evolution-sharp-0.18.0.ebuild:
+  Version bump, thanks to Florian Muellner and Ryan in bug #240322
+
+  28 Jul 2008; Raúl Porcel <armin76@gentoo.org>
+  evolution-sharp-0.17.4.ebuild:
+  x86 stable wrt #229717
+
+  27 Jul 2008; Olivier Crête <tester@gentoo.org>
+  evolution-sharp-0.17.4.ebuild:
+  amd64 stable, bug #229717
+
+  02 Jul 2008; Brent Baude <ranger@gentoo.org>
+  evolution-sharp-0.17.4.ebuild:
+  stable ppc, bug 229717
+
+*evolution-sharp-0.17.4 (27 Jun 2008)
+
+  27 Jun 2008; Samuli Suominen <drac@gentoo.org>
+  +evolution-sharp-0.17.4.ebuild:
+  Version bump for bug 217251, thanks to Ryan Tandy for reporting.
+
+  25 Dec 2007; Christian Heim <phreak@gentoo.org> metadata.xml:
+  Removing joem from metadata.xml as per #69387.
+
+  25 Nov 2007; Brent Baude <ranger@gentoo.org>
+  evolution-sharp-0.14.0.1.ebuild:
+  Marking evolution-sharp-0.14.0.1 ppc stable for bug 196755
+
+*evolution-sharp-0.14.0.1 (22 Nov 2007)
+
+  22 Nov 2007; Samuli Suominen <drac@gentoo.org>
+  +evolution-sharp-0.14.0.1.ebuild:
+  Version bump, straight to stable for amd64 and x86 because current stable
+  doesn't build or pass configure with evolution-data-server in stable.
+
+  19 Nov 2007; Markus Meier <maekke@gentoo.org>
+  evolution-sharp-0.12.4.ebuild:
+  x86 stable, bug #189366 and quotes
+
+*evolution-sharp-0.12.4 (28 Jul 2007)
+
+  28 Jul 2007; Daniel Drake <dsd@gentoo.org> -evolution-sharp-0.11.1.ebuild,
+  +evolution-sharp-0.12.4.ebuild:
+  Version bump thanks to Jose daLuz in bug #177571
+
+  13 May 2007; Thilo Bangert <bangert@gentoo.org> metadata.xml:
+  add <herd>no-herd</herd>
+
+  17 Dec 2006; Tobias Scherbaum <dertobi123@gentoo.org>
+  evolution-sharp-0.12.0.ebuild:
+  Stable on ppc wrt bug #157744.
+
+  11 Dec 2006; Peter Weller <welp@gentoo.org> evolution-sharp-0.12.0.ebuild:
+  Added amd64 keyword wrt bug #157744
+
+  11 Dec 2006; Christian Faulhammer <opfer@gentoo.org>
+  evolution-sharp-0.12.0.ebuild:
+  stable x86, bug #157744
+
+*evolution-sharp-0.12.0 (20 Nov 2006)
+
+  20 Nov 2006; Daniel Drake <dsd@gentoo.org> +evolution-sharp-0.12.0.ebuild:
+  New version, supports evolution-data-server-1.8 and no longer requires
+  evolution itself
+
+  17 Jul 2006; Daniel Gryniewicz <dang@gentoo.org>
+  evolution-sharp-0.11.1.ebuild:
+  Marked stable on amd64 for bug #139612
+
+  14 Jul 2006; Tobias Scherbaum <dertobi123@gentoo.org>
+  evolution-sharp-0.11.1.ebuild:
+  ppc stable, bug #139612
+
+  12 Jul 2006; Chris Gianelloni <wolf31o2@gentoo.org>
+  evolution-sharp-0.11.1.ebuild:
+  Stable on x86 wrt bug #139612.
+
+*evolution-sharp-0.11.1 (08 May 2006)
+
+  08 May 2006; Daniel Drake <dsd@gentoo.org>
+  -files/evolution-sharp-0.11.0-evo-shell-libdir.patch,
+  -evolution-sharp-0.11.0.ebuild, +evolution-sharp-0.11.1.ebuild:
+  pkg-config fix thanks to Dave Shanker and others in bug #131695
+
+*evolution-sharp-0.11.0 (28 Apr 2006)
+
+  28 Apr 2006; Daniel Drake <dsd@gentoo.org>
+  -files/evolution-sharp-0.10.2-check-evo-2.6.patch,
+  -files/evolution-sharp-0.10.2-use-glibsharpglue-2.patch,
+  +files/evolution-sharp-0.11.0-evo-shell-libdir.patch,
+  -evolution-sharp-0.10.2-r1.ebuild, -evolution-sharp-0.10.2-r2.ebuild,
+  +evolution-sharp-0.11.0.ebuild:
+  Version bump, really fixes evo-2.6 compatibility, thanks to Tim Heinrich and
+  others in bug #126979
+
+*evolution-sharp-0.10.2-r2 (09 Apr 2006)
+
+  09 Apr 2006; Stefan Jones <cretin@gentoo.org>
+  +files/evolution-sharp-0.10.2-check-evo-2.6.patch,
+  +evolution-sharp-0.10.2-r2.ebuild:
+  Fix so that beagle-0.2.4 and evo-2.6 can compile
+
+  08 Apr 2006; Herbie Hopkins <herbs@gentoo.org>
+  evolution-sharp-0.10.2-r1.ebuild:
+  Use correct libdir in pkgconfig file.
+
+  25 Mar 2006; Joseph Jezak <josejx@gentoo.org>
+  evolution-sharp-0.10.2-r1.ebuild:
+  Marked ~ppc for bug #123847.
+
+*evolution-sharp-0.10.2-r1 (04 Mar 2006)
+
+  04 Mar 2006; Daniel Drake <dsd@gentoo.org>
+  +files/evolution-sharp-0.10.2-use-glibsharpglue-2.patch,
+  -evolution-sharp-0.10.2.ebuild, +evolution-sharp-0.10.2-r1.ebuild:
+  Remove linkage to gtk-sharp-1.x, thanks to Fabio Bonfante for reporting the
+  problem in bug #124581
+
+  04 Jan 2006; Luis Medinas <metalgod@gentoo.org>
+  evolution-sharp-0.10.2.ebuild:
+  Added ~amd64 keyword.
+
+  26 Nov 2005; Daniel Drake <dsd@gentoo.org> evolution-sharp-0.10.2.ebuild:
+  Depend on evolution
+
+*evolution-sharp-0.10.2 (22 Nov 2005)
+
+  22 Nov 2005; Daniel Drake <dsd@gentoo.org> +metadata.xml,
+  +evolution-sharp-0.10.2.ebuild:
+  Initial import, closes bug #79300
+
