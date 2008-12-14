@@ -4,7 +4,7 @@
 
 EAPI=2
 
-inherit mono gnome.org eutils autotools
+inherit mono gnome.org eutils
 
 DESCRIPTION="Mono bindings for Evolution"
 HOMEPAGE="http://www.gnome.org/projects/beagle"
