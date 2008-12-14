@@ -1,0 +1,22 @@
+--- tools/crawl-rules/crawl-applications.orig	2006-06-20 02:48:47.966755392 +0100
++++ tools/crawl-rules/crawl-applications	2006-06-20 02:49:26.025969512 +0100
+@@ -2,7 +2,7 @@
+ 
+ CRAWL_INDEX_NAME="applications"
+ 
+-CRAWL_PATHS="/usr/share/applications /usr/local/share/applications /opt/gnome/share/applications /opt/kde3/share/applications"
++CRAWL_PATHS="/usr/share/applications /usr/local/share/applications /opt/gnome/share/applications /opt/kde3/share/applications /usr/kde/*/share/applications"
+ 
+ CRAWL_RECURSIVE="yes"
+ 
+--- tools/crawl-rules/crawl-documentation.orig	2006-06-20 02:49:41.780574448 +0100
++++ tools/crawl-rules/crawl-documentation	2006-06-20 02:50:29.751281792 +0100
+@@ -2,7 +2,7 @@
+ 
+ CRAWL_INDEX_NAME="documentation"
+ 
+-CRAWL_PATHS="/usr/share/doc /usr/local/share/doc /opt/kde3/share/doc /opt/gnome/share/gnome/help /usr/share/gnome/help /opt/gnome/share/gtk-doc/html /usr/share/gtk-doc/html /usr/share/gnome/html"
++CRAWL_PATHS="/usr/share/doc /usr/local/share/doc /opt/kde3/share/doc /opt/gnome/share/gnome/help /usr/share/gnome/help /opt/gnome/share/gtk-doc/html /usr/share/gtk-doc/html /usr/share/gnome/html /usr/kde/*/share/doc"
+ 
+ CRAWL_ALLOW_PATTERNS="*.xml,*.html,*.docbook"
+ 
