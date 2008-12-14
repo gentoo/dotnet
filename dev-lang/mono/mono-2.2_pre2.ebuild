@@ -16,10 +16,10 @@ KEYWORDS="~amd64 ~ppc ~sparc ~x86 ~x86-fbsd"
 IUSE=""
 
 RDEPEND="!<dev-dotnet/pnet-0.6.12
+	!dev-util/monodoc
 		>=dev-libs/glib-2.6
 		=dev-dotnet/libgdiplus-${PV}*
 	ia64? ( sys-libs/libunwind )"
-
 DEPEND="${RDEPEND}
 		sys-devel/bc
 		>=dev-util/pkgconfig-0.19"
