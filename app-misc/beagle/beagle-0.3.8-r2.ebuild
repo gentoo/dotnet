@@ -8,6 +8,8 @@ inherit gnome.org eutils autotools mono mozextension
 
 DESCRIPTION="Search tool that ransacks your personal information space to find whatever you're looking for"
 HOMEPAGE="http://www.beagle-project.org/"
+SRC_URI="${SRC_URI}
+	mirror://gentoo/${P}-fix_gmime-2.4.patch.lzma"
 
 LICENSE="MIT Apache-1.1"
 SLOT="0"
@@ -15,19 +17,20 @@ KEYWORDS="~amd64 ~ppc ~x86"
 IUSE="chm debug doc epiphany eds firefox galago gtk pdf inotify ole thunderbird +xscreensaver"
 
 RDEPEND="
-	>=dev-lang/mono-1.2.4
+	>=dev-lang/mono-1.9
 	app-shells/bash
 	app-arch/zip
 	sys-devel/gettext
 	x11-misc/shared-mime-info
-	=dev-libs/gmime-2.4*
+	dev-libs/gmime:2.4[mono]
 	>=dev-libs/libxml2-2.6.19
 	>=dev-db/sqlite-3.3.1
 	>=dev-dotnet/dbus-sharp-0.6.0
 	>=dev-dotnet/dbus-glib-sharp-0.4.1
 	>=dev-dotnet/taglib-sharp-2.0
 	>=dev-dotnet/gtk-sharp-2.8
-	gtk? ( >=gnome-base/libgnome-2.0
+	gtk? (
+		>=gnome-base/libgnome-2.0
 		>=gnome-base/gnome-vfs-2.0
 		>=x11-libs/gtk+-2.10
 		>=dev-libs/atk-1.2.4
@@ -38,20 +41,36 @@ RDEPEND="
 			( >=dev-dotnet/gtk-sharp-2.10 >=dev-dotnet/glade-sharp-2.4 )
 		)
 		>=dev-dotnet/gnome-sharp-2.4
-		>=dev-dotnet/gnomevfs-sharp-2.4 )
-	eds? ( >=dev-dotnet/evolution-sharp-0.13.3
-		>=dev-dotnet/gconf-sharp-2.4 )
-	ole? ( >=app-text/wv-1.2.3
+		>=dev-dotnet/gnomevfs-sharp-2.4
+	)
+	eds? (
+		>=dev-dotnet/evolution-sharp-0.13.3
+		>=dev-dotnet/gconf-sharp-2.4
+	)
+	ole? (
+		>=app-text/wv-1.2.3
 		>=dev-dotnet/gsf-sharp-0.8
-		>=app-office/gnumeric-1.4.3-r3 )
+		>=app-office/gnumeric-1.4.3-r3
+	)
 	chm? ( dev-libs/chmlib )
 	pdf? ( >=app-text/poppler-0.5.1 )
 	galago? ( >=dev-dotnet/galago-sharp-0.5.0 )
-	thunderbird? ( || ( >=mail-client/mozilla-thunderbird-1.5
-			>=mail-client/mozilla-thunderbird-bin-1.5 ) )
-	firefox? ( || ( >=www-client/mozilla-firefox-1.5
-			>=www-client/mozilla-firefox-bin-1.5 ) )
-	epiphany? ( >=www-client/epiphany-extensions-2.16 )
+	thunderbird? (
+			|| (
+				>=mail-client/mozilla-thunderbird-1.5
+				>=mail-client/mozilla-thunderbird-bin-1.5
+			)
+	)
+	firefox? (
+			|| (
+				>=www-client/mozilla-firefox-1.5
+				>=www-client/mozilla-firefox-bin-1.5
+			)
+	)
+	epiphany? (
+		>=www-client/epiphany-extensions-2.16[python]
+		dev-libs/libbeagle[python]
+	)
 	xscreensaver? ( x11-libs/libXScrnSaver )
 	dev-libs/libbeagle"
 	# Avahi code is currently experimental
@@ -64,37 +83,20 @@ DEPEND="${RDEPEND}
 	>=dev-util/intltool-0.35"
 
 pkg_setup() {
-	local fail_gmime="Re-emerge dev-libs/gmime with USE mono."
-	local fail_libbeagle="Re-emerge dev-libs/libbeagle with USE=python."
-	local fail_epiphany="Re-emerge www-client/epiphany-extensions with USE=python."
-
-	if ! built_with_use dev-libs/gmime mono; then
-		eerror "${fail_gmime}"
-		die "${fail_gmime}"
-	fi
-
-	if use epiphany; then
-		if ! built_with_use dev-libs/libbeagle python; then
-			eerror "${fail_libbeagle}"
-			die "${fail_libbeagle}"
-		fi
-		if ! built_with_use www-client/epiphany-extensions python; then
-			eerror "${fail_epiphany}"
-			die "${fail_epiphany}"
-		fi
-	fi
-
 	enewgroup beagleindex
 	enewuser beagleindex -1 -1 /var/lib/cache/beagle beagleindex
 }
 
 src_prepare() {
 	epatch "${FILESDIR}/${P}-fix_gvfs.patch"
-	epatch "${FILESDIR}/${P}-fix_gmime-2.4.patch"
+	epatch "${WORKDIR}/${P}-fix_gmime-2.4.patch"
 
 
 	# Multilib fix
-	sed -i -e 's:prefix mono`/lib:libdir mono`:' \
+	sed -i	-e 's:prefix mono`/lib:libdir mono`:' \
+		configure.in || die "sed failed"
+	#Fix bug 248703
+	sed -i	-e 's:VALID_EPIPHANY_VERSIONS=":VALID_EPIPHANY_VERSIONS="2.24 :' \
 		configure.in || die "sed failed"
 
 	eautoreconf
@@ -103,9 +105,7 @@ src_prepare() {
 
 src_configure() {
 	econf \
-		--enable-sqlite3 \
 		--disable-avahi \
-		--disable-internal-taglib \
 		$(use_enable debug xml-dump) \
 		$(use_enable doc docs) \
 		$(use_enable epiphany epiphany-extension) \
