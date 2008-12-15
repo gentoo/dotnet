@@ -77,6 +77,7 @@ RDEPEND="
 	#avahi?	(	>=net-dns/avahi-0.6.10 )
 
 DEPEND="${RDEPEND}
+	app-arch/lzma-utils
 	doc? ( >=virtual/monodoc-1.2.4 )
 	dev-util/pkgconfig
 	xscreensaver? ( x11-proto/scrnsaverproto )
