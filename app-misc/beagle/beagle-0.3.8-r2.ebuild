@@ -4,12 +4,12 @@
 
 EAPI=2
 
-inherit gnome.org eutils autotools mono mozextension
+inherit base gnome.org eutils autotools mono mozextension
 
 DESCRIPTION="Search tool that ransacks your personal information space to find whatever you're looking for"
 HOMEPAGE="http://www.beagle-project.org/"
 SRC_URI="${SRC_URI}
-	mirror://gentoo/${P}-fix_gmime-2.4.patch.lzma"
+	mirror://gentoo/${P}-patches.tar.lzma"
 
 LICENSE="MIT Apache-1.1"
 SLOT="0"
@@ -17,6 +17,7 @@ KEYWORDS="~amd64 ~ppc ~x86"
 IUSE="chm debug doc epiphany eds firefox galago gtk pdf inotify ole thunderbird +xscreensaver"
 
 RDEPEND="
+	gnome-base/gnome-desktop
 	>=dev-lang/mono-1.9
 	app-shells/bash
 	app-arch/zip
@@ -89,15 +90,16 @@ pkg_setup() {
 }
 
 src_prepare() {
-	epatch "${FILESDIR}/${P}-fix_gvfs.patch"
-	epatch "${WORKDIR}/${P}-fix_gmime-2.4.patch"
-
+	PATCHES=( ${WORKDIR}/patches/5* )
+	epatch "${WORKDIR}/patches/${P}-fix_gvfs.patch"
+	base_src_util autopatch
+	epatch "${WORKDIR}/patches/${P}-gmime-2.4.patch"
 
 	# Multilib fix
 	sed -i	-e 's:prefix mono`/lib:libdir mono`:' \
 		configure.in || die "sed failed"
 	#Fix bug 248703
-	sed -i	-e 's:VALID_EPIPHANY_VERSIONS=":VALID_EPIPHANY_VERSIONS="2.24 :' \
+	sed -i  -e 's:VALID_EPIPHANY_VERSIONS=":VALID_EPIPHANY_VERSIONS="2.24 :' \
 		configure.in || die "sed failed"
 
 	eautoreconf
