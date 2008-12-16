@@ -45,7 +45,7 @@ RDEPEND="
 		>=dev-dotnet/gnomevfs-sharp-2.4
 	)
 	eds? (
-		>=dev-dotnet/evolution-sharp-0.13.3
+		>=dev-dotnet/evolution-sharp-0.18.1
 		>=dev-dotnet/gconf-sharp-2.4
 	)
 	ole? (
