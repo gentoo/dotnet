@@ -8,7 +8,7 @@ inherit mono base eutils flag-o-matic multilib
 
 DESCRIPTION="Mono runtime and class libraries, a C# compiler/interpreter"
 HOMEPAGE="http://www.go-mono.com"
-SRC_URI="http://mono.ximian.com/mono-packagers/mono-2.2.tar.bz2 -> ${P}.tar.bz2"
+SRC_URI="http://mono.ximian.com/monobuild/preview/sources/mono/${P%_pre*}.tar.bz2 -> ${P}.tar.bz2"
 
 LICENSE="|| ( GPL-2 LGPL-2 X11 )"
 SLOT="0"
