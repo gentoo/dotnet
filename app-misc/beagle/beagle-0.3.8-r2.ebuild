@@ -97,10 +97,14 @@ src_prepare() {
 
 	# Multilib fix
 	sed -i	-e 's:prefix mono`/lib:libdir mono`:' \
-		configure.in || die "sed failed"
+		configure.in || die "multilibsed failed"
 	#Fix bug 248703
 	sed -i  -e 's:VALID_EPIPHANY_VERSIONS=":VALID_EPIPHANY_VERSIONS="2.24 :' \
-		configure.in || die "sed failed"
+		configure.in || die "epiphany sed failed"
+
+	#Fix bugs.gnome.org/556243
+	sed -i	-e "s:libgnome-desktop-2.so.2:libgnome-desktop-2.so:" \
+		search/Beagle.Search.exe.config || die "gnome-desktop sed failed"
 
 	eautoreconf
 	intltoolize --force || die "intltoolize failed"
