@@ -24,6 +24,6 @@ RDEPEND="${DEPEND}"
 S="${WORKDIR}/${P%_pre*}"
 
 src_install () {
-	emake DESTDIR=${D} install || die "install failed"
+	emake DESTDIR="${D}" install || die "install failed"
 	dodoc AUTHORS ChangeLog README TODO || die "dodoc failed"
 }
