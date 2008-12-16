@@ -4,7 +4,7 @@
 
 EAPI=2
 
-inherit mono base eutils flag-o-matic multilib autotools
+inherit mono base eutils flag-o-matic multilib
 
 DESCRIPTION="Mono runtime and class libraries, a C# compiler/interpreter"
 HOMEPAGE="http://www.go-mono.com"
