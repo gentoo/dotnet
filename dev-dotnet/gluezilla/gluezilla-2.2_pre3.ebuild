@@ -8,7 +8,7 @@ inherit mono
 
 DESCRIPTION="A simple library to embed Gecko (xulrunner) in the Mono Winforms WebControl"
 HOMEPAGE="http://mono-project.com/Gluezilla"
-SRC_URI="http://mono.ximian.com/monobuild/preview/sources/gluezilla/gluezilla-2.2.tar.bz2 -> ${P}.tar.bz2"
+SRC_URI="http://mono.ximian.com/monobuild/preview/sources/gluezilla/${P%_pre*} -> ${P}.tar.bz2"
 
 LICENSE="LGPL-2"
 KEYWORDS="~amd64 ~x86"
