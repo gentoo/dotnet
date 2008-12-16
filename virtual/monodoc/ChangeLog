@@ -1,0 +1,18 @@
+# ChangeLog for gentoo-x86/virtual
+# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/virtual/monodoc/ChangeLog,v 1.2 2008/12/14 14:46:37 loki_val Exp $
+
+*monodoc-2.0 (14 Dec 2008)
+*monodoc-1.9 (14 Dec 2008)
+*monodoc-1.2.4 (14 Dec 2008)
+
+  14 Dec 2008; Peter Alfredsen <loki_val@gentoo.org> -monodoc-0.ebuild,
+  +monodoc-1.2.4.ebuild, +monodoc-1.9.ebuild, +monodoc-2.0.ebuild:
+  Add versioned monodocs
+
+*monodoc-0 (14 Dec 2008)
+
+  14 Dec 2008; Peter Alfredsen <loki_val@gentoo.org> +metadata.xml,
+  +monodoc-0.ebuild:
+  Initial commit
+
