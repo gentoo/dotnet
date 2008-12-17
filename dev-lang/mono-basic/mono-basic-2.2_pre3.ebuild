@@ -20,6 +20,8 @@ DEPEND="${RDEPEND}"
 
 RESTRICT="test"
 
+S=${WORKDIR}/${P%_pre*}
+
 src_install() {
 	emake DESTDIR="${D}" install || die "install failed"
 }
