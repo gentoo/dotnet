@@ -8,14 +8,14 @@ inherit eutils mono
 
 DESCRIPTION="Debugger for .NET managed and unmanaged applications"
 HOMEPAGE="http://www.go-mono.com"
-SRC_URI="http://mono.ximian.com/mono-packagers/mono-debugger-2.2.tar.bz2 -> ${P}.tar.bz2"
+SRC_URI="http://mono.ximian.com/monobuild/preview/sources/mono-debugger/${P%_pre*} -> ${P}.tar.bz2"
 
 LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS="~amd64 ~x86"
 IUSE=""
 
-RDEPEND=">=dev-lang/mono-2.2
+RDEPEND=">=dev-lang/mono-${PV}
 	sys-libs/readline
 	dev-libs/glib:2"
 DEPEND="${RDEPEND}
