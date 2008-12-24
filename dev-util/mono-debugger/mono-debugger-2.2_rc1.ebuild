@@ -4,26 +4,23 @@
 
 EAPI=2
 
-inherit eutils mono
+inherit go-mono mono eutils
 
 DESCRIPTION="Debugger for .NET managed and unmanaged applications"
 HOMEPAGE="http://www.go-mono.com"
-SRC_URI="http://mono.ximian.com/monobuild/preview/sources/mono-debugger/${P%_pre*} -> ${P}.tar.bz2"
 
 LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS="~amd64 ~x86"
 IUSE=""
 
-RDEPEND=">=dev-lang/mono-${PV}
+RDEPEND="=dev-lang/mono-${PV}*
 	sys-libs/readline
 	dev-libs/glib:2"
 DEPEND="${RDEPEND}
 	>=dev-util/pkgconfig-0.20"
 
 RESTRICT="test"
-
-S=${WORKDIR}/${P%_pre*}
 
 src_install() {
 	emake DESTDIR="${D}" install || die "emake install failed"
