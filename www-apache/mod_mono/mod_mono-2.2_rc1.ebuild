@@ -4,13 +4,12 @@
 
 EAPI=2
 
-inherit apache-module eutils
+inherit go-mono mono apache-module eutils
 
 KEYWORDS="~amd64 ~ppc ~x86"
 
 DESCRIPTION="Apache module for Mono."
 HOMEPAGE="http://www.go-mono.com/"
-SRC_URI="http://mono.ximian.com/monobuild/preview/sources/mod_mono/${P%_pre*}.tar.bz2 -> ${P}.tar.bz2"
 LICENSE="Apache-1.1"
 SLOT="0"
 IUSE="aspnet2 debug"
@@ -25,8 +24,6 @@ APACHE2_MOD_DEFINE="MONO"
 DOCFILES="AUTHORS ChangeLog COPYING INSTALL NEWS README"
 
 need_apache
-
-S=${WORKDIR}/${P%_pre*}
 
 src_prepare() {
 	use aspnet2 && epatch "${FILESDIR}/mono_auto_application_aspnet2.patch"
