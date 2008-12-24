@@ -16,8 +16,8 @@ IUSE=""
 
 RDEPEND="!<dev-dotnet/pnet-0.6.12
 	!dev-util/monodoc
-		>=dev-libs/glib-2.6
-		=dev-dotnet/libgdiplus-${PV}*
+	>=dev-libs/glib-2.6
+	~dev-dotnet/libgdiplus-${PV}
 	ia64? ( sys-libs/libunwind )"
 DEPEND="${RDEPEND}
 		sys-devel/bc
