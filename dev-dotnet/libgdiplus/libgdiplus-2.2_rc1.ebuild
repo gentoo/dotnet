@@ -4,21 +4,10 @@
 
 EAPI=2
 
-if ! [[ "${PV%_rc*}" = "${PV}" ]]
-then
-	MY_P=${P%_rc*}
-elif ! [[ "${PV%_pre*}" = "${PV}" ]]
-then
-	 MY_P=${P%_pre*}
-else
-	MY_P=${P}
-fi
-
-inherit flag-o-matic toolchain-funcs
+inherit go-mono mono flag-o-matic toolchain-funcs
 
 DESCRIPTION="Library for using System.Drawing with mono"
 HOMEPAGE="http://www.go-mono.com/"
-SRC_URI="http://mono.ximian.com/monobuild/preview/sources/libgdiplus/${MY_P}.tar.bz2 -> ${P}.tar.bz2"
 
 LICENSE="MIT"
 SLOT="0"
@@ -42,8 +31,6 @@ DEPEND="${RDEPEND}
 		>=dev-util/pkgconfig-0.19"
 
 RESTRICT="test"
-
-S=${WORKDIR}/${MY_P}
 
 src_configure() {
 	econf	--disable-dependency-tracking		\
