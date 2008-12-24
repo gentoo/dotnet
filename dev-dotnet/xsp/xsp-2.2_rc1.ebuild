@@ -4,21 +4,10 @@
 
 EAPI=2
 
-if ! [[ "${PV%_rc*}" = "${PV}" ]]
-then
-	MY_P=${P%_rc*}
-elif ! [[ "${PV%_pre*}" = "${PV}" ]]
-then
-	 MY_P=${P%_pre*}
-else
-	MY_P=${P}
-fi
-
-inherit mono multilib eutils
+inherit go-mono mono multilib eutils
 
 DESCRIPTION="XSP ASP.NET host"
 HOMEPAGE="http://www.go-mono.com/"
-SRC_URI="http://mono.ximian.com/monobuild/preview/sources/xsp/${MY_P}.tar.bz2 -> ${P}.tar.bz2"
 
 LICENSE="GPL-2"
 SLOT="0"
@@ -27,11 +16,9 @@ KEYWORDS="~amd64 ~ppc ~x86"
 IUSE=""
 
 RDEPEND=">=dev-lang/mono-${PV}
-		  =dev-db/sqlite-3*"
+	  =dev-db/sqlite-3*"
 DEPEND="${RDEPEND}
-		>=dev-util/pkgconfig-0.20"
-
-S=${WORKDIR}/${P%_pre*}
+	>=dev-util/pkgconfig-0.20"
 
 pkg_preinst() {
 	enewgroup aspnet
