@@ -4,11 +4,21 @@
 
 EAPI=2
 
+if ! [[ "${PV%_rc*}" = "${PV}" ]]
+then
+	MY_P=${P%_rc*}
+elif ! [[ "${PV%_pre*}" = "${PV}" ]]
+then
+	 MY_P=${P%_pre*}
+else
+	MY_P=${P}
+fi
+
 inherit mono multilib eutils
 
 DESCRIPTION="XSP ASP.NET host"
 HOMEPAGE="http://www.go-mono.com/"
-SRC_URI="http://mono.ximian.com/monobuild/preview/sources/xsp/${P%_pre*}.tar.bz2 -> ${P}.tar.bz2"
+SRC_URI="http://mono.ximian.com/monobuild/preview/sources/xsp/${MY_P}.tar.bz2 -> ${P}.tar.bz2"
 
 LICENSE="GPL-2"
 SLOT="0"
