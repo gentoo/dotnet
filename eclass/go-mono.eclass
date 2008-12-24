@@ -9,6 +9,8 @@
 # @DESCRIPTION:
 # Provides SRC_URIs automagically for go-mono.org apps.
 
+inherit versionator
+
 if [[ "$(get_version_component_range 1-2)" = "2.2" ]]
 then
 	PRE_URI="http://mono.ximian.com/monobuild/preview/sources"
