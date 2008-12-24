@@ -18,10 +18,12 @@ if ! [[ "${PV%_rc*}" = "${PV}" ]]
 then
 	MY_P=${P%_rc*}
 	SRC_URI="${PRE_URI}/${PN}gluezilla/${MY_P} -> ${P}.tar.bz2"
+	S="${WORKDIR}/${MY_P}"
 elif ! [[ "${PV%_pre*}" = "${PV}" ]]
 then
 	MY_P=${P%_pre*}
 	SRC_URI="${PRE_URI}/${PN}gluezilla/${MY_P} -> ${P}.tar.bz2"
+	S="${WORKDIR}/${MY_P}"
 else
 	MY_P=${P}
 	SRC_URI="http://ftp.novell.com/pub/mono/sources/${PN}/${P}.tar.bz2
