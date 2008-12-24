@@ -4,11 +4,10 @@
 
 EAPI=2
 
-inherit mono base eutils flag-o-matic multilib
+inherit go-mono mono base eutils flag-o-matic multilib
 
 DESCRIPTION="Mono runtime and class libraries, a C# compiler/interpreter"
 HOMEPAGE="http://www.go-mono.com"
-SRC_URI="http://mono.ximian.com/monobuild/preview/sources/mono/${P%_pre*}.tar.bz2 -> ${P}.tar.bz2"
 
 LICENSE="|| ( GPL-2 LGPL-2 X11 )"
 SLOT="0"
@@ -26,8 +25,6 @@ DEPEND="${RDEPEND}
 PDEPEND="dev-dotnet/pe-format"
 
 RESTRICT="test"
-
-S=${WORKDIR}/${P%_pre*}
 
 #Threading and mimeicon patches from Fedora CVS. Muine patch from Novell. Pointer conversions patch from Debian.
 
