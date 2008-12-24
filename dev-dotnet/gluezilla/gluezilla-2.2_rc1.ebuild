@@ -35,4 +35,5 @@ S="${WORKDIR}/${MY_P}"
 src_install () {
 	emake DESTDIR="${D}" install || die "install failed"
 	dodoc AUTHORS ChangeLog README TODO || die "dodoc failed"
+	find "${D}" -name '*.la' -exec rm -rf '{}' '+' || die "la removal failed"
 }
