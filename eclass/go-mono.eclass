@@ -7,9 +7,26 @@
 # dotnet@gentoo.org
 # @BLURB: Common functionality for go-mono.org apps
 # @DESCRIPTION:
-# Provides SRC_URIs automagically for go-mono.org apps.
+# Common functionality needed by all go-mono.org apps.
 
-inherit versionator
+
+inherit base versionator mono
+
+
+NO_MONO_DEPEND=(
+			"dev-lang/mono"
+			"dev-dotnet/libgdiplus"
+			"dev-dotnet/gluezilla"
+		)
+
+if ! has "${CATEGORY}/${PN}" "${NO_MONO_DEPEND[@]}"
+then
+	RDEPEND="=dev-lang/mono-$(get_version_component_range 1-2)*"
+	DEPEND="${RDEPEND}"
+fi
+
+DEPEND="${DEPEND}
+	>=dev-util/pkgconfig-0.23"
 
 if [[ "$(get_version_component_range 1-2)" = "2.2" ]]
 then
@@ -31,3 +48,28 @@ else
 	SRC_URI="http://ftp.novell.com/pub/mono/sources/${PN}/${P}.tar.bz2"
 fi
 
+go-mono_src_prepare() {
+	base_src_util autopatch
+}
+
+go-mono_src_configure() {
+	econf	--disable-dependency-tracking		\
+		--disable-static			\
+		"$@"
+}
+
+go-mono_src_install () {
+	emake DESTDIR="${D}" install || die "install failed"
+	local	COMMONDOC=( AUTHORS ChangeLog README TODO )
+	for docfile in "${COMMONDOC[@]}"
+	do
+		[[ -e "${docfile}" ]] && dodoc "${docfile}"
+	done
+	if [[ "${DOCS[@]}" ]]
+	then
+		dodoc "${DOCS[@]}" || die "dodoc DOCS failed"
+	fi
+	find "${D}" -name '*.la' -exec rm -rf '{}' '+' || die "la removal failed"
+}
+
+EXPORT_FUNCTIONS src_install src_configure
