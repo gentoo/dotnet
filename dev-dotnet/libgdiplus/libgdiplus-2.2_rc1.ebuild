@@ -4,16 +4,26 @@
 
 EAPI=2
 
+if ! [[ "${PV%_rc*}" = "${PV}" ]]
+then
+	MY_P=${P%_rc*}
+elif ! [[ "${PV%_pre*}" = "${PV}" ]]
+then
+	 MY_P=${P%_pre*}
+else
+	MY_P=${P}
+fi
+
 inherit flag-o-matic toolchain-funcs
 
 DESCRIPTION="Library for using System.Drawing with mono"
 HOMEPAGE="http://www.go-mono.com/"
-SRC_URI="http://mono.ximian.com/monobuild/preview/sources/libgdiplus/${P%_pre*}.tar.bz2 -> ${P}.tar.bz2"
+SRC_URI="http://mono.ximian.com/monobuild/preview/sources/libgdiplus/${MY_P}.tar.bz2 -> ${P}.tar.bz2"
 
 LICENSE="MIT"
 SLOT="0"
 KEYWORDS="~amd64 ~ppc ~sparc ~x86 ~x86-fbsd"
-IUSE="pango +exif +jpeg +tiff +gif"
+IUSE="pango"
 
 RDEPEND=">=dev-libs/glib-2.6
 		>=media-libs/freetype-2
@@ -23,33 +33,23 @@ RDEPEND=">=dev-libs/glib-2.6
 		x11-libs/libX11
 		x11-libs/libXt
 		x11-libs/cairo[X]
-		exif? ( media-libs/libexif )
-		gif? ( >=media-libs/giflib-4.1.3 )
-		jpeg? ( media-libs/jpeg )
-		tiff? ( media-libs/tiff )
-		pango? ( x11-libs/pango )"
+		media-libs/libexif
+		>=media-libs/giflib-4.1.3
+		media-libs/jpeg
+		media-libs/tiff
+		pango? ( x11-libs/pango-1.20 )"
 DEPEND="${RDEPEND}
 		>=dev-util/pkgconfig-0.19"
 
 RESTRICT="test"
 
-S=${WORKDIR}/${P%_pre*}
+S=${WORKDIR}/${MY_P}
 
 src_configure() {
-	if [[ "$(gcc-major-version)" -gt "3" ]] || \
-	   ( [[ "$(gcc-major-version)" -eq "3" ]] && [[ "$(gcc-minor-version)" -gt "3" ]] )
-	then
-		append-flags -fno-inline-functions
-	fi
-
-	# Disable glitz support as libgdiplus does not use it, and it causes errors
 	econf	--disable-dependency-tracking		\
+		--disable-static			\
 		--with-cairo=system			\
-		$(use pango && printf %b --with-pango)			\
-		$(use_with tiff libtiff)		\
-		$(use_with exif libexif)		\
-		$(use_with jpeg libjpeg)		\
-		$(use_with gif libgif)			\
+		$(use pango && printf %b --with-pango)	\
 		|| die "configure failed"
 }
 
@@ -60,4 +60,5 @@ src_compile() {
 src_install() {
 	emake DESTDIR="${D}" install || die "install failed"
 	dodoc AUTHORS ChangeLog NEWS README
+	find "${D}" -name '*.la' -exec rm -rf '{}' '+' || die "la removal failed"
 }
