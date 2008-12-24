@@ -4,7 +4,7 @@
 
 EAPI=2
 
-inherit go-mono mono flag-o-matic toolchain-funcs
+inherit go-mono mono flag-o-matic
 
 DESCRIPTION="Library for using System.Drawing with mono"
 HOMEPAGE="http://www.go-mono.com/"
@@ -27,25 +27,12 @@ RDEPEND=">=dev-libs/glib-2.6
 		media-libs/jpeg
 		media-libs/tiff
 		pango? ( x11-libs/pango-1.20 )"
-DEPEND="${RDEPEND}
-		>=dev-util/pkgconfig-0.19"
 
 RESTRICT="test"
 
 src_configure() {
-	econf	--disable-dependency-tracking		\
-		--disable-static			\
-		--with-cairo=system			\
-		$(use pango && printf %b --with-pango)	\
-		|| die "configure failed"
+	go-mono_src_configure	--with-cairo=system			\
+				$(use pango && printf %b --with-pango)	\
+				|| die "configure failed"
 }
 
-src_compile() {
-	emake || die "compile failed"
-}
-
-src_install() {
-	emake DESTDIR="${D}" install || die "install failed"
-	dodoc AUTHORS ChangeLog NEWS README
-	find "${D}" -name '*.la' -exec rm -rf '{}' '+' || die "la removal failed"
-}
