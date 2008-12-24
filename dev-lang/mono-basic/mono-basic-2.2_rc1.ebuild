@@ -4,23 +4,20 @@
 
 EAPI=2
 
-inherit mono multilib
+inherit go-mono mono multilib
 
 DESCRIPTION="Visual Basic .NET Runtime and Class Libraries"
 HOMEPAGE="http://www.go-mono.com"
-SRC_URI="http://mono.ximian.com/monobuild/preview/sources/mono-basic/${P%_pre*}.tar.bz2 -> ${P}.tar.bz2"
 
 LICENSE="|| ( GPL-2 LGPL-2 X11 )"
 SLOT="0"
 KEYWORDS="~amd64 ~x86"
 IUSE=""
 
-RDEPEND="=dev-lang/mono-${PV}*"
+RDEPEND="~dev-lang/mono-${PV}"
 DEPEND="${RDEPEND}"
 
 RESTRICT="test"
-
-S=${WORKDIR}/${P%_pre*}
 
 src_install() {
 	emake DESTDIR="${D}" install || die "install failed"
