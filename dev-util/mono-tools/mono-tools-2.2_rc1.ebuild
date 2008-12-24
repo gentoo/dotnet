@@ -4,19 +4,18 @@
 
 EAPI=2
 
-inherit base mono multilib eutils autotools
+inherit go-mono mono base multilib eutils autotools
 
 DESCRIPTION="Set of useful Mono related utilities"
 HOMEPAGE="http://www.mono-project.com/"
-SRC_URI="http://mono.ximian.com/monobuild/preview/sources/mono-tools/${P%_pre*} -> ${P}.tar.bz2"
 
 LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS="~amd64 ~ppc ~sparc ~x86 ~x86-fbsd"
 IUSE="webkit xulrunner"
 
-RDEPEND=">=dev-lang/mono-${PV}
-	>=virtual/monodoc-${PV}
+RDEPEND="=dev-lang/mono-${PV}*
+	=virtual/monodoc-${PV}
 	>=dev-dotnet/gtk-sharp-2.12.6[glade]
 	>=dev-dotnet/gconf-sharp-2
 	>=dev-dotnet/gtkhtml-sharp-2
@@ -27,8 +26,6 @@ DEPEND="${RDEPEND}
 	>=dev-util/pkgconfig-0.19"
 
 PATCHES=( "${FILESDIR}/${PN}-2.0-html-renderer-fixes.patch" )
-
-S=${WORKDIR}/${P%_pre*}
 
 #Fails parallel make.
 MAKEOPTS="${MAKEOPTS} -j1"
