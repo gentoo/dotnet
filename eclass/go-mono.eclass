@@ -59,7 +59,7 @@ go-mono_src_configure() {
 }
 
 go-mono_src_install () {
-	emake DESTDIR="${D}" install || die "install failed"
+	emake -j1 DESTDIR="${D}" install || die "install failed"
 	local	COMMONDOC=( AUTHORS ChangeLog README TODO )
 	for docfile in "${COMMONDOC[@]}"
 	do
