@@ -4,7 +4,7 @@
 
 EAPI=2
 
-inherit go-mono mono multilib eutils
+inherit go-mono mono
 
 DESCRIPTION="XSP ASP.NET host"
 HOMEPAGE="http://www.go-mono.com/"
@@ -15,10 +15,8 @@ KEYWORDS="~amd64 ~ppc ~x86"
 
 IUSE=""
 
-RDEPEND=">=dev-lang/mono-${PV}
-	  =dev-db/sqlite-3*"
-DEPEND="${RDEPEND}
-	>=dev-util/pkgconfig-0.20"
+RDEPEND="dev-db/sqlite:3"
+DEPEND="${RDEPEND}"
 
 pkg_preinst() {
 	enewgroup aspnet
@@ -36,7 +34,7 @@ src_compile() {
 }
 
 src_install() {
-	make DESTDIR="${D}" install || die
+	go-mono_src_install
 
 	newinitd "${FILESDIR}"/2.0/xsp.initd xsp || die
 	newinitd "${FILESDIR}"/2.0/mod-mono-server.initd mod-mono-server || die
@@ -44,8 +42,6 @@ src_install() {
 	newconfd "${FILESDIR}"/2.0/mod-mono-server.confd mod-mono-server || die
 
 	keepdir /var/run/aspnet
-
-	dodoc README ChangeLog AUTHORS INSTALL NEWS
 }
 
 pkg_postinst() {
