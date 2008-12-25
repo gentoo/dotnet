@@ -16,6 +16,7 @@ IUSE=""
 
 RDEPEND="sys-libs/readline
 	dev-libs/glib:2"
-DEPEND="${RDEPEND}"
+DEPEND="${RDEPEND}
+	!dev-lang/mercury"
 
 RESTRICT="test"
