@@ -16,7 +16,7 @@ IUSE="pango"
 
 RDEPEND=">=dev-libs/glib-2.6
 		>=media-libs/freetype-2
-		>=media-libs/fontconfig-2
+		>=media-libs/fontconfig-2.6
 		media-libs/libpng
 		x11-libs/libXrender
 		x11-libs/libX11

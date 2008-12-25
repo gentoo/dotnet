@@ -19,16 +19,18 @@ NO_MONO_DEPEND=(
 			"dev-dotnet/gluezilla"
 		)
 
+GO_MONO_REL_PV="$(get_version_component_range 1-2)"
+
 if ! has "${CATEGORY}/${PN}" "${NO_MONO_DEPEND[@]}"
 then
-	RDEPEND="=dev-lang/mono-$(get_version_component_range 1-2)*"
+	RDEPEND="=dev-lang/mono-${GO_MONO_REL_PV}*"
 	DEPEND="${RDEPEND}"
 fi
 
 DEPEND="${DEPEND}
 	>=dev-util/pkgconfig-0.23"
 
-if [[ "$(get_version_component_range 1-2)" = "2.2" ]]
+if [[ "${GO_MONO_REL_PV}" = "2.2" ]]
 then
 	PRE_URI="http://mono.ximian.com/monobuild/preview/sources"
 fi

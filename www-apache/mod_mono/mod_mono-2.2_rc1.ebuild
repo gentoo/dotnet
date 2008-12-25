@@ -14,7 +14,7 @@ LICENSE="Apache-1.1"
 SLOT="0"
 IUSE="aspnet2 debug"
 
-DEPEND="=dev-dotnet/xsp-${PV}*"
+DEPEND="=dev-dotnet/xsp-${GO_MONO_REL_PV}*"
 RDEPEND="${DEPEND}"
 
 APACHE2_MOD_FILE="${S}/src/.libs/${PN}.so"

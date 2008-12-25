@@ -18,8 +18,8 @@ RDEPEND="!<dev-dotnet/pnet-0.6.12
 	!dev-util/monodoc
 	>=dev-libs/glib-2.6
 	!minimal? (
-		=dev-dotnet/libgdiplus-${PV}*
-		=dev-dotnet/gluezilla-${PV}*
+		=dev-dotnet/libgdiplus-${GO_MONO_REL_PV}*
+		=dev-dotnet/gluezilla-${GO_MONO_REL_PV}*
 	)
 	ia64? (
 		sys-libs/libunwind
