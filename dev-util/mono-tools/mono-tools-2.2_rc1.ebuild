@@ -4,7 +4,7 @@
 
 EAPI=2
 
-inherit go-mono mono base multilib eutils autotools
+inherit go-mono mono base autotools
 
 DESCRIPTION="Set of useful Mono related utilities"
 HOMEPAGE="http://www.mono-project.com/"
