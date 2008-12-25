@@ -14,7 +14,7 @@ LICENSE="Apache-1.1"
 SLOT="0"
 IUSE="aspnet2 debug"
 
-DEPEND=">=dev-dotnet/xsp-${PV}"
+DEPEND="=dev-dotnet/xsp-${PV}*"
 RDEPEND="${DEPEND}"
 
 APACHE2_MOD_FILE="${S}/src/.libs/${PN}.so"
@@ -30,9 +30,8 @@ src_prepare() {
 }
 
 src_configure() {
-	econf \
+	go-mono_src_configure \
 		$(use_enable debug) \
-		--disable-dependency-tracking \
 		|| die "econf failed"
 }
 
@@ -41,8 +40,8 @@ src_compile() {
 }
 
 src_install() {
-	mv -f "src/.libs/${PN%_pre*}.so.0.0.0" "src/.libs/${PN%_pre*}.so"
-	export APACHE2_MOD_FILE="$(apache_cd_dir)/.libs/${PN%_pre*}.so"
+	mv -f "src/.libs/${PN}.so.0.0.0" "src/.libs/${PN}.so"
+	export APACHE2_MOD_FILE="$(apache_cd_dir)/.libs/${PN}.so"
 	apache-module_src_install
 	doman man/mod_mono.8
 }
