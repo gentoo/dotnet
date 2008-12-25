@@ -12,16 +12,20 @@ HOMEPAGE="http://www.go-mono.com"
 LICENSE="|| ( GPL-2 LGPL-2 X11 )"
 SLOT="0"
 KEYWORDS="~amd64 ~ppc ~sparc ~x86 ~x86-fbsd"
-IUSE=""
+IUSE="xen moonlight minimal"
 
 RDEPEND="!<dev-dotnet/pnet-0.6.12
 	!dev-util/monodoc
 	>=dev-libs/glib-2.6
-	~dev-dotnet/libgdiplus-${PV}
-	ia64? ( sys-libs/libunwind )"
+	!minimal? (
+		=dev-dotnet/libgdiplus-${PV}*
+		=dev-dotnet/gluezilla-${PV}*
+	)
+	ia64? (
+		sys-libs/libunwind
+	)"
 DEPEND="${RDEPEND}
-		sys-devel/bc
-		>=dev-util/pkgconfig-0.19"
+	sys-devel/bc"
 PDEPEND="dev-dotnet/pe-format"
 
 RESTRICT="test"
@@ -35,25 +39,24 @@ src_configure() {
 	#Remove this at your own peril. Mono will barf in unexpected ways.
 	append-flags -fno-strict-aliasing
 
-	econf	--disable-dependency-tracking \
+	go-mono_src_configure \
 		--disable-quiet-build \
-		--with-moonlight=yes \
-		--with-preview=yes \
+		$(use_with moonlight) \
+		--with-preview \
 		--with-glib=system \
 		--with-gc=included \
-		--with-libgdiplus=installed \
-		--with-tls=$(use arm && printf "pthread" || printf "__thread" ) \
-		--with-sigaltstack=$((use x86 || use amd64) && printf "yes" || printf "no" ) \
+		--with-libgdiplus=$(use minimal && printf "no" || printf "installed" ) \
+		$(use_with xen xenopt) \
 		--with-ikvm-native=no \
-		--with-jit=yes
+		--with-jit
+#		--enable-big-arrays \
 
-	# dev-dotnet/ikvm provides ikvm-native
 }
 
 src_compile() {
+	#We no longer need to pass any variables to emake to get mono to bootstrap.
+	#That's default behavior now.
 	emake -j1
-# EXTERNAL_MCS=false EXTERNAL_MONO=false
-
 	if [[ "$?" -ne "0" ]]; then
 		ewarn "If you are using any hardening features such as"
 		ewarn "PIE+SSP/SELinux/grsec/PAX then most probably this is the reason"
@@ -81,9 +84,7 @@ src_test() {
 }
 
 src_install() {
-	emake DESTDIR="${D}" install || die "install failed"
-
-	dodoc AUTHORS ChangeLog NEWS README
+	go-mono_src_install
 
 	docinto docs
 	dodoc docs/*

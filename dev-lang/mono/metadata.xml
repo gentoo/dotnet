@@ -2,5 +2,6 @@
 <!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
 <pkgmetadata>
 <herd>dotnet</herd>
-<use><flag name='moonlight'>add moonlight support</flag></use>
+<use><flag name='xen'>Make mono generate code that is considerably faster on xen VMs but slightly slower on for normal systems.</flag></use>
+<use><flag name='moonlight'>Generate mono 2.1 assemblies (Pre-alpha)</flag></use>
 </pkgmetadata>
