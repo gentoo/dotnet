@@ -31,6 +31,11 @@ DEPEND="${RDEPEND}"
 
 RESTRICT="test"
 
+src_prepare() {
+	go-mono_src_prepare
+	sed -i -e 's:ungif:gif:g' configure || die
+}
+
 src_configure() {
 	go-mono_src_configure	--with-cairo=system			\
 				$(use pango && printf %b --with-pango)	\
