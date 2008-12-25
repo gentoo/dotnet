@@ -31,15 +31,13 @@ PATCHES=( "${FILESDIR}/${PN}-2.0-html-renderer-fixes.patch" )
 MAKEOPTS="${MAKEOPTS} -j1"
 
 src_prepare() {
-	base_src_prepare
+	go-mono_src_prepare
 	eautoreconf
 }
 
 src_configure() {
-	econf --enable-gtkhtml $(use_enable xulrunner mozilla) $(use_enable webkit) || die "configure failed"
-}
-
-src_install() {
-	make DESTDIR="${D}" install || die
-	dodoc ChangeLog README
+	go-mono_src_configure	--enable-gtkhtml \
+				$(use_enable xulrunner mozilla) \
+				$(use_enable webkit) \
+				|| die "configure failed"
 }
