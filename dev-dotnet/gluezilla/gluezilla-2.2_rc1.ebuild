@@ -14,13 +14,6 @@ KEYWORDS="~amd64 ~x86"
 SLOT="0"
 IUSE=""
 
-RDEPEND=">=dev-lang/mono-${PV}
-	net-libs/xulrunner:1.9
+RDEPEND="net-libs/xulrunner:1.9
 	x11-libs/gtk+:2"
 RDEPEND="${DEPEND}"
-
-src_install () {
-	emake DESTDIR="${D}" install || die "install failed"
-	dodoc AUTHORS ChangeLog README TODO || die "dodoc failed"
-	find "${D}" -name '*.la' -exec rm -rf '{}' '+' || die "la removal failed"
-}
