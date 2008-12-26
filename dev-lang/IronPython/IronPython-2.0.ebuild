@@ -4,7 +4,7 @@
 
 EAPI=2
 
-inherit mono eutils
+inherit mono eutils python
 
 DESCRIPTION="IronPython is Python implemented in C#"
 HOMEPAGE="http://foo.bar.com/"
@@ -21,7 +21,6 @@ RDEPEND="${DEPEND}"
 
 S=${WORKDIR}/${P}/Src
 FEPY_S=${WORKDIR}/${P}-fepy
-
 
 src_prepare() {
 	cd ..
@@ -41,23 +40,16 @@ src_compile() {
 }
 
 src_install() {
-	local dll exe
+	INSTALLDIR=/usr/$(get_libdir)/${PN}
 
-	dodir /bin
-	for exe in *.exe
-	do
-		ebegin "Generating wrapper for ${exe} -> ${exe%.exe}"
-		make_wrapper ${exe%.exe} "mono /usr/$(get_libdir)/${PN}/${exe}"
-		eend $? || die "Failed generating wrapper for ${exe}"
-	done
+	make_wrapper ipy "mono /usr/$(get_libdir)/${PN}/ipy.exe"
 
-	#generate_pkgconfig || die "generating .pc failed"
-
-	for dll in *.dll
-	do
-		ebegin "Installing and registering ${dllbase}"
-		gacutil -i ${dll} -root "${D}"/usr/$(get_libdir) \
-			-gacdir /usr/$(get_libdir) -package ${PN}
-		eend $? || die "Failed installing ${dll}"
-	done
+	insinto ${INSTALLDIR}
+	doins *.exe *.dll
+	dodir ${INSTALLDIR}/Lib
+	cat <<- EOF -> "${D}/${INSTALLDIR}/Lib/site.py"
+	import sys
+	sys.path.append('$(python_get_libdir)')
+	sys.path.append('$(python_get_sitedir)')
+	EOF
 }
