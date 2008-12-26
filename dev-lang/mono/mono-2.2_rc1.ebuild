@@ -12,11 +12,12 @@ HOMEPAGE="http://www.go-mono.com"
 LICENSE="|| ( GPL-2 LGPL-2 X11 )"
 SLOT="0"
 KEYWORDS="~amd64 ~ppc ~sparc ~x86 ~x86-fbsd"
-IUSE="xen moonlight minimal"
+IUSE="xen moonlight minimal static"
 
 RDEPEND="!<dev-dotnet/pnet-0.6.12
 	!dev-util/monodoc
-	>=dev-libs/glib-2.6
+	dev-libs/glib:2
+	>=dev-libs/boehm-gc-7.1[threads]
 	!minimal? (
 		=dev-dotnet/libgdiplus-${GO_MONO_REL_PV}*
 		=dev-dotnet/gluezilla-${GO_MONO_REL_PV}*
@@ -42,12 +43,13 @@ src_configure() {
 	go-mono_src_configure \
 		--disable-quiet-build \
 		$(use_with moonlight) \
+		$(use_with static static_mono) \
 		--with-preview \
 		--with-glib=system \
-		--with-gc=included \
+		--with-gc=boehm \
 		--with-libgdiplus=$(use minimal && printf "no" || printf "installed" ) \
 		$(use_with xen xenopt) \
-		--with-ikvm-native=no \
+		--without-ikvm-native \
 		--with-jit
 #		--enable-big-arrays \
 
