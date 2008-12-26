@@ -1,0 +1,34 @@
+Index: IronPython-2.0/Src/Microsoft.Scripting/Hosting/Shell/BasicConsole.cs
+===================================================================
+--- IronPython-2.0.orig/Src/Microsoft.Scripting/Hosting/Shell/BasicConsole.cs	2008-10-13 12:05:46.000000000 +0900
++++ IronPython-2.0/Src/Microsoft.Scripting/Hosting/Shell/BasicConsole.cs	2008-12-08 07:09:40.000000000 +0900
+@@ -105,16 +105,8 @@
+         }
+ 
+         protected void WriteColor(TextWriter output, string str, ConsoleColor c) {
+-#if !SILVERLIGHT // Console.ForegroundColor
+-            ConsoleColor origColor = Console.ForegroundColor;
+-            Console.ForegroundColor = c;
+-#endif
+             output.Write(str);
+             output.Flush();
+-
+-#if !SILVERLIGHT // Console.ForegroundColor
+-            Console.ForegroundColor = origColor;
+-#endif
+         }
+ 
+         #region IConsole Members
+Index: IronPython-2.0/Src/Microsoft.Scripting/Hosting/Shell/ConsoleOptions.cs
+===================================================================
+--- IronPython-2.0.orig/Src/Microsoft.Scripting/Hosting/Shell/ConsoleOptions.cs	2008-12-08 07:20:01.000000000 +0900
++++ IronPython-2.0/Src/Microsoft.Scripting/Hosting/Shell/ConsoleOptions.cs	2008-12-08 07:20:05.000000000 +0900
+@@ -28,7 +28,7 @@
+         private bool _introspection;
+         private bool _autoIndent;
+         private bool _handleExceptions = true;
+-        private bool _tabCompletion;
++        private bool _tabCompletion = true;
+         private bool _colorfulConsole;
+         private bool _printUsageAndExit;
+         private bool _isMta;

@@ -1,0 +1,132 @@
+Index: IronPython-2.0/Src/Microsoft.Scripting.Core/Actions/IRestrictedMetaObject.cs
+===================================================================
+--- IronPython-2.0.orig/Src/Microsoft.Scripting.Core/Actions/IRestrictedMetaObject.cs	2008-12-08 06:44:36.000000000 +0900
++++ IronPython-2.0/Src/Microsoft.Scripting.Core/Actions/IRestrictedMetaObject.cs	2008-12-08 06:44:59.000000000 +0900
+@@ -16,9 +16,8 @@
+ using System; using Microsoft;
+ using System.Collections.Generic;
+ using System.Text;
+-using Microsoft.Scripting.Actions;
+ 
+-namespace Microsoft.Scripting.Runtime {
++namespace Microsoft.Scripting.Actions {
+     /// <summary>
+     /// Indicates that a MetaObject is already representing a restricted type.  Useful
+     /// when we're already restricted to a known type but this isn't captured in
+Index: IronPython-2.0/Src/Microsoft.Scripting.Core/Actions/MetaObject.cs
+===================================================================
+--- IronPython-2.0.orig/Src/Microsoft.Scripting.Core/Actions/MetaObject.cs	2008-12-08 06:44:30.000000000 +0900
++++ IronPython-2.0/Src/Microsoft.Scripting.Core/Actions/MetaObject.cs	2008-12-08 06:44:59.000000000 +0900
+@@ -21,7 +21,7 @@
+ using System.Reflection;
+ 
+ namespace Microsoft.Scripting.Actions {
+-    public class MetaObject {
++    public partial class MetaObject {
+         private readonly Expression _expression;
+         private readonly Restrictions _restrictions;
+         private readonly object _value;
+Index: IronPython-2.0/Src/Microsoft.Scripting.Core/Actions/MetaObjectExtensions.cs
+===================================================================
+--- IronPython-2.0.orig/Src/Microsoft.Scripting.Core/Actions/MetaObjectExtensions.cs	2008-12-08 06:44:41.000000000 +0900
++++ IronPython-2.0/Src/Microsoft.Scripting.Core/Actions/MetaObjectExtensions.cs	2008-12-08 06:44:59.000000000 +0900
+@@ -17,69 +17,75 @@
+ using Microsoft.Linq.Expressions;
+ using Microsoft.Scripting;
+ using Microsoft.Scripting.Actions;
+-using Microsoft.Scripting.Generation;
+ using Microsoft.Scripting.Utils;
+ 
+-namespace Microsoft.Scripting.Runtime {
+-    public static class MetaObjectExtensions {
+-        public static bool NeedsDeferral(this MetaObject self) {
+-            if (self.HasValue) {
++namespace Microsoft.Scripting.Actions {
++    internal static class CompilerHelpers {
++        public static Type GetVisibleType(Type t) {
++            while (!t.IsVisible) {
++                t = t.BaseType;
++            }
++            return t;
++        }
++    }
++    public partial class MetaObject {
++        public bool NeedsDeferral() {
++            if (this.HasValue) {
+                 return false;
+             }
+ 
+-            if (self.Expression.Type.IsSealedOrValueType()) {
+-                return typeof(IDynamicObject).IsAssignableFrom(self.Expression.Type);
++            if (this.Expression.Type.IsSealedOrValueType()) {
++                return typeof(IDynamicObject).IsAssignableFrom(this.Expression.Type);
+             }
+ 
+             return true;
+         }
+ 
+-        public static MetaObject Restrict(this MetaObject self, Type type) {
+-            ContractUtils.RequiresNotNull(self, "self");
++        public MetaObject Restrict(Type type) {
+             ContractUtils.RequiresNotNull(type, "type");
+ 
+-            IRestrictedMetaObject rmo = self as IRestrictedMetaObject;
++            IRestrictedMetaObject rmo = this as IRestrictedMetaObject;
+             if (rmo != null) {
+                 return rmo.Restrict(type);
+             }
+ 
+-            if (type == self.Expression.Type) {
++            if (type == this.Expression.Type) {
+                 if (type.IsSealedOrValueType()) {
+-                    return self;
++                    return this;
+                 }
+ 
+-                if (self.Expression.NodeType == ExpressionType.New ||
+-                    self.Expression.NodeType == ExpressionType.NewArrayBounds ||
+-                    self.Expression.NodeType == ExpressionType.NewArrayInit) {
+-                    return self;
++                if (this.Expression.NodeType == ExpressionType.New ||
++                    this.Expression.NodeType == ExpressionType.NewArrayBounds ||
++                    this.Expression.NodeType == ExpressionType.NewArrayInit) {
++                    return this;
+                 }
+             }
+ 
+             if (type == typeof(None)) {
+                 return new MetaObject(
+                     Expression.Null(),
+-                    self.Restrictions.Merge(Restrictions.InstanceRestriction(self.Expression, null)),
+-                    self.Value
++                    this.Restrictions.Merge(Restrictions.InstanceRestriction(this.Expression, null)),
++                    this.Value
+                 );
+             }
+ 
+-            if (self.HasValue) {
++            if (this.HasValue) {
+                 return new MetaObject(
+                     Expression.ConvertHelper(
+-                        self.Expression,
++                        this.Expression,
+                         CompilerHelpers.GetVisibleType(type)
+                     ),
+-                    self.Restrictions.Merge(Restrictions.TypeRestriction(self.Expression, type)),
+-                    self.Value
++                    this.Restrictions.Merge(Restrictions.TypeRestriction(this.Expression, type)),
++                    this.Value
+                 );
+             }
+ 
+             return new MetaObject(
+                 Expression.ConvertHelper(
+-                    self.Expression,
++                    this.Expression,
+                     CompilerHelpers.GetVisibleType(type)
+                 ),
+-                self.Restrictions.Merge(Restrictions.TypeRestriction(self.Expression, type))
++                this.Restrictions.Merge(Restrictions.TypeRestriction(this.Expression, type))
+             );
+         }
+     }

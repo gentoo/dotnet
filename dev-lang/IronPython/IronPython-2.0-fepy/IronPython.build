@@ -1,0 +1,66 @@
+<!-- vim:set ft=xml: -->
+<project name="IronPython">
+    <csc target="library" output="Microsoft.Scripting.Core.dll"
+        define="MICROSOFT_SCRIPTING_CORE"
+        noconfig="true"
+        warninglevel="2">
+        <sources>
+            <include name="Microsoft.Scripting.Core/**/*.cs"/>
+            <exclude name="Microsoft.Scripting.Core/Properties/ExtensionAssemblyInfo.cs"/>
+        </sources>
+        <references>
+            <include name="System.dll"/>
+        </references>
+    </csc>
+    <csc target="library" output="Microsoft.Scripting.dll"
+        noconfig="true"
+        warninglevel="2">
+        <sources>
+            <include name="Microsoft.Scripting/**/*.cs"/>
+        </sources>
+        <references>
+            <include name="System.dll"/>
+            <include name="System.Configuration.dll"/>
+            <include name="System.Xml.dll"/>
+            <include name="Microsoft.Scripting.Core.dll"/>
+        </references>
+    </csc>
+    <csc target="library" output="IronPython.dll"
+        noconfig="true"
+        warninglevel="2">
+        <sources>
+            <include name="IronPython/**/*.cs"/>
+        </sources>
+        <resources dynamicprefix="true">
+            <include name="IronPython/**/*.resx"/>
+        </resources>
+        <references>
+            <include name="System.dll"/>
+            <include name="System.Xml.dll"/>
+            <include name="Microsoft.Scripting.Core.dll"/>
+            <include name="Microsoft.Scripting.dll"/>
+        </references>
+    </csc>
+    <csc target="library" output="IronPython.Modules.dll"
+        noconfig="true"
+        warninglevel="2">
+        <sources>
+            <include name="IronPython.Modules/**/*.cs"/>
+        </sources>
+        <references>
+            <include name="System.dll"/>
+            <include name="Microsoft.Scripting.Core.dll"/>
+            <include name="Microsoft.Scripting.dll"/>
+            <include name="IronPython.dll"/>
+        </references>
+    </csc>
+    <csc target="exe" output="ipy.exe">
+        <sources>
+            <include name="IronPythonConsole/**/*.cs"/>
+        </sources>
+        <references>
+            <include name="Microsoft.Scripting.dll"/>
+            <include name="IronPython.dll"/>
+        </references>
+    </csc>
+</project>
