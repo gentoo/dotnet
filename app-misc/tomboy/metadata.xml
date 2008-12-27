@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
+<pkgmetadata>
+<herd>dotnet</herd>
+<maintainer>
+  <email>compnerd@gentoo.org</email>
+</maintainer>
+<use>
+  <flag name='galago'>Add support for the galago desktop presence framework
+    (<pkg>dev-dotnet/galago-sharp</pkg>)</flag>
+</use>
+</pkgmetadata>
