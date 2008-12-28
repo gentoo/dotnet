@@ -36,7 +36,9 @@ DEPEND="${RDEPEND}
 S="${WORKDIR}/${MY_P}"
 
 src_configure() {
-	econf 	--with-cairo=system \
+	econf	--enable-shared \
+		--disable-static \
+	 	--with-cairo=system \
 		--with-ffmpeg=yes \
 		--with-ff3=yes \
 		--without-ff2 \
@@ -50,7 +52,7 @@ src_configure() {
 }
 
 src_install() {
-	local LTDL_SO LTDL_SOLIST=( "libavutil.so" "libswscale.so" "libavcodec.so" "libmono.so" "libmoon.so" )
+	local LTDL_SO LTDL_SOLIST=( "libavutil.so" "libswscale.so" "libavcodec.so" "libmono.so" )
 	emake DESTDIR="${D}" install || die "emake install failed"
 	if [[ -e "${D}/usr/$(get_libdir)/moon/plugin/libmoonloader.so" ]]
 	then
@@ -59,6 +61,8 @@ src_install() {
 			|| die "dosym libmoonplugin-ff3bridge failed"
 		dosym "../libmoonplugin.so" "/usr/$(get_libdir)/moon/plugin/moonlight/libmoonplugin.so" \
 			|| die "dosym libmoonplugin failed"
+		dosym "/usr/$(get_libdir)/libmoon.so" "/usr/$(get_libdir)/moon/plugin/moonlight/libmoon.so" \
+			|| die "dosym libmoon failed"
 		for LTDL_SO in "${LTDL_SOLIST[@]}"
 		do
 			if [[ -e "/usr/$(get_libdir)/${LTDL_SO}" ]]
@@ -74,4 +78,5 @@ src_install() {
 	else
 		die "/usr/$(get_libdir)/moon/plugin/libmoonloader.so not built WTF!"
 	fi
+	find "${D}" -name '*.la' -exec rm -rf '{}' '+' || die "la removal failed"
 }
