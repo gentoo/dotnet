@@ -93,4 +93,5 @@ src_install() {
 
 	docinto libgc
 	dodoc libgc/ChangeLog
+	find "${D}"/usr/lib{,64} -name '*nunit*' -exec rm -rf '{}' '+' || die "Removing nunit .dlls failed"
 }
