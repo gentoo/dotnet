@@ -18,13 +18,12 @@ KEYWORDS="~x86"
 
 IUSE=""
 
-DEPEND=">=dev-lang/mono-2.0
+RDEPEND=">=dev-lang/mono-2.0
 	virtual/monodoc"
-
-RDEPEND="${DEPEND}
+DEPEND="${DEPEND}
 	>=dev-util/pkgconfig-0.23"
 
-MAKEOPTS="${MAKEOPTS} -j1"
+#MAKEOPTS="${MAKEOPTS} -j1"
 
 S="${WORKDIR}/${MY_P}/source"
 
