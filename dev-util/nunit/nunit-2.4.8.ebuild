@@ -20,7 +20,7 @@ KEYWORDS="~amd64"
 IUSE="debug"
 
 RDEPEND=">=dev-lang/mono-2.2_rc1
-	!<=dev-util/mono-tools-2.2_rc1"
+	!<dev-util/mono-tools-2.2_rc1"
 DEPEND="${RDEPEND}
 	app-arch/unzip
 	dev-dotnet/nant"
