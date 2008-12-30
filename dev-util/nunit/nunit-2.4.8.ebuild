@@ -68,6 +68,7 @@ src_install() {
 		doins *.exe || die "doins $exe failed"
 		make_wrapper "${exe%.exe}" "mono /usr/$(get_libdir)/mono/${PN}/${exe}" || die "make_wrapper $exe failed"
 	done
+	dosym nunit-console /usr/bin/nunit-console2
 	generate_pkgconfig "${PN}" "${MY_PN}" || die
 }
 
