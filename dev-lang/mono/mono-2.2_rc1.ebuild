@@ -31,6 +31,8 @@ PDEPEND="dev-dotnet/pe-format"
 
 RESTRICT="test"
 
+PATCHES=( "${FILESDIR}/${PN}-2.2-b.n.c-450782.patch" )
+
 #Threading and mimeicon patches from Fedora CVS. Muine patch from Novell. Pointer conversions patch from Debian.
 
 src_configure() {
