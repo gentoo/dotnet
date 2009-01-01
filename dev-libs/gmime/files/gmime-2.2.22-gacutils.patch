@@ -1,0 +1,15 @@
+--- gmime-2.2.22/mono/Makefile.am.gacutils	2008-05-24 09:38:27.000000000 +0900
++++ gmime-2.2.22/mono/Makefile.am	2008-07-21 09:57:02.000000000 +0900
+@@ -80,10 +80,10 @@
+ 	@if test -n '$(TARGET)'; then									\
+ 	  if test -n '$(DESTDIR)'; then								\
+ 	    echo "$(GACUTIL) /i $(ASSEMBLY) /f /package $(PACKAGE_SHARP) /root $(DESTDIR)$(prefix)/lib";		\
+-	    $(GACUTIL) /i $(ASSEMBLY) /f /package $(PACKAGE_SHARP) /root $(DESTDIR)$(prefix)/lib || exit 1;	\
++	    $(GACUTIL) /i $(ASSEMBLY) /f /package $(PACKAGE_SHARP) /root $(DESTDIR)$(prefix)/lib -bootstrap || exit 1;	\
+ 	  else												\
+ 	    echo "$(GACUTIL) /i $(ASSEMBLY) /f /package $(PACKAGE_SHARP) /gacdir $(prefix)/lib";			\
+-	    $(GACUTIL) /i $(ASSEMBLY) /f /package $(PACKAGE_SHARP) /gacdir $(prefix)/lib || exit 1;		\
++	    $(GACUTIL) /i $(ASSEMBLY) /f /package $(PACKAGE_SHARP) /gacdir $(prefix)/lib -bootstrap || exit 1;		\
+ 	  fi;												\
+ 	fi
+ 
