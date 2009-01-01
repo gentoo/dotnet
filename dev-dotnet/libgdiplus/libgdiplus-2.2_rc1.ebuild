@@ -26,7 +26,7 @@ RDEPEND=">=dev-libs/glib-2.6
 		>=media-libs/giflib-4.1.3
 		media-libs/jpeg
 		media-libs/tiff
-		pango? ( x11-libs/pango-1.20 )"
+		pango? ( >=x11-libs/pango-1.20 )"
 DEPEND="${RDEPEND}"
 
 RESTRICT="test"
