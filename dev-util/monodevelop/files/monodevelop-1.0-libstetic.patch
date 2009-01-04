@@ -1,0 +1,28 @@
+--- src/addins/MonoDevelop.GtkCore/lib/Makefile.am	2008-03-11 03:19:54.000000000 +0100
++++ src/addins/MonoDevelop.GtkCore/lib/Makefile.am.new	2008-03-17 16:19:23.000000000 +0100
+@@ -25,9 +25,11 @@
+ libstetic_DATAFILES := $(shell sh $(EXTRACT_VARS) $(libstetic_MAKEFILE) "libstetic_dll_datafiles")
+ libstetic_DIST := $(addprefix $(libstetic_DIR)/,$(libstetic_DATAFILES)) $(libstetic_MAKEFILE) $(libstetic_RESOURCES) $(libstetic_SOURCES)
+ 
+-$(libstetic) $(libstetic).mdb: $(libstetic_SOURCES) $(libstetic_RESOURCES) $(libstetic_DATAFILES_BUILD) 
++$(libstetic): $(libstetic_SOURCES) $(libstetic_RESOURCES) $(libstetic_DATAFILES_BUILD) 
+ 	mkdir -p $(BUILD_DIR)
+ 	$(MCS) $(libstetic_FLAGS) -out:$@ $(libstetic_SOURCES) $(libstetic_REFERENCES) $(libstetic_RESOURCES:%=-resource:%)
++$(libstetic).mdb: $(libstetic)
++	true
+ 
+ libstetic_DATAFILES_BUILD = $(addprefix $(BUILD_DIR)/, $(libstetic_DATAFILES))
+   
+@@ -63,9 +65,11 @@
+ 	-r:System.Runtime.Remoting \
+ 	-r:System.Xml
+ 
+-$(libsteticui) $(libsteticui).mdb: $(libsteticui_SOURCES) $(libsteticui_RESOURCES) $(libsteticui_DATAFILES_BUILD) 
++$(libsteticui): $(libsteticui_SOURCES) $(libsteticui_RESOURCES) $(libsteticui_DATAFILES_BUILD) 
+ 	mkdir -p $(BUILD_DIR)
+ 	$(MCS) $(libsteticui_FLAGS) -out:$@ $(libsteticui_SOURCES) $(libsteticui_REFERENCES) $(libsteticui_RESOURCES:%=-resource:%)
++$(libsteticui).mdb: $(libsteticui)
++	true
+ 
+ libsteticui_DATAFILES_BUILD = $(addprefix $(BUILD_DIR)/, $(libsteticui_DATAFILES))
+   

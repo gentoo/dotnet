@@ -1,0 +1,62 @@
+diff -NrU5 monodevelop-1.9.1.orig/src/addins/MonoDevelop.GtkCore/lib/stetic/libsteticui/Makefile.am monodevelop-1.9.1/src/addins/MonoDevelop.GtkCore/lib/stetic/libsteticui/Makefile.am
+--- monodevelop-1.9.1.orig/src/addins/MonoDevelop.GtkCore/lib/stetic/libsteticui/Makefile.am	2009-01-01 23:48:57.000000000 +0100
++++ monodevelop-1.9.1/src/addins/MonoDevelop.GtkCore/lib/stetic/libsteticui/Makefile.am	2009-01-02 00:20:12.000000000 +0100
+@@ -3,11 +3,10 @@
+ ASSEMBLY = $(ASSEMBLY_DIR)/libsteticui.dll
+ 
+ ASSEMBLY_FILES = \
+ 	$(ASSEMBLY) \
+ 	$(ASSEMBLY_DIR)/libsteticui.dll.mdb \
+-	$(CECIL_DLL) \
+ 	$(DATA_FILE_BUILD)
+ 	
+ pkglib_DATA = $(ASSEMBLY_FILES)
+ libsteticui_dll_sources =  \
+ 	../../gtk-gui/generated.cs \
+@@ -85,25 +84,25 @@
+ libsteticui_dll_references =  \
+ 	-pkg:gconf-sharp-2.0 \
+ 	-pkg:glib-sharp-2.0 \
+ 	-pkg:gnome-sharp-2.0 \
+ 	-pkg:gtk-sharp-2.0 \
++	-pkg:cecil \
+ 	-r:$(top_builddir)/bin/libstetic.dll \
+-	-r:$(CECIL_DLL) \
+ 	-r:Mono.Posix \
+ 	-r:System.Runtime.Remoting \
+ 	-r:System.Xml
+ 
+ libsteticui_dll_datafiles = libsteticui.dll.config
+ 
+ 
+-all: $(ASSEMBLY) $(DATA_FILE_BUILD) $(CECIL_DLL)
++all: $(ASSEMBLY) $(DATA_FILE_BUILD)
+ 	
+ RESOURCE_FILES = $(addprefix $(srcdir)/, $(libsteticui_dll_resources))
+ DATA_FILES = $(addprefix $(srcdir)/, $(libsteticui_dll_datafiles))
+ 
+-$(ASSEMBLY): $(libsteticui_dll_sources) $(RESOURCE_FILES) $(CECIL_DLL)
++$(ASSEMBLY): $(libsteticui_dll_sources) $(RESOURCE_FILES)
+ 	@rm -f sources.rsp
+ 	@echo $(libsteticui_dll_sources:%=$(srcdir)/%) > sources.rsp
+ 	@for resource in $(RESOURCE_FILES); do echo -resource:$$resource,`basename $$resource` >> sources.rsp; done
+ 	$(GMCS) -debug -unsafe -main:Stetic.ApplicationBackend $(libsteticui_dll_references) -out:$@ @sources.rsp
+ 
+@@ -111,17 +110,10 @@
+ 
+ $(DATA_FILE_BUILD): $(srcdir)/$(notdir $@)
+ 	mkdir -p $(ASSEMBLY_DIR)
+ 	cp $(srcdir)/$(subst $(ASSEMBLY_DIR),$(srcdir),$@) $(ASSEMBLY_DIR)/.
+ 
+-CECIL = Mono.Cecil.dll
+-CECIL_DLL = $(ASSEMBLY_DIR)/$(CECIL)
+-
+-$(CECIL_DLL): $(CECIL_PATH)
+-	mkdir -p $(ASSEMBLY_DIR)
+-	cp $(CECIL_PATH) $(ASSEMBLY_DIR)/.
+-
+ CLEANFILES = $(ASSEMBLY_FILES) sources.rsp
+ 
+ EXTRA_DIST = \
+ 	$(libsteticui_dll_sources)	\
+ 	$(RESOURCE_FILES) \
