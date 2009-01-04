@@ -7,7 +7,7 @@ EAPI=2
 GTK_SHARP_REQUIRED_VERSION="2.12"
 GTK_SHARP_MODULE_DIR="gnomepanel"
 
-inherit gtk-sharp-module-2.0
+inherit gtk-sharp-module
 
 SLOT="2"
 KEYWORDS="~x86 ~amd64"

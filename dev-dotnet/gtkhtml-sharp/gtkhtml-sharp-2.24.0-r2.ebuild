@@ -6,7 +6,7 @@ EAPI=2
 
 GTK_SHARP_REQUIRED_VERSION="2.12"
 
-inherit gtk-sharp-module-2.0 versionator
+inherit gtk-sharp-module versionator
 
 SLOT="2"
 KEYWORDS="~x86 ~ppc ~amd64"

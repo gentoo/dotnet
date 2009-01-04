@@ -8,7 +8,7 @@ GTK_SHARP_MODULE="gnome"
 GTK_SHARP_MODULE_DEPS="art"
 GTK_SHARP_REQUIRED_VERSION="2.12"
 
-inherit gtk-sharp-module-2.0
+inherit gtk-sharp-module
 
 SLOT="2"
 KEYWORDS="~x86 ~ppc ~sparc ~x86-fbsd ~amd64"

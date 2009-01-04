@@ -97,22 +97,22 @@ get_sharp_lib() {
 	printf ${S#-r:}
 }
 
-gtk-sharp-module-2.0_src_prepare() {
+gtk-sharp-module_src_prepare() {
 	cd "${S}/${GTK_SHARP_MODULE_DIR}"
 
 	gtk-sharp-module_fix_files &> /dev/null
 }
 
-gtk-sharp-module-2.0_src_configure() {
+gtk-sharp-module_src_configure() {
 	econf --disable-static --disable-dependency-tracking ${gtk_sharp_conf} ${@} || die "econf failed"
 }
 
-gtk-sharp-module-2.0_src_compile() {
+gtk-sharp-module_src_compile() {
 	cd "${S}/${GTK_SHARP_MODULE_DIR}"
 	emake || die "emake failed"
 }
 
-gtk-sharp-module-2.0_src_install() {
+gtk-sharp-module_src_install() {
 
 	cd "${GTK_SHARP_MODULE_DIR}"
 	emake DESTDIR=${D} install || die "emake install failed"
