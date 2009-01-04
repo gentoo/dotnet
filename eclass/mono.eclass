@@ -34,7 +34,7 @@ export XDG_CONFIG_HOME="${T}"
 
 unset MONO_AOT_CACHE
 
-gacinstall() {
+egacinstall() {
 	gacutil -i "${1}" \
 		-root "${D}"/usr/$(get_libdir) \
 		-gacdir /usr/$(get_libdir) \

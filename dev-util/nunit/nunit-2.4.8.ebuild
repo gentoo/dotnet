@@ -60,7 +60,7 @@ src_install() {
 	rm -f *test* *x86* runFile* fit* *fixtures*
 	for assembly in nunit*.dll
 	do
-		gacinstall "${assembly}"
+		egacinstall "${assembly}"
 	done
 	insinto /usr/$(get_libdir)/mono/${PN}
 	for exe in *.exe
