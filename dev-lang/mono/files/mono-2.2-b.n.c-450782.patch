@@ -21,3 +21,33 @@
  			hashcode.Define ();
  			AddMethod (hashcode);
  
+--- branches/mono-2-2/mcs/mcs/ecore.cs	2008/12/29 09:33:38	122177
++++ branches/mono-2-2/mcs/mcs/ecore.cs	2008/12/29 09:34:02	122178
+@@ -4971,7 +4971,11 @@
+ 				// A variable of the form V.I is fixed when V is a fixed variable of a struct type
+ 				//
+ 				IVariableReference variable = InstanceExpression as IVariableReference;
+-				return variable != null && InstanceExpression.Type.IsValueType && variable.IsFixed;
++				if (variable != null)
++					return InstanceExpression.Type.IsValueType && variable.IsFixed;
++
++				IFixedExpression fe = InstanceExpression as IFixedExpression;
++				return fe != null && fe.IsFixed;
+ 			}
+ 		}
+ 
+--- branches/mono-2-2/mcs/mcs/expression.cs	2008/12/30 11:41:05	122232
++++ branches/mono-2-2/mcs/mcs/expression.cs	2008/12/30 11:41:14	122233
+@@ -1445,6 +1445,12 @@
+ 		protected override string OperatorName {
+ 			get { return "as"; }
+ 		}
++
++		public override void MutateHoistedGenericType (AnonymousMethodStorey storey)
++		{
++			type = storey.MutateType (type);
++			base.MutateHoistedGenericType (storey);
++		}
+ 	
+ 		public override bool GetAttributableValue (EmitContext ec, Type value_type, out object value)
+ 		{
