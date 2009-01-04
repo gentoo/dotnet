@@ -41,3 +41,27 @@ egacinstall() {
 		-package ${2:-${GACPN:-${PN}}} \
 		|| die "installing ${1} into the Global Assembly Cache failed"
 }
+
+mono_multilib_comply() {
+	local dir finddirs=()
+	if [[ -d "${D}/usr/lib" && "$(get_libdir)" != "lib" ]]
+	then
+		if ! [[ -d "${D}"/usr/"$(get_libdir)" ]]
+		then
+			mkdir "${D}"/usr/"$(get_libdir)" || die "Couldn't mkdir ${D}/usr/$(get_libdir)"
+		fi
+		mv "${D}"/usr/lib/* "${D}"/usr/"$(get_libdir)"/ || die "Moving files into correct libdir failed"
+		rm -rf "${D}"/usr/lib
+		for dir in "${D}"/usr/"$(get_libdir)"/pkgconfig "${D}"/usr/share/pkgconfig
+		do
+			[[ -d "${dir}" ]] && finddirs=( "${finddirs[@]}" "${dir}" )
+		done
+		if ! [[ -z "${finddirs[@]// /}" ]]
+		then
+			sed  -i -r -e 's:/(lib)([^a-zA-Z0-9]|$):/'"$(get_libdir)"'\2:g' \
+				$(find "${finddirs[@]}" -name '*.pc') \
+				|| die "Sedding some sense into pkgconfig files failed."
+		fi
+
+	fi
+}
