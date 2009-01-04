@@ -1,0 +1,18 @@
+diff -NrU5 taoframework-2.1.0.orig/source/src/Makefile.am taoframework-2.1.0/source/src/Makefile.am
+--- taoframework-2.1.0.orig/source/src/Makefile.am	2008-12-28 15:43:08.000000000 +0100
++++ taoframework-2.1.0/source/src/Makefile.am	2008-12-28 15:44:02.000000000 +0100
+@@ -23,11 +23,13 @@
+ 
+ # FIXME: doc generation is disabled for Tao.OpenGl because of a gmcs bug
+ # (see also Assembly.am)
+ $(monodoc_DATA):
+ 	for x in $(filter-out Tao.OpenGl Tao.GlBindGen, $(SUBDIRS)); do \
+-	  monodocer --assembly:$$x/$$x.dll --path:doc/$$x; \
++	  $(mkdir_p) doc/$$x && \
++	  echo monodocer -assembly:$$x/$$x.dll -path:doc/$$x && \
++	  monodocer -assembly:$$x/$$x.dll -path:doc/$$x || exit 1; \
+         done
+ 	mdassembler --out Tao \
+ 	  $(addprefix --ecma doc/, $(filter-out Tao.OpenGl Tao.GlBindGen, $(SUBDIRS)))
+ 
+ clean-local:
