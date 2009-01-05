@@ -15,7 +15,8 @@ KEYWORDS="~amd64 ~ppc ~sparc ~x86 ~x86-fbsd"
 IUSE="webkit xulrunner"
 
 RDEPEND="=virtual/monodoc-${GO_MONO_REL_PV}*
-	>=dev-dotnet/gtk-sharp-2.12.6[glade]
+	>=dev-dotnet/gtk-sharp-2.12.6
+	>=dev-dotnet/glade-sharp-2.12.6
 	>=dev-dotnet/gconf-sharp-2
 	>=dev-dotnet/gtkhtml-sharp-2
 	webkit? ( dev-dotnet/webkit-sharp )

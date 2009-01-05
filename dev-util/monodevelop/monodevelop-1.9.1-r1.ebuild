@@ -21,7 +21,8 @@ RDEPEND=">=dev-lang/mono-1.9
 			~dev-dotnet/mono-addins-0.3.1
 			>=dev-dotnet/mono-addins-0.4[gtk]
 			)
-		 >=dev-dotnet/gtk-sharp-2.12.6[glade]
+		 >=dev-dotnet/gtk-sharp-2.12.6
+		 >=dev-dotnet/glade-sharp-2.12.6
 		 >=dev-dotnet/gnome-sharp-2.24.0
 		 >=dev-dotnet/gnomevfs-sharp-2.24.0
 		 >=dev-dotnet/gconf-sharp-2.24.0
