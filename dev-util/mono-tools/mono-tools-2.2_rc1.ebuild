@@ -30,17 +30,6 @@ PATCHES=( "${FILESDIR}/${PN}-2.0-html-renderer-fixes.patch" )
 #Fails parallel make.
 MAKEOPTS="${MAKEOPTS} -j1"
 
-src_prepare() {
-	go-mono_src_prepare
-	sed -i -e 's:gnunit ::' Makefile.am \
-		|| die "Removing gnunit failed"
-	sed -r -i -e '/(nunit|NUNIT)/d' configure.in \
-		|| die "Removing gnunit configure.in parts failed"
-	sed -i -e 's:Test.Rules::' gendarme/rules/Makefile.am \
-		|| die "Removing gnunit-dependent testdir failed"
-	eautoreconf
-}
-
 src_configure() {
 	go-mono_src_configure	--enable-gtkhtml \
 				$(use_enable xulrunner mozilla) \

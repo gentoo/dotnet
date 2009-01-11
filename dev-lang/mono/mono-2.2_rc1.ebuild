@@ -29,11 +29,9 @@ DEPEND="${RDEPEND}
 	sys-devel/bc"
 PDEPEND="dev-dotnet/pe-format"
 
-RESTRICT="test"
-
 PATCHES=( "${FILESDIR}/${PN}-2.2-b.n.c-450782.patch" )
 
-#Threading and mimeicon patches from Fedora CVS. Muine patch from Novell. Pointer conversions patch from Debian.
+MAKEOPTS="${MAKEOPTS} -j1"
 
 src_configure() {
 	# mono's build system is finiky, strip the flags
@@ -55,34 +53,16 @@ src_configure() {
 
 }
 
-src_compile() {
-	#We no longer need to pass any variables to emake to get mono to bootstrap.
-	#That's default behavior now.
-	emake -j1
-	if [[ "$?" -ne "0" ]]; then
-		ewarn "If you are using any hardening features such as"
-		ewarn "PIE+SSP/SELinux/grsec/PAX then most probably this is the reason"
-		ewarn "why build has failed. In this case turn any active security"
-		ewarn "enhancements off and try emerging the package again"
-		die
-	fi
-}
-
-
-
 src_test() {
 	vecho ">>> Test phase [check]: ${CATEGORY}/${PF}"
 
-	mkdir -p "${T}/home/mono" || die "mkdir home failed"
+        export MONO_REGISTRY_PATH="${T}/registry"
+        export XDG_DATA_HOME="${T}/data"
+        export MONO_SHARED_DIR="${T}/shared"
+        export XDG_CONFIG_HOME="${T}/config"
+        export HOME="${T}/home"
 
-	export HOME="${T}/home/mono"
-	export XDG_CONFIG_HOME="${T}/home/mono"
-	export XDG_DATA_HOME="${T}/home/mono"
-
-	if ! LC_ALL=C emake -j1 check; then
-		hasq test $FEATURES && die "Make check failed. See above for details."
-		hasq test $FEATURES || eerror "Make check failed. See above for details."
-	fi
+	emake -j1 check
 }
 
 src_install() {
@@ -93,5 +73,6 @@ src_install() {
 
 	docinto libgc
 	dodoc libgc/ChangeLog
-	find "${D}"/usr/{lib{,64},bin} -name '*nunit*' -exec rm -rf '{}' '+' || die "Removing nunit .dlls failed"
+	#We need to do this to only install the libraries for the built-in nunit.
+	find "${D}"/usr/ '(' -name '*nunit-console*' -o -name '*nunit-docs*' ')' -exec rm -rf '{}' '+' || die "Removing nunit .dlls failed"
 }

@@ -17,19 +17,6 @@ IUSE=""
 RDEPEND="sys-libs/readline
 	dev-libs/glib:2"
 DEPEND="${RDEPEND}
-	dev-util/nunit
 	!dev-lang/mercury"
 
 RESTRICT="test"
-
-src_prepare() {
-	sed -i	-e 's:mono-nunit:nunit:' \
-		configure.in || die
-	sed -i	-e '/nunit.framework/d' \
-		-e 's,-r:nunit.core,-pkg:nunit,' \
-		build/Makefile.am || die
-
-	go-mono_src_prepare
-	eautoreconf
-}
-
