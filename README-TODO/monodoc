@@ -1,7 +1,6 @@
 It would be nice if we could get monodoc migrated to /usr/share/
 
 Notes:
-egrep "/lib(/|$)" $(equery files mono-tools|grep /usr/bin|grep -v debug)|sed -r -e ":/lib(/|$): s:/(lib)(/|$):/\164\2:"
 equery belongs monodoc.dll.config
 [ Searching for file(s) monodoc.dll.config in *... ]
 dev-lang/mono-2.2_rc1 (/usr/lib/mono/gac/monodoc/1.0.0.0__0738eb9f132ed756/monodoc.dll.config)

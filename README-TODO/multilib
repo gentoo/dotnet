@@ -1,0 +1,17 @@
+We'll have to expand mono_multilib_comply to also cover /usr/bin/ scripts (And .config files?)
+egrep "/lib(/|$)" $(equery files mono-tools|grep /usr/bin|grep -v debug)|sed -r -e ":/lib(/|$): s:/(lib)(/|$):/\164\2:"
+^works
+
+Find out if they're what we want:
+loki mdoctest # file /usr/bin/podsleuth
+/usr/bin/podsleuth: Bourne-Again shell script text executable
+loki mdoctest # nano /usr/bin/podsleuth
+loki mdoctest # file /usr/bin/podsleuth
+/usr/bin/podsleuth: POSIX shell script text executable
+
+LC_ALL=C egrep -r --include='*.dll.config' --include='*.exe.config' '/lib/' /usr/lib64/
+/usr/lib64/mono/gac/monodoc/1.0.0.0__0738eb9f132ed756/monodoc.dll.config:        <path docsPath="/usr/lib/monodoc" />
+^Only occurence.
+
+We should make mono_multilib_comply generally use only mv to move files around, it's much cheaper. The reason cp -ar is
+there now, is gtk-sharp-gapi. Perhaps an override?
