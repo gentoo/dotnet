@@ -30,9 +30,15 @@ PATCHES=( "${FILESDIR}/${PN}-2.0-html-renderer-fixes.patch" )
 #Fails parallel make.
 MAKEOPTS="${MAKEOPTS} -j1"
 
+src_prepare() {
+	go-mono_src_prepare
+	eautoreconf
+}
+
 src_configure() {
-	go-mono_src_configure	--enable-gtkhtml \
-				$(use_enable xulrunner mozilla) \
-				$(use_enable webkit) \
-				|| die "configure failed"
+	econf	--disable-dependency-tracking \
+		--enable-gtkhtml \
+		$(use_enable xulrunner mozilla) \
+		$(use_enable webkit) \
+		|| die "configure failed"
 }

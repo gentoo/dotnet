@@ -4,7 +4,7 @@
 
 EAPI=2
 
-inherit go-mono mono base eutils flag-o-matic multilib
+inherit mono eutils flag-o-matic multilib go-mono
 
 DESCRIPTION="Mono runtime and class libraries, a C# compiler/interpreter"
 HOMEPAGE="http://www.go-mono.com"
@@ -28,8 +28,6 @@ RDEPEND="!<dev-dotnet/pnet-0.6.12
 DEPEND="${RDEPEND}
 	sys-devel/bc"
 PDEPEND="dev-dotnet/pe-format"
-
-PATCHES=( "${FILESDIR}/${PN}-2.2-b.n.c-450782.patch" )
 
 MAKEOPTS="${MAKEOPTS} -j1"
 

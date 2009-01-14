@@ -35,12 +35,12 @@ then
 	PRE_URI="http://mono.ximian.com/monobuild/preview/sources"
 fi
 
-if ! [[ "${PV%_rc*}" = "${PV}" ]]
+if [[ "${PV%_rc*}" != "${PV}" ]]
 then
 	GO_MONO_P="${P%_rc*}"
 	SRC_URI="${PRE_URI}/${PN}/${GO_MONO_P} -> ${P}.tar.bz2"
 	S="${WORKDIR}/${GO_MONO_P}"
-elif ! [[ "${PV%_pre*}" = "${PV}" ]]
+elif [[ "${PV%_pre*}" != "${PV}" ]]
 then
 	GO_MONO_P="${P%_pre*}"
 	SRC_URI="${PRE_URI}/${PN}/${GO_MONO_P} -> ${P}.tar.bz2"
@@ -49,6 +49,10 @@ else
 	GO_MONO_P=${P}
 	SRC_URI="http://ftp.novell.com/pub/mono/sources/${PN}/${P}.tar.bz2"
 fi
+
+go-mono_src_unpack() {
+	default
+}
 
 go-mono_src_prepare() {
 	base_src_util autopatch
@@ -79,4 +83,4 @@ go-mono_src_install () {
 	find "${D}" -name '*.la' -exec rm -rf '{}' '+' || die "la removal failed"
 }
 
-EXPORT_FUNCTIONS src_install src_configure
+EXPORT_FUNCTIONS src_unpack src_prepare src_configure src_compile src_install

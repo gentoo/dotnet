@@ -9,7 +9,7 @@ LICENSE="as-is"
 SLOT="0"
 KEYWORDS="~amd64 ~ppc ~sparc ~x86 ~x86-fbsd"
 IUSE=""
-RDEPEND="|| ( ~dev-lang/mono-${PV} ~dev-util/monodoc-${PV} )"
+RDEPEND="~dev-lang/mono-${PV}"
 DEPEND=""
 #To-be-finalized
 PROPERTIES="virtual"
