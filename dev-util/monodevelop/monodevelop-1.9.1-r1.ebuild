@@ -16,48 +16,39 @@ KEYWORDS="~amd64 ~x86"
 IUSE="+subversion"
 
 RDEPEND=">=dev-lang/mono-1.9
-		 >=virtual/monodoc-1.9
-		 ||	(
-			~dev-dotnet/mono-addins-0.3.1
-			>=dev-dotnet/mono-addins-0.4[gtk]
-			)
-		 >=dev-dotnet/gtk-sharp-2.12.6
-		 >=dev-dotnet/glade-sharp-2.12.6
-		 >=dev-dotnet/gnome-sharp-2.24.0
-		 >=dev-dotnet/gnomevfs-sharp-2.24.0
-		 >=dev-dotnet/gconf-sharp-2.24.0
-		 ||	(
-				net-libs/xulrunner
-				www-client/mozilla-firefox
-		 		www-client/mozilla-firefox-bin
-				www-client/seamonkey
-			)
-		 >=dev-dotnet/xsp-2
-		 subversion? ( dev-util/subversion )
-		 dev-util/ctags"
-
+	>=virtual/monodoc-1.9
+	||	(
+		~dev-dotnet/mono-addins-0.3.1
+		>=dev-dotnet/mono-addins-0.4[gtk]
+	)
+	>=dev-dotnet/gtk-sharp-2.12.6
+	>=dev-dotnet/glade-sharp-2.12.6
+	>=dev-dotnet/gnome-sharp-2.24.0
+	>=dev-dotnet/gnomevfs-sharp-2.24.0
+	>=dev-dotnet/gconf-sharp-2.24.0
+	||	(
+			net-libs/xulrunner
+			www-client/mozilla-firefox
+	 		www-client/mozilla-firefox-bin
+			www-client/seamonkey
+		)
+	>=dev-dotnet/xsp-2
+	subversion? ( dev-util/subversion )
+	dev-util/ctags
+	dev-util/nunit"
 DEPEND="${RDEPEND}
-		  sys-devel/gettext
-		  x11-misc/shared-mime-info
-		>=dev-util/intltool-0.35
-		>=dev-util/pkgconfig-0.19"
+	sys-devel/gettext
+	x11-misc/shared-mime-info
+	>=dev-util/intltool-0.35
+	>=dev-util/pkgconfig-0.19
+	dev-lang/perl"
 
 MAKEOPTS="${MAKEOPTS} -j1"
 
 src_prepare() {
-	sed -i -e '/SUBDIRS/ s/contrib//' Makefile.am
-	find .	\
-		-name "*.am" \
-		-exec perl -pe \
-			's!-r:\$\(top_(src|build)dir\)/(contrib|build/bin)/Mono.Cecil.dll!-pkg:cecil!g' -i {} \; \
-		|| die "sed Mono.Cecil.dll failed"
-	find .	\
-		-name "*.am" \
-		-exec perl -pe \
-			's!-r:\$\(top_(src|build)dir\)/(contrib|build/bin)/Mono.Cecil.Mdb.dll!!g' -i {} \; \
-		|| die "sed Mono.Cecil.Mdb.dll failed"
-	epatch "${FILESDIR}/${P}-use-system-stetic.patch"
-	eautoreconf
+	#find . -name '*.dll' -exec rm -rf '{}' '+' || die "dll removal failed"
+	find . -name '*.in' -exec perl -pe 's!-r:\$\(top_srcdir\)/src/addins/NUnit/lib/nunit.core.dll!\$(shell pkg-config --libs mono-nunit)!g' -i {} \; || die "perlsed 1 for system-nunit conversion failed"
+	find . -name '*.in' -exec perl -pe 's!-r:\$\(top_srcdir\)/src/addins/NUnit/lib/nunit.framework.dll!\$(shell pkg-config --libs mono-nunit)!g' -i {} \; || die "perlsed 2 for system-nunit conversion failed"
 }
 
 
