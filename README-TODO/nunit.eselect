@@ -1,0 +1,156 @@
+# Copyright 1999-2005 Gentoo Foundation
+# Distributed under the terms of the GNU General Public License v2
+# $Id$
+
+inherit tests
+
+DESCRIPTION="Manage the nunit profiles in /usr/lib/mono"
+MAINTAINER="loki_val@gentoo.org"
+VERSION=0.1.0
+
+#Set some common variables needed by all functions
+initialise_env() {
+	export LIBDIR="lib"
+	if [[ -L ${ROOT}/usr/lib ]]
+	then
+		local link="$(readlink "${ROOT}"/usr/lib)"
+		if [[ "${link}" = "lib64" || "${link}" = "lib32" ]]
+		then
+			export LIBDIR=${link}
+		fi
+	fi			
+	export MONODIR="${ROOT}/usr/${LIBDIR}/mono/"
+	export BINDIR="${ROOT}/usr/bin/"
+}
+
+
+#find relative path
+get_relative_path_from_to() {
+	
+
+# find a list of nunit targets
+find_targets() {
+	initialise_env
+	local dir
+	for dir in "${MONODIR}"/nunit*
+	do
+		[[ -d $dir ] && echo ${dir##*/}
+	done
+
+}
+
+# try to remove the mailer.conf symlink
+remove_symlinks() {
+	initialise_env
+	rm -rf \
+		"${BINDIR}"/nunit-console \
+		"${BINDIR}"/nunit-console2 \
+		"${MONODIR}"/nunit || die "Could not delete old symlinks"
+}
+
+# set the nunit symlink
+set_symlinks() {
+	initialise_env
+	local target="${1}"
+
+	if is_number "${target}"
+	then
+		targets=( $(find_targets ) )
+		target=${targets[$(( ${target} - 1 ))]}
+	fi
+	if [[ -n "${target}" ]]
+	then
+		if [[ -d "${MONODIR}/${target}" ]]
+		then
+			if [[ -e "${MONODIR}/${target}/nunit-console" && -e "${MONODIR}/${target}/nunit-console2" ]]
+			then
+				ln -sf "${target}" "${MONODIR}"/nunit || die "Failed to set ${target} as system nunit"
+				ln -sf "../${MONODIR##*usr/}/${target}/nunit-console" || die "Failed to install nunit-console symlink"
+				ln -sf "../${MONODIR##*usr/}/${target}/nunit-console2" || die "Failed to install nunit-console2 symlink"
+			fi
+		else
+			die -q "Target ${target} doesn't appear to be a directory!"
+		fi
+	else
+		die -q "Target ${target} doesn't appear to be valid!"
+	fi
+}
+
+### show action ###
+
+describe_show() {
+	echo "Show the current nunit profile"
+}
+
+do_show() {
+	initialise_env
+	if [[ -e "${MONODIR}/nunit" ]]
+	then
+		if [[ -L "${MONODIR}/nunit" ]]
+		then
+			echo $(readlink "${MONODIR}/nunit")
+		else
+			echo unknown
+		fi
+	else
+		echo unset
+	fi
+}
+
+### list action ###
+
+describe_list() {
+	echo "List available nunit profiles"
+}
+
+do_list() {
+	initialise_env
+	local targets=( $(find_targets) )
+	write_list_start "Available mailer.conf profiles:"
+	if [[ -n ${targets// /} ]] ; then
+		local target
+		local -i i=0
+		for target in "${targets[@]}"
+		do
+			local profile
+			profile="$(readlink ${MONODIR}/nunit )"
+			[[ "${targets[${i}]}" == "${profile} ]] && \
+				targets[${i}]="${targets[${i}]} $(highlight '*' )"
+			i+=1
+		done
+		write_numbered_list "${targets[@]}"
+	else
+		write_kv_list_entry "(none found)" ""
+	fi
+}
+
+### set action ###
+
+describe_set() {
+	echo "Set a new nunit profile"
+}
+
+describe_set_parameters() {
+	echo "<target>"
+}
+
+describe_set_options() {
+	echo "target : Target name or number (from 'list' action)"
+}
+
+do_set() {
+	initialise_env
+	if [[ -z ${1} ]]
+	then
+		die -q "You didn't tell me what to set the profile to"
+	elif [[ ${#1} -gt 1 ]]
+	then
+		die -q "One parameter will do, please"
+	elif [[ -L ${MONODIR}/nunit ]]
+	then
+		remove_symlinks
+		set_symlinks "${1}"
+	fi
+}
+
+# vim: set ft=eselect :
