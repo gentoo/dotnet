@@ -40,6 +40,7 @@ src_compile() {
 }
 
 src_install() {
+	mv_command="cp -ar"
 	go-mono_src_install
 
 	newinitd "${FILESDIR}"/2.0/xsp.initd xsp || die
