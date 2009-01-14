@@ -73,6 +73,19 @@ src_install() {
 
 	docinto libgc
 	dodoc libgc/ChangeLog
-	#We need to do this to only install the libraries for the built-in nunit.
-	find "${D}"/usr/ '(' -name '*nunit-console*' -o -name '*nunit-docs*' ')' -exec rm -rf '{}' '+' || die "Removing nunit .dlls failed"
+
+	find "${D}"/usr/ -name '*nunit-docs*' -exec rm -rf '{}' '+' || die "Removing nunit .docs failed"
+
+	#Standardize install paths for eselect-nunit
+	local nunit_dir="/usr/$(get_libdir)/mono/nunit-mono-${PV}-internal"
+	dodir ${nunit_dir}
+	rm -f "${D}"/usr/bin/nunit-console*
+
+	for file in "${D}"/usr/$(get_libdir)/mono/1.0/nunit*.dll "${D}"/usr/$(get_libdir)/mono/1.0/nunit*.exe
+	do
+		dosym ../1.0/${file##*/} ${nunit_dir}/${file##*/}
+	done
+
+	make_wrapper "nunit-console" "mono ${nunit_dir}/nunit-console.exe" "" "" "${nunit_dir}"
+	dosym nunit-console "${nunit_dir}"/nunit-console2
 }
