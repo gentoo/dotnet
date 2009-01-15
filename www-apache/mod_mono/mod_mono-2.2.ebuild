@@ -40,10 +40,7 @@ src_compile() {
 }
 
 src_install() {
-	mv -f "src/.libs/${PN}.so.0.0.0" "src/.libs/${PN}.so"
-	export APACHE2_MOD_FILE="$(apache_cd_dir)/.libs/${PN}.so"
-	apache-module_src_install
-	doman man/mod_mono.8
+	make DESTDIR="${D}" install
 }
 
 pkg_postinst() {
