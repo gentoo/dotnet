@@ -4,7 +4,9 @@
 
 EAPI=2
 
-inherit go-mono mono apache-module eutils
+# DRAGONS: Watch the order of these.
+
+inherit apache-module eutils go-mono mono
 
 KEYWORDS="~amd64 ~ppc ~x86"
 
@@ -17,13 +19,12 @@ IUSE="aspnet2 debug"
 DEPEND="=dev-dotnet/xsp-${GO_MONO_REL_PV}*"
 RDEPEND="${DEPEND}"
 
-APACHE2_MOD_FILE="${S}/src/.libs/${PN}.so"
-APACHE2_MOD_CONF="1.9/70_${PN}"
+APACHE2_MOD_CONF="2.2/70_${PN}"
 APACHE2_MOD_DEFINE="MONO"
 
 DOCFILES="AUTHORS ChangeLog COPYING INSTALL NEWS README"
 
-need_apache
+need_apache2
 
 src_prepare() {
 	use aspnet2 && epatch "${FILESDIR}/mono_auto_application_aspnet2.patch"
@@ -35,12 +36,15 @@ src_configure() {
 		|| die "econf failed"
 }
 
-src_compile() {
-	default
-}
-
 src_install() {
-	make DESTDIR="${D}" install
+	go-mono_src_install
+	find "${D}" -name 'mod_mono.conf' -delete || die "failed to remove mod_mono.conf"
+	if [[ -n "${APACHE2_MOD_CONF}" ]] ; then
+		insinto "${APACHE_MODULES_CONFDIR}"
+		set -- ${APACHE2_MOD_CONF}
+		newins "${FILESDIR}/${1}.conf" "$(basename ${2:-$1}).conf" \
+			|| die "internal ebuild error: '${FILESDIR}/${1}.conf' not found"
+	fi
 }
 
 pkg_postinst() {
