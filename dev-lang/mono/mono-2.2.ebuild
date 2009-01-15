@@ -31,6 +31,19 @@ PDEPEND="dev-dotnet/pe-format"
 
 MAKEOPTS="${MAKEOPTS} -j1"
 
+PATCHES="${WORKDIR}/mono-2.2-libdir126.patch
+	${FILESDIR}/mono-2.2-ppc-threading.patch
+	${FILESDIR}/mono-2.2-uselibdir.patch"
+
+src_prepare() {
+	sed -e "s:@MONOLIBDIR@:$(get_libdir):" \
+		< "${FILESDIR}"/mono-2.2-libdir126.patch \
+		> ${WORKDIR}/mono-2.2-libdir126.patch ||
+		die "Sedding patch file failed"
+	go-mono_src_prepare
+}
+
+
 src_configure() {
 	# mono's build system is finiky, strip the flags
 	strip-flags
