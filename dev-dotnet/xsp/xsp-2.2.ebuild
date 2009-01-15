@@ -27,8 +27,6 @@ pkg_preinst() {
 
 src_prepare() {
 	go-mono_src_prepare
-	sed -i -e 's:mono-nunit:nunit:' \
-		unittests/Tests.XSP.Security/Makefile.in || die
 }
 
 src_compile() {
