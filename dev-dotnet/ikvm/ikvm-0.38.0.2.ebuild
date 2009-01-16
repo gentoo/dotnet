@@ -16,7 +16,8 @@ SRC_URI="mirror://sourceforge/${PN}/${P}.zip
 LICENSE="as-is"
 
 SLOT="0"
-KEYWORDS="~amd64 ~ppc ~x86"
+KEYWORDS=""
+#KEYWORDS="~amd64 ~ppc ~x86"
 IUSE=""
 
 RDEPEND=">=dev-lang/mono-2
