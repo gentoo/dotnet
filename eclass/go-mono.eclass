@@ -14,10 +14,10 @@ inherit base versionator mono
 
 
 NO_MONO_DEPEND=(
-			"dev-lang/mono"
-			"dev-dotnet/libgdiplus"
-			"dev-dotnet/gluezilla"
-		)
+	"dev-lang/mono"
+	"dev-dotnet/libgdiplus"
+	"dev-dotnet/gluezilla"
+)
 
 GO_MONO_REL_PV="$(get_version_component_range 1-2)"
 
@@ -26,6 +26,10 @@ then
 	RDEPEND="=dev-lang/mono-${GO_MONO_REL_PV}*"
 	DEPEND="${RDEPEND}"
 fi
+
+# @ECLASS-VARIABLE: PRE_URI
+# @DESCRIPTION: If installing a preview, set this variable to the base
+# path on ximians's servers from which to install.
 
 DEPEND="${DEPEND}
 	>=dev-util/pkgconfig-0.23"
@@ -50,24 +54,39 @@ else
 	SRC_URI="http://ftp.novell.com/pub/mono/sources/${PN}/${P}.tar.bz2"
 fi
 
+# @FUNCTION: go-mono_src_unpack
+# @DESCRIPTION: Runs default()
 go-mono_src_unpack() {
 	default
 }
 
+# @FUNCTION: go-mono_src_prepare
+# @DESCRIPTION: Runs autopatch from base.eclass, if PATCHES is set.
 go-mono_src_prepare() {
 	base_src_util autopatch
 }
 
+# @FUNCTION: go-mono_src_configure
+# @DESCRIPTION: Runs econf, disabling static libraries and dependency-tracking.
 go-mono_src_configure() {
 	econf	--disable-dependency-tracking		\
 		--disable-static			\
 		"$@"
 }
 
+# @FUNCTION: go-mono_src_configure
+# @DESCRIPTION: Runs default()
 go-mono_src_compile() {
 	default
 }
 
+# @ECLASS-VARIABLE: DOCS
+# @DESCRIPTION: Insert path of docs you want installed. If more than one,
+# consider using an array.
+
+# @FUNCTION: go-mono_src_install
+# @DESCRIPTION: Rune emake, installs common doc files, if DOCS is
+# set, installs those. Gets rid of .la files.
 go-mono_src_install () {
 	emake -j1 DESTDIR="${D}" install || die "install failed"
 	mono_multilib_comply
