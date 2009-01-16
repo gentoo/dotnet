@@ -181,6 +181,8 @@ then
 	for ((i=1 ; i<=${#test1[@]} ; i++))
 	do
 		answer="$(get_relative_path_from_to "${test1[$i]}" "${test2[$i]}")"
+		echo "From directory: ${test1[$i]}"
+		echo "To Directory: ${test2[$i]}"
 		echo "answer to test $i was '${answer}'"
 		echo "correct answer was '${result[$i]}'"
 		if [[ "${result[$i]}" = "${answer}" ]]
