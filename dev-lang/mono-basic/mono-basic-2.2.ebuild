@@ -9,7 +9,7 @@ inherit go-mono mono multilib
 DESCRIPTION="Visual Basic .NET Runtime and Class Libraries"
 HOMEPAGE="http://www.go-mono.com"
 
-LICENSE="|| ( GPL-2 LGPL-2 X11 )"
+LICENSE="|| ( LGPL-2 MIT )"
 SLOT="0"
 KEYWORDS="~amd64 ~x86"
 IUSE=""

@@ -6,10 +6,10 @@ EAPI=2
 
 inherit go-mono mono
 
-DESCRIPTION="XSP ASP.NET host"
+DESCRIPTION="XSP is a small web server that can host ASP.NET pages"
 HOMEPAGE="http://www.go-mono.com/"
 
-LICENSE="GPL-2"
+LICENSE="|| ( MIT X11 )"
 SLOT="0"
 KEYWORDS="~amd64 ~ppc ~x86"
 
@@ -18,23 +18,12 @@ IUSE=""
 RDEPEND="dev-db/sqlite:3"
 DEPEND="${RDEPEND}"
 
+MAKEOPTS="${MAKEOPTS} -j1"
+
 pkg_preinst() {
 	enewgroup aspnet
-
 	# Give aspnet home dir of /tmp since it must create ~/.wapi
 	enewuser aspnet -1 -1 /tmp aspnet
-}
-
-src_prepare() {
-	go-mono_src_prepare
-}
-
-src_compile() {
-	emake -j1  || {
-		echo
-		eerror "If xsp fails to build, try unmerging and re-emerging it."
-		die "make failed"
-	}
 }
 
 src_install() {

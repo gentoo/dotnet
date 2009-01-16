@@ -9,7 +9,7 @@ inherit mono eutils flag-o-matic multilib go-mono
 DESCRIPTION="Mono runtime and class libraries, a C# compiler/interpreter"
 HOMEPAGE="http://www.go-mono.com"
 
-LICENSE="|| ( GPL-2 LGPL-2 X11 )"
+LICENSE="MIT GPL-2 BSD-4 NPL-1.1 Ms-Pl GPL-2-with-linking-exception IDPL"
 SLOT="0"
 KEYWORDS="~amd64 ~ppc ~sparc ~x86 ~x86-fbsd"
 IUSE="xen moonlight minimal"
@@ -100,3 +100,69 @@ src_install() {
 	make_wrapper "nunit-console" "mono ${nunit_dir}/nunit-console.exe" "" "" "${nunit_dir}"
 	dosym nunit-console "${nunit_dir}"/nunit-console2
 }
+
+
+
+# NOTICE: THE COPYRIGHT FILES IN THE TARBALL ARE UNCLEAR!
+# WHENEVER YOU THINK SOMETHING IS GPL-2+, IT'S ONLY GPL-2
+# UNLESS MIGUEL DE ICAZA HIMSELF SAYS OTHERWISE.
+
+# mono
+# The code we use is LGPL, but contributions must be made under the MIT/X11
+# license, so Novell can serve its paying customers. Exception is mono/man.
+# LICENSE="LGPL-2.1"
+
+	# mono/man
+	# LICENSE="MIT"
+
+# mcs/mcs
+# mcs/gmcs
+# LICENSE="GPL-2 MIT"
+
+# tests
+# LICENSE="MIT"
+
+# mcs/class
+# Except the listed exceptions:
+# LICENSE="MIT"
+
+	# mcs/class/ByteFX.Data
+	# mcs/class/Npgsql
+	# LICENSE="LGPL-2.1"
+
+	# mcs/class/FirebirdSql.Data.Firebird
+	# LICENSE="IDPL"
+
+	# mcs/class/ICSharpCode.SharpZipLib
+	# LICENSE="GPL-2-with-linking-exception"
+
+	# mcs/class/MicrosoftAjaxLibrary
+	# LICENSE="Ms-Pl"
+
+	# mcs/class/Microsoft.JScript/Microsoft.JScript/TokenStream.cs
+	# mcs/class/Microsoft.JScript/Microsoft.JScript/Token.cs
+	# mcs/class/Microsoft.JScript/Microsoft.JScript/Parser.cs
+	# mcs/class/Microsoft.JScript/Microsoft.JScript/Decompiler.cs
+	# LICENSE="|| ( NPL-1.1 GPL-2 )"
+
+# mcs/jay
+# LICENSE="BSD-4"
+
+# mcs/tools
+# Except the listed exceptions:
+# LICENSE="MIT"
+
+	# mcs/tools/mdoc/Mono.Documentation/monodocs2html.cs
+	# LICENSE="GPL-2"
+
+	# mcs/tools/sqlsharp/SqlSharpCli.cs
+	# LICENSE="GPL-2"
+
+	# mcs/tools/csharp/repl.cs
+	# LICENSE="|| (MIT GPL-2 )"
+
+	# mcs/tools/mono-win32-setup.nsi
+	# LICENSE="GPL-2"
+
+# samples
+# LICENSE="MIT"

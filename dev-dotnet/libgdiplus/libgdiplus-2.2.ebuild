@@ -9,19 +9,19 @@ inherit go-mono mono flag-o-matic
 DESCRIPTION="Library for using System.Drawing with mono"
 HOMEPAGE="http://www.go-mono.com/"
 
-LICENSE="MIT"
+LICENSE="|| ( MIT X11 )"
 SLOT="0"
 KEYWORDS="~amd64 ~ppc ~sparc ~x86 ~x86-fbsd"
 IUSE="pango"
 
-RDEPEND=">=dev-libs/glib-2.6
-		>=media-libs/freetype-2
+RDEPEND=">=dev-libs/glib-2.16
+		>=media-libs/freetype-2.3.7
 		>=media-libs/fontconfig-2.6
 		media-libs/libpng
 		x11-libs/libXrender
 		x11-libs/libX11
 		x11-libs/libXt
-		x11-libs/cairo[X]
+		>=x11-libs/cairo-1.8.4[X]
 		media-libs/libexif
 		>=media-libs/giflib-4.1.3
 		media-libs/jpeg

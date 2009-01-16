@@ -9,7 +9,7 @@ inherit go-mono mono autotools
 DESCRIPTION="Debugger for .NET managed and unmanaged applications"
 HOMEPAGE="http://www.go-mono.com"
 
-LICENSE="GPL-2"
+LICENSE="GPL-2 MIT"
 SLOT="0"
 KEYWORDS="~amd64 ~x86"
 IUSE=""
