@@ -90,8 +90,8 @@ go-mono_src_compile() {
 go-mono_src_install () {
 	emake -j1 DESTDIR="${D}" install || die "install failed"
 	mono_multilib_comply
-	local	COMMONDOC=( AUTHORS ChangeLog README TODO )
-	for docfile in "${COMMONDOC[@]}"
+	local	commondoc=( AUTHORS ChangeLog README TODO )
+	for docfile in "${commondoc[@]}"
 	do
 		[[ -e "${docfile}" ]] && dodoc "${docfile}"
 	done
