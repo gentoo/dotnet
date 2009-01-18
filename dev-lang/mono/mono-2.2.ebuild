@@ -9,7 +9,7 @@ inherit mono eutils flag-o-matic multilib go-mono
 DESCRIPTION="Mono runtime and class libraries, a C# compiler/interpreter"
 HOMEPAGE="http://www.go-mono.com"
 
-LICENSE="MIT GPL-2 BSD-4 NPL-1.1 Ms-Pl GPL-2-with-linking-exception IDPL"
+LICENSE="MIT LGPL-2.1 GPL-2 BSD-4 NPL-1.1 Ms-Pl GPL-2-with-linking-exception IDPL"
 SLOT="0"
 KEYWORDS="~amd64 ~ppc ~sparc ~x86 ~x86-fbsd"
 IUSE="xen moonlight minimal"
@@ -17,7 +17,6 @@ IUSE="xen moonlight minimal"
 RDEPEND="!<dev-dotnet/pnet-0.6.12
 	!dev-util/monodoc
 	dev-libs/glib:2
-	>=dev-libs/boehm-gc-7.1[threads]
 	!minimal? (
 		=dev-dotnet/libgdiplus-${GO_MONO_REL_PV}*
 		=dev-dotnet/gluezilla-${GO_MONO_REL_PV}*
@@ -31,14 +30,18 @@ PDEPEND="dev-dotnet/pe-format"
 
 MAKEOPTS="${MAKEOPTS} -j1"
 
-PATCHES="${WORKDIR}/mono-2.2-libdir126.patch
-	${FILESDIR}/mono-2.2-ppc-threading.patch
-	${FILESDIR}/mono-2.2-uselibdir.patch"
+RESTRICT="test"
+
+PATCHES=(
+	"${WORKDIR}/mono-2.2-libdir126.patch"
+	"${FILESDIR}/mono-2.2-ppc-threading.patch"
+	"${FILESDIR}/mono-2.2-uselibdir.patch"
+)
 
 src_prepare() {
 	sed -e "s:@MONOLIBDIR@:$(get_libdir):" \
 		< "${FILESDIR}"/mono-2.2-libdir126.patch \
-		> ${WORKDIR}/mono-2.2-libdir126.patch ||
+		> "${WORKDIR}"/mono-2.2-libdir126.patch ||
 		die "Sedding patch file failed"
 	go-mono_src_prepare
 }
@@ -53,12 +56,11 @@ src_configure() {
 
 	go-mono_src_configure \
 		--disable-quiet-build \
-		$(use_with moonlight) \
 		--with-preview \
 		--with-glib=system \
-		--with-gc=boehm \
+		$(use_with moonlight) \
 		--with-libgdiplus=$(use minimal && printf "no" || printf "installed" ) \
-		$(use_with xen xenopt) \
+		$(use_with xen xen_opt) \
 		--without-ikvm-native \
 		--with-jit
 
@@ -67,11 +69,11 @@ src_configure() {
 src_test() {
 	vecho ">>> Test phase [check]: ${CATEGORY}/${PF}"
 
-        export MONO_REGISTRY_PATH="${T}/registry"
-        export XDG_DATA_HOME="${T}/data"
-        export MONO_SHARED_DIR="${T}/shared"
-        export XDG_CONFIG_HOME="${T}/config"
-        export HOME="${T}/home"
+	export MONO_REGISTRY_PATH="${T}/registry"
+	export XDG_DATA_HOME="${T}/data"
+	export MONO_SHARED_DIR="${T}/shared"
+	export XDG_CONFIG_HOME="${T}/config"
+	export HOME="${T}/home"
 
 	emake -j1 check
 }
@@ -159,7 +161,7 @@ src_install() {
 	# LICENSE="GPL-2"
 
 	# mcs/tools/csharp/repl.cs
-	# LICENSE="|| (MIT GPL-2 )"
+	# LICENSE="|| ( MIT GPL-2 )"
 
 	# mcs/tools/mono-win32-setup.nsi
 	# LICENSE="GPL-2"
