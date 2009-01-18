@@ -9,7 +9,7 @@ inherit go-mono mono flag-o-matic
 DESCRIPTION="Library for using System.Drawing with mono"
 HOMEPAGE="http://www.go-mono.com/"
 
-LICENSE="|| ( MIT X11 )"
+LICENSE="MIT"
 SLOT="0"
 KEYWORDS="~x86 ~amd64"
 IUSE="pango"
