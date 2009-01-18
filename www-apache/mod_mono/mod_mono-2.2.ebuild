@@ -8,7 +8,7 @@ EAPI=2
 
 inherit apache-module eutils go-mono mono
 
-KEYWORDS="~amd64 ~ppc ~x86"
+KEYWORDS="~x86 ~amd64"
 
 DESCRIPTION="Apache module for Mono."
 HOMEPAGE="http://www.go-mono.com/"

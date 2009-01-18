@@ -10,7 +10,7 @@ DESCRIPTION="A simple library to embed Gecko (xulrunner) in the Mono Winforms We
 HOMEPAGE="http://mono-project.com/Gluezilla"
 
 LICENSE="LGPL-2 MPL-1.1"
-KEYWORDS="~amd64 ~x86"
+KEYWORDS="~x86 ~amd64"
 SLOT="0"
 IUSE=""
 

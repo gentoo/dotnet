@@ -11,7 +11,7 @@ HOMEPAGE="http://www.go-mono.com"
 
 LICENSE="MIT LGPL-2.1 GPL-2 BSD-4 NPL-1.1 Ms-Pl GPL-2-with-linking-exception IDPL"
 SLOT="0"
-KEYWORDS="~amd64 ~ppc ~sparc ~x86 ~x86-fbsd"
+KEYWORDS="~x86 ~amd64"
 IUSE="xen moonlight minimal"
 
 RDEPEND="!<dev-dotnet/pnet-0.6.12

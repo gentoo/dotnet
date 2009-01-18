@@ -11,7 +11,7 @@ HOMEPAGE="http://www.go-mono.com"
 
 LICENSE="LGPL-2 MIT"
 SLOT="0"
-KEYWORDS="~amd64 ~x86"
+KEYWORDS="~x86 ~amd64"
 IUSE=""
 
 RESTRICT="test"

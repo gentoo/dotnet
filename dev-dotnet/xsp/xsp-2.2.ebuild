@@ -13,7 +13,7 @@ HOMEPAGE="http://www.go-mono.com/"
 
 LICENSE="MIT"
 SLOT="0"
-KEYWORDS="~amd64 ~ppc ~x86"
+KEYWORDS="~x86 ~amd64"
 
 IUSE="+debug"
 

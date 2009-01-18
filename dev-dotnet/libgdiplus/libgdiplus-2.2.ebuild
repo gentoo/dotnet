@@ -11,7 +11,7 @@ HOMEPAGE="http://www.go-mono.com/"
 
 LICENSE="|| ( MIT X11 )"
 SLOT="0"
-KEYWORDS="~amd64 ~ppc ~sparc ~x86 ~x86-fbsd"
+KEYWORDS="~x86 ~amd64"
 IUSE="pango"
 
 RDEPEND=">=dev-libs/glib-2.16

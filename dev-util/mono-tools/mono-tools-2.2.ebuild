@@ -11,7 +11,7 @@ HOMEPAGE="http://www.mono-project.com/"
 
 LICENSE="GPL-2 MIT"
 SLOT="0"
-KEYWORDS="~amd64 ~ppc ~sparc ~x86 ~x86-fbsd"
+KEYWORDS="~x86 ~amd64"
 IUSE="webkit xulrunner"
 
 RDEPEND="=virtual/monodoc-${GO_MONO_REL_PV}*
