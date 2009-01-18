@@ -9,7 +9,7 @@ inherit go-mono mono
 DESCRIPTION="A simple library to embed Gecko (xulrunner) in the Mono Winforms WebControl"
 HOMEPAGE="http://mono-project.com/Gluezilla"
 
-LICENSE="LGPL-2"
+LICENSE="LGPL-2 MPL-1.1"
 KEYWORDS="~amd64 ~x86"
 SLOT="0"
 IUSE=""
