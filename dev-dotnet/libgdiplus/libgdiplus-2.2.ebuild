@@ -38,7 +38,7 @@ src_prepare() {
 
 src_configure() {
 	go-mono_src_configure	--with-cairo=system			\
-				$(use pango && printf %b --with-pango)	\
+				$(use pango && printf %s --with-pango)	\
 				|| die "configure failed"
 }
 
