@@ -37,6 +37,7 @@ src_prepare() {
 }
 
 src_configure() {
+	append-flags -fno-strict-aliasing
 	go-mono_src_configure	--with-cairo=system			\
 				$(use pango && printf %s --with-pango)	\
 				|| die "configure failed"
