@@ -6,6 +6,7 @@
 		<email>jurek@gentoo.org</email>
 		<name>Jurek Bartuszek</name>
 	</maintainer>
+	<flag name='debug'>Enable tracing messages (RECOMMENDED)</flag>
 	<longdescription lang="en">
 		XSP is a standalone web server written in C# that can be used to run
 		your ASP.NET applications.
