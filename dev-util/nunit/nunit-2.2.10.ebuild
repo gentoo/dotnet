@@ -56,7 +56,7 @@ src_install() {
 		-D:build.gui=false \
 		${buildtype} \
 		copy-bins || die
-	cd "${WORKDIR}/package/${MY_P}/bin"
+	cd "${WORKDIR}/src/package/${MY_P}/bin" || die "Directory does not exist"
 	rm -f *test* *x86* runFile* fit* *fixtures*
 	for assembly in nunit*.dll
 	do
