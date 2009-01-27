@@ -29,5 +29,5 @@ DEPEND="${RDEPEND}
 
 src_install() {
 	emake DESTDIR="${D}" install
-	dodoc FEATURES TODO API_CHANGE CHANGELOG README || die "dodoc failed"
+	dodoc FEATURES TODO README || die "dodoc failed"
 }
