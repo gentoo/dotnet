@@ -1,0 +1,14 @@
+# ChangeLog for dev-dotnet/gluezilla
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-dotnet/gluezilla/ChangeLog,v 1.2 2009/01/19 13:33:33 loki_val Exp $
+
+  19 Jan 2009; Peter Alfredsen <loki_val@gentoo.org> gluezilla-2.2.ebuild:
+  Fix missing DEPENDs, bug 255504. Thanks to Wulf C. Krueger
+  <wk@mailstation.de> for reporting.
+
+*gluezilla-2.2 (18 Jan 2009)
+
+  18 Jan 2009; Peter Alfredsen <loki_val@gentoo.org> +metadata.xml,
+  +gluezilla-2.2.ebuild:
+  Initial commit, bug 254929 and bug 233636.
+
