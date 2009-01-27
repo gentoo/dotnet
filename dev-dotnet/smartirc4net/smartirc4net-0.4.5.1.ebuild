@@ -8,6 +8,7 @@ inherit mono
 
 HOMEPAGE="http://www.smuxi.org/page/Download"
 SRC_URI="http://smuxi.meebey.net/jaws/data/files/${P}.tar.gz"
+DESCRIPTION="SmartIrc4net is a multi-threaded and thread-safe IRC library written in C#"
 
 SLOT="0"
 KEYWORDS="~amd64 ~x86"
