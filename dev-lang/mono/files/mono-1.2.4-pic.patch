@@ -1,0 +1,18 @@
+--- mono/utils/mono-compiler.h.orig	2007-02-06 09:17:09.000000000 +0100
++++ mono/utils/mono-compiler.h	2007-02-06 09:56:15.000000000 +0100
+@@ -1,5 +1,15 @@
+ #ifndef __UTILS_MONO_COMPILER_H__
+ #define __UTILS_MONO_COMPILER_H__
++
++#if defined(__PIC__) && !defined(PIC)
++/*
++ * Must be compiling -fPIE, for executables.  Build PIC
++ * but with initial-exec.
++ */
++# define PIC
++# define PIC_INITIAL_EXEC
++#endif
++
+ /*
+  * This file includes macros used in the runtime to encapsulate different
+  * compiler behaviours.
