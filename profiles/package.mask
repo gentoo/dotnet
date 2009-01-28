@@ -1,8 +1,0 @@
-=dev-lang/mono-2.4_pre1
-=dev-lang/mono-basic-2.4_pre1
-=dev-dotnet/gluezilla-2.4_pre1
-=dev-dotnet/libgdiplus-2.4_pre1
-=dev-util/mono-tools-2.4_pre1
-=dev-util/mono-debugger-2.4_pre1
-=virtual/monodoc-2.4_pre1
-
