@@ -4,7 +4,7 @@
 
 EAPI="2"
 
-inherit mono
+inherit base  mono
 
 HOMEPAGE="http://www.smuxi.org/page/Download"
 SRC_URI="http://smuxi.meebey.net/jaws/data/files/${P}.tar.gz"
@@ -26,6 +26,8 @@ RDEPEND=">=dev-lang/mono-2.0
 	>=dev-dotnet/glib-sharp-2.12"
 DEPEND="${RDEPEND}
 	>=dev-util/pkgconfig-0.23"
+
+PATCHES=( "${FILESDIR}/${P}-mono-2.2.patch" )
 
 src_install() {
 	emake DESTDIR="${D}" install
