@@ -18,12 +18,11 @@ IUSE="xen moonlight minimal"
 COMMONDEPEND="!<dev-dotnet/pnet-0.6.12
 	!dev-util/monodoc
 	dev-libs/glib:2
-	!minimal? ( =dev-dotnet/gluezilla-${GO_MONO_REL_PV}* )
+	!minimal? ( =dev-dotnet/libgdiplus-${GO_MONO_REL_PV}* )
 	ia64? (
 		sys-libs/libunwind
 	)"
 RDEPEND="${COMMONDEPEND}
-	!minimal? ( =dev-dotnet/libgdiplus-${GO_MONO_REL_PV}* )
 	|| ( www-client/links www-client/lynx )"
 
 DEPEND="${COMMONDEPEND}
@@ -160,6 +159,54 @@ pkg_postinst() {
 			done
 		fi
 	fi
+
+	elog "PLEASE TAKE NOTE!"
+	elog ""
+	elog "Some of the namespaces supported by Mono require extra packages to be installed."
+	elog "Below is a list of namespaces and the corresponding package you must install:"
+	elog ""
+	elog ">=x11-libs/cairo-1.6.4"
+	elog "	Mono.Cairo"
+	elog "Also read:"
+	elog "http://www.mono-project.com/Mono.Cairo"
+	elog ""
+	elog ">=dev-db/firebird-2.0.4.13130.1"
+	elog "	FirebirdSql.Data.Firebird"
+	elog "Also read:"
+	elog "http://www.mono-project.com/Firebird_Interbase"
+	elog ""
+	elog "=dev-dotnet/gluezilla-${GO_MONO_REL_PV}*"
+	elog "	Mono.Mozilla"
+	elog "	Mono.Mozilla.WebBrowser"
+	elog "	Mono.Mozilla.Widget"
+	elog "	Interop.SHDocVw"
+	elog "	AxInterop.SHDocVw"
+	elog "	Interop.mshtml.dll"
+	elog "	System.Windows.Forms.WebBrowser"
+	elog "	Microsoft.IE"
+	elog "Also read:"
+	elog "http://www.mono-project.com/WebBrowser"
+	elog ""
+	elog "dev-db/sqlite:3"
+	elog "	Mono.Data.Sqlite"
+	elog "	Mono.Data.SqliteClient"
+	elog "Also read:"
+	elog "http://www.mono-project.com/SQLite"
+	elog ""
+	elog ">=dev-db/oracle-instantclient-basic-10.2"
+	elog "	System.Data.OracleClient"
+	elog "Also read:"
+	elog "http://www.mono-project.com/Oracle"
+	elog ""
+	elog "Mono also has support for packages that are not included in portage:"
+	elog ""
+	elog "No ebuild available:"
+	elog "	IBM.Data.DB2"
+	elog "Also read: http://www.mono-project.com/IBM_DB2"
+	elog ""
+	elog "No ebuild needed:"
+	elog "	Mono.Data.SybaseClient"
+	elog "Also read: http://www.mono-project.com/Sybase"
 }
 
 # NOTICE: THE COPYRIGHT FILES IN THE TARBALL ARE UNCLEAR!
