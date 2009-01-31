@@ -20,7 +20,10 @@ RDEPEND="=virtual/monodoc-${GO_MONO_REL_PV}*
 	>=dev-dotnet/gconf-sharp-2
 	>=dev-dotnet/gtkhtml-sharp-2
 	webkit? ( dev-dotnet/webkit-sharp )
-	xulrunner? ( >=dev-dotnet/gecko-sharp-0.13 )"
+	xulrunner? (
+		>=dev-dotnet/gecko-sharp-0.13
+		=dev-dotnet/gluezilla-${PV}
+	)"
 DEPEND="${RDEPEND}
 	sys-devel/gettext
 	>=dev-util/pkgconfig-0.19"
