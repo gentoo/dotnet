@@ -17,7 +17,7 @@ LICENSE="|| ( LGPL-2.1 LGPL-3 )"
 
 RDEPEND=">=dev-lang/mono-2.0
 	>=dev-dotnet/smartirc4net-0.4.5.1
-	>=dev-dotnet/nini-1.1.0-r1
+	>=dev-dotnet/nini-1.1.0-r2
 	>=dev-dotnet/log4net-1.2.10-r2
 	>=dev-dotnet/gtk-sharp-2.12
 	>=dev-dotnet/gnome-sharp-2.12
@@ -25,9 +25,17 @@ RDEPEND=">=dev-lang/mono-2.0
 	>=dev-dotnet/glade-sharp-2.12
 	>=dev-dotnet/glib-sharp-2.12"
 DEPEND="${RDEPEND}
+	>=dev-util/intltool-0.25
+	>=sys-devel/gettext-0.17
 	>=dev-util/pkgconfig-0.23"
 
 PATCHES=( "${FILESDIR}/${P}-mono-2.2.patch" )
+
+src_configure() {
+	econf	--disable-dependency-tracking	\
+		--enable-engine-irc		\
+		--enable-frontend-gnome
+}
 
 src_install() {
 	emake DESTDIR="${D}" install
