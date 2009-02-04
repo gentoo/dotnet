@@ -15,28 +15,17 @@ LICENSE="MIT"
 SLOT="0"
 KEYWORDS="~x86 ~amd64"
 
-IUSE="+debug"
+IUSE=""
 
 RDEPEND="dev-db/sqlite:3"
 DEPEND="${RDEPEND}"
 
 MAKEOPTS="${MAKEOPTS} -j1"
 
-PATCHES=( "${PATCHDIR}/configure-fix.patch" )
-
 pkg_preinst() {
 	enewgroup aspnet
 	# Give aspnet home dir of /tmp since it must create ~/.wapi
 	enewuser aspnet -1 -1 /tmp aspnet
-}
-
-src_prepare() {
-	go-mono_src_prepare
-	eautoreconf
-}
-
-src_configure() {
-	econf $(use_enable debug tracing)
 }
 
 src_install() {
