@@ -14,8 +14,9 @@ LICENSE="MIT"
 SLOT="0"
 KEYWORDS="~x86 ~amd64"
 IUSE=""
-RDEPEND=""
-DEPEND=">=dev-util/pkgconfig-0.23"
+RDEPEND=">=dev-lang/mono-2.0.1"
+DEPEND="${RDEPEND}
+	>=dev-util/pkgconfig-0.23"
 
 # The hack we do to get the dll installed in the GAC makes the unit-tests
 # defunct.

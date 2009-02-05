@@ -16,8 +16,9 @@ LICENSE="MIT"
 SLOT="0"
 KEYWORDS="~x86 ~amd64"
 IUSE=""
-RDEPEND=""
-DEPEND=">=dev-util/pkgconfig-0.23"
+RDEPEND=">=dev-lang/mono-2.0.1"
+DEPEND="${RDEPEND}
+	>=dev-util/pkgconfig-0.23"
 
 src_compile() {
 	emake -j1 ASSEMBLY_COMPILER_COMMAND="/usr/bin/gmcs -keyfile:${FILESDIR}/mono.snk"
