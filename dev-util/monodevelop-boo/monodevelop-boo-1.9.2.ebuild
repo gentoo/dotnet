@@ -4,7 +4,7 @@
 
 EAPI=2
 
-inherit autotools eutils mono multilib
+inherit eutils mono multilib
 
 DESCRIPTION="Boo Extension for MonoDevelop"
 HOMEPAGE="http://www.monodevelop.com/"
