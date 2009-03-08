@@ -1,0 +1,30 @@
+# ChangeLog for dev-util/monodevelop-boo
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-util/monodevelop-boo/ChangeLog,v 1.5 2009/01/25 16:06:22 loki_val Exp $
+
+  25 Jan 2009; Peter Alfredsen <loki_val@gentoo.org>
+  -monodevelop-boo-0.18.1.ebuild, -monodevelop-boo-1.0.ebuild:
+  Clean up for bug 250135
+
+  01 Dec 2008; Diego E. Pettenò <flameeyes@gentoo.org>
+  monodevelop-boo-1.0.ebuild:
+  Fix typo.
+
+*monodevelop-boo-1.9.1 (30 Nov 2008)
+
+  30 Nov 2008; Peter Alfredsen <loki_val@gentoo.org>
+  +monodevelop-boo-1.9.1.ebuild:
+  Bump for mono-2
+
+*monodevelop-boo-1.0 (01 Jun 2008)
+
+  01 Jun 2008; Jurek Bartuszek <jurek@gentoo.org>
+  +monodevelop-boo-1.0.ebuild:
+  Version bump (bug #195925)
+
+*monodevelop-boo-0.18.1 (31 Dec 2007)
+
+  31 Dec 2007; Jurek Bartuszek <jurek@gentoo.org> +metadata.xml,
+  +monodevelop-boo-0.18.1.ebuild:
+  Initial version
+
