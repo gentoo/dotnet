@@ -4,7 +4,7 @@
 
 EAPI=2
 
-inherit fdo-mime mono multilib gnome2-utils eutils
+inherit fdo-mime mono multilib gnome2-utils
 
 DESCRIPTION="Integrated Development Environment for .NET"
 HOMEPAGE="http://www.monodevelop.com/"
@@ -13,11 +13,11 @@ SRC_URI="http://www.go-mono.com/sources/${PN}/${P}.tar.bz2"
 LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS="~amd64 ~x86"
-IUSE="gnome +subversion"
+IUSE="+subversion"
 
 RDEPEND="sys-apps/dbus[X]
-	>=dev-lang/mono-1.9
-	>=virtual/monodoc-1.9
+	>=dev-lang/mono-2.0
+	>=virtual/monodoc-2.0
 	||	(
 		~dev-dotnet/mono-addins-0.3.1
 		>=dev-dotnet/mono-addins-0.4[gtk]
@@ -45,10 +45,6 @@ DEPEND="${RDEPEND}
 
 MAKEOPTS="${MAKEOPTS} -j1"
 
-src_prepare() {
-	epatch "${FILESDIR}/monodevelop-1.9.1-mono-2.4-stetic.patch"
-}
-
 src_configure() {
 	econf	--disable-update-mimedb				\
 		--disable-update-desktopdb			\
@@ -74,11 +70,13 @@ pkg_postinst() {
 	fdo-mime_mime_database_update
 	fdo-mime_desktop_database_update
 	elog "These optional plugins currently exist:"
-	elog " - dev-util/monodevelop-java"
 	elog " - dev-util/monodevelop-boo"
+	elog " - dev-util/monodevelop-java"
 	elog " - dev-util/monodevelop-database"
+	elog " - dev-util/monodevelop-debugger-gdb"
+	elog " - dev-util/monodevelop-debugger-mdb"
+	elog " - dev-util/monodevelop-vala"
 	elog "To enable their (self-explanatory) functionality, just emerge them."
 	elog "Read more here:"
 	elog "http://monodevelop.com/"
-
 }

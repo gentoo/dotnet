@@ -1,6 +1,20 @@
 # ChangeLog for dev-util/monodevelop
-# Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/monodevelop/ChangeLog,v 1.65 2008/12/15 23:21:42 loki_val Exp $
+# Copyright 2000-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-util/monodevelop/ChangeLog,v 1.68 2009/01/25 16:04:47 loki_val Exp $
+
+  25 Jan 2009; Peter Alfredsen <loki_val@gentoo.org>
+  -monodevelop-0.18.1.ebuild, -monodevelop-0.19.ebuild,
+  -monodevelop-1.0.ebuild:
+  Clean up for bug 250135
+
+  19 Jan 2009; Peter Alfredsen <loki_val@gentoo.org>
+  monodevelop-1.9.1.ebuild:
+  Monodevelop needs dbus built with X support to run properly. Thanks to
+  mabi for reporting.
+
+  05 Jan 2009; Peter Alfredsen <loki_val@gentoo.org>
+  monodevelop-1.9.1.ebuild:
+  Fix for new gtk-sharp-module eclass
 
   15 Dec 2008; Peter Alfredsen <loki_val@gentoo.org>
   monodevelop-1.9.1.ebuild:

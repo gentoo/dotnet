@@ -2,8 +2,4 @@
 <!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
 <pkgmetadata>
   <herd>dotnet</herd>
-  <use>
-    <flag name="aspnet">Enable ASP.NET support</flag>
-    <flag name="c++">Enable support for C/C++ programming languages</flag>
-  </use>
 </pkgmetadata>
