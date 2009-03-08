@@ -16,7 +16,7 @@ KEYWORDS="~amd64 ~x86"
 IUSE="debug"
 
 RDEPEND=">=dev-lang/mono-2
-	>=dev-util/monodevelop-${PV}
+	=dev-util/monodevelop-${PV}*
 	 sys-devel/gdb"
 
 DEPEND="${RDEPEND}
