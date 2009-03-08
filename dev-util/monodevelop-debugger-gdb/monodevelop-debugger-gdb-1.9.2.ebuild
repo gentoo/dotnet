@@ -4,7 +4,7 @@
 
 EAPI=2
 
-inherit eutils mono multilib
+inherit mono multilib
 
 DESCRIPTION="GDB Extension for MonoDevelop"
 HOMEPAGE="http://www.monodevelop.com/"

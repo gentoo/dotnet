@@ -4,7 +4,7 @@
 
 EAPI=2
 
-inherit eutils fdo-mime mono multilib
+inherit mono multilib
 
 DESCRIPTION="Database Browser Extension for MonoDevelop"
 HOMEPAGE="http://www.monodevelop.com/"

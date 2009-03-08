@@ -4,7 +4,7 @@
 
 EAPI=2
 
-inherit eutils mono multilib
+inherit mono multilib
 
 DESCRIPTION="Java Extension for MonoDevelop"
 HOMEPAGE="http://www.monodevelop.com/"
@@ -18,7 +18,7 @@ IUSE="debug"
 RDEPEND="dev-dotnet/gtk-sharp
 	dev-dotnet/glade-sharp
 	>=dev-dotnet/mono-addins-0.3.1
-	>=dev-util/monodevelop-${PV}
+	=dev-util/monodevelop-${PV}*
 	>=dev-dotnet/ikvm-0.36.0.11"
 
 DEPEND="${RDEPEND}

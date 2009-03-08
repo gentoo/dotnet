@@ -15,7 +15,7 @@ SLOT="0"
 KEYWORDS="~amd64 ~x86"
 IUSE=""
 
-RDEPEND=">=dev-util/monodevelop-${PV}
+RDEPEND="=dev-util/monodevelop-${PV}*
 	>=dev-dotnet/mono-addings-0.4[gtk]
 	>=dev-dotnet/glib-sharp-2.12.8
 	>=dev-dotnet/gtk-sharp-2.12.8
