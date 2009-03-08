@@ -35,7 +35,13 @@ RDEPEND="sys-apps/dbus[X]
 	)
 	>=dev-dotnet/xsp-2
 	subversion? ( dev-util/subversion )
-	dev-util/ctags"
+	dev-util/ctags
+	!<dev-util/monodevelop-boo-${PV}
+	!<dev-util/monodevelop-java-${PV}
+	!<dev-util/monodevelop-database-${PV}
+	!<dev-util/monodevelop-debugger-gdb-${PV}
+	!<dev-util/monodevelop-debugger-mdb-${PV}
+	!<dev-util/monodevelop-vala-${PV}"
 
 DEPEND="${RDEPEND}
 	sys-devel/gettext
