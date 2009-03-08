@@ -15,7 +15,8 @@ SLOT="0"
 KEYWORDS="~amd64 ~x86"
 IUSE="debug"
 
-RDEPEND="=dev-util/monodevelop-${PV}*
+RDEPEND=">=dev-lang/mono-2
+	=dev-util/monodevelop-${PV}*
 	>=dev-lang/boo-0.8.2.2960
 	dev-dotnet/gtksourceview-sharp:1"
 
@@ -42,4 +43,5 @@ src_compile() {
 
 src_install() {
 	emake -j1 DESTDIR="${D}" install || die "install failed"
+	mono_multilib_comply
 }

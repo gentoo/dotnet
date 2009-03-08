@@ -17,7 +17,7 @@ IUSE=""
 
 RDEPEND=">=dev-lang/mono-2
 	=dev-util/monodevelop-${PV}*
-	dev-dotnet/gtksourceview-sharp:2"
+	dev-dotnet/gtksourceview-sharp:1"
 
 DEPEND="${RDEPEND}
 	x11-misc/shared-mime-info
@@ -28,16 +28,8 @@ src_compile() {
 	emake -j1 || die "make failed"
 }
 
-src_configure() {
-	econf --enable-gtksourceview2
-}
-
 src_install() {
 	emake DESTDIR="${D}" install || die "install failed"
 	dodoc ChangeLog README || die "dodoc failed"
-}
-
-pkg_postinst() {
-	fdo-mime_mime_database_update
-	fdo-mime_desktop_database_update
+	mono_multilib_comply
 }

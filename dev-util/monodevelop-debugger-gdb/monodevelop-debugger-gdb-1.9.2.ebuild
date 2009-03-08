@@ -6,7 +6,7 @@ EAPI=2
 
 inherit autotools eutils mono multilib
 
-DESCRIPTION="Boo Extension for MonoDevelop"
+DESCRIPTION="GDB Extension for MonoDevelop"
 HOMEPAGE="http://www.monodevelop.com/"
 SRC_URI="http://www.go-mono.com/sources/${PN}/${P}.tar.bz2"
 
@@ -34,4 +34,5 @@ src_compile() {
 
 src_install() {
 	emake -j1 DESTDIR="${D}" install || die "install failed"
+	mono_multilib_comply
 }
