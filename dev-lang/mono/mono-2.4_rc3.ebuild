@@ -60,7 +60,10 @@ src_configure() {
 	#Remove this at your own peril. Mono will barf in unexpected ways.
 	append-flags -fno-strict-aliasing
 
+	#NOTE: We need the static libs for now so mono-debugger works.
+	#See http://bugs.gentoo.org/show_bug.cgi?id=256264 for details
 	go-mono_src_configure \
+		--enable-static \
 		--disable-quiet-build \
 		--with-preview \
 		--with-glib=system \
