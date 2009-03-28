@@ -71,7 +71,8 @@ src_configure() {
 		--with-libgdiplus=$(use minimal && printf "no" || printf "installed" ) \
 		$(use_with xen xen_opt) \
 		--without-ikvm-native \
-		--with-jit
+		--with-jit \
+		--disable-dtrace
 
 }
 
@@ -92,12 +93,6 @@ src_install() {
 	#Bug 255610
 	sed -i -e "s:mono/2.0/mod.exe:mono/1.0/mod.exe:" \
 		"${D}"/usr/bin/mod || die "Failed to fix mod."
-
-	docinto docs
-	dodoc docs/*
-
-	docinto libgc
-	dodoc libgc/ChangeLog
 
 	find "${D}"/usr/ -name '*nunit-docs*' -exec rm -rf '{}' '+' || die "Removing nunit .docs failed"
 
