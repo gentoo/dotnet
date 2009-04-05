@@ -1,9 +1,0 @@
-prefix=@prefix@
-exec_prefix=@exec_prefix@
-libdir=@libdir@
-
-
-Name: MSNPSharp
-Description: .NET MSN messaging Library
-Version: @VERSION@
-Libs: @libs@
