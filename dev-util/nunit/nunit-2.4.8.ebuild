@@ -26,26 +26,29 @@ DEPEND="${RDEPEND}
 	dev-dotnet/nant"
 
 #needs nant-0.86, I think.
-RESTRICT="test"
+#RESTRICT="test"
 
 S="${WORKDIR}/src"
 
+src_prepare() {
+	sed -i -e 's@/xml:@-xml=@' nunit.build
+}
+
 src_compile() {
 	use debug && buildtype=debug || buildtype=release
-	nant \
-		-t:mono-2.0 \
-		-D:build.x86=false \
-		-D:build.gui=false \
+	nant -f:nunit.build \
+		mono-2.0 \
 		${buildtype} \
 		build || die
 
 }
 
 src_test() {
-	nant \
-		-t:mono-2.0 \
-		-D:build.x86=false \
-		-D:build.gui=false \
+#		-D:build.x86=false \
+#		-D:build.gui=false \
+	cp NUnitDevTests.nunit ../build/linux/mono/2.0/debug/NUnitTests.nunit
+	nant  -f:nunit.build \
+		mono-2.0 \
 		test || die
 }
 

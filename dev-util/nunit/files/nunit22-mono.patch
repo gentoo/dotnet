@@ -1,0 +1,19 @@
+diff -up mono-nunit22-2.2.10/src/nunit.build.include.BAD mono-nunit22-2.2.10/src/nunit.build.include
+--- mono-nunit22-2.2.10/src/nunit.build.include.BAD	2008-04-11 10:12:49.000000000 -0400
++++ mono-nunit22-2.2.10/src/nunit.build.include	2008-04-11 10:13:07.000000000 -0400
+@@ -76,7 +76,7 @@
+     <!-- Frameworks supported by this build script. The first
+          installed framework found is the default for builds. --> 
+     <property name="supported.frameworks" 
+-      value="net-2.0,net-1.1,net-1.0,mono-1.0,mono-2.0"/>
++      value="mono-1.0,mono-2.0"/>
+   
+     <!-- Visual Studio locations -->
+     <if test="${platform::is-win32()}">
+@@ -329,4 +329,4 @@
+     <echo>  VS 2005:      ${vs.2005.path}</echo>
+   </target>
+ 
+-</project>
+\ No newline at end of file
++</project>

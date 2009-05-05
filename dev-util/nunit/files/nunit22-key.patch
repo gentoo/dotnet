@@ -1,0 +1,120 @@
+diff -up mono-nunit22-2.2.10/src/ClientUtilities/util/nunit.util.build.key mono-nunit22-2.2.10/src/ClientUtilities/util/nunit.util.build
+--- mono-nunit22-2.2.10/src/ClientUtilities/util/nunit.util.build.key	2008-04-11 10:15:09.000000000 -0400
++++ mono-nunit22-2.2.10/src/ClientUtilities/util/nunit.util.build	2008-04-11 10:15:34.000000000 -0400
+@@ -8,7 +8,7 @@
+   <target name="build" depends="make-build-dir">
+     <csc target="library" 
+         output="${current.build.dir}/${current.build.output}.dll"
+-        debug="${build.debug}" define="${build.defines.csc}">
++        debug="${build.debug}" define="${build.defines.csc}" keyfile="../../nunit.snk">
+       <sources basedir=".">
+         <include name="*.cs"/>
+         <include name="../../CommonAssemblyInfo.cs"/>
+diff -up mono-nunit22-2.2.10/src/ConsoleRunner/nunit-console-exe/nunit-console.exe.build.key mono-nunit22-2.2.10/src/ConsoleRunner/nunit-console-exe/nunit-console.exe.build
+--- mono-nunit22-2.2.10/src/ConsoleRunner/nunit-console-exe/nunit-console.exe.build.key	2008-04-11 10:15:44.000000000 -0400
++++ mono-nunit22-2.2.10/src/ConsoleRunner/nunit-console-exe/nunit-console.exe.build	2008-04-11 10:16:06.000000000 -0400
+@@ -9,7 +9,7 @@
+   <target name="build" depends="make-build-dir">
+     <csc target="exe" 
+         output="${current.build.dir}/nunit-console.exe"
+-        debug="${build.debug}" define="${build.defines.csc}">
++        debug="${build.debug}" define="${build.defines.csc}" keyfile="../../nunit.snk">
+       <sources basedir=".">
+         <include name="*.cs"/>
+       </sources>
+diff -up mono-nunit22-2.2.10/src/ConsoleRunner/nunit-console/nunit-console.build.key mono-nunit22-2.2.10/src/ConsoleRunner/nunit-console/nunit-console.build
+--- mono-nunit22-2.2.10/src/ConsoleRunner/nunit-console/nunit-console.build.key	2008-04-11 10:16:16.000000000 -0400
++++ mono-nunit22-2.2.10/src/ConsoleRunner/nunit-console/nunit-console.build	2008-04-11 10:16:34.000000000 -0400
+@@ -9,7 +9,7 @@
+   <target name="build" depends="make-build-dir">
+     <csc target="library" 
+         output="${current.build.dir}/nunit-console-runner.dll"
+-        debug="${build.debug}" define="${build.defines.csc}">
++        debug="${build.debug}" define="${build.defines.csc}" keyfile="../../nunit.snk">
+       <sources basedir=".">
+         <include name="*.cs"/>
+         <include name="../../CommonAssemblyInfo.cs"/>
+diff -up mono-nunit22-2.2.10/src/GuiComponents/UiKit/nunit.uikit.build.key mono-nunit22-2.2.10/src/GuiComponents/UiKit/nunit.uikit.build
+--- mono-nunit22-2.2.10/src/GuiComponents/UiKit/nunit.uikit.build.key	2008-04-11 10:16:50.000000000 -0400
++++ mono-nunit22-2.2.10/src/GuiComponents/UiKit/nunit.uikit.build	2008-04-11 10:17:09.000000000 -0400
+@@ -8,7 +8,7 @@
+   <target name="build" depends="make-build-dir">
+     <csc target="library" 
+         output="${current.build.dir}/nunit.uikit.dll"
+-        debug="${build.debug}" define="${build.defines.csc}">
++        debug="${build.debug}" define="${build.defines.csc}" keyfile="../../nunit.snk">
+       <sources basedir=".">
+         <include name="*.cs"/>
+         <include name="../../CommonAssemblyInfo.cs"/>
+diff -up mono-nunit22-2.2.10/src/GuiRunner/nunit-gui-exe/nunit-gui.exe.build.key mono-nunit22-2.2.10/src/GuiRunner/nunit-gui-exe/nunit-gui.exe.build
+--- mono-nunit22-2.2.10/src/GuiRunner/nunit-gui-exe/nunit-gui.exe.build.key	2008-04-11 10:17:20.000000000 -0400
++++ mono-nunit22-2.2.10/src/GuiRunner/nunit-gui-exe/nunit-gui.exe.build	2008-04-11 10:17:37.000000000 -0400
+@@ -10,7 +10,7 @@
+     <csc target="winexe" 
+         output="${current.build.dir}/nunit-gui.exe" 
+         win32icon="App.ico" debug="${build.debug}"
+-        define="${build.defines.csc}">
++        define="${build.defines.csc}" keyfile="../../nunit.snk">
+       <sources basedir=".">
+         <include name="AssemblyInfo.cs"/>
+         <include name="Class1.cs"/>
+diff -up mono-nunit22-2.2.10/src/GuiRunner/nunit-gui/nunit-gui.build.key mono-nunit22-2.2.10/src/GuiRunner/nunit-gui/nunit-gui.build
+--- mono-nunit22-2.2.10/src/GuiRunner/nunit-gui/nunit-gui.build.key	2008-04-11 10:17:56.000000000 -0400
++++ mono-nunit22-2.2.10/src/GuiRunner/nunit-gui/nunit-gui.build	2008-04-11 10:18:18.000000000 -0400
+@@ -9,7 +9,7 @@
+     <csc target="library" 
+         output="${current.build.dir}/nunit-gui-runner.dll" 
+         win32icon="Logo.ico" debug="${build.debug}"
+-        define="${build.defines.csc}">
++        define="${build.defines.csc}" keyfile="../../nunit.snk">
+       <sources basedir=".">
+         <include name="*.cs"/>
+         <include name="../../CommonAssemblyInfo.cs"/>
+diff -up mono-nunit22-2.2.10/src/NUnitExtensions/core/nunit.core.extensions.build.key mono-nunit22-2.2.10/src/NUnitExtensions/core/nunit.core.extensions.build
+--- mono-nunit22-2.2.10/src/NUnitExtensions/core/nunit.core.extensions.build.key	2008-04-11 10:19:45.000000000 -0400
++++ mono-nunit22-2.2.10/src/NUnitExtensions/core/nunit.core.extensions.build	2008-04-11 10:20:03.000000000 -0400
+@@ -9,7 +9,7 @@
+   <target name="build" depends="make-build-dir">
+     <csc target="library" 
+         output="${current.build.dir}/nunit.core.extensions.dll"
+-        debug="${build.debug}" define="${build.defines.csc}">
++        debug="${build.debug}" define="${build.defines.csc}" keyfile="../../nunit.snk">
+       <sources basedir=".">
+         <include name="*.cs"/>
+         <include name="../../CommonAssemblyInfo.cs"/>
+diff -up mono-nunit22-2.2.10/src/NUnitFramework/core/nunit.core.build.key mono-nunit22-2.2.10/src/NUnitFramework/core/nunit.core.build
+--- mono-nunit22-2.2.10/src/NUnitFramework/core/nunit.core.build.key	2008-04-11 10:18:35.000000000 -0400
++++ mono-nunit22-2.2.10/src/NUnitFramework/core/nunit.core.build	2008-04-11 10:19:06.000000000 -0400
+@@ -9,7 +9,7 @@
+     <csc target="library" 
+         output="${current.build.dir}/nunit.core.dll"
+         debug="${build.debug}" 
+-        define="${build.defines.csc},StronglyNamedAssembly">
++        define="${build.defines.csc},StronglyNamedAssembly" keyfile="../../nunit.snk">
+       <sources basedir=".">
+         <include name="*.cs"/>
+         <include name="../../CommonAssemblyInfo.cs"/>
+diff -up mono-nunit22-2.2.10/src/NUnitFramework/framework/nunit.framework.build.key mono-nunit22-2.2.10/src/NUnitFramework/framework/nunit.framework.build
+--- mono-nunit22-2.2.10/src/NUnitFramework/framework/nunit.framework.build.key	2008-04-11 10:20:35.000000000 -0400
++++ mono-nunit22-2.2.10/src/NUnitFramework/framework/nunit.framework.build	2008-04-11 10:20:50.000000000 -0400
+@@ -10,7 +10,7 @@
+         output="${current.build.dir}/nunit.framework.dll"
+         debug="${build.debug}" 
+         define="${build.defines.csc},StronglyNamedAssembly"
+-        nowarn="618,672">
++        nowarn="618,672" keyfile="../../nunit.snk">
+       <sources basedir=".">
+         <include name="*.cs"/>
+         <include name="../../CommonAssemblyInfo.cs"/>
+diff -up mono-nunit22-2.2.10/src/NUnitMocks/mocks/nunit.mocks.build.key mono-nunit22-2.2.10/src/NUnitMocks/mocks/nunit.mocks.build
+--- mono-nunit22-2.2.10/src/NUnitMocks/mocks/nunit.mocks.build.key	2008-04-11 10:21:13.000000000 -0400
++++ mono-nunit22-2.2.10/src/NUnitMocks/mocks/nunit.mocks.build	2008-04-11 10:21:29.000000000 -0400
+@@ -8,7 +8,7 @@
+   <target name="build" depends="make-build-dir">
+     <csc target="library" 
+         output="${current.build.dir}/nunit.mocks.dll"
+-        debug="${build.debug}" define="${build.defines.csc}">
++        debug="${build.debug}" define="${build.defines.csc}" keyfile="../../nunit.snk">
+       <sources basedir=".">
+         <include name="../../CommonAssemblyInfo.cs"/>
+         <include name="*.cs"/>

@@ -14,7 +14,7 @@ HOMEPAGE="http://www.nunit.org/"
 SRC_URI="mirror://sourceforge/nunit/${MY_P}-src.zip"
 
 LICENSE="BSD"
-SLOT="${PV}"
+SLOT="2.2"
 KEYWORDS="~amd64"
 
 IUSE="debug"
@@ -30,10 +30,15 @@ RESTRICT="test"
 
 S="${WORKDIR}/src"
 
+src_prepare() {
+	epatch "${FILESDIR}/nunit22-mono.patch"
+	epatch "${FILESDIR}/nunit22-key.patch"
+}
+
 src_compile() {
 	use debug && buildtype=debug || buildtype=release
 	nant \
-		-t:mono-2.0 \
+		mono-2.0 \
 		-D:build.x86=false \
 		-D:build.gui=false \
 		${buildtype} \
@@ -43,7 +48,7 @@ src_compile() {
 
 src_test() {
 	nant \
-		-t:mono-2.0 \
+		mono-2.0 \
 		-D:build.x86=false \
 		-D:build.gui=false \
 		test || die
@@ -51,25 +56,18 @@ src_test() {
 
 src_install() {
 	nant \
-		-t:mono-2.0 \
+		mono-2.0 \
 		-D:build.x86=false \
 		-D:build.gui=false \
 		${buildtype} \
 		copy-bins || die
 	cd "${WORKDIR}/src/package/${MY_P}/bin" || die "Directory does not exist"
 	rm -f *test* *x86* runFile* fit* *fixtures*
-	for assembly in nunit*.dll
+	for assembly in nunit*.dll *.exe
 	do
-		egacinstall "${assembly}" "${P}"
+		egacinstall "${assembly}" "${PN}-${SLOT}"
 	done
-	insinto /usr/$(get_libdir)/mono/${P}
-	for exe in *.exe
-	do
-		doins *.exe || die "doins $exe failed"
-		make_wrapper "${exe%.exe}" "mono /usr/$(get_libdir)/mono/${PN}/${exe}" "" "" "/usr/$(get_libdir)/mono/${P}" || die "make_wrapper $exe failed"
-	done
-	dosym nunit-console /usr/$(get_libdir)/mono/${P}/nunit-console2
-	generate_pkgconfig "${P}" "${MY_PN}" || die
+	generate_pkgconfig "${PN}-${SLOT}" "${MY_PN}" || die
 }
 
 generate_pkgconfig() {
