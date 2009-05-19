@@ -1,0 +1,78 @@
+# ChangeLog for dev-lang/nemerle
+# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/nemerle/ChangeLog,v 1.12 2008/03/12 14:10:47 phreak Exp $
+
+  12 Mar 2008; Christian Heim <phreak@gentoo.org> metadata.xml:
+  Removing Peter Johanson (latexer, #206688) from metadata.xml.
+
+  22 Feb 2007; Piotr Jaroszyński <peper@gentoo.org> ChangeLog:
+  Transition to Manifest2.
+
+*nemerle-0.9.3 (29 Oct 2006)
+
+  29 Oct 2006; Peter Johanson <latexer@gentoo.org> +nemerle-0.9.3.ebuild:
+  Bump to the latest release.
+
+  27 Apr 2006; Marien Zwart <marienz@gentoo.org>
+  files/digest-nemerle-0.2.1-r1, files/digest-nemerle-0.2.1-r2,
+  files/digest-nemerle-0.3.1, Manifest:
+  Fixing SHA256 digest, pass four
+
+  16 Apr 2006; Peter Johanson <latexer@gentoo.org> nemerle-0.9.2.ebuild:
+  Force --libdir to work around autotools bug in nemerle. See bug #126508.
+
+*nemerle-0.9.2 (16 Mar 2006)
+
+  16 Mar 2006; Peter Johanson <latexer@gentoo.org> +nemerle-0.9.2.ebuild:
+  Bump.
+
+  24 May 2005; Peter Johanson <latexer@gentoo.org> nemerle-0.3.1.ebuild:
+  Ugh. Never meant to bump straight to stable.
+
+*nemerle-0.3.1 (08 May 2005)
+
+  08 May 2005; Peter Johanson <latexer@gentoo.org>
+  +files/nemerle-0.3.1-pathfix.diff, +nemerle-0.3.1.ebuild:
+  Bump.
+
+  14 Mar 2005; Peter Johanson <latexer@gentoo.org> nemerle-0.2.1-r1.ebuild,
+  nemerle-0.2.1-r2.ebuild:
+  Mark stable on x86.
+
+  10 Mar 2005; Peter Johanson <latexer@gentoo.org> nemerle-0.2.1-r1.ebuild,
+  nemerle-0.2.1-r2.ebuild:
+  mono moved from dev-dotnet -> dev-lang
+
+*nemerle-0.2.1-r2 (10 Mar 2005)
+
+  10 Mar 2005; Peter Johanson <latexer@gentoo.org> +metadata.xml,
+  +files/nemerle-0.2.1-ncc-fix.diff, +nemerle-0.2.1-r1.ebuild,
+  +nemerle-0.2.1-r2.ebuild:
+  Moved from dev-dotnet to dev-lang
+
+*nemerle-0.2.1-r2 (08 Feb 2005)
+
+  08 Feb 2005; Peter Johanson <latexer@gentoo.org> -nemerle-0.1.4.ebuild,
+  +nemerle-0.2.1-r2.ebuild, -nemerle-0.2.1.ebuild:
+  Revision bump to disable AOT compilation. AOT only works on x86, and is still
+  experimental with mono. Remove some older versions as well.
+
+*nemerle-0.2.1-r1 (10 Oct 2004)
+
+  10 Oct 2004; <peter@gentoo.org> +files/nemerle-0.2.1-ncc-fix.diff,
+  +nemerle-0.2.1-r1.ebuild:
+  Revision bump. Compiler fix that already got accepted upstream. Makes nemerle
+  now work with monodevelop. See bug #66497.
+
+*nemerle-0.2.1 (29 Sep 2004)
+
+  29 Sep 2004; <peter@gentoo.org> +nemerle-0.2.1.ebuild:
+  Bump. See bug #64003.
+
+*nemerle-0.1.4 (02 Jul 2004)
+
+  02 Jul 2004; Peter Johanson <latexer@gentoo.org> +metadata.xml,
+  +nemerle-0.1.4.ebuild:
+  Initial commit. Ebuilds based off version by Robert Prehn
+  <prehn@ece.utexas.edu>. See bug #42211.
+

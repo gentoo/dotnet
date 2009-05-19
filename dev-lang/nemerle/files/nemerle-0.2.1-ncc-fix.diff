@@ -1,0 +1,29 @@
+diff -aur nemerle-0.2.1-orig/ncc/cgil.n nemerle-0.2.1/ncc/cgil.n
+--- nemerle-0.2.1-orig/ncc/cgil.n	2004-09-18 15:41:09.000000000 -0400
++++ nemerle-0.2.1/ncc/cgil.n	2004-10-06 21:02:56.230053792 -0400
+@@ -63,7 +63,9 @@
+ 
+       this._assembly_builder = 
+         System.AppDomain.CurrentDomain.DefineDynamicAssembly 
+-          (this._assembly_name, AssemblyBuilderAccess.RunAndSave);
++          (this._assembly_name,
++           AssemblyBuilderAccess.RunAndSave,
++           System.IO.Path.GetDirectoryName(_output_file_name));
+ 
+       /* we can embed resources only on mono */
+       if (SystemType.AssemblyBuilder_EmbedResourceFile != null)                    
+@@ -185,14 +187,7 @@
+       };
+ 
+       // save the assembly
+-      // we cannot save file with directory (see Save description)
+       _assembly_builder.Save (strip_directory (_output_file_name));
+-      when (strip_directory (_output_file_name) != _output_file_name) {
+-        when (System.IO.File.Exists (_output_file_name))
+-          System.IO.File.Delete (_output_file_name);
+-          
+-        System.IO.File.Move (strip_directory (_output_file_name), _output_file_name)
+-      }
+     }
+ 
+     /**
