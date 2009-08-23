@@ -2,7 +2,7 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
-inherit mono
+inherit mono gnome2
 
 DESCRIPTION="Displays random comics in notification balloons."
 HOMEPAGE="http://netherilshade.free.fr/mono/"
@@ -25,7 +25,3 @@ RDEPEND=">=dev-dotnet/mono-addins-0.4
 DEPEND="${RDEPEND}"
 
 MAKEOPTS=-j1
-
-src_install() {
-	emake DESTDIR="${D}" install || die "emake install failed"
-}
