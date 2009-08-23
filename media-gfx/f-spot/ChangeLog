@@ -1,0 +1,182 @@
+# ChangeLog for media-gfx/f-spot
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/media-gfx/f-spot/ChangeLog,v 1.35 2009/05/22 00:08:43 loki_val Exp $
+
+  22 May 2009; Peter Alfredsen <loki_val@gentoo.org> -f-spot-0.4.3.1.ebuild:
+  Drop old
+
+  25 Mar 2009; Peter Alfredsen <loki_val@gentoo.org> f-spot-0.4.3.1.ebuild:
+  Fixes for multiple compile failures, for juniper on forums.
+
+*f-spot-0.5.0.3-r1 (01 Feb 2009)
+
+  01 Feb 2009; Peter Alfredsen <loki_val@gentoo.org>
+  -files/f-spot-0.1.3-mono-1.1.10.patch,
+  -files/f-spot-0.3.3-dont_eat_cpu.patch,
+  -files/f-spot-0.3.5-picasa_fix.patch,
+  -files/f-spot-0.4.2-color-adjust.patch,
+  +files/f-spot-0.5.0.3-icon-size-crash-fix.patch,
+  +files/f-spot-0.5.0.3-no-image-in-collection-crash-fix.patch,
+  metadata.xml, -f-spot-0.3.3.ebuild, -f-spot-0.3.4.ebuild,
+  -f-spot-0.3.5.ebuild, -f-spot-0.3.5-r1.ebuild, -f-spot-0.4.0.ebuild,
+  -f-spot-0.4.1.ebuild, -f-spot-0.4.2.ebuild, -f-spot-0.5.0.3.ebuild,
+  +f-spot-0.5.0.3-r1.ebuild:
+  Fix bugs 248630, 248633, 248634 and 252636. Respectively a QA warning, a
+  crasher, a crasher and a sandbox violation with new sandbox. Thanks to
+  Pacho Ramos <pacho@condmat1.ciencias.uniovi.es> for patches and QA report.
+  Remove old versions. Also add dotnet as herd.
+
+*f-spot-0.5.0.3 (23 Nov 2008)
+
+  23 Nov 2008; Peter Alfredsen <loki_val@gentoo.org> +f-spot-0.5.0.3.ebuild:
+  Bump
+
+  29 Jun 2008; Torsten Veller <tove@gentoo.org> f-spot-0.4.2.ebuild,
+  f-spot-0.4.3.1.ebuild:
+  Add missing die: || "..." -> || die "..."
+
+*f-spot-0.4.3.1 (16 May 2008)
+
+  16 May 2008; Denis Dupeyron <calchan@gentoo.org> +f-spot-0.4.3.1.ebuild:
+  Version bump, thanks to David King (bug #220257).
+
+  24 Feb 2008; Denis Dupeyron <calchan@gentoo.org> f-spot-0.4.2.ebuild:
+  Fixed bug #211005.
+
+*f-spot-0.4.2 (19 Feb 2008)
+
+  19 Feb 2008; Denis Dupeyron <calchan@gentoo.org>
+  +files/f-spot-0.4.2-color-adjust.patch, +f-spot-0.4.2.ebuild:
+  Version bump.
+
+  04 Jan 2008; Denis Dupeyron <calchan@gentoo.org> f-spot-0.4.1.ebuild:
+  Disabled tests, thanks to Dustin Surawicz (see bug #203566).
+
+*f-spot-0.4.1 (27 Dec 2007)
+
+  27 Dec 2007; Denis Dupeyron <calchan@gentoo.org> metadata.xml,
+  +f-spot-0.4.1.ebuild:
+  Version bump.
+
+  25 Dec 2007; Christian Heim <phreak@gentoo.org> metadata.xml:
+  Removing joem from metadata.xml as per #69387. Assigning to maintainer-needed.
+
+*f-spot-0.4.0 (23 Aug 2007)
+
+  23 Aug 2007; <metalgod@gentoo.org> +f-spot-0.4.0.ebuild:
+  Version Bump. Closes Bug #188228.
+
+  02 Aug 2007; Michael Sterrett <mr_bones_@gentoo.org> f-spot-0.3.3.ebuild,
+  f-spot-0.3.4.ebuild, f-spot-0.3.5.ebuild, f-spot-0.3.5-r1.ebuild:
+  correct dbus deps (bug #187369)
+
+  08 Jul 2007; Michael Sterrett <mr_bones_@gentoo.org> f-spot-0.3.3.ebuild,
+  f-spot-0.3.4.ebuild, f-spot-0.3.5.ebuild, f-spot-0.3.5-r1.ebuild:
+  remove reference to old, removed dbus (bug #183696)
+
+*f-spot-0.3.5-r1 (01 Jun 2007)
+
+  01 Jun 2007; Joe McCann <joem@gentoo.org>
+  +files/f-spot-0.3.5-picasa_fix.patch, +f-spot-0.3.5-r1.ebuild:
+  Add patch to fix picasaweb export. Closing bug 176177
+
+  15 May 2007; Thilo Bangert <bangert@gentoo.org> metadata.xml:
+  add <herd>no-herd</herd>
+
+*f-spot-0.3.5 (20 Mar 2007)
+
+  20 Mar 2007; Joe McCann <joem@gentoo.org> +f-spot-0.3.5.ebuild:
+  small bugfix release
+
+*f-spot-0.3.4 (25 Feb 2007)
+
+  25 Feb 2007; Joe McCann <joem@gentoo.org> +f-spot-0.3.4.ebuild:
+  New bugfix release. Cleaned up ebuild a bit and pruned some old versions
+  from the tree.
+
+*f-spot-0.3.3 (12 Feb 2007)
+
+  12 Feb 2007; Joe McCann <joem@gentoo.org>
+  +files/f-spot-0.3.3-dont_eat_cpu.patch, f-spot-0.3.2.ebuild,
+  +f-spot-0.3.3.ebuild:
+  New version with bugfixes. Now works with newer versions of libexif and has
+  a patch to prevent cpu spike when exporting
+
+*f-spot-0.3.2 (24 Jan 2007)
+
+  24 Jan 2007; Joe McCann <joem@gentoo.org> +f-spot-0.3.2.ebuild:
+  New version, check out f-spot.org for feature list
+
+  17 Dec 2006; Joe McCann <joem@gentoo.org> f-spot-0.3.0.ebuild:
+  update dbus deps for new 1.0 version with split bindings
+
+*f-spot-0.3.0 (11 Dec 2006)
+
+  11 Dec 2006; Joe McCann <joem@gentoo.org> -f-spot-0.1.3.ebuild,
+  -f-spot-0.1.4.ebuild, -f-spot-0.1.5.ebuild, -f-spot-0.1.8.ebuild,
+  -f-spot-0.1.9.ebuild, -f-spot-0.1.10.ebuild, -f-spot-0.1.11.ebuild,
+  -f-spot-0.2.0.ebuild, +f-spot-0.3.0.ebuild:
+  New version with code cleanups and new features. Also remove most of the old
+  ebuilds
+
+*f-spot-0.2.2 (13 Oct 2006)
+
+  13 Oct 2006; Joe McCann <joem@gentoo.org> +f-spot-0.2.2.ebuild:
+  New version with picasaweb album export, xmp importing, query features, and
+  lots of bugfixes. Also uses managed dbus-sharp code instead of bindings from
+  dbus pkg
+
+*f-spot-0.2.0 (10 Sep 2006)
+
+  10 Sep 2006; Joe McCann <joem@gentoo.org> +f-spot-0.2.0.ebuild:
+  New version with some small code cleanups and gnome-vfs --view support
+
+*f-spot-0.1.11 (03 Jun 2006)
+
+  03 Jun 2006; Joe McCann <joem@gentoo.org> +f-spot-0.1.11.ebuild:
+  New version with lots of bugfixes. The ebuild now uses sqlite-3 instead of
+  two since most issues with sqlite-3 have been fixed upstream
+
+  20 Mar 2006; Luis Medinas <metalgod@gentoo.org> f-spot-0.1.10.ebuild:
+  Added ~amd64 keyword. Closes bug #114192.
+
+*f-spot-0.1.10 (25 Feb 2006)
+
+  25 Feb 2006; Joe McCann <joem@gentoo.org> +f-spot-0.1.10.ebuild:
+  new version, bug fixes
+
+*f-spot-0.1.9 (15 Feb 2006)
+
+  15 Feb 2006; Joe McCann <joem@gentoo.org> +f-spot-0.1.9.ebuild:
+  New release with bugfixes and lots of new features including support for new
+  flickr api
+
+*f-spot-0.1.8 (03 Feb 2006)
+
+  03 Feb 2006; Joe McCann <joem@gentoo.org> +f-spot-0.1.8.ebuild:
+  New release with plenty of bug fixes and new features
+
+  14 Jan 2006; Tobias Scherbaum <dertobi123@gentoo.org> f-spot-0.1.5.ebuild:
+  added to ~ppc, bug #114054
+
+*f-spot-0.1.5 (12 Dec 2005)
+
+  12 Dec 2005; Joe McCann <joem@gentoo.org> +f-spot-0.1.5.ebuild:
+  Version bump. Now supports gallery2
+
+*f-spot-0.1.4 (08 Dec 2005)
+
+  08 Dec 2005; Joe McCann <joem@gentoo.org> +f-spot-0.1.4.ebuild:
+  New version, bugfixes and new tagging features
+
+  27 Nov 2005; Herbie Hopkins <herbs@gentoo.org> f-spot-0.1.3.ebuild:
+  Multilib fix.
+
+*f-spot-0.1.3 (27 Nov 2005)
+
+  27 Nov 2005; Joe McCann <joem@gentoo.org>
+  +files/f-spot-0.1.3-mono-1.1.10.patch, +metadata.xml,
+  +f-spot-0.1.3.ebuild:
+  First commit of this personal photo manager written using mono for the gnome
+  desktop
+
