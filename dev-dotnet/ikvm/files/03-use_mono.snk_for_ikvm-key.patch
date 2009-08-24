@@ -1,0 +1,61 @@
+Author: Jo Shields
+Description: This patch ensures that rather than trying to use the Mono Crypto
+Description: Service Provider to retrieve a signing key (CSP is not safe to
+Description: run with fakeroot), we simply hard-code the path to a bundled key
+Description: file
+Index: ikvm-0.40.0.1+dfsg/ikvm-0.40.0.1/CommonAssemblyInfo.cs
+===================================================================
+--- ikvm-0.40.0.1+dfsg.orig/ikvm-0.40.0.1/CommonAssemblyInfo.cs	2009-04-20 10:48:46.000000000 +0100
++++ ikvm-0.40.0.1+dfsg/ikvm-0.40.0.1/CommonAssemblyInfo.cs	2009-06-06 11:38:42.000000000 +0100
+@@ -33,5 +33,6 @@
+ 
+ #if SIGNCODE
+ 	#pragma warning disable 1699
+-	[assembly: AssemblyKeyName("ikvm-key")]
++	[assembly: AssemblyDelaySign(false)]
++	[assembly: AssemblyKeyFile("../../mono.snk")]
+ #endif
+Index: ikvm-0.40.0.1+dfsg/ikvm-0.40.0.1/tools/pubkey.cs
+===================================================================
+--- ikvm-0.40.0.1+dfsg.orig/ikvm-0.40.0.1/tools/pubkey.cs	2008-09-18 07:34:30.000000000 +0100
++++ ikvm-0.40.0.1+dfsg/ikvm-0.40.0.1/tools/pubkey.cs	2009-06-06 11:39:20.000000000 +0100
+@@ -29,7 +29,8 @@
+ 
+ #if SIGNCODE
+     #pragma warning disable 1699
+-    [assembly: AssemblyKeyName("ikvm-key")]
++    [assembly: AssemblyDelaySign(false)]
++    [assembly: AssemblyKeyFile("../../mono.snk")]
+ #endif
+ 
+ class PublicKey
+Index: ikvm-0.40.0.1+dfsg/ikvm-0.40.0.1/ikvm.build
+===================================================================
+--- ikvm-0.40.0.1+dfsg.orig/ikvm-0.40.0.1/ikvm.build	2009-03-26 15:32:28.000000000 +0000
++++ ikvm-0.40.0.1+dfsg/ikvm-0.40.0.1/ikvm.build	2009-06-06 11:40:16.000000000 +0100
+@@ -2,8 +2,8 @@
+ <project name="ikvm" default="all">
+     <target name="signed">
+          <property name="signed" value="SIGNCODE" />
+-         <property name="signoption" value="-key:ikvm-key" />
+-         <property name="ilasm_signoption" value="/key:@ikvm-key" />
++         <property name="signoption" value="-keyfile:../../mono.snk" />
++         <property name="ilasm_signoption" value="/key:../../mono.snk" />
+          <call target="all" />
+     </target>
+     <target name="all">
+Index: ikvm-0.40.0.1+dfsg/ikvm-0.40.0.1/runtime/runtime.build
+===================================================================
+--- ikvm-0.40.0.1+dfsg.orig/ikvm-0.40.0.1/runtime/runtime.build	2009-03-04 06:47:20.000000000 +0000
++++ ikvm-0.40.0.1+dfsg/ikvm-0.40.0.1/runtime/runtime.build	2009-06-06 11:40:37.000000000 +0100
+@@ -6,8 +6,8 @@
+     </target>
+     <target name="signed">
+         <property name="signed" value="SIGNCODE" />
+-        <property name="signoption" value="-key:ikvm-key" />
+-        <property name="ilasm_signoption" value="/key:@ikvm-key" />
++        <property name="signoption" value="-keyfile:../../../mono.snk" />
++        <property name="ilasm_signoption" value="/key:../../../mono.snk" />
+         <call target="IKVM.Runtime" />
+     </target>
+ 
