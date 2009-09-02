@@ -12,7 +12,7 @@ DESCRIPTION="Personal photo management application for the gnome desktop"
 HOMEPAGE="http://f-spot.org"
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~amd64 ~ppc ~x86"
+KEYWORDS=""
 IUSE=""
 SRC_URI=""
 
