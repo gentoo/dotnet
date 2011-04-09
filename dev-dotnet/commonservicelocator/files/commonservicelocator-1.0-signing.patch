@@ -1,0 +1,19 @@
+diff -Naur main-bak/Microsoft.Practices.ServiceLocation/Microsoft.Practices.ServiceLocation.csproj main/Microsoft.Practices.ServiceLocation/Microsoft.Practices.ServiceLocation.csproj
+--- main-bak/Microsoft.Practices.ServiceLocation/Microsoft.Practices.ServiceLocation.csproj	2011-04-09 14:32:24.000000000 +1200
++++ main/Microsoft.Practices.ServiceLocation/Microsoft.Practices.ServiceLocation.csproj	2011-04-09 14:40:32.000000000 +1200
+@@ -9,6 +9,8 @@
+     <AppDesignerFolder>Properties</AppDesignerFolder>
+     <RootNamespace>Microsoft.Practices.ServiceLocation</RootNamespace>
+     <AssemblyName>Microsoft.Practices.ServiceLocation</AssemblyName>
++    <SignAssembly>true</SignAssembly>
++    <AssemblyOriginatorKeyFile>..\commonservicelocator.snk</AssemblyOriginatorKeyFile>
+   </PropertyGroup>
+   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+     <DebugSymbols>true</DebugSymbols>
+@@ -66,4 +68,4 @@
+   <Target Name="AfterBuild">
+   </Target>
+   -->
+-</Project>
+\ No newline at end of file
++</Project>
