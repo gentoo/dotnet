@@ -1,0 +1,56 @@
+--- MSBuildTasks.proj.bak	2011-04-10 13:48:38.000000000 +1200
++++ MSBuildTasks.proj	2011-04-15 05:59:09.000000000 +1200
+@@ -4,7 +4,7 @@
+ 
+ 	<PropertyGroup>
+ 		<project>MSBuildCommunityTasks</project>
+-
++		<TargetFrameworkVersion>v2.0</TargetFrameworkVersion>
+ 		<!-- ===================================================== -->
+ 		<!-- Versioning -->
+ 		<!-- ===================================================== -->
+@@ -50,7 +50,8 @@
+ 		<!-- NUnit report xsl transformation file -->
+ 		<nunitReportXsl>NUnitReport.xsl</nunitReportXsl>
+ 
+-
++		<debugExtension Condition=" '$(OS)' == 'Windows_NT' ">pdb</debugExtension>
++		<debugExtension Confition=" '$(OS)' != 'Windows_NT' ">dll.mdb</debugExtension>
+ 		<!-- ===================================================== -->
+ 		<!-- Importing -->
+ 		<!-- ===================================================== -->
+@@ -65,6 +66,7 @@
+ 		<devel Condition="'$(devel)'==''">false</devel>
+ 
+ 		<MSBuildCommunityTasksPath Condition="$(devel)">$(binDir)</MSBuildCommunityTasksPath>
++
+ 		<importTargets Condition="$(devel)">$(binDir)\MSBuild.Community.Tasks.Targets</importTargets>
+ 		<importTargets Condition="!$(devel)">$(MSBuildExtensionsPath)\MSBuildCommunityTasks\MSBuild.Community.Tasks.Targets</importTargets>
+ 	</PropertyGroup>
+@@ -72,7 +74,7 @@
+ 	<!-- ===================================================== -->
+ 	<!-- Importing -->
+ 	<!-- ===================================================== -->
+-	<Import Condition="Exists($(importTargets))" Project="$(importTargets)"/>
++	<Import Condition="Exists('$(importTargets)')" Project="$(importTargets)"/>
+ 
+ 	<!-- ===================================================== -->
+ 	<!-- Item groups -->
+@@ -181,7 +183,7 @@
+ 	</Target>
+ 
+ 	<Target Name="assemblyinfo" 
+-		Condition="Exists($(importTargets))"
++		Condition="Exists('$(importTargets)')"
+ 		Inputs="@(vsprojects)"
+ 		Outputs="%(rootdir)%(directory)\Properties\AssemblyInfoCommon.cs">
+ 		<!-- For each VS project, create the AssemblyInfoCommon.cs file  -->
+@@ -222,7 +224,7 @@
+ 		</MSBuild>
+ 		
+ 		<Copy SourceFiles="@(targetOutputs)" DestinationFolder="$(binDir)" SkipUnchangedFiles="true" />
+-		<Copy SourceFiles="@(targetOutputs -> '%(rootdir)%(directory)%(filename).pdb')" 
++		<Copy SourceFiles="@(targetOutputs -> '%(rootdir)%(directory)%(filename).$(debugExtension)')" 
+ 			DestinationFolder="$(binDir)" 
+ 			Condition="'$(configuration)'=='Debug'"
+ 			SkipUnchangedFiles="true" />
