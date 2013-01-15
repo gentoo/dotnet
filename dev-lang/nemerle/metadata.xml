@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
+<pkgmetadata>
+	<maintainer>
+		<email>Cynede@outlook.com</email>
+	</maintainer>
+	<longdescription>
+	  Mono/.NET programming language with macros support
+	</longdescription>
+</pkgmetadata>

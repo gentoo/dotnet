@@ -1,0 +1,190 @@
+# ChangeLog for virtual/monodoc
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/virtual/monodoc/ChangeLog,v 1.42 2012/05/15 09:27:46 ali_bush Exp $
+
+*monodoc-2.11 (12 May 2012)
+
+  12 May 2012; Alistair Bush <ali_bush@gentoo.org> +monodoc-2.11.ebuild:
+  Bump for mono-2.11.*.
+
+  08 Jul 2011; Pacho Ramos <pacho@gentoo.org> -monodoc-2.6.4.ebuild,
+  -monodoc-2.8.ebuild:
+  Remove old.
+
+  11 May 2011; Christoph Mende <angelos@gentoo.org> monodoc-2.10.ebuild:
+  Stable on amd64 wrt bug #359651
+
+  07 May 2011; Thomas Kahle <tomka@gentoo.org> monodoc-2.10.ebuild:
+  x86 stable per bug 359651
+
+  21 Mar 2011; Brent Baude <ranger@gentoo.org> monodoc-2.10.ebuild:
+  Marking monodoc-2.10 ppc stable for bug 359651
+
+*monodoc-2.10 (27 Feb 2011)
+
+  27 Feb 2011; Pacho Ramos <pacho@gentoo.org> +monodoc-2.10.ebuild,
+  -monodoc-9999.ebuild:
+  Version bump for mono-2.10, remove 9999 as we don't maintain neither support
+  it.
+
+  29 Jan 2011; Markos Chandras <hwoarang@gentoo.org> monodoc-2.8.ebuild:
+  Stable on amd64 wrt bug #352808
+
+  29 Jan 2011; Christian Faulhammer <fauli@gentoo.org> monodoc-2.8.ebuild:
+  stable x86, bug 352808
+
+*monodoc-2.8 (08 Oct 2010)
+
+  08 Oct 2010; Alistair Bush <ali_bush@gentoo.org> +monodoc-2.8.ebuild:
+  Version Bump for mono-2.8
+
+  07 Oct 2010; Pacho Ramos <pacho@gentoo.org> -monodoc-1.2.4.ebuild,
+  -monodoc-2.0.ebuild, -monodoc-2.0.9999.ebuild, -monodoc-2.4.2.3.ebuild,
+  -monodoc-2.4.9999.ebuild:
+  Remove old.
+
+  12 Sep 2010; Joseph Jezak <josejx@gentoo.org> monodoc-2.6.4.ebuild:
+  Marked ppc for bug #327279.
+
+  23 Jul 2010; Pacho Ramos <pacho@gentoo.org> monodoc-2.6.4.ebuild:
+  Modify RDEPEND to make ebuild a bit more flexible when bumping mono,
+  thanks to Ian Abbott for reporting in bug 329407).
+
+  12 Jul 2010; Christian Faulhammer <fauli@gentoo.org> monodoc-2.6.4.ebuild:
+  stable x86, bug 327279
+
+  11 Jul 2010; Raúl Porcel <armin76@gentoo.org> monodoc-1.2.4.ebuild,
+  monodoc-2.0.ebuild:
+  Drop sparc keywords
+
+  09 Jul 2010; Pacho Ramos <pacho@gentoo.org> monodoc-2.6.4.ebuild:
+  amd64 stable, bug 327279
+
+  04 Jul 2010; Pacho Ramos <pacho@gentoo.org> -monodoc-2.4.3.ebuild,
+  -monodoc-2.6.1.ebuild, -monodoc-2.6.3.ebuild:
+  Remove old versions no longer available. Thanks to Mark Loeser for
+  reporting.
+
+*monodoc-2.6.4 (20 May 2010)
+
+  20 May 2010; Patrick Lauer <patrick@gentoo.org> +monodoc-2.6.4.ebuild:
+  Bump
+
+*monodoc-2.6.3 (19 Mar 2010)
+
+  19 Mar 2010; Patrick Lauer <patrick@gentoo.org> +monodoc-2.6.3.ebuild:
+  Bump
+
+*monodoc-2.6.1 (21 Feb 2010)
+
+  21 Feb 2010; Patrick Lauer <patrick@gentoo.org> +monodoc-2.6.1.ebuild:
+  Bump
+
+*monodoc-2.4.3 (09 Feb 2010)
+
+  09 Feb 2010; Arun Raghavan <ford_prefect@gentoo.org>
+  +monodoc-2.4.3.ebuild:
+  Bump monodoc to match mono 2.4.3.
+
+  11 Jan 2010; Ulrich Mueller <ulm@gentoo.org> monodoc-1.2.4.ebuild,
+  monodoc-2.0.ebuild, monodoc-2.0.9999.ebuild, monodoc-2.4.2.3.ebuild,
+  monodoc-2.4.9999.ebuild, monodoc-9999.ebuild:
+  Set empty HOMEPAGE and LICENSE.
+
+  27 Sep 2009; nixnut <nixnut@gentoo.org> monodoc-2.4.2.3.ebuild:
+  ppc stable #284306
+
+  19 Sep 2009; Markus Meier <maekke@gentoo.org> monodoc-2.4.2.3.ebuild:
+  amd64/x86 stable, bug #284306
+
+  02 Sep 2009; Peter Alfredsen <loki_val@gentoo.org> -monodoc-2.2.ebuild,
+  -monodoc-2.2.9999.ebuild, -monodoc-2.4.2.ebuild:
+  Drop old
+
+*monodoc-2.4.2.3 (23 Aug 2009)
+
+  23 Aug 2009; Peter Alfredsen <loki_val@gentoo.org> -monodoc-2.4.ebuild,
+  +monodoc-2.4.2.3.ebuild:
+  Bump monodoc for mono 2.4.2.3. Remove 2.4, corresponding mono packages
+  have been dropped.
+
+*monodoc-2.4.2 (30 Jun 2009)
+
+  30 Jun 2009; Peter Alfredsen <loki_val@gentoo.org>
+  -monodoc-2.4.2_rc1.ebuild, +monodoc-2.4.2.ebuild:
+  Bump to 2.4.2
+
+*monodoc-2.4.2_rc1 (22 Jun 2009)
+
+  22 Jun 2009; Peter Alfredsen <loki_val@gentoo.org>
+  -monodoc-2.4.2_pre2.ebuild, +monodoc-2.4.2_rc1.ebuild:
+  Bump
+
+*monodoc-2.4.2_pre2 (17 Jun 2009)
+
+  17 Jun 2009; Peter Alfredsen <loki_val@gentoo.org>
+  -monodoc-2.4.2_pre1.ebuild, +monodoc-2.4.2_pre2.ebuild:
+  Bump
+
+*monodoc-2.4.2_pre1 (09 Jun 2009)
+
+  09 Jun 2009; Peter Alfredsen <loki_val@gentoo.org>
+  +monodoc-2.4.2_pre1.ebuild:
+  Add 2.4.2 preview 1
+
+  09 Jun 2009; Peter Alfredsen <loki_val@gentoo.org>
+  monodoc-2.0.9999.ebuild, monodoc-2.2.9999.ebuild, monodoc-2.4.9999.ebuild,
+  monodoc-9999.ebuild:
+  Drop keywords for all *9999 ebuilds instead of maintaining a huge
+  package.mask
+
+  20 May 2009; Brent Baude <ranger@gentoo.org> monodoc-2.4.ebuild:
+  Marking monodoc-2.4 ~ppc for bug 268517
+
+*monodoc-9999 (05 May 2009)
+*monodoc-2.4.9999 (05 May 2009)
+*monodoc-2.2.9999 (05 May 2009)
+*monodoc-2.0.9999 (05 May 2009)
+
+  05 May 2009; Peter Alfredsen <loki_val@gentoo.org>
+  +monodoc-2.0.9999.ebuild, +monodoc-2.2.9999.ebuild,
+  +monodoc-2.4.9999.ebuild, +monodoc-9999.ebuild:
+  Add live ebuilds for trunk and >=2.0 branches
+
+  17 Apr 2009; Brent Baude <ranger@gentoo.org> monodoc-2.2.ebuild:
+  Marking monodoc-2.2 ~ppc for bug 255410
+
+  04 Apr 2009; Markus Meier <maekke@gentoo.org> monodoc-2.0.ebuild:
+  amd64/x86 stable, bug #234305
+
+*monodoc-2.4 (30 Mar 2009)
+
+  30 Mar 2009; Peter Alfredsen <loki_val@gentoo.org> +monodoc-2.4.ebuild:
+  Bump to mono-2.4 version.
+
+  27 Mar 2009; Brent Baude <ranger@gentoo.org> monodoc-2.0.ebuild:
+  Marking monodoc-2.0 ppc for bug 234305
+
+  18 Jan 2009; Peter Alfredsen <loki_val@gentoo.org> -monodoc-1.9.ebuild:
+  Punt old monodoc, since its non-virtual partner is gone.
+
+*monodoc-2.2 (18 Jan 2009)
+
+  18 Jan 2009; Peter Alfredsen <loki_val@gentoo.org> monodoc-1.2.4.ebuild,
+  monodoc-1.9.ebuild, monodoc-2.0.ebuild, +monodoc-2.2.ebuild:
+  Bump to 2.2, bug 254929.
+
+*monodoc-2.0 (14 Dec 2008)
+*monodoc-1.9 (14 Dec 2008)
+*monodoc-1.2.4 (14 Dec 2008)
+
+  14 Dec 2008; Peter Alfredsen <loki_val@gentoo.org> -monodoc-0.ebuild,
+  +monodoc-1.2.4.ebuild, +monodoc-1.9.ebuild, +monodoc-2.0.ebuild:
+  Add versioned monodocs
+
+*monodoc-0 (14 Dec 2008)
+
+  14 Dec 2008; Peter Alfredsen <loki_val@gentoo.org> +metadata.xml,
+  +monodoc-0.ebuild:
+  Initial commit
+
