@@ -6,21 +6,15 @@ EAPI=5
 
 USE_DOTNET="net40"
 
-inherit git-2 autotools mono
-
-#original source: git://github.com/fsharp/fsharp.git
-
-#This package is for testing so I test various Pull Request here
-#Before they hit main tree
-EGIT_REPO_URI="git://github.com/rneatherway/fsharp.git"
+inherit autotools mono
 
 DESCRIPTION="The F# Compiler"
 HOMEPAGE="https://github.com/fsharp/fsharp"
-SRC_URI=""
+SRC_URI="https://github.com/fsharp/fsharp/archive/${PV}.tar.gz"
 
 LICENSE="Apache-2.0"
 SLOT="0"
-KEYWORDS=""
+KEYWORDS="x86 amd64"
 IUSE=""
 
 MAKEOPTS="-j1"#nowarn

@@ -1,0 +1,14 @@
+--- Makefile_old.am	2013-01-21 16:47:20.426212602 +0400
++++ Makefile.am	2013-01-21 16:48:27.875371396 +0400
+@@ -1,9 +1,3 @@
+-SUBDIRS=build man src test tools scripts packaging
+-
+-if UNITTESTS
+-SUBDIRS += unittests
+-endif
++ACLOCAL_AMFLAGS=-I build/m4/shamrock -Ibuild/m4/shave
+ 
+-if BUILD_DOCS
+-SUBDIRS += docs
+-endif
++SUBDIRS=build man src test tools scripts packaging

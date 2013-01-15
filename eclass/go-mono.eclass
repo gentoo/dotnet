@@ -1,10 +1,10 @@
-# Copyright 1999-2012 Gentoo Foundation
+# Copyright 1999-2013 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/go-mono.eclass,v 1.14 2012/05/02 18:31:42 jdhore Exp $
+# $Header: $
 
 # @ECLASS: go-mono.eclass
-# @MAINTAINER:
-# dotnet@gentoo.org
+# @MAINTAINERS:
+# heather@cynede.net, dotnet@gentoo.org
 # @BLURB: Common functionality for go-mono.org apps
 # @DESCRIPTION:
 # Common functionality needed by all go-mono.org apps.
@@ -34,26 +34,24 @@ then
 	GO_MONO_P=${P}
 	EGIT_REPO_URI="http://github.com/mono/${GIT_PN}.git"
 	SRC_URI=""
-	inherit autotools git
+	inherit autotools git-2
 elif [[ "${PV%.9999}" != "${PV}" ]]
 then
 	GO_MONO_P=${P}
 	EGIT_REPO_URI="http://github.com/mono/${GIT_PN}.git"
 	EGIT_BRANCH="mono-$(get_version_component_range 1)-$(get_version_component_range 2)${GO_MONO_SUB_BRANCH}"
 	SRC_URI=""
-	inherit autotools git
+	inherit autotools git-2
 else
 	GO_MONO_P=${P}
 	SRC_URI="http://download.mono-project.com/sources/${PN}/${P}.tar.bz2"
 fi
-
 
 NO_MONO_DEPEND=( "dev-lang/mono" "dev-dotnet/libgdiplus" "dev-dotnet/gluezilla" )
 
 if [[ "$(get_version_component_range 3)" != "9999" ]]
 then
 	GO_MONO_REL_PV="$(get_version_component_range 1-2)"
-
 else
 	GO_MONO_REL_PV="${PV}"
 fi
@@ -69,21 +67,19 @@ DEPEND="${DEPEND}
 	userland_GNU? ( >=sys-apps/findutils-4.4.0 )"
 
 # @FUNCTION: go-mono_src_unpack
-# @DESCRIPTION:
-# Runs default()
+# @DESCRIPTION: Runs default()
 go-mono_src_unpack() {
 	if [[ "${PV%.9999}" != "${PV}" ||  "${PV}" == "9999" ]]
 	then
 		default
-		git_src_unpack
+		git-2_src_unpack
 	else
 		default
 	fi
 }
 
 # @FUNCTION: go-mono_src_prepare
-# @DESCRIPTION:
-# Runs autopatch from base.eclass, if PATCHES is set.
+# @DESCRIPTION: Runs autopatch from base.eclass, if PATCHES is set.
 go-mono_src_prepare() {
 	if [[ "${PV%.9999}" != "${PV}" ||  "${PV}" == "9999" ]]
 	then
@@ -98,7 +94,7 @@ go-mono_src_prepare() {
 # @DESCRIPTION:
 # Runs econf, disabling static libraries and dependency-tracking.
 go-mono_src_configure() {
-	econf	--disable-dependency-tracking		\
+	econf --disable-dependency-tracking		\
 		--disable-static			\
 		"$@"
 }

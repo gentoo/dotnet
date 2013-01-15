@@ -5,6 +5,7 @@
 		<email>Heather@Cynede.net</email>
 	</maintainer>
 	<longdescription>
-	  Mono/.NET programming language with macros support
+	  NuGet:NuGet.Core
+	  Core framework assembly for NuGet that the rest of NuGet builds upon.
 	</longdescription>
 </pkgmetadata>

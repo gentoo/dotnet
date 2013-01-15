@@ -1,8 +1,8 @@
-# Copyright 1999-2012 Gentoo Foundation
+# Copyright 1999-2013 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/mono/mono-3.0.1.ebuild $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/mono/mono-3.0.3.ebuild $
 
-EAPI="4"
+EAPI="5"
 
 inherit linux-info mono eutils flag-o-matic multilib go-mono pax-utils
 
@@ -11,11 +11,10 @@ HOMEPAGE="http://www.mono-project.com/Main_Page"
 
 LICENSE="MIT LGPL-2.1 GPL-2 BSD-4 NPL-1.1 Ms-PL GPL-2-with-linking-exception IDPL"
 SLOT="0"
-KEYWORDS="~amd64 ~ppc ~x86 ~amd64-linux"
+KEYWORDS="~amd64 ~x86 ~amd64-linux ~ppc"
 
-IUSE="minimal pax_kernel xen"
+IUSE="minimal pax_kernel xen doc"
 
-#Bash requirement is for += operator
 COMMONDEPEND="!dev-util/monodoc
 	!minimal? ( >=dev-dotnet/libgdiplus-2.10 )
 	ia64? (	sys-libs/libunwind )"
@@ -25,11 +24,7 @@ RDEPEND="${COMMONDEPEND}
 DEPEND="${COMMONDEPEND}
 	sys-devel/bc
 	virtual/yacc
-	>=app-shells/bash-3.2
 	pax_kernel? ( sys-apps/paxctl )"
-
-# -j1
-MAKEOPTS="${MAKEOPTS}"
 
 RESTRICT="test"
 
@@ -60,7 +55,6 @@ pkg_setup() {
 
 src_prepare() {
 	go-mono_src_prepare
-
 	# we need to sed in the paxctl -mr in the runtime/mono-wrapper.in so it don't
 	# get killed in the build proces when MPROTEC is enable. #286280
 	# RANDMMAP kill the build proces to #347365
@@ -87,9 +81,6 @@ src_configure() {
 	# and, otherwise, problems like bug #340641 appear.
 	#
 	# sgen fails on ppc, bug #359515
-
-	local myconf=""
-	use ppc && myconf="${myconf} --with-sgen=no"
 	go-mono_src_configure \
 		--enable-system-aot=yes \
 		--enable-static \
@@ -101,7 +92,8 @@ src_configure() {
 		--with-jit \
 		--disable-dtrace \
 		--with-profile4 \
-		${myconf}
+		--with-sgen=$(use ppc && printf "no" || printf "yes" ) \
+		$(use_with doc mcs-docs)
 }
 
 src_test() {

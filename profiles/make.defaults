@@ -1,0 +1,2 @@
+CUSTOM_PROFILE="yes"
+DOTNET_TARGETS="net20 net35 net40 net45"

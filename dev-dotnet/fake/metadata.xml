@@ -5,6 +5,7 @@
 		<email>heather@cynede.net</email>
 	</maintainer>
 	<longdescription>
+	  NuGet:FAKE
 	  FAKE - F# Make
 	</longdescription>
 </pkgmetadata>

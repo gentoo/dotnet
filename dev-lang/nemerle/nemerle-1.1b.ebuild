@@ -6,19 +6,16 @@ EAPI="5"
 
 USE_DOTNET="net35 net40 net45"
 
-inherit mono git-2 multilib
+inherit mono multilib
 
 DESCRIPTION="A hybrid programming language for .NET / Mono platforms"
 HOMEPAGE="http://www.nemerle.org/"
 
-SRC_URI=""
-
-EGIT_REPO_URI="git://github.com/rsdn/nemerle.git"
-EGIT_MASTER="master"
+SRC_URI="https://github.com/rsdn/nemerle/archive/v${PV}.tar.gz"
 
 LICENSE="BSD"
 SLOT="0"
-KEYWORDS=""
+KEYWORDS="x86 amd64"
 IUSE=""
 
 DEPEND=">dev-lang/mono-2.11.3"

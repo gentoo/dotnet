@@ -2,9 +2,10 @@
 <!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
 <pkgmetadata>
 	<maintainer>
-		<email>Heather@Cynede.net</email>
+		<email>heather@cynede.net</email>
 	</maintainer>
 	<longdescription>
-	  Mono/.NET programming language with macros support
+	  NuGet:NUnit
+	  NUnit - unit-testing framework for all .Net languages
 	</longdescription>
 </pkgmetadata>

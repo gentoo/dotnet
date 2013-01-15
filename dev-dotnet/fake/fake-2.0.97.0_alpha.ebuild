@@ -3,39 +3,34 @@
 # $Header: $
 
 EAPI=5
-USE_DOTNET="net40 net45"
 
-inherit git-2 mono
+USE_DOTNET="net40"
 
-#Temprary point to own fork
-EGIT_REPO_URI="git://github.com/Cynede/FAKE.git"
-EGIT_MASTER="develop"
+inherit nuget mono
 
 DESCRIPTION="FAKE - F# Make"
-HOMEPAGE="https://github.com/Cynede/FAKE"
+HOMEPAGE="http://nuget.org/packages/FAKE"
 SRC_URI=""
 
 LICENSE="MS-PL"
 SLOT="0"
-KEYWORDS=""
+KEYWORDS="amd64 x86"
 IUSE=""
 
 DEPEND="dev-lang/mono
 dev-lang/fsharp"
 RDEPEND="${DEPEND}"
 
-src_prepare() {
-	./mono_build.sh
-}
-
 src_install() {
 	elog "Installing libraries"
 	insinto /usr/lib/mono/"${FRAMEWORK}"/
-	doins build/FAKE.exe || die
-	doins build/FakeLib.dll || die
+	doins FAKE."${NPV}"/tools/FAKE.exe || die
+	doins FAKE."${NPV}"/tools/FakeLib.dll || die
+	doins FAKE."${NPV}"/tools/Newtonsoft.Json.dll
+	doins FAKE."${NPV}"/tools/Fake.SQL.dll
 }
 
 pkg_postinst() {
-	echo "mono /usr/lib/mono/${FRAMEWORK}/FAKE.exe \"\$@\"" > /usr/bin/fake
+	echo "mono /usr/lib/mono/${FRAMEWORK}/FAKE.exe \"$@\"" > /usr/bin/fake
 	chmod 777 /usr/bin/fake
 }
