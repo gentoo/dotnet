@@ -30,7 +30,7 @@ src_prepare() {
 src_configure() {
 	myeconfargs=("--enable-maintainer-mode")
 	use test && myeconfargs+=("--with_unit_tests")
-	use doc && myeconfargs+=("--doc")
+	use doc || myeconfargs+=("--disable-docs")
 	autotools-utils_src_configure
 }
 
