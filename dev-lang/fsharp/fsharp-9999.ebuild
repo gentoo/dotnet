@@ -8,11 +8,7 @@ USE_DOTNET="net40"
 
 inherit git-2 autotools mono
 
-#original source: git://github.com/fsharp/fsharp.git
-
-#This package is for testing so I test various Pull Request here
-#Before they hit main tree
-EGIT_REPO_URI="git://github.com/rneatherway/fsharp.git"
+EGIT_REPO_URI="git://github.com/fsharp/fsharp.git"
 
 DESCRIPTION="The F# Compiler"
 HOMEPAGE="https://github.com/fsharp/fsharp"
@@ -23,8 +19,8 @@ SLOT="0"
 KEYWORDS=""
 IUSE=""
 
-MAKEOPTS="-j1"#nowarn
-DEPEND="dev-lang/mono"
+MAKEOPTS="-j1" #nowarn
+DEPEND="|| ( >dev-lang/mono-3.0.6 <dev-lang/mono-3.0.5 )"
 RDEPEND="${DEPEND}"
 
 src_prepare() {

@@ -17,7 +17,7 @@ case ${EAPI:-0} in
   *) ;; #if [[ ${USE_DOTNET} ]]; then REQUIRED_USE="|| (${USE_DOTNET})"; fi;;
 esac
 
-inherit eutils
+inherit eutils versionator
 
 # SET default use flags according on DOTNET_TARGETS
 for x in ${USE_DOTNET}; do
@@ -25,7 +25,7 @@ for x in ${USE_DOTNET}; do
       net45) if [[ ${DOTNET_TARGETS} == *net45* ]]; then IUSE+=" +net45"; else IUSE+=" net45"; fi;;
       net40) if [[ ${DOTNET_TARGETS} == *net40* ]]; then IUSE+=" +net40"; else IUSE+=" net40"; fi;;
       net35) if [[ ${DOTNET_TARGETS} == *net35* ]]; then IUSE+=" +net35"; else IUSE+=" net35"; fi;;
-	  net20) if [[ ${DOTNET_TARGETS} == *net20* ]]; then IUSE+=" +net20"; else IUSE+=" net20"; fi;;
+      net20) if [[ ${DOTNET_TARGETS} == *net20* ]]; then IUSE+=" +net20"; else IUSE+=" net20"; fi;;
    esac
 done
 
@@ -40,24 +40,17 @@ mono_pkg_setup() {
 			net20) if use net20; then F="2.0"; fi;;
 		esac
 		if [[ -z ${FRAMEWORK} ]]; then
-			if [[ ${F} ]]; then 
+			if [[ ${F} ]]; then
 				FRAMEWORK="${F}";
 			fi
-		else	
-		    #TODO: BASH HACKER REQUEST
-			if [[ ${SHELL} == "/bin/zsh" ]]; then
-				if [[ ${FRAMEWORK} < ${F} ]]; then 
-					FRAMEWORK="${F}"
-				fi
-			else
-				FRAMEWORK="${F}"
-			fi
+		else
+			version_is_at_least "${F}" "${FRAMEWORK}" || FRAMEWORK="${F}"
 		fi
 	done
 	if [[ -z ${FRAMEWORK} ]]; then
 		FRAMEWORK="4.0"
 	fi
-	echo " *** USING .NET ${FRAMEWORK} FRAMEWORK *** "
+	einfo " -- USING .NET ${FRAMEWORK} FRAMEWORK -- "
 }
 
 # >=mono-0.92 versions using mcs -pkg:foo-sharp require shared memory, so we set the

@@ -23,7 +23,7 @@ RDEPEND="${DEPEND}"
 
 pkg_pretend() {
 	if [[ ${MERGE_TYPE} != buildonly ]] && has collision-protect ${FEATURES}; then
-		if [ -f /usr/lib/mono/"${FRAMEWORK}"/NuGet.Core.dll]; then
+		if [ -f /usr/lib/mono/NuGet/"${FRAMEWORK}"/NuGet.Core.dll]; then
 			eerror "FEATURES=\"collision-protect\" is enabled, which will prevent overwriting"
 			eerror "collision-protect or remove /usr/lib/mono/4.0/NuGet.Core.dll"
 			die "collision-protect cannot overwrite NuGet.Core.dll"
@@ -33,6 +33,6 @@ pkg_pretend() {
 
 src_install() {
 	elog "Installing libraries"
-	insinto /usr/lib/mono/"${FRAMEWORK}"/
+	insinto /usr/lib/mono/NuGet/"${FRAMEWORK}"/
 	doins Nuget.Core."${NPV}"/lib/net40-Client/NuGet.Core.dll
 }

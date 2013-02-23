@@ -17,8 +17,8 @@ SLOT="0"
 KEYWORDS="x86 amd64"
 IUSE=""
 
-MAKEOPTS="-j1"#nowarn
-DEPEND="dev-lang/mono"
+MAKEOPTS="-j1" #nowarn
+DEPEND="|| ( >dev-lang/mono-3.0.6 <dev-lang/mono-3.0.5 )"
 RDEPEND="${DEPEND}"
 
 src_prepare() {

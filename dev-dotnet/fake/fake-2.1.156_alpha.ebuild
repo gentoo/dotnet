@@ -23,7 +23,7 @@ RDEPEND="${DEPEND}"
 
 src_install() {
 	elog "Installing libraries"
-	insinto /usr/lib/mono/"${FRAMEWORK}"/
+	insinto /usr/lib/mono/FAKE/"${FRAMEWORK}"/
 	doins FAKE."${NPV}"/tools/FAKE.exe || die
 	doins FAKE."${NPV}"/tools/FakeLib.dll || die
 	doins FAKE."${NPV}"/tools/Newtonsoft.Json.dll
@@ -31,6 +31,6 @@ src_install() {
 }
 
 pkg_postinst() {
-	echo "mono /usr/lib/mono/${FRAMEWORK}/FAKE.exe \"$@\"" > /usr/bin/fake
+	echo "mono /usr/lib/mono/FAKE/${FRAMEWORK}/FAKE.exe \"$@\"" > /usr/bin/fake
 	chmod 777 /usr/bin/fake
 }

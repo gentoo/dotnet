@@ -24,12 +24,12 @@ RDEPEND="${DEPEND}"
 #TODO: better installation
 src_install() {
 	elog "Installing libraries"
-	insinto /usr/lib/mono/"${FRAMEWORK}"/
+	insinto /usr/lib/mono/WebSharper/"${FRAMEWORK}"/
 	doins WebSharper."${NPV}"/*.dll || die
 	doins WebSharper."${NPV}"/*.exe || die
 }
 
 pkg_postinst() {
-	echo "mono /usr/lib/mono/${FRAMEWORK}/WebSharper.v${FRAMEWORK}.exe \"$@\"" > /usr/bin/websharper
+	echo "mono /usr/lib/mono/WebSharper/${FRAMEWORK}/WebSharper.v${FRAMEWORK}.exe \"$@\"" > /usr/bin/websharper
 	chmod 777 /usr/bin/websharper
 }

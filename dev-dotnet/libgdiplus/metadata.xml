@@ -5,7 +5,6 @@
 		<email>heather@cynede.net</email>
 	</maintainer>
 	<longdescription>
-	  NuGet:NUnit
-	  NUnit - unit-testing framework for all .Net languages
+	  libgdiplus
 	</longdescription>
 </pkgmetadata>

@@ -24,11 +24,14 @@ dev-dotnet/heather"
 RDEPEND="${DEPEND}"
 
 src_install() {
-	insinto /usr/lib/mono/"${FRAMEWORK}"
+	insinto /usr/lib/mono/nuport/"${FRAMEWORK}"
+	doins src/bin/Release/FSharp.Core.dll
+	doins src/bin/Release/Heather.dll
+	doins src/bin/Release/NuGet.Core.dll
 	doins src/bin/Release/nuport.exe
 }
 
 pkg_postinst() {
-	echo "mono /usr/lib/mono/${FRAMEWORK}/nuport.exe  \"\$@\"" > /usr/bin/nuport
+	echo "mono /usr/lib/mono/nuport/${FRAMEWORK}/nuport.exe  \"\$@\"" > /usr/bin/nuport
 	chmod 777 /usr/bin/nuport
 }

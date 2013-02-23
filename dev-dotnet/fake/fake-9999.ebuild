@@ -7,12 +7,12 @@ USE_DOTNET="net40 net45"
 
 inherit git-2 mono
 
-#Temprary point to own fork
+#USE OWN FORK (YES IT'S UNOFFICIAL STUFF YET)
 EGIT_REPO_URI="git://github.com/Cynede/FAKE.git"
 EGIT_MASTER="develop"
 
 DESCRIPTION="FAKE - F# Make"
-HOMEPAGE="https://github.com/Cynede/FAKE"
+HOMEPAGE="https://github.com/fsharp/FAKE"
 SRC_URI=""
 
 LICENSE="MS-PL"
@@ -30,12 +30,12 @@ src_prepare() {
 
 src_install() {
 	elog "Installing libraries"
-	insinto /usr/lib/mono/"${FRAMEWORK}"/
+	insinto /usr/lib/mono/FAKE/"${FRAMEWORK}"/
 	doins build/FAKE.exe || die
 	doins build/FakeLib.dll || die
 }
 
 pkg_postinst() {
-	echo "mono /usr/lib/mono/${FRAMEWORK}/FAKE.exe \"\$@\"" > /usr/bin/fake
+	echo "mono /usr/lib/mono/FAKE/${FRAMEWORK}/FAKE.exe \"\$@\"" > /usr/bin/fake
 	chmod 777 /usr/bin/fake
 }

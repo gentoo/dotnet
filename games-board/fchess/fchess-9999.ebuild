@@ -24,11 +24,11 @@ dev-dotnet/heather"
 RDEPEND="${DEPEND}"
 
 src_install() {
-	insinto /usr/lib/mono/"${FRAMEWORK}"
+	insinto /usr/share/FChess/"${FRAMEWORK}"
 	doins src/bin/Release/FChess.exe
 }
 
 pkg_postinst() {
-	echo "mono /usr/lib/mono/${FRAMEWORK}/FChess.exe" > /usr/bin/fchess
+	echo "mono /usr/share/FChess/${FRAMEWORK}/FChess.exe" > /usr/bin/fchess
 	chmod 777 /usr/bin/fchess
 }

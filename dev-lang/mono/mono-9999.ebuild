@@ -1,6 +1,6 @@
 # Copyright 1999-2013 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/mono/mono-3.0.3.ebuild $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/mono/mono-9999.ebuild $
 
 EAPI="5"
 
@@ -13,10 +13,11 @@ LICENSE="MIT LGPL-2.1 GPL-2 BSD-4 NPL-1.1 Ms-PL GPL-2-with-linking-exception IDP
 SLOT="0"
 KEYWORDS=""
 
-IUSE="minimal pax_kernel xen doc"
+IUSE="minimal pax_kernel xen"
 
+#Bash requirement is for += operator
 COMMONDEPEND="!dev-util/monodoc
-	!minimal? ( >=dev-dotnet/libgdiplus-2.10 )
+	!minimal? ( =dev-dotnet/libgdiplus-9999 )
 	ia64? (	sys-libs/libunwind )"
 RDEPEND="${COMMONDEPEND}
 	|| ( www-client/links www-client/lynx )"
@@ -24,8 +25,10 @@ RDEPEND="${COMMONDEPEND}
 DEPEND="${COMMONDEPEND}
 	sys-devel/bc
 	virtual/yacc
+	>=app-shells/bash-3.2
 	pax_kernel? ( sys-apps/paxctl )"
 
+MAKEOPTS="${MAKEOPTS} -j1" #nowarn
 RESTRICT="test"
 
 QA_FLAGS_IGNORED="/usr/lib64/mono/4.5/mcs.exe.so \
@@ -54,6 +57,9 @@ pkg_setup() {
 }
 
 src_prepare() {
+	cat "${S}/mono/mini/Makefile.am.in" > "${S}/mono/mini/Makefile.am" || die
+	cat "${S}/mono/metadata/Makefile.am.in" > "${S}/mono/metadata/Makefile.am" || die
+
 	go-mono_src_prepare
 	# we need to sed in the paxctl -mr in the runtime/mono-wrapper.in so it don't
 	# get killed in the build proces when MPROTEC is enable. #286280
@@ -81,6 +87,9 @@ src_configure() {
 	# and, otherwise, problems like bug #340641 appear.
 	#
 	# sgen fails on ppc, bug #359515
+
+	local myconf=""
+	use ppc && myconf="${myconf} --with-sgen=no"
 	go-mono_src_configure \
 		--enable-system-aot=yes \
 		--enable-static \
@@ -92,8 +101,7 @@ src_configure() {
 		--with-jit \
 		--disable-dtrace \
 		--with-profile4 \
-		--with-sgen=$(use ppc && printf "no" || printf "yes" ) \
-		$(use_with doc mcs-docs)
+		${myconf}
 }
 
 src_test() {
@@ -129,7 +137,7 @@ pkg_preinst() {
 	local symlink
 	local NUNIT_DIR="/usr/$(get_libdir)/mono/nunit"
 	local pv_atom
-	if  [[ "$(readlink "${EROOT}"/${NUNIT_DIR})" == *"mono-nunit"* ]]
+	if  [[ "$(readlink "${ROOT}"/${NUNIT_DIR})" == *"mono-nunit"* ]]
 	then
 		for pv_atom in 2.2{,-r1,-r2,-r3,-r4} '2.4_pre*' '2.4_rc*' 2.4
 		do
@@ -139,10 +147,10 @@ pkg_preinst() {
 				einfo "be advised that this is a known problem, which will now be fixed:"
 				ebegin "Found broken symlinks created by $(best_version dev-lang/mono), fixing"
 				for symlink in						\
-					"${EROOT}/${NUNIT_DIR}"				\
-					"${EROOT}/usr/$(get_libdir)/pkgconfig/nunit.pc"	\
-					"${EROOT}/usr/bin/nunit-console"			\
-					"${EROOT}/usr/bin/nunit-console2"
+					"${ROOT}/${NUNIT_DIR}"				\
+					"${ROOT}/usr/$(get_libdir)/pkgconfig/nunit.pc"	\
+					"${ROOT}/usr/bin/nunit-console"			\
+					"${ROOT}/usr/bin/nunit-console2"
 				do
 					if [[ -L "${symlink}" ]]
 					then
