@@ -8,7 +8,7 @@ USE_DOTNET="net40 net45"
 inherit git-2 mono
 
 #USE OWN FORK (YES IT'S UNOFFICIAL STUFF YET)
-EGIT_REPO_URI="git://github.com/Cynede/FAKE.git"
+EGIT_REPO_URI="git://github.com/Heather/FAKE.git"
 EGIT_MASTER="develop"
 
 DESCRIPTION="FAKE - F# Make"

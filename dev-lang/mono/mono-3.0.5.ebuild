@@ -26,6 +26,7 @@ DEPEND="${COMMONDEPEND}
 	virtual/yacc
 	pax_kernel? ( sys-apps/paxctl )"
 
+MAKEOPTS="${MAKEOPTS} -j1" #nowarn
 RESTRICT="test"
 
 QA_FLAGS_IGNORED="/usr/lib64/mono/4.5/mcs.exe.so \

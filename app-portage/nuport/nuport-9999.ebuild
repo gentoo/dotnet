@@ -8,7 +8,7 @@ USE_DOTNET="net40 net45"
 
 inherit git-2 fake mono
 
-EGIT_REPO_URI="git://github.com/gentoo-dotnet/nuport.git"
+EGIT_REPO_URI="git://github.com/Heather/nuport.git"
 
 DESCRIPTION="F# NuGet to Portage converter"
 HOMEPAGE="https://github.com/gentoo-dotnet/nuport.git"

@@ -22,7 +22,6 @@ DEPEND=">dev-lang/mono-2.11.3"
 RDEPEND="${DEPEND}"
 
 pkg_pretend() {
-	mono_pkg_pretend
 	if [[ ${MERGE_TYPE} != buildonly ]] && has collision-protect ${FEATURES}; then
 		if [ -f /usr/bin/ncc]; then
 			eerror "FEATURES=\"collision-protect\" is enabled, which will prevent overwriting"

@@ -11,11 +11,14 @@
 # MONO_SHARED_DIR and sets LC_ALL in order to prevent errors during compilation
 # of dotnet packages.
 
-case ${EAPI:-0} in
-  0) die "this eclass doesn't support EAPI 0" ;;
-  1|2|3) ;;
-  *) ;; #if [[ ${USE_DOTNET} ]]; then REQUIRED_USE="|| (${USE_DOTNET})"; fi;;
-esac
+
+# Some in-tree ebuilds is using mono eclass with 0 EAPI
+
+#case ${EAPI:-0} in
+#  0) die "this eclass doesn't support EAPI 0" ;;
+#  1|2|3) ;;
+#  *) ;; #if [[ ${USE_DOTNET} ]]; then REQUIRED_USE="|| (${USE_DOTNET})"; fi;;
+#esac
 
 inherit eutils versionator
 

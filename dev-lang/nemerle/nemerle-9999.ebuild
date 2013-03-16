@@ -19,13 +19,12 @@ EGIT_MASTER="master"
 LICENSE="BSD"
 SLOT="0"
 KEYWORDS=""
-IUSE=""
+IUSE="+binary"
 
 DEPEND=">dev-lang/mono-2.11.3"
 RDEPEND="${DEPEND}"
 
 pkg_pretend() {
-	mono_pkg_pretend
 	if [[ ${MERGE_TYPE} != buildonly ]] && has collision-protect ${FEATURES}; then
 		if [ -f /usr/bin/ncc]; then
 			eerror "FEATURES=\"collision-protect\" is enabled, which will prevent overwriting"
@@ -37,31 +36,60 @@ pkg_pretend() {
 }
 
 src_configure() { :; }
-
 src_compile() {
-	elog "Nemerle sources compiling : "
-	exbuild NemerleAll-Mono.nproj /t:Stage1
+	if ! use binary; then
+		elog "Nemerle sources compiling : "
+		exbuild NemerleAll-Mono.nproj /t:Stage1
+	fi # ! use binary
 }
 
 src_install()
 {
 	elog "Installing libraries"
-	insinto "/usr/$(get_libdir)/mono/${PN}/${FRAMEWORK}"
-	doins bin/Release/mono-"${FRAMEWORK}"/Stage1/*.dll || die "installing libraries failed"
-	elog "Registering libraries to egac"
-	local nemerledll=bin/Release/mono-"${FRAMEWORK}"/Stage1/Nemerle.dll
-	egacinstall "${nemerledll}" \
-		|| die "couldn't install ${nemerledll} in the global assembly cache"
-	local nemerlecompilerdll=bin/Release/mono-"${FRAMEWORK}"/Stage1/Nemerle.Compiler.dll
-	egacinstall "${nemerlecompilerdll}" \
-		|| die "couldn't install ${nemerlecompilerdll} in the global assembly cache"
-	local nemerlemacrosdll=bin/Release/mono-"${FRAMEWORK}"/Stage1/Nemerle.Macros.dll
-	egacinstall "${nemerlemacrosdll}" \
-		|| die "couldn't install ${nemerlemacrosdll} in the global assembly cache"
-	elog "Installing ncc"
-	dodoc README AUTHORS INSTALL NEWS
-	into /usr
-	doins bin/Release/mono-"${FRAMEWORK}"/Stage1/ncc.exe
+	if ! use binary; then
+		insinto "/usr/$(get_libdir)/mono/${PN}/${FRAMEWORK}"
+		doins bin/Release/mono-"${FRAMEWORK}"/Stage1/*.dll || die "installing libraries failed"
+		elog "Registering libraries to egac"
+		local nemerledll=bin/Release/mono-"${FRAMEWORK}"/Stage1/Nemerle.dll
+		egacinstall "${nemerledll}" \
+			|| die "couldn't install ${nemerledll} in the global assembly cache"
+		local nemerlecompilerdll=bin/Release/mono-"${FRAMEWORK}"/Stage1/Nemerle.Compiler.dll
+		egacinstall "${nemerlecompilerdll}" \
+			|| die "couldn't install ${nemerlecompilerdll} in the global assembly cache"
+		local nemerlemacrosdll=bin/Release/mono-"${FRAMEWORK}"/Stage1/Nemerle.Macros.dll
+		egacinstall "${nemerlemacrosdll}" \
+			|| die "couldn't install ${nemerlemacrosdll} in the global assembly cache"
+		elog "Installing ncc"
+		dodoc README AUTHORS INSTALL NEWS
+		into /usr
+		doins bin/Release/mono-"${FRAMEWORK}"/Stage1/ncc.exe
+	else # binary
+		case ${FRAMEWORK} in
+			"3.5") Bootstrap="boot";;
+			"4.0") Bootstrap="boot-4.0";;
+			"4.5")
+				ewarn "there is no 4.5 binaries, using 4.0"
+				FRAMEWORK="4.0"
+				Bootstrap="boot-4.0"
+				;;
+		esac
+		insinto "/usr/$(get_libdir)/mono/${PN}/${FRAMEWORK}"
+		doins ${Bootstrap}/*.dll || die "installing libraries failed"
+		elog "Registering libraries to egac"
+		local nemerledll=${Bootstrap}/Nemerle.dll
+		egacinstall "${nemerledll}" \
+			|| die "couldn't install ${nemerledll} in the global assembly cache"
+		local nemerlecompilerdll=${Bootstrap}/Nemerle.Compiler.dll
+		egacinstall "${nemerlecompilerdll}" \
+			|| die "couldn't install ${nemerlecompilerdll} in the global assembly cache"
+		local nemerlemacrosdll=${Bootstrap}/Nemerle.Macros.dll
+		egacinstall "${nemerlemacrosdll}" \
+			|| die "couldn't install ${nemerlemacrosdll} in the global assembly cache"
+		elog "Installing ncc"
+		dodoc README AUTHORS INSTALL NEWS
+		into /usr
+		doins ${Bootstrap}/ncc.exe
+	fi
 }
 
 pkg_postinst() {

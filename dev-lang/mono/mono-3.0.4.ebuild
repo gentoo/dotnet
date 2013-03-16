@@ -11,7 +11,7 @@ HOMEPAGE="http://www.mono-project.com/Main_Page"
 
 LICENSE="MIT LGPL-2.1 GPL-2 BSD-4 NPL-1.1 Ms-PL GPL-2-with-linking-exception IDPL"
 SLOT="0"
-KEYWORDS="~amd64 ~x86 ~amd64-linux ~ppc"
+KEYWORDS="amd64 x86 ~amd64-linux ~ppc"
 
 IUSE="minimal pax_kernel xen doc"
 
@@ -26,6 +26,7 @@ DEPEND="${COMMONDEPEND}
 	virtual/yacc
 	pax_kernel? ( sys-apps/paxctl )"
 
+MAKEOPTS="${MAKEOPTS} -j1" #nowarn
 RESTRICT="test"
 
 QA_FLAGS_IGNORED="/usr/lib64/mono/4.5/mcs.exe.so \

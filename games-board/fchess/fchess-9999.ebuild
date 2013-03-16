@@ -8,10 +8,10 @@ USE_DOTNET="net40 net45"
 
 inherit git-2 fake mono
 
-EGIT_REPO_URI="git://github.com/Cynede/FChess.git"
+EGIT_REPO_URI="git://github.com/Heather/FChess.git"
 
 DESCRIPTION="FAKE - F# Make"
-HOMEPAGE="https://github.com/Cynede/FChess"
+HOMEPAGE="https://github.com/Heather/FChess"
 SRC_URI=""
 
 LICENSE="GPL-2"

@@ -6,7 +6,7 @@ EAPI="5"
 
 inherit linux-info mono eutils flag-o-matic multilib go-mono pax-utils
 
-EGIT_REPO_URI="http://github.com/Cynede/mono.git"
+EGIT_REPO_URI="http://github.com/Heather/mono.git"
 
 DESCRIPTION="Mono runtime and class libraries, a C# compiler/interpreter"
 HOMEPAGE="http://www.mono-project.com/Main_Page"

@@ -40,15 +40,14 @@ SDEPEND=">=dev-lang/mono-3.0.1
 	!<dev-util/monodevelop-vala-$(get_version_component_range 1-2)"
 # Xterm is required by the debugger
 RDEPEND="${SDEPEND}
-       x11-terms/xterm"
+x11-terms/xterm"
 DEPEND="${SDEPEND}
 	dev-util/intltool
 	virtual/pkgconfig
 	sys-devel/gettext
 	x11-misc/shared-mime-info"
 
-MAKEOPTS="${MAKEOPTS} -j1"
-
+MAKEOPTS="${MAKEOPTS} -j1" #nowarn
 src_configure() {
 	econf \
 		--disable-update-mimedb \

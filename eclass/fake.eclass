@@ -19,7 +19,6 @@ fake_src_configure() { :; }
 # @FUNCTION: fake_src_compile
 # @DESCRIPTION: Runs fake.
 fake_src_compile() {
-	cd "${S}"
 	fake || die "fake build failed"
 }
 
