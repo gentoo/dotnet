@@ -1,0 +1,11 @@
+--- monodevelop/Makefile.orig.old	2013-03-27 13:01:00.226854675 +0100
++++ monodevelop/Makefile.orig	2013-03-27 13:01:14.113854501 +0100
+@@ -6,7 +6,7 @@
+ 
+ VERSION=3.2.14
+ 
+-MDTOOL = $(MONO) 'INSERT_MDROOT/../../mdtool'
++MDTOOL = 'mdtool'
+ 
+ # (MDVERSION3, MDVERSION4) can be set to something like (3.0.4, 3.0.4.7) to compile
+ # against the dependencies/... binaries for a specific version of MonoDevelop. This allows
