@@ -5,10 +5,9 @@
 		<email>Heather@Cynede.net</email>
 	</maintainer>
 	<longdescription>
-	  Mono/.NET programming language with macros support
+	  Monodevelop / emacs F# bindings
 	</longdescription>
     <use>
-      <flag name='binary'>Using binary bootstrap</flag>
-      <flag name='indent'>Eperimental branch with indent by default</flag>
+      <flag name='monodevelop'>Install monodevelop binding</flag>
     </use>
 </pkgmetadata>

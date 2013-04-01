@@ -20,13 +20,13 @@ KEYWORDS="~x86 ~amd64"
 IUSE=""
 
 DEPEND="dev-lang/mono
-dev-dotnet/heather"
+dev-dotnet/shelly"
 RDEPEND="${DEPEND}"
 
 src_install() {
 	insinto /usr/lib/mono/nuport/"${FRAMEWORK}"
 	doins src/bin/Release/FSharp.Core.dll
-	doins src/bin/Release/Heather.dll
+	doins src/bin/Release/shelly.dll
 	doins src/bin/Release/NuGet.Core.dll
 	doins src/bin/Release/nuport.exe
 }

@@ -5,6 +5,6 @@
 		<email>heather@cynede.net</email>
 	</maintainer>
 	<longdescription>
-	  designed to help with porting nuget packages to ebuilds
+	  NuGet:Failess
 	</longdescription>
 </pkgmetadata>

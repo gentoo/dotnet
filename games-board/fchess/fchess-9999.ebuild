@@ -20,7 +20,7 @@ KEYWORDS="~x86 ~amd64"
 IUSE=""
 
 DEPEND="dev-lang/mono
-dev-dotnet/heather"
+dev-dotnet/shelly"
 RDEPEND="${DEPEND}"
 
 src_install() {

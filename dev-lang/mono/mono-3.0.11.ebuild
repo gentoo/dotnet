@@ -1,10 +1,10 @@
 # Copyright 1999-2013 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/mono/mono-3.0.6.ebuild $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/mono/mono-3.0.11.ebuild $
 
 EAPI="5"
 
-inherit linux-info mono eutils flag-o-matic multilib go-mono pax-utils
+inherit linux-info mono eutils flag-o-matic multilib go-mono-2 pax-utils
 
 DESCRIPTION="Mono runtime and class libraries, a C# compiler/interpreter"
 HOMEPAGE="http://www.mono-project.com/Main_Page"
@@ -55,7 +55,10 @@ pkg_setup() {
 }
 
 src_prepare() {
-	go-mono_src_prepare
+	cat "${S}/mono/mini/Makefile.am.in" > "${S}/mono/mini/Makefile.am" || die
+	cat "${S}/mono/metadata/Makefile.am.in" > "${S}/mono/metadata/Makefile.am" || die
+
+	go-mono-2_src_prepare
 	# we need to sed in the paxctl -mr in the runtime/mono-wrapper.in so it don't
 	# get killed in the build proces when MPROTEC is enable. #286280
 	# RANDMMAP kill the build proces to #347365
@@ -82,7 +85,7 @@ src_configure() {
 	# and, otherwise, problems like bug #340641 appear.
 	#
 	# sgen fails on ppc, bug #359515
-	go-mono_src_configure \
+	go-mono-2_src_configure \
 		--enable-system-aot=yes \
 		--enable-static \
 		--disable-quiet-build \
@@ -110,7 +113,7 @@ src_test() {
 }
 
 src_install() {
-	go-mono_src_install
+	go-mono-2_src_install
 
 	# Remove files not respecting LDFLAGS and that we are not supposed to provide, see Fedora
 	# mono.spec and http://www.mail-archive.com/mono-devel-list@lists.ximian.com/msg24870.html

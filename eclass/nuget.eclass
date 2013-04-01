@@ -17,9 +17,9 @@ else
 fi
 if [[ $PV == *_alpha* ]]
 then
-   	NPV=${PV/_/-}
+   	NPV=${PVR/_/-}
 else
-   	NPV=${PV}
+   	NPV=${PVR}
 fi
 
 # @FUNCTION: nuget_src_unpack
