@@ -84,7 +84,8 @@ go-mono-2_src_configure() {
 # @DESCRIPTION:
 # Runs emake.
 go-mono-2_src_compile() {
-	emake "$@" || die "emake failed"
+	emake get-monolite-latest
+	emake EXTERNAL_MCS=${PWD}/mcs/class/lib/monolite/gmcs.exe "$@" || die "emake failed"
 }
 
 # @ECLASS-VARIABLE: DOCS
