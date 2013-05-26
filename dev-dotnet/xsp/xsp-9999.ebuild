@@ -7,10 +7,12 @@ EAPI="5"
 USE_DOTNET="net35 net40 net45"
 PATCHDIR="${FILESDIR}/2.2/"
 
-inherit eutils go-mono mono user git-2 autotools-utils
+inherit base eutils mono user git-2 autotools-utils
 
 DESCRIPTION="XSP is a small web server that can host ASP.NET pages"
 HOMEPAGE="http://www.mono-project.com/ASP.NET"
+
+EGIT_REPO_URI="git://github.com/mono/${PN}.git"
 
 LICENSE="MIT"
 SLOT="0"

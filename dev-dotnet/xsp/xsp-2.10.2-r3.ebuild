@@ -6,12 +6,14 @@ EAPI="5"
 
 USE_DOTNET="net35 net40 net45"
 
-inherit eutils go-mono mono user
+inherit base eutils mono user
 
 PATCHDIR="${FILESDIR}/2.2/"
 
 DESCRIPTION="XSP is a small web server that can host ASP.NET pages"
 HOMEPAGE="http://www.mono-project.com/ASP.NET"
+
+SRC_URI="http://download.mono-project.com/sources/${PN}/${P}.tar.bz2"
 
 LICENSE="MIT"
 SLOT="0"

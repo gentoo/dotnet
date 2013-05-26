@@ -1,18 +1,18 @@
 # Copyright 1999-2013 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-dotnet/libgdiplus/libgdiplus-9999.ebuild $
+# $Header: /var/cvsroot/gentoo-x86/dev-dotnet/libgdiplus/libgdiplus-2.10.9.ebuild $
 
 EAPI=5
 
-inherit base eutils mono flag-o-matic git-2
+inherit base eutils mono flag-o-matic
 
 DESCRIPTION="Library for using System.Drawing with mono"
 HOMEPAGE="http://www.mono-project.com"
 
 LICENSE="MIT"
 SLOT="0"
-KEYWORDS=""
-EGIT_REPO_URI="http://github.com/mono/${PN}.git"
+KEYWORDS="amd64 ~arm ppc ppc64 x86 ~amd64-fbsd ~x86-freebsd ~amd64-linux ~x86-linux ~x86-solaris"
+SRC_URI="http://download.mono-project.com/sources/${PN}/${P}.tar.bz2"
 
 IUSE="cairo"
 
@@ -33,12 +33,11 @@ DEPEND="${RDEPEND}"
 
 RESTRICT="test"
 
-PATCHES=( "${FILESDIR}/${PN}-2.10.1-libpng15.patch" )
+PATCHES=( "${FILESDIR}/${P}-gold.patch"
+	"${FILESDIR}/${PN}-2.10.1-libpng15.patch" )
 
 src_prepare() {
-	sed -i -e 's/LT_/LTT_/g' cairo/configure.in || die
 	base_src_prepare
-	epatch "${FILESDIR}/${PN}-2.10.9-gold.patch"
 	sed -i -e 's:ungif:gif:g' configure || die
 }
 

@@ -2,16 +2,18 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-util/mono-debugger/mono-debugger-9999.ebuild $
 
-EAPI=4
+EAPI=5
 
-inherit go-mono mono autotools flag-o-matic eutils
+inherit base mono autotools flag-o-matic eutils git-2
 
 DESCRIPTION="Debugger for .NET managed and unmanaged applications"
 HOMEPAGE="http://www.mono-project.com/"
 
+EGIT_REPO_URI="git://github.com/mono/debugger.git"
+
 LICENSE="GPL-2 MIT"
 SLOT="0"
-KEYWORDS=""
+KEYWORDS="~x86 ~amd64"
 IUSE=""
 
 RESTRICT="test"
@@ -24,7 +26,7 @@ DEPEND="${RDEPEND}
 	!dev-lang/mercury"
 
 src_prepare() {
-	go-mono_src_prepare
+	base_src_prepare
 
 	# Allow compilation against system libbfd, bnc#662581
 	epatch "${FILESDIR}/${PN}-2.8-system-bfd.patch"
@@ -33,12 +35,12 @@ src_prepare() {
 
 src_configure() {
 	append-ldflags -Wl,--no-undefined #nowarn
-
-	go-mono_src_configure \
-		--with-system-libbfd \
-		--disable-static
+	econf 	--disable-dependency-tracking		\
+		--disable-static			\
+		--with-system-libbfd 		\
+		--disable-static || die "econf failed"
 }
 
 src_compile() {
-	emake -j1 #nowarn
+	emake -j1 || die "emake failed" #nowarn
 }
