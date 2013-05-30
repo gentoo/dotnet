@@ -30,7 +30,7 @@ RDEPEND="${COMMONDEPEND}
 DEPEND="${COMMONDEPEND}
 	sys-devel/bc
 	virtual/yacc
-	pax_kernel? ( sys-apps/paxctl )
+	pax_kernel? ( sys-apps/elfix )
 "
 
 pkg_pretend() {
@@ -50,12 +50,12 @@ src_prepare() {
 	cat "${S}/mono/metadata/Makefile.am.in" > "${S}/mono/metadata/Makefile.am" || die
 
 	eautoreconf
-	# we need to sed in the paxctl -mr in the runtime/mono-wrapper.in so it don't
+	# we need to sed in the paxctl-ng -mr in the runtime/mono-wrapper.in so it don't
 	# get killed in the build proces when MPROTEC is enable. #286280
 	# RANDMMAP kill the build proces to #347365
 	if use pax_kernel ; then
 		ewarn "We are disabling MPROTECT on the mono binary."
-		sed '/exec/ i\paxctl -mr "$r/@mono_runtime@"' -i "${S}"/runtime/mono-wrapper.in
+		sed '/exec/ i\paxctl-ng -mr "$r/@mono_runtime@"' -i "${S}"/runtime/mono-wrapper.in
 	fi
 
 	# mono build system can fail otherwise
