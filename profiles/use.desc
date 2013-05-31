@@ -6,3 +6,4 @@ net35 - .NET 3.5 Framework
 net40 - .NET 4.0 Framework
 net45 - .NET 4.5 Framework
 fake - F# Make build system
+nuget - Grab binary from nuget

@@ -6,7 +6,7 @@ EAPI=5
 
 USE_DOTNET="net40 net45"
 
-inherit git-2 fake mono
+inherit git-2 fake dotnet
 
 EGIT_REPO_URI="git://github.com/Heather/FChess.git"
 

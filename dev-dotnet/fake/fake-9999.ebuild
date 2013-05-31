@@ -5,16 +5,9 @@
 EAPI=5
 USE_DOTNET="net40"
 
-inherit git-2 mono
+inherit git-2 dotnet
 
-#-> Official repo
-#EGIT_REPO_URI="git://github.com/fsharp/FAKE.git"
-
-#-> Own fork
-#EGIT_REPO_URI="git://github.com/Cynede/FAKE.git"
-
-#-> Mono 3 fixes
-EGIT_REPO_URI="git://github.com/intellifactory/FAKE.git"
+EGIT_REPO_URI="git://github.com/Heather/FAKE.git"
 
 EGIT_MASTER="develop"
 

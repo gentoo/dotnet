@@ -4,7 +4,7 @@
 
 EAPI=5
 
-inherit base mono autotools flag-o-matic eutils git-2
+inherit base dotnet autotools flag-o-matic eutils git-2
 
 DESCRIPTION="Debugger for .NET managed and unmanaged applications"
 HOMEPAGE="http://www.mono-project.com/"

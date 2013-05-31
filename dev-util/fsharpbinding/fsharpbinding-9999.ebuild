@@ -6,7 +6,7 @@ EAPI=5
 
 USE_DOTNET="net40"
 
-inherit git-2 elisp-common autotools mono eutils
+inherit git-2 elisp-common autotools dotnet eutils
 
 EGIT_REPO_URI="git://github.com/fsharp/fsharpbinding.git"
 

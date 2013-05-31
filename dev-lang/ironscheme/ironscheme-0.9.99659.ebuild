@@ -6,7 +6,7 @@ EAPI="5"
 
 USE_DOTNET="net40"
 
-inherit mono multilib nuget
+inherit dotnet multilib
 
 DESCRIPTION="R6RS conforming Scheme-like implementation based on the Microsoft DLR"
 HOMEPAGE="http://ironscheme.codeplex.com/"

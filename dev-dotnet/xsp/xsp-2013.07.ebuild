@@ -7,20 +7,20 @@ EAPI="5"
 USE_DOTNET="net35 net40 net45"
 PATCHDIR="${FILESDIR}/2.2/"
 
-inherit base eutils dotnet user git-2 autotools autotools-utils
+inherit base eutils dotnet user autotools autotools-utils
 
 DESCRIPTION="XSP is a small web server that can host ASP.NET pages"
 HOMEPAGE="http://www.mono-project.com/ASP.NET"
-
-EGIT_REPO_URI="git://github.com/mono/${PN}.git"
-
+SRC_URI="http://dev.gentoo.org/~kensington/distfiles/xsp-20130730.tar.bz2"
 LICENSE="MIT"
 SLOT="0"
-KEYWORDS=""
+KEYWORDS="~amd64 ~ppc ~x86"
 IUSE="doc test"
 
 RDEPEND="dev-db/sqlite:3"
 DEPEND="${RDEPEND}"
+
+S=${WORKDIR}/xsp-20130730
 
 src_prepare() {
 	epatch "${FILESDIR}/aclocal-fix.patch"

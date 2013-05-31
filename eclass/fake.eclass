@@ -7,7 +7,7 @@
 # @BLURB: Common functionality for fake apps
 # @DESCRIPTION: Common functionality needed by fake build system.
 
-inherit mono
+inherit dotnet
 
 NO_FAKE_DEPEND="dev-lang/fsharp dev-dotnet/fake"
 DEPEND="${NO_FAKE_DEPEND}"

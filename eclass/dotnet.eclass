@@ -2,25 +2,22 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
-# @ECLASS: mono.eclass
-# @MAINTAINER: dotnet@gentoo.org, heather@cynede.net
+# @ECLASS: dotnet.eclass
+# @MAINTAINER: heather@cynede.net
 # @BLURB: common settings and functions for mono and dotnet related packages
 # @DESCRIPTION:
-# The mono eclass contains common environment settings that are useful for
+# The dotnet eclass contains common environment settings that are useful for
 # dotnet packages.  Currently, it provides no functions, just exports
 # MONO_SHARED_DIR and sets LC_ALL in order to prevent errors during compilation
 # of dotnet packages.
 
+case ${EAPI:-0} in
+  0) die "this eclass doesn't support EAPI 0" ;;
+  1|2|3) ;;
+  *) ;; #if [[ ${USE_DOTNET} ]]; then REQUIRED_USE="|| (${USE_DOTNET})"; fi;;
+esac
 
-# Some in-tree ebuilds is using mono eclass with 0 EAPI
-
-#case ${EAPI:-0} in
-#  0) die "this eclass doesn't support EAPI 0" ;;
-#  1|2|3) ;;
-#  *) ;; #if [[ ${USE_DOTNET} ]]; then REQUIRED_USE="|| (${USE_DOTNET})"; fi;;
-#esac
-
-inherit eutils versionator
+inherit eutils versionator mono-env
 
 # SET default use flags according on DOTNET_TARGETS
 for x in ${USE_DOTNET}; do
@@ -32,9 +29,9 @@ for x in ${USE_DOTNET}; do
    esac
 done
 
-# @FUNCTION: mono_src_prepare
+# @FUNCTION: dotnet_pkg_setup
 # @DESCRIPTION:  This function set FRAMEWORK
-mono_pkg_setup() {
+dotnet_pkg_setup() {
 	for x in ${USE_DOTNET} ; do
 		case ${x} in 
 			net45) if use net45; then F="4.5"; fi;;
@@ -92,9 +89,9 @@ egacinstall() {
 		|| die "installing ${1} into the Global Assembly Cache failed"
 }
 
-# @FUNCTION: mono_multilib_comply
+# @FUNCTION: dotnet_multilib_comply
 # @DESCRIPTION:  multilib comply
-mono_multilib_comply() {
+dotnet_multilib_comply() {
 	use !prefix && has "${EAPI:-0}" 0 1 2 && ED="${D}"
 	local dir finddirs=() mv_command=${mv_command:-mv}
 	if [[ -d "${ED}/usr/lib" && "$(get_libdir)" != "lib" ]]

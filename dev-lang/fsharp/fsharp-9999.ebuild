@@ -6,7 +6,7 @@ EAPI=5
 
 USE_DOTNET="net40"
 
-inherit git-2 autotools mono
+inherit git-2 autotools dotnet
 
 DESCRIPTION="The F# Compiler"
 HOMEPAGE="https://github.com/fsharp/fsharp"

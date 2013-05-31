@@ -1,18 +1,15 @@
 # Copyright 1999-2013 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/mono/mono-3.0.11.ebuild $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/mono/mono-3.1.2.ebuild $
 
 EAPI="5"
 AUTOTOOLS_PRUNE_LIBTOOL_FILES="all"
 
-inherit linux-info mono-env flag-o-matic pax-utils autotools-utils git-2
+inherit linux-info mono-env flag-o-matic pax-utils autotools-utils
 
 DESCRIPTION="Mono runtime and class libraries, a C# compiler/interpreter"
 HOMEPAGE="http://www.mono-project.com/Main_Page"
-
-EGIT_REPO_URI="git://github.com/mono/${PN}.git"
-EGIT_HAS_SUBMODULES="true"
-EGIT_TAG="mono-${PN}"
+SRC_URI="http://download.mono-project.com/sources/${PN}/${P}.tar.bz2"
 
 LICENSE="MIT LGPL-2.1 GPL-2 BSD-4 NPL-1.1 Ms-PL GPL-2-with-linking-exception IDPL"
 SLOT="0"
@@ -46,16 +43,14 @@ pkg_setup() {
 }
 
 src_prepare() {
-	cat "${S}/mono/mini/Makefile.am.in" > "${S}/mono/mini/Makefile.am" || die
-	cat "${S}/mono/metadata/Makefile.am.in" > "${S}/mono/metadata/Makefile.am" || die
-
-	eautoreconf
 	# we need to sed in the paxctl-ng -mr in the runtime/mono-wrapper.in so it don't
 	# get killed in the build proces when MPROTEC is enable. #286280
 	# RANDMMAP kill the build proces to #347365
 	if use pax_kernel ; then
 		ewarn "We are disabling MPROTECT on the mono binary."
-		sed '/exec/ i\paxctl-ng -mr "$r/@mono_runtime@"' -i "${S}"/runtime/mono-wrapper.in
+
+		# issue 9 : https://github.com/Heather/gentoo-dotnet/issues/9
+		sed '/exec "/ i\paxctl-ng -mr "$r/@mono_runtime@"' -i "${S}"/runtime/mono-wrapper.in
 	fi
 
 	# mono build system can fail otherwise
@@ -94,12 +89,6 @@ src_configure() {
 	)
 
 	autotools-utils_src_configure
-}
-
-src_make() {
-	# Doesn't require previous mono to be installed
-	emake get-monolite-latest
-	emake EXTERNAL_MCS=${PWD}/mcs/class/lib/monolite/gmcs.exe "$@" || die "emake failed"
 }
 
 src_test() {

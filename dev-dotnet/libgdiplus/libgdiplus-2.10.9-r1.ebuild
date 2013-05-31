@@ -4,7 +4,7 @@
 
 EAPI=5
 
-inherit base eutils mono flag-o-matic
+inherit base eutils dotnet flag-o-matic
 
 DESCRIPTION="Library for using System.Drawing with mono"
 HOMEPAGE="http://www.mono-project.com"

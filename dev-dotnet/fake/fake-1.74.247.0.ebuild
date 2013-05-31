@@ -2,11 +2,13 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
+#TODO: BUILD FROM TAG OR USE NUGET
+
 EAPI=5
 
 USE_DOTNET="net40"
 
-inherit nuget mono
+inherit nuget dotnet
 
 DESCRIPTION="FAKE - F# Make"
 HOMEPAGE="http://nuget.org/packages/FAKE"
@@ -14,7 +16,7 @@ SRC_URI=""
 
 LICENSE="MS-PL"
 SLOT="0"
-KEYWORDS="~amd64 ~x86"
+KEYWORDS="amd64 x86"
 IUSE=""
 
 DEPEND="dev-lang/mono
@@ -31,9 +33,6 @@ src_install() {
 }
 
 pkg_postinst() {
-	#Weird Solution to find NuGet.Core.dll :
-	ln -s "/usr/lib/mono/NuGet/4.5/NuGet.Core.dll" "/usr/lib/mono/FAKE/${FRAMEWORK}/NuGet.Core.dll"
-	#Exec :
 	echo "mono /usr/lib/mono/FAKE/${FRAMEWORK}/FAKE.exe \"\$@\"" > /usr/bin/fake
 	chmod 777 /usr/bin/fake
 }

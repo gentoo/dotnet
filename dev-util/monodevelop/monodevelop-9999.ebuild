@@ -3,7 +3,7 @@
 # $Header: /var/cvsroot/gentoo-x86/dev-util/monodevelop/monodevelop-9999.ebuild $
 
 EAPI=5
-inherit fdo-mime gnome2-utils mono versionator eutils git-2
+inherit fdo-mime gnome2-utils dotnet versionator eutils git-2
 
 DESCRIPTION="Integrated Development Environment for .NET"
 HOMEPAGE="http://www.monodevelop.com/"

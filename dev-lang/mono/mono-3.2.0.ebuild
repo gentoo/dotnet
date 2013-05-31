@@ -1,6 +1,6 @@
 # Copyright 1999-2013 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/mono/mono-3.0.7.ebuild $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/mono/mono-3.2.0.ebuild $
 
 EAPI="5"
 AUTOTOOLS_PRUNE_LIBTOOL_FILES="all"
@@ -13,7 +13,7 @@ SRC_URI="http://download.mono-project.com/sources/${PN}/${P}.tar.bz2"
 
 LICENSE="MIT LGPL-2.1 GPL-2 BSD-4 NPL-1.1 Ms-PL GPL-2-with-linking-exception IDPL"
 SLOT="0"
-KEYWORDS="amd64 ppc ppc64 x86 amd64-linux"
+KEYWORDS="~amd64 ~ppc ~ppc64 ~x86 ~amd64-linux"
 IUSE="minimal pax_kernel xen doc"
 
 COMMONDEPEND="
@@ -50,8 +50,7 @@ src_prepare() {
 		ewarn "We are disabling MPROTECT on the mono binary."
 
 		# issue 9 : https://github.com/Heather/gentoo-dotnet/issues/9
-		#sed '/exec/ i\paxctl-ng -mr "$r/@mono_runtime@"' -i "${S}"/runtime/mono-wrapper.in
-		sed '/exec "/ i\paxctl-ng -mr "$r/@mono_runtime@"' -i "${S}"/runtime/mono-wrapper.in
+		sed '/exec "/ i\paxctl-ng -mr "$r/@mono_runtime@"' -i "${S}"/runtime/mono-wrapper.in || die "Failed to sed mono-wrapper.in"
 	fi
 
 	# mono build system can fail otherwise
@@ -93,7 +92,7 @@ src_configure() {
 }
 
 src_test() {
-	emake check || die "tests fails"
+	emake check || die "Tests fails"
 }
 
 src_install() {

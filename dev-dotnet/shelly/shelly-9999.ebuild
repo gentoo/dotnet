@@ -3,10 +3,9 @@
 # $Header: $
 
 EAPI=5
-
 USE_DOTNET="net40 net45"
 
-inherit git-2 mono
+inherit git-2 dotnet
 
 EGIT_REPO_URI="git://github.com/Heather/shelly.git"
 

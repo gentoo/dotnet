@@ -1,27 +1,23 @@
 # Copyright 1999-2013 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/monodevelop/monodevelop-4.0.ebuild Exp $
+# $Header: $
 
 EAPI=5
 inherit fdo-mime gnome2-utils dotnet versionator eutils
 
 DESCRIPTION="Integrated Development Environment for .NET"
 HOMEPAGE="http://www.monodevelop.com/"
-SRC_URI="http://download.mono-project.com/sources/${PN}/${P}.tar.bz2"
+SRC_URI="http://download.mono-project.com/sources/${PN}/${PN}-${PV}-3.tar.bz2"
 
 LICENSE="GPL-2"
 SLOT="0"
-#IT'S STABLE!
-KEYWORDS="amd64 x86"
+KEYWORDS="~amd64 ~x86"
 IUSE="+subversion +git"
 
-SDEPEND=">=dev-lang/mono-3.0.1
-	>=dev-dotnet/gconf-sharp-2.24.0
-	>=dev-dotnet/glade-sharp-2.12.9
-	>=dev-dotnet/gnome-sharp-2.24.0
-	>=dev-dotnet/gnomevfs-sharp-2.24.0
-	>=dev-dotnet/gtk-sharp-2.12.9
-	>=dev-dotnet/mono-addins-0.6[gtk]
+RDEPEND=">=dev-lang/mono-3.0
+	>=dev-dotnet/gnome-sharp-2.24.2-r1
+	>=dev-dotnet/gtk-sharp-2.12.21
+	>=dev-dotnet/mono-addins-1.0[gtk]
 	>=dev-dotnet/xsp-2
 	dev-util/ctags
 	sys-apps/dbus[X]
@@ -38,16 +34,15 @@ SDEPEND=">=dev-lang/mono-3.0.1
 	!<dev-util/monodevelop-debugger-gdb-$(get_version_component_range 1-2)
 	!<dev-util/monodevelop-debugger-mdb-$(get_version_component_range 1-2)
 	!<dev-util/monodevelop-vala-$(get_version_component_range 1-2)"
-# Xterm is required by the debugger
-RDEPEND="${SDEPEND}
-x11-terms/xterm"
-DEPEND="${SDEPEND}
+DEPEND="${RDEPEND}
 	dev-util/intltool
 	virtual/pkgconfig
 	sys-devel/gettext
-	x11-misc/shared-mime-info"
+	x11-misc/shared-mime-info
+	x11-terms/xterm"
 
 MAKEOPTS="${MAKEOPTS} -j1" #nowarn
+
 src_configure() {
 	econf \
 		--disable-update-mimedb \

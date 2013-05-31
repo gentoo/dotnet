@@ -5,17 +5,17 @@
 EAPI=5
 USE_DOTNET="net45" 
 
-inherit git-2 dotnet
-
-EGIT_REPO_URI="https://git01.codeplex.com/nuget"
+inherit dotnet
 
 DESCRIPTION="Nuget - .NET Package Manager"
 HOMEPAGE="http://nuget.codeplex.com"
-SRC_URI=""
+SRC_URI="http://download-codeplex.sec.s-msft.com/Download/SourceControlFileDownload.ashx?ProjectName=nuget&changeSetId=2764f6c71ea206a60eb136c27c04005975712c19 -> nuget-archive-${PV}.zip"
+S=${WORKDIR}
 
 LICENSE="Apache-2.0"
 SLOT="0"
-KEYWORDS="" # ~x86 ~amd64
+
+KEYWORDS="~x86 ~amd64"
 IUSE=""
 
 # Mask 3.2.0 because of mcs compiler bug : http://stackoverflow.com/a/17926731/238232
@@ -27,7 +27,7 @@ src_configure() {
 }
 
 src_compile() {
-	xbuild Build/Build.proj /p:TargetFrameworkVersion=v"${FRAMEWORK}" /p:Configuration="Mono Release" /t:GoMono || die
+	xbuild Build/Build.proj /p:Configuration=Release /tv:4.0 /p:TargetFrameworkVersion=v"${FRAMEWORK}" /p:Configuration="Mono Release" /t:GoMono || die
 }
 
 src_install() {
@@ -41,7 +41,6 @@ src_install() {
 pkg_postinst() {
 	mozroots --import --sync --machine
 	
-	# Mono Security bug
 	echo "mono /usr/lib/mono/NuGet/${FRAMEWORK}/NuGet.exe \"\$@\"" > /usr/bin/nuget
 	chmod 777 /usr/bin/nuget
 }

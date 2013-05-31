@@ -6,7 +6,7 @@ EAPI=5
 
 USE_DOTNET="net40"
 
-inherit autotools mono
+inherit autotools dotnet
 
 DESCRIPTION="The F# Compiler"
 HOMEPAGE="https://github.com/fsharp/fsharp"

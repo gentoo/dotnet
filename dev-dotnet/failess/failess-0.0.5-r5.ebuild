@@ -6,7 +6,7 @@ EAPI=5
 
 USE_DOTNET="net40"
 
-inherit nuget mono
+inherit nuget dotnet
 
 DESCRIPTION="Failess"
 HOMEPAGE="http://nuget.org/packages/Failess"

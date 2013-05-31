@@ -6,7 +6,7 @@ EAPI="5"
 
 USE_DOTNET="net35 net40 net45"
 
-inherit base eutils mono user
+inherit base eutils dotnet user
 
 PATCHDIR="${FILESDIR}/2.2/"
 
