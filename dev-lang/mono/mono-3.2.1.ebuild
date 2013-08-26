@@ -14,10 +14,9 @@ SRC_URI="http://download.mono-project.com/sources/${PN}/${P}.tar.bz2"
 LICENSE="MIT LGPL-2.1 GPL-2 BSD-4 NPL-1.1 Ms-PL GPL-2-with-linking-exception IDPL"
 SLOT="0"
 
-KEYWORDS=""	#~amd64 ~ppc ~ppc64 ~x86 ~amd64-linux
-		# 05.08.2013 - it fails for me
+KEYWORDS="~amd64 ~ppc ~ppc64 ~x86 ~amd64-linux"
 
-IUSE="minimal pax_kernel xen doc"
+IUSE="minimal pax_kernel xen doc debug"
 
 COMMONDEPEND="
 	!dev-util/monodoc
@@ -32,6 +31,8 @@ DEPEND="${COMMONDEPEND}
 	virtual/yacc
 	pax_kernel? ( sys-apps/elfix )
 "
+
+PATCHES=( "${FILESDIR}/${P}-mdoc-fix.patch" )
 
 pkg_pretend() {
 	# If CONFIG_SYSVIPC is not set in your kernel .config, mono will hang while compiling.
@@ -89,6 +90,7 @@ src_configure() {
 		--with-profile4
 		--with-sgen=$(use ppc && printf "no" || printf "yes" )
 		$(use_with doc mcs-docs)
+		$(use_enable debug)
 	)
 
 	autotools-utils_src_configure

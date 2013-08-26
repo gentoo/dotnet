@@ -6,27 +6,30 @@ EAPI=5
 
 inherit base dotnet autotools git-2
 
-DESCRIPTION="Set of useful Mono related utilities"
+DESCRIPTION="monodoc stripped from mono-tools"
 HOMEPAGE="http://www.mono-project.com/"
 
-EGIT_REPO_URI="git://github.com/mono/${PN}.git"
+EGIT_REPO_URI="git://github.com/mono/mono-tools.git"
+EGIT_COMMIT="3d28f26e1ca93ea7ead9ff2aae1897ec01c1ceb8"
 
 LICENSE="GPL-2 MIT"
 SLOT="0"
-KEYWORDS=""
+KEYWORDS="~amd64 ~x86"
 IUSE="+webkit gtkhtml"
 
 RDEPEND="virtual/monodoc
-	<dev-lang/mono-3
 	>=dev-dotnet/gtk-sharp-2.12.21
 	>=dev-dotnet/gnome-sharp-2.24.2-r1
-	gtkhtml? ( >=dev-dotnet/gtkhtml-sharp-2.24.0:2 )
+	gtkhtml? ( >=dev-dotnet/gnome-desktop-sharp-2.26.0-r2:2[gtkhtml] )
 	webkit? ( >=dev-dotnet/webkit-sharp-0.2-r1 )"
 DEPEND="${RDEPEND}
 	sys-devel/gettext
 	virtual/pkgconfig"
-PATCHES=( "${FILESDIR}/${PN}-2.8-html-renderer-fixes.patch" )
+
+PATCHES=( "${FILESDIR}/mono-tools-2.8-html-renderer-fixes.patch"
+	"${FILESDIR}/mono-tools-docbrowser-basedir-fix.patch" )
 MAKEOPTS="${MAKEOPTS} -j1" #nowarn
+
 pkg_setup() {
 	if ! use webkit && ! use gtkhtml
 	then
@@ -49,4 +52,14 @@ src_configure() {
 		$(use_enable gtkhtml) \
 		$(use_enable webkit) \
 		--disable-monowebbrowser || die
+}
+
+src_compile() {
+	cd docbrowser
+	default
+}
+
+src_install() {
+	cd docbrowser
+	default
 }

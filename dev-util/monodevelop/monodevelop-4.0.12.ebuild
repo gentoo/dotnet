@@ -7,26 +7,22 @@ inherit fdo-mime gnome2-utils dotnet versionator eutils
 
 DESCRIPTION="Integrated Development Environment for .NET"
 HOMEPAGE="http://www.monodevelop.com/"
-SRC_URI="http://download.mono-project.com/sources/${PN}/${PN}-${PV}-3.tar.bz2"
+SRC_URI="http://download.mono-project.com/sources/${PN}/${P}-3.tar.bz2"
 
 LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS="~amd64 ~x86"
-IUSE="+subversion +git"
+IUSE="+subversion +git doc"
 
 RDEPEND=">=dev-lang/mono-3.0
 	>=dev-dotnet/gnome-sharp-2.24.2-r1
 	>=dev-dotnet/gtk-sharp-2.12.21
 	>=dev-dotnet/mono-addins-1.0[gtk]
+	doc? ( dev-util/mono-docbrowser )
 	>=dev-dotnet/xsp-2
 	dev-util/ctags
 	sys-apps/dbus[X]
 	>=virtual/monodoc-2.0
-	|| (
-		www-client/firefox
-		www-client/firefox-bin
-		www-client/seamonkey
-		)
 	subversion? ( dev-vcs/subversion )
 	!<dev-util/monodevelop-boo-$(get_version_component_range 1-2)
 	!<dev-util/monodevelop-java-$(get_version_component_range 1-2)
@@ -40,7 +36,6 @@ DEPEND="${RDEPEND}
 	sys-devel/gettext
 	x11-misc/shared-mime-info
 	x11-terms/xterm"
-
 MAKEOPTS="${MAKEOPTS} -j1" #nowarn
 
 src_configure() {

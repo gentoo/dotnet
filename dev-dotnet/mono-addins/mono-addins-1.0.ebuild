@@ -12,13 +12,14 @@ SRC_URI="http://download-codeplex.sec.s-msft.com/Download/Release?ProjectName=mo
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="amd64 ppc x86"
+KEYWORDS="~amd64 ~ppc ~x86"
 IUSE="+gtk"
 
 RDEPEND=">=dev-lang/mono-3
 	gtk? ( >=dev-dotnet/gtk-sharp-2.12.21 )"
 DEPEND="${RDEPEND}
 	virtual/pkgconfig"
+MAKEOPTS="${MAKEOPTS} -j1" #nowarn
 
 src_prepare() {
 	default
@@ -29,11 +30,7 @@ src_configure() {
 	econf $(use_enable gtk gui)
 }
 
-src_compile() {
-	emake -j1
-}
-
 src_install() {
-	emake -j1 DESTDIR="${D}" install
+	default
 	dotnet_multilib_comply
 }

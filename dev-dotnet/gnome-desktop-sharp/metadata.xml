@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
+<pkgmetadata>
+	<herd>dotnet</herd>
+	<use>
+		<flag name='panel'>Build with support for gnome-panel</flag>
+		<flag name='gtkhtml'>Build with support for gtkhtml</flag>
+		<flag name='print'>Build with support for gnomeprint</flag>
+		<flag name='gtksourceview'>Build with support for gtksourceview</flag>
+		<flag name='rsvg'>Build with support for rsvg</flag>
+		<flag name='vte'>Build with support for vte</flag>
+		<flag name='wnck'>Build with support for wnck</flag>
+	</use>
+</pkgmetadata>
