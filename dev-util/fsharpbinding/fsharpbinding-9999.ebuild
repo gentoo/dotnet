@@ -2,9 +2,7 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
-EAPI=5
-
-USE_DOTNET="net40"
+EAPI="5"
 
 inherit git-2 elisp-common autotools dotnet eutils
 
@@ -26,7 +24,7 @@ DEPEND="dev-lang/fsharp
 RDEPEND="${DEPEND}"
 
 pkg_setup() {
-	mono_pkg_setup
+	dotnet_pkg_setup
 	if use emacs; then
 		elisp-need-emacs "${NEED_EMACS:-21}"
 		case $? in
@@ -57,8 +55,9 @@ src_prepare() {
 
 src_configure() {
 	if use monodevelop; then
-	   cd "${S}/monodevelop"
-	   ./configure.sh
+		cd "${S}/monodevelop"
+		addpredict "/etc/mono/registry"
+		./configure.sh || die "configure failed"
 	fi
 }
 src_compile() {
@@ -81,7 +80,6 @@ src_install() {
 	   PACKVERSION=`cat monodevelop/Makefile.orig | head -n 7 | tail -n 1 | grep -o "[0-9]\+.[0-9]\+.[0-9]\+\(.[0-9]\+\)\?"`
 	   elog "Using Packversion: ${PACKVERSION}"
 	   newins "monodevelop/pack/${PACKVERSION}/local/Debug/MonoDevelop.FSharpBinding_${PACKVERSION}.mpack" "Monodevelop.FSharpBinding_${PVR}.mpack"
-
 	fi
 	if use emacs; then
 		cd "${S}/emacs"
@@ -92,7 +90,7 @@ src_install() {
 		if [[ -n ${ELISP_TEXINFO} ]]; then
 			set -- ${ELISP_TEXINFO}
 			set -- ${@##*/}
-			doinfo ${@/%.*/.info*} || die
+			doinfo ${@/%.*/.info*}
 		fi
 		#AutoComplete:
 		xbuild "${S}/FSharp.AutoComplete/FSharp.AutoComplete.fsproj" /property:OutputPath="${D}/usr/share/emacs/site-lisp/${PN}/bin/"

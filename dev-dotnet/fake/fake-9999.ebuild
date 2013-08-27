@@ -2,13 +2,12 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
-EAPI=5
+EAPI="5"
 USE_DOTNET="net40"
 
-inherit git-2 dotnet
+inherit git-2 eutils dotnet
 
 EGIT_REPO_URI="git://github.com/Heather/FAKE.git"
-
 EGIT_MASTER="develop"
 
 DESCRIPTION="FAKE - F# Make"
@@ -24,18 +23,17 @@ DEPEND="dev-lang/mono
 dev-lang/fsharp"
 RDEPEND="${DEPEND}"
 
-src_prepare() {
-	./build.sh
+src_compile() {
+	ln -s tools/FAKE/tools/Newtonsoft.Json.dll "${S}"/Newtonsoft.Json.dll || die
+	ln -s tools/FAKE/tools/NuGet.Core.dll "${S}"/NuGet.Core.dll || die
+	ln -s tools/FAKE/tools/Fake.SQL.dll "${S}"/Fake.SQL.dll || die
+	./build.sh || die "build.sh failed"
 }
 
 src_install() {
 	elog "Installing libraries"
 	insinto /usr/lib/mono/FAKE/"${FRAMEWORK}"/
-	doins build/FAKE.exe || die
-	doins build/FakeLib.dll || die
-}
-
-pkg_postinst() {
-	echo "mono /usr/lib/mono/FAKE/${FRAMEWORK}/FAKE.exe \"\$@\"" > /usr/bin/fake
-	chmod 777 /usr/bin/fake
+	doins build/FAKE.exe
+	doins build/FakeLib.dll
+	make_wrapper fake "mono /usr/lib/mono/FAKE/${FRAMEWORK}/FAKE.exe \"\$@\""
 }

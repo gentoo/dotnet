@@ -36,5 +36,5 @@ src_prepare() {
 pkg_postinst() {
 	#trick older software to use fsharpc instead fsc
 	dosym /usr/bin/fsharpc /usr/bin/fsc
-	chmod 666 /etc/mono/registry/last-btime
+	#chmod 666 /etc/mono/registry/last-btime
 }

@@ -5,6 +5,9 @@
 		<email>heather@cynede.net</email>
 	</maintainer>
 	<longdescription>
-	  Mono/.NET programming language
+		Mono/.NET programming language
 	</longdescription>
+	<use>
+		<flag name='unicode'>Fork</flag>
+	</use>
 </pkgmetadata>

@@ -92,7 +92,7 @@ src_configure() {
 }
 
 src_test() {
-	emake check || die "tests fails"
+	emake check
 }
 
 src_install() {

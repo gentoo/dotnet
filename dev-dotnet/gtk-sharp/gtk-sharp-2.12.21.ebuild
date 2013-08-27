@@ -37,23 +37,21 @@ DEPEND="${RDEPEND}
 	sys-devel/automake:1.11"
 
 src_prepare() {
-	base_src_prepare || die
-	eautoreconf || die
-	libtoolize || die
+	base_src_prepare
+	eautoreconf
+	libtoolize
 }
 
 src_configure() {
-	econf \
-		$(use_enable debug) \
-		|| die
+	econf $(use_enable debug)
 }
 
 src_compile() {
-	emake || die
+	emake
 }
 
 src_install() {
 	default
-	dotnet_multilib_comply || die
-	sed -i "s/\\r//g" "${D}"/usr/bin/* || die
+	dotnet_multilib_comply
+	sed -i "s/\\r//g" "${D}"/usr/bin/* || die "sed failed"
 }

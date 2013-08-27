@@ -23,5 +23,5 @@ RDEPEND="${DEPEND}"
 src_install() {
 	elog "Installing libraries"
 	insinto /usr/lib/mono/IronScheme/"${FRAMEWORK}"/
-	doins IronScheme."${NPV}"/lib/* || die
+	doins IronScheme."${NPV}"/lib/*
 }

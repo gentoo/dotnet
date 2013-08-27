@@ -6,7 +6,7 @@ EAPI=5
 
 USE_DOTNET="net40 net45"
 
-inherit git-2 fake dotnet
+inherit git-2 fake dotnet eutils
 
 EGIT_REPO_URI="git://github.com/Heather/FChess.git"
 
@@ -26,9 +26,5 @@ RDEPEND="${DEPEND}"
 src_install() {
 	insinto /usr/share/FChess/"${FRAMEWORK}"
 	doins src/bin/Release/FChess.exe
-}
-
-pkg_postinst() {
-	echo "mono /usr/share/FChess/${FRAMEWORK}/FChess.exe" > /usr/bin/fchess
-	chmod 777 /usr/bin/fchess
+	make_wrapper fchess "mono /usr/share/FChess/${FRAMEWORK}/FChess.exe"
 }

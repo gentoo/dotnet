@@ -4,14 +4,15 @@
 
 EAPI="5"
 
-inherit dotnet autotools base
+inherit dotnet autotools versionator
 
 SLOT="2"
 DESCRIPTION="gnome-desktop mono bindings"
 HOMEPAGE="http://www.mono-project.com/GtkSharp"
 LICENSE="GPL-2"
 KEYWORDS="~amd64 ~x86 ~ppc"
-SRC_URI="mirror://gnome/sources/gnome-desktop-sharp/2.26/${P}.tar.bz2"
+MVER="$(get_version_component_range 1-2)"
+SRC_URI="mirror://gnome/sources/gnome-desktop-sharp/${MVER}/${P}.tar.bz2"
 IUSE="debug panel gtkhtml print gtksourceview rsvg vte wnck"
 
 RESTRICT="test"
@@ -41,22 +42,15 @@ DEPEND="${RDEPEND}
 
 src_prepare() {
 	base_src_prepare
-
-	eautoreconf || die
-	elibtoolize || die
+	eautoreconf
+	elibtoolize
 }
 
 src_configure() {
-	econf \
-		$(use_enable debug) \
-		|| die
-}
-
-src_compile() {
-	emake || die
+	econf $(use_enable debug)
 }
 
 src_install() {
 	default
-	dotnet_multilib_comply || die
+	dotnet_multilib_comply
 }

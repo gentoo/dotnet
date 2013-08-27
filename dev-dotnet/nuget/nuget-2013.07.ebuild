@@ -2,10 +2,10 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
-EAPI=5
+EAPI="5"
 USE_DOTNET="net45"
 
-inherit dotnet
+inherit dotnet eutils
 
 DESCRIPTION="Nuget - .NET Package Manager"
 HOMEPAGE="http://nuget.codeplex.com"
@@ -15,11 +15,12 @@ S=${WORKDIR}
 LICENSE="Apache-2.0"
 SLOT="0"
 
-KEYWORDS="~x86 ~amd64"
+KEYWORDS="x86 amd64"
 IUSE=""
 
 # Mask 3.2.0 because of mcs compiler bug : http://stackoverflow.com/a/17926731/238232
-DEPEND="|| ( >dev-lang/mono-3.2.0 <dev-lang/mono-3.2.0 )"
+# it fixes in 9999 but not on future stable releases yet.
+DEPEND="|| ( >=dev-lang/mono-9999 <dev-lang/mono-3.2.0 )"
 RDEPEND="${DEPEND}"
 
 src_configure() {
@@ -34,13 +35,11 @@ src_install() {
 	elog "Installing libraries"
 
 	insinto /usr/lib/mono/NuGet/"${FRAMEWORK}"/
-	doins src/CommandLine/obj/Mono\ Release/NuGet.exe || die
-	doins src/Core/obj/Mono\ Release/NuGet.Core.dll || die
+	doins src/CommandLine/obj/Mono\ Release/NuGet.exe
+	doins src/Core/obj/Mono\ Release/NuGet.Core.dll
+	make_wrapper nuget "mono /usr/lib/mono/NuGet/${FRAMEWORK}/NuGet.exe \"\$@\""
 }
 
 pkg_postinst() {
 	mozroots --import --sync --machine
-
-	echo "mono /usr/lib/mono/NuGet/${FRAMEWORK}/NuGet.exe \"\$@\"" > /usr/bin/nuget
-	chmod 777 /usr/bin/nuget
 }

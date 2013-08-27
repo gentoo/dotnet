@@ -1,8 +1,8 @@
 # Copyright 1999-2013 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/mono-debugger/mono-debugger-9999.ebuild $
+# $Header: $
 
-EAPI=5
+EAPI="5"
 
 inherit base dotnet autotools flag-o-matic eutils git-2
 
@@ -38,9 +38,9 @@ src_configure() {
 	econf 	--disable-dependency-tracking		\
 		--disable-static			\
 		--with-system-libbfd 		\
-		--disable-static || die "econf failed"
+		--disable-static
 }
 
 src_compile() {
-	emake -j1 || die "emake failed" #nowarn
+	emake -j1 #nowarn
 }

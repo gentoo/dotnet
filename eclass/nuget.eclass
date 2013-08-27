@@ -9,22 +9,25 @@
 
 inherit dotnet
 
-if [[ $PN == *_* ]]
-then
-   	NPN=${PN/_/.}
-else
-	NPN=${PN}
+# @ECLASS_VARIABLE: NUGET_DEPEND
+# @DESCRIPTION Set false to net depend on nuget
+: ${NUGET_NO_DEPEND:=}
+
+if [[ -n $NUGET_DEPEND ]]; then
+	DEPEND+=" dev-dotnet/nuget"
 fi
+
+NPN=${PN/_/.}
 if [[ $PV == *_alpha* ]]
 then
-   	NPV=${PVR/_/-}
+	NPV=${PVR/_/-}
 else
-   	NPV=${PVR}
+	NPV=${PVR}
 fi
 
 # @FUNCTION: nuget_src_unpack
 # @DESCRIPTION: Runs nuget.
-nuget_src_unpack() { 
+nuget_src_unpack() {
 	nuget install "${NPN}" -Version "${NPV}" -OutputDirectory "${P}"
 }
 

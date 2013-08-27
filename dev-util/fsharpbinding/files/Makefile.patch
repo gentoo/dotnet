@@ -1,11 +1,11 @@
---- monodevelop/Makefile.orig.old	2013-03-27 13:01:00.226854675 +0100
-+++ monodevelop/Makefile.orig	2013-03-27 13:01:14.113854501 +0100
-@@ -6,7 +6,7 @@
+--- Makefile.orig.old	2013-09-15 10:49:36.149935302 +0400
++++ Makefile.orig	2013-09-15 11:03:30.709913899 +0400
+@@ -1,7 +1,7 @@
+ # Makefile for compiling and installing F# AutoComplete engine
  
- VERSION=3.2.14
+ # Here are a few paths that need to be configured first:
+-MONOBIN = INSERT_MONO_BIN
++MONOBIN = /usr/lib/mono/4.0
+ FSC = mono $(MONOBIN)/fsc.exe
  
--MDTOOL = $(MONO) 'INSERT_MDROOT/../../mdtool'
-+MDTOOL = 'mdtool'
- 
- # (MDVERSION3, MDVERSION4) can be set to something like (3.0.4, 3.0.4.7) to compile
- # against the dependencies/... binaries for a specific version of MonoDevelop. This allows
+ FILES_FCB = \

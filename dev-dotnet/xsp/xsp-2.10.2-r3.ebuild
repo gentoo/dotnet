@@ -28,10 +28,6 @@ src_prepare() {
 	epatch "${FILESDIR}/${PN}-2.10.2-endrequest.patch"
 }
 
-src_configure() {
-	default
-}
-
 pkg_preinst() {
 	enewgroup aspnet
 	# Give aspnet home dir of /tmp since it must create ~/.wapi

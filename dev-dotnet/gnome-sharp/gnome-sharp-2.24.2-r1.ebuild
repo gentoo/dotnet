@@ -31,22 +31,15 @@ DEPEND="${RDEPEND}
 
 src_prepare() {
 	base_src_prepare
-
-	eautoreconf || die
-	elibtoolize || die
+	eautoreconf
+	elibtoolize
 }
 
 src_configure() {
-	econf \
-		$(use_enable debug) \
-		|| die
-}
-
-src_compile() {
-	emake || die
+	econf $(use_enable debug)
 }
 
 src_install() {
 	default
-	dotnet_multilib_comply || die
+	dotnet_multilib_comply
 }

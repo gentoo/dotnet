@@ -2,7 +2,7 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
-EAPI=5
+EAPI="5"
 USE_DOTNET="net40 net45"
 
 inherit git-2 dotnet
@@ -22,7 +22,7 @@ DEPEND="dev-lang/mono"
 RDEPEND="${DEPEND}"
 
 src_compile() {
-	xbuild src/shelly.fsproj /p:Configuration=Release
+	exbuild src/shelly.fsproj
 }
 
 src_install() {

@@ -42,12 +42,11 @@ src_prepare() {
 		native/native.build || die
 
 	mkdir -p "${T}"/home/test
-
 	java-pkg-2_src_prepare
 }
 
 src_configure() {
-	:
+	:;
 }
 
 src_compile() {

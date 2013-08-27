@@ -1,8 +1,8 @@
 # Copyright 1999-2013 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-dotnet/libgdiplus/libgdiplus-9999.ebuild $
+# $Header: $
 
-EAPI=5
+EAPI="5"
 
 inherit base eutils dotnet flag-o-matic git-2
 
@@ -16,7 +16,7 @@ EGIT_REPO_URI="http://github.com/mono/${PN}.git"
 
 IUSE="cairo"
 
-RDEPEND="	>=dev-libs/glib-2.16:2
+RDEPEND=">=dev-libs/glib-2.16:2
 	>=media-libs/freetype-2.3.7
 	>=media-libs/fontconfig-2.6
 	>=media-libs/libpng-1.4:0
@@ -47,17 +47,16 @@ src_configure() {
 	econf 	--disable-dependency-tracking		\
 		--disable-static			\
 		--with-cairo=system			\
-		$(use !cairo && printf %s --with-pango)	\
-		|| die "configure failed"
+		$(use !cairo && printf %s --with-pango)
 }
 
 src_compile() {
-	emake "$@" || die "emake failed"
+	emake "$@"
 }
 
 src_install () {
-	emake -j1 DESTDIR="${D}" "$@" install || die "install failed" #nowarn
-	mono_multilib_comply
+	emake -j1 DESTDIR="${D}" "$@" install #nowarn
+	dotnet_multilib_comply
 	local commondoc=( AUTHORS ChangeLog README TODO )
 	for docfile in "${commondoc[@]}"
 	do
@@ -65,7 +64,7 @@ src_install () {
 	done
 	if [[ "${DOCS[@]}" ]]
 	then
-		dodoc "${DOCS[@]}" || die "dodoc DOCS failed"
+		dodoc "${DOCS[@]}"
 	fi
-	find "${D}" -name '*.la' -exec rm -rf '{}' '+' || die "la removal failed"
+	prune_libtool_files
 }

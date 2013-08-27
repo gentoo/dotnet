@@ -12,28 +12,32 @@
 # of dotnet packages.
 
 case ${EAPI:-0} in
-  0) die "this eclass doesn't support EAPI 0" ;;
-  1|2|3) ;;
-  *) ;; #if [[ ${USE_DOTNET} ]]; then REQUIRED_USE="|| (${USE_DOTNET})"; fi;;
+	0) die "this eclass doesn't support EAPI 0" ;;
+	1|2|3) ;;
+	*) ;; #if [[ ${USE_DOTNET} ]]; then REQUIRED_USE="|| (${USE_DOTNET})"; fi;;
 esac
 
 inherit eutils versionator mono-env
 
+# @ECLASS-VARIABLE: USE_DOTNET
+# @DESCRIPTION:
+# Use flags added to IUSE
+
 # SET default use flags according on DOTNET_TARGETS
 for x in ${USE_DOTNET}; do
-   case ${x} in 
-      net45) if [[ ${DOTNET_TARGETS} == *net45* ]]; then IUSE+=" +net45"; else IUSE+=" net45"; fi;;
-      net40) if [[ ${DOTNET_TARGETS} == *net40* ]]; then IUSE+=" +net40"; else IUSE+=" net40"; fi;;
-      net35) if [[ ${DOTNET_TARGETS} == *net35* ]]; then IUSE+=" +net35"; else IUSE+=" net35"; fi;;
-      net20) if [[ ${DOTNET_TARGETS} == *net20* ]]; then IUSE+=" +net20"; else IUSE+=" net20"; fi;;
-   esac
+	case ${x} in
+		net45) if [[ ${DOTNET_TARGETS} == *net45* ]]; then IUSE+=" +net45"; else IUSE+=" net45"; fi;;
+		net40) if [[ ${DOTNET_TARGETS} == *net40* ]]; then IUSE+=" +net40"; else IUSE+=" net40"; fi;;
+		net35) if [[ ${DOTNET_TARGETS} == *net35* ]]; then IUSE+=" +net35"; else IUSE+=" net35"; fi;;
+		net20) if [[ ${DOTNET_TARGETS} == *net20* ]]; then IUSE+=" +net20"; else IUSE+=" net20"; fi;;
+	esac
 done
 
 # @FUNCTION: dotnet_pkg_setup
 # @DESCRIPTION:  This function set FRAMEWORK
 dotnet_pkg_setup() {
 	for x in ${USE_DOTNET} ; do
-		case ${x} in 
+		case ${x} in
 			net45) if use net45; then F="4.5"; fi;;
 			net40) if use net40; then F="4.0"; fi;;
 			net35) if use net35; then F="3.5"; fi;;
@@ -75,7 +79,7 @@ unset MONO_AOT_CACHE
 # @FUNCTION: exbuild
 # @DESCRIPTION: run xbuild with Release configuration and configurated FRAMEWORK
 exbuild() {
-	xbuild "${1}" "${2}" /p:Configuration=Release /tv:4.0 /p:TargetFrameworkVersion=v"${FRAMEWORK}" || die
+	xbuild "${1}" /p:Configuration=Release /tv:4.0 /p:TargetFrameworkVersion=v"${FRAMEWORK}" || die
 }
 
 # @FUNCTION: egacinstall

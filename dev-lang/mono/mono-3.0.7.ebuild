@@ -50,7 +50,6 @@ src_prepare() {
 		ewarn "We are disabling MPROTECT on the mono binary."
 
 		# issue 9 : https://github.com/Heather/gentoo-dotnet/issues/9
-		#sed '/exec/ i\paxctl-ng -mr "$r/@mono_runtime@"' -i "${S}"/runtime/mono-wrapper.in
 		sed '/exec "/ i\paxctl-ng -mr "$r/@mono_runtime@"' -i "${S}"/runtime/mono-wrapper.in
 	fi
 
@@ -93,7 +92,7 @@ src_configure() {
 }
 
 src_test() {
-	emake check || die "tests fails"
+	emake check
 }
 
 src_install() {

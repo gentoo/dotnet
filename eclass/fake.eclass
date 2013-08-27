@@ -7,10 +7,13 @@
 # @BLURB: Common functionality for fake apps
 # @DESCRIPTION: Common functionality needed by fake build system.
 
-inherit dotnet
+inherit dotnet eutils
 
-NO_FAKE_DEPEND="dev-lang/fsharp dev-dotnet/fake"
-DEPEND="${NO_FAKE_DEPEND}"
+# @ECLASS_VARIABLE: FAKE_DEPEND
+# @DESCRIPTION Set false to net depend on fake
+: ${FAKE_NO_DEPEND:=}
+
+[[ -n $FAKE_DEPEND ]] && DEPEND+=" dev-lang/fsharp dev-dotnet/fake"
 
 # @FUNCTION: fake_src_configure
 # @DESCRIPTION: Runs nothing
@@ -25,9 +28,9 @@ fake_src_compile() {
 # @FUNCTION: fake_src_install
 # @DESCRIPTION: installs common doc files, if DOCS is
 # set, installs those. Gets rid of .la files.
-fake_src_install () {
-	mono_multilib_comply
-	local	commondoc=( AUTHORS ChangeLog README TODO )
+fake_src_install() {
+	dotnet_multilib_comply
+	local commondoc=( AUTHORS ChangeLog README TODO )
 	for docfile in "${commondoc[@]}"
 	do
 		[[ -e "${docfile}" ]] && dodoc "${docfile}"
@@ -36,7 +39,7 @@ fake_src_install () {
 	then
 		dodoc "${DOCS[@]}" || die "dodoc DOCS failed"
 	fi
-	find "${D}" -name '*.la' -exec rm -rf '{}' '+' || die "la removal failed"
+	prune_libtool_files
 }
 
 EXPORT_FUNCTIONS src_configure src_compile src_install
