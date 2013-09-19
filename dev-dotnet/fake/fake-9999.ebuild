@@ -35,5 +35,5 @@ src_install() {
 	insinto /usr/lib/mono/FAKE/"${FRAMEWORK}"/
 	doins build/FAKE.exe
 	doins build/FakeLib.dll
-	make_wrapper fake "mono /usr/lib/mono/FAKE/${FRAMEWORK}/FAKE.exe \"\$@\""
+	make_wrapper fake "mono /usr/lib/mono/FAKE/${FRAMEWORK}/FAKE.exe"
 }

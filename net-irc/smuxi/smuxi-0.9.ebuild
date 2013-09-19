@@ -50,8 +50,9 @@ src_configure() {
 		$(use_with spell gtkspell)
 }
 
-pkg_postinst() {
+src_install() {
+	default
 	#runner scripts fix
-	sed -i -e 's@mono --debug@mono --runtime=v4.0@g' /usr/bin/smuxi-frontend-gnome || die
-	sed -i -e 's@mono --debug@mono --runtime=v4.0@g' /usr/bin/smuxi-server || die
+	sed -i -e 's@mono --debug@mono --runtime=v4.0@g' "${ED}"/usr/bin/smuxi-frontend-gnome || die
+	sed -i -e 's@mono --debug@mono --runtime=v4.0@g' "${ED}"/usr/bin/smuxi-server || die
 }

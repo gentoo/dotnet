@@ -3,7 +3,7 @@
 # $Header: $
 
 EAPI="5"
-inherit eutils mono-env git-2
+inherit eutils mono-env git-2 autotools-utils
 
 DESCRIPTION="A flexible, irssi-like and user-friendly IRC client for the Gnome Desktop"
 HOMEPAGE="http://www.smuxi.org/main/"
@@ -17,7 +17,7 @@ RDEPEND="
 	>=dev-lang/mono-3.0
 	>=dev-dotnet/smartirc4net-0.4.5.1
 	>=dev-dotnet/nini-1.1.0-r2
-	=dev-dotnet/log4net-1.2.10
+	>=dev-dotnet/log4net-1.2.10
 	dbus? (	dev-dotnet/ndesk-dbus
 		dev-dotnet/ndesk-dbus-glib )
 	gtk? ( >=dev-dotnet/gtk-sharp-2.12 )
@@ -37,28 +37,35 @@ else
 	EGIT_REPO_URI="git://github.com/meebey/smuxi.git"
 	EGIT_MASTER="master"
 fi
+EGIT_HAS_SUBMODULES=1
 
 DOCS=( FEATURES TODO README )
+AUTOTOOLS_IN_SOURCE_BUILD=1
 
-src_configure() {
-	# Our dev-dotnet/db4o is completely unmaintained
-	# We don't have ubuntu stuff
-	econf \
-		--enable-engine-irc		\
-		--without-indicate		\
-		--with-vendor-package-version="Gentoo ${PV}" \
-		--with-db4o=included \
-		--with-messaging-menu=no \
-		--with-indicate=no \
-		--disable-engine-jabbr \
-		$(use_enable debug)		\
-		$(use_enable gtk frontend-gnome) \
-		$(use_with libnotify notify) \
-		$(use_with spell gtkspell)
+src_prepare() {
+	./autogen.sh MCS=$(which dmcs) || die
 }
 
-pkg_postinst() {
+src_configure() {
+        local myeconfargs=(
+		--enable-engine-irc
+		--without-indicate
+		--with-vendor-package-version="Gentoo"
+		--with-db4o=included
+		--with-messaging-menu=no
+		--with-indicate=no
+		--disable-engine-jabbr
+		$(use_enable debug)
+		$(use_enable gtk frontend-gnome)
+		$(use_with libnotify notify)
+		$(use_with spell gtkspell)
+	)
+	autotools-utils_src_configure
+}
+
+src_install() {
+	default
 	#runner scripts fix
-	sed -i -e 's@mono --debug@mono --runtime=v4.0@g' /usr/bin/smuxi-frontend-gnome || die
-	sed -i -e 's@mono --debug@mono --runtime=v4.0@g' /usr/bin/smuxi-server || die
+	sed -i -e 's@mono --debug@mono --runtime=v4.0@g' "${ED}"/usr/bin/smuxi-frontend-gnome || die
+	sed -i -e 's@mono --debug@mono --runtime=v4.0@g' "${ED}"/usr/bin/smuxi-server || die
 }

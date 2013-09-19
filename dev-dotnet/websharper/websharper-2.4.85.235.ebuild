@@ -26,5 +26,5 @@ src_install() {
 	insinto /usr/lib/mono/WebSharper/"${FRAMEWORK}"/
 	doins WebSharper."${NPV}"/*.dll
 	doins WebSharper."${NPV}"/*.exe
-	make_wrapper websharper "mono /usr/lib/mono/WebSharper/${FRAMEWORK}/WebSharper.v${FRAMEWORK}.exe \"$@\""
+	make_wrapper websharper "mono /usr/lib/mono/WebSharper/${FRAMEWORK}/WebSharper.v${FRAMEWORK}.exe"
 }

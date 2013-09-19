@@ -13,7 +13,7 @@ inherit dotnet
 # @DESCRIPTION Set false to net depend on nuget
 : ${NUGET_NO_DEPEND:=}
 
-if [[ -n $NUGET_DEPEND ]]; then
+if [[ -n $NUGET_NO_DEPEND ]]; then
 	DEPEND+=" dev-dotnet/nuget"
 fi
 

@@ -63,5 +63,5 @@ src_install() {
 		nonfatal doins tools/FAKE/tools/Fake.SQL.dll
 		nonfatal doins tools/FAKE/tools/NuGet.Core.dll
 	fi
-	make_wrapper fake "mono /usr/lib/mono/FAKE/${FRAMEWORK}/FAKE.exe \"\$@\""
+	make_wrapper fake "mono /usr/lib/mono/FAKE/${FRAMEWORK}/FAKE.exe"
 }

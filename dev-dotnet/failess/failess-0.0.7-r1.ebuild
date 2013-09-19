@@ -32,5 +32,5 @@ src_install() {
 	doins Failess."${NPV}"/tools/Newtonsoft.Json.dll
 	doins Failess."${NPV}"/tools/NuGet.Core.dll
 	doins Failess."${NPV}"/tools/Mono.Cecil.dll
-	make_wrapper failess "mono /usr/lib/mono/Failess/${FRAMEWORK}/Failess.exe \"\$@\""
+	make_wrapper failess "mono /usr/lib/mono/Failess/${FRAMEWORK}/Failess.exe"
 }

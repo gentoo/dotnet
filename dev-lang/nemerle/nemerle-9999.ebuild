@@ -98,5 +98,5 @@ src_install()
 		into /usr
 		doins ${Bootstrap}/ncc.exe
 	fi
-	make_wrapper ncc "mono /usr/$(get_libdir)/mono/${PN}/${FRAMEWORK}/ncc.exe \"\$@\""
+	make_wrapper ncc "mono /usr/$(get_libdir)/mono/${PN}/${FRAMEWORK}/ncc.exe"
 }

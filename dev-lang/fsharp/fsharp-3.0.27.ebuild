@@ -25,8 +25,7 @@ src_prepare() {
 	eautoreconf
 }
 
-pkg_postinst() {
-	#trick older software to use fsharpc instead fsc
+src_install() {
+	default
 	dosym /usr/bin/fsharpc /usr/bin/fsc
-	#chmod 666 /etc/mono/registry/last-btime
 }
