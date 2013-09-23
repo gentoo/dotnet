@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <repositories version="1.0">
-  <repo priority="50" quality="experimental" status="unofficial">
+  <repo priority="50" quality="experimental" status="official">
     <name>dotnet</name>
     <description>newer .NET languages and libraries</description>
-    <homepage>https://github.com/gentoo-dotnet</homepage>
+    <homepage>http://git.overlays.gentoo.org/gitweb/?p=proj/dotnet.git;a=summary</homepage>
     <owner>
-      <email>heather@cynede.net</email>
-	  <name>Heather</name>
+      <email>cynede@gentoo.org</email>
+	  <name>Heather Cynede</name>
     </owner>
-	<source type="git">git://github.com/gentoo-dotnet/gentoo-dotnet.git</source>
-	<source type="git">https://github.com/gentoo-dotnet/gentoo-dotnet.git</source>
-	<source type="git">git@github.com:gentoo-dotnet/gentoo-dotnet.git</source>
-    <feed>https://github.com/gentoo-dotnet/gentoo-dotnet/commits/master.atom</feed>
+	<source type="git">git://git.overlays.gentoo.org/proj/dotnet.git</source>
+	<source type="git">https://git.overlays.gentoo.org/gitroot/proj/dotnet.git</source>
+	<source type="git">git+ssh://git@git.overlays.gentoo.org/proj/dotnet.git</source>
+    <feed>http://git.overlays.gentoo.org/gitweb/?p=proj/dotnet.git;a=atom</feed>
   </repo>
 </repositories>

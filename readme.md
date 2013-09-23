@@ -1,5 +1,5 @@
-gentoo-dotnet unofficial overlay
-================================
+gentoo-dotnet official overlay
+==============================
 
 Overlay Installation
 --------------------
@@ -10,7 +10,7 @@ Overlay Installation
 <hr/>
 
  - Join #gentoo-dotnet channel on Freenode
- - Open issues here https://github.com/gentoo-dotnet/gentoo-dotnet
+ - Open issues here https://github.com/gentoo/dotnet
  - Add dotnet@gentoo.org to Watching on https://bugs.gentoo.org/userprefs.cgi?tab=email
  - Try to fix upstream issues
  - Fork & Contribute & Pull Request
