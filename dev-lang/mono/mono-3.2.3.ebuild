@@ -5,7 +5,7 @@
 EAPI="5"
 AUTOTOOLS_PRUNE_LIBTOOL_FILES="all"
 
-inherit linux-info mono-env flag-o-matic pax-utils autotools-utils
+inherit eutils linux-info mono-env flag-o-matic pax-utils autotools-utils
 
 DESCRIPTION="Mono runtime and class libraries, a C# compiler/interpreter"
 HOMEPAGE="http://www.mono-project.com/Main_Page"
@@ -16,12 +16,13 @@ SLOT="0"
 
 KEYWORDS="~amd64 ~ppc ~ppc64 ~x86 ~amd64-linux"
 
-IUSE="minimal pax_kernel xen doc debug"
+IUSE="nls minimal pax_kernel xen doc debug"
 
 COMMONDEPEND="
 	!dev-util/monodoc
 	!minimal? ( >=dev-dotnet/libgdiplus-2.10 )
 	ia64? (	sys-libs/libunwind )
+	nls? ( sys-devel/gettext )
 "
 RDEPEND="${COMMONDEPEND}
 	|| ( www-client/links www-client/lynx )
@@ -31,8 +32,6 @@ DEPEND="${COMMONDEPEND}
 	virtual/yacc
 	pax_kernel? ( sys-apps/elfix )
 "
-# fixed in 3.2.3
-#PATCHES=( "${FILESDIR}/${P}-mdoc-fix.patch" )
 
 pkg_pretend() {
 	# If CONFIG_SYSVIPC is not set in your kernel .config, mono will hang while compiling.
@@ -91,9 +90,20 @@ src_configure() {
 		--with-sgen=$(use ppc && printf "no" || printf "yes" )
 		$(use_with doc mcs-docs)
 		$(use_enable debug)
+		$(use_enable nls)
 	)
 
 	autotools-utils_src_configure
+}
+
+src_compile() {
+	nofatal emake || {
+		eqawarn "shit, try again"
+		emake || {
+			eqawarn "maintainer of this ebuild has no idea why it fails. If you happen to know how to fix it - please let me know"
+			die
+		}
+	 }
 }
 
 src_test() {
