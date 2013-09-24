@@ -98,11 +98,8 @@ src_configure() {
 
 src_compile() {
 	nonfatal autotools-utils_src_compile || {
-		eqawarn "shit, try again"
-		nonfatal autotools-utils_src_compile || {
-			eqawarn "maintainer of this ebuild has no idea why it fails. If you happen to know how to fix it - please let me know"
-			die "make failed :("
-		}
+		eqawarn "maintainer of this ebuild has no idea why it fails. If you happen to know how to fix it - please let me know"
+		autotools-utils_src_compile
 	 }
 }
 
