@@ -1,13 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
 <pkgmetadata>
-	<maintainer>
-		<email>heather@cynede.net</email>
-	</maintainer>
+	<herd>dotnet</herd>
 	<longdescription>
-		Mono/.NET programming language
+		Mono/.NET open-source, strongly typed, multi-paradigm programming language encompassing functional, imperative and object-oriented programming techniques. Most often used as a cross-platform CLI language.
 	</longdescription>
-	<use>
-		<flag name='unicode'>Fork</flag>
-	</use>
 </pkgmetadata>

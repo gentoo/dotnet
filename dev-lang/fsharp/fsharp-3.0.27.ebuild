@@ -1,12 +1,10 @@
 # Copyright 1999-2013 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/fsharp/fsharp-3.0.27.ebuild,v 1.1 2013/09/24 12:22:10 cynede Exp $
 
 EAPI="5"
 
-USE_DOTNET="net40"
-
-inherit autotools dotnet
+inherit autotools-utils mono-env
 
 DESCRIPTION="The F# Compiler"
 HOMEPAGE="https://github.com/fsharp/fsharp"
@@ -17,15 +15,17 @@ SLOT="0"
 KEYWORDS="~x86 ~amd64"
 IUSE=""
 
-MAKEOPTS="-j1" #nowarn
-DEPEND="|| ( >dev-lang/mono-3.0.6 <dev-lang/mono-3.0.5 )"
+MAKEOPTS+=" -j1" #nowarn
+DEPEND="dev-lang/mono"
 RDEPEND="${DEPEND}"
 
-src_prepare() {
-	eautoreconf
-}
+AUTOTOOLS_IN_SOURCE_BUILD=1
+AUTOTOOLS_AUTORECONF=1
+
 
 src_install() {
 	default
-	dosym /usr/bin/fsharpc /usr/bin/fsc
+
+	#for older software compatibility:
+	dosym fsharpc /usr/bin/fsc
 }
