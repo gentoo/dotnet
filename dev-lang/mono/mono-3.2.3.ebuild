@@ -81,13 +81,13 @@ src_configure() {
 		--enable-static
 		--disable-quiet-build
 		--without-moonlight
-		--with-libgdiplus=$(use minimal && printf "no" || printf "installed" )
+		--with-libgdiplus=$(usex minimal no installed)
 		$(use_with xen xen_opt)
 		--without-ikvm-native
 		--with-jit
 		--disable-dtrace
 		--with-profile4
-		--with-sgen=$(use ppc && printf "no" || printf "yes" )
+		--with-sgen=$(usex ppc no yes)
 		$(use_with doc mcs-docs)
 		$(use_enable debug)
 		$(use_enable nls)
@@ -116,6 +116,6 @@ src_install() {
 	# Remove files not respecting LDFLAGS and that we are not supposed to provide, see Fedora
 	# mono.spec and http://www.mail-archive.com/mono-devel-list@lists.ximian.com/msg24870.html
 	# for reference.
-	rm -f "${ED}"/usr/lib/mono/{2.0,4.5}/mscorlib.dll.so
-	rm -f "${ED}"/usr/lib/mono/{2.0,4.5}/mcs.exe.so
+	rm -f "${ED}"/usr/lib/mono/{2.0,4.5}/mscorlib.dll.so || die
+	rm -f "${ED}"/usr/lib/mono/{2.0,4.5}/mcs.exe.so || die
 }
