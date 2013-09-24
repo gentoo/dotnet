@@ -4,6 +4,8 @@
 
 EAPI="5"
 
+AUTOTOOLS_AUTORECONF=1
+
 inherit autotools-utils mono-env
 
 DESCRIPTION="The F# Compiler"
@@ -20,8 +22,6 @@ DEPEND="dev-lang/mono"
 RDEPEND="${DEPEND}"
 
 AUTOTOOLS_IN_SOURCE_BUILD=1
-AUTOTOOLS_AUTORECONF=1
-
 
 src_install() {
 	default
