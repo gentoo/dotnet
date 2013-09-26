@@ -3,14 +3,14 @@
 # $Header: $
 
 EAPI="5"
-inherit eutils autotools mono gnome2-utils fdo-mime versionator gnome.org
+inherit eutils autotools mono-env gnome2-utils fdo-mime versionator gnome.org
 
 DESCRIPTION="Import, organize, play, and share your music using a simple and powerful interface."
 HOMEPAGE="http://banshee.fm/"
 
 LICENSE="MIT"
 SLOT="0"
-KEYWORDS="amd64 x86"
+KEYWORDS="~amd64 ~x86"
 
 #switched web to - because I personally don't want to build yet another webkit-gtk
 IUSE="+aac +cdda +bpm daap doc +encode ipod karma mtp test udev -web youtube"
@@ -126,7 +126,7 @@ src_configure() {
 }
 
 src_compile() {
-	emake MCS=/usr/bin/gmcs
+	emake #MCS=/usr/bin/gmcs
 }
 
 src_install() {
