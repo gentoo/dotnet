@@ -19,6 +19,7 @@ RDEPEND="
 	>=dev-lang/mono-3
 	gnome-base/gnome-settings-daemon
 	sys-apps/dbus
+	>=dev-dotnet/gnome-sharp-2
 	>=dev-dotnet/gtk-sharp-2.12.21:2
 	>=dev-dotnet/notify-sharp-0.4.0_pre20080912-r1
 	>=media-libs/gstreamer-0.10.21-r3:0.10
