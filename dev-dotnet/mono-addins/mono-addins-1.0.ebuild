@@ -8,7 +8,7 @@ inherit dotnet multilib autotools-utils
 
 DESCRIPTION="A generic framework for creating extensible applications"
 HOMEPAGE="http://www.mono-project.com/Mono.Addins"
-SRC_URI="http://github.com/mono/mono-addins/archive/mono-addins-1.0.tar.gz"
+SRC_URI="http://github.com/mono/${PN}/archive/${P}.tar.gz"
 
 LICENSE="GPL-2"
 SLOT="0"
@@ -20,8 +20,6 @@ RDEPEND=">=dev-lang/mono-3
 DEPEND="${RDEPEND}
 	virtual/pkgconfig"
 MAKEOPTS="${MAKEOPTS} -j1" #nowarn
-
-S=${WORKDIR}/${PN}-${P}
 
 src_prepare() {
 	eautoreconf
