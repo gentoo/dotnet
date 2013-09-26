@@ -126,7 +126,7 @@ src_configure() {
 }
 
 src_compile() {
-	emake #MCS=/usr/bin/gmcs
+	emake MCS=/usr/bin/mcs
 }
 
 src_install() {
