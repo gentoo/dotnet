@@ -34,7 +34,8 @@ DEPEND="${RDEPEND}"
 RESTRICT="test"
 
 PATCHES=("${FILESDIR}/${P}-gold.patch"
-	"${FILESDIR}/${PN}-2.10.1-libpng15.patch" )
+	"${FILESDIR}/${PN}-2.10.1-libpng15.patch"
+	"${FILESDIR}/${PN}-2.10.9-giflib-quantizebuffer.patch")
 
 src_prepare() {
 	base_src_prepare
