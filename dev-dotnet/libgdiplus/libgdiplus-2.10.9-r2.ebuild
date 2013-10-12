@@ -25,7 +25,7 @@ RDEPEND=">=dev-libs/glib-2.16:2
 	x11-libs/libXt
 	>=x11-libs/cairo-1.8.4[X]
 	media-libs/libexif
-	>=media-libs/giflib-4.1.3
+	>=media-libs/giflib-4.2.3
 	virtual/jpeg
 	media-libs/tiff:0
 	!cairo? ( >=x11-libs/pango-1.20 )"
