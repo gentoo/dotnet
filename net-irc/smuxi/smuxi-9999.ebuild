@@ -10,7 +10,7 @@ HOMEPAGE="http://www.smuxi.org/main/"
 
 SLOT="0"
 KEYWORDS=""
-IUSE="dbus debug gtk libnotify spell +heather"
+IUSE="dbus debug gtk libnotify spell -gtk3"
 LICENSE="|| ( GPL-2 GPL-3 )"
 
 RDEPEND="
@@ -30,11 +30,10 @@ DEPEND="${RDEPEND}
 	virtual/pkgconfig
 "
 
-if use heather; then
-	EGIT_REPO_URI="git://github.com/Heather/smuxi.git"
-	EGIT_MASTER="heather"
+EGIT_REPO_URI="git://github.com/Heather/smuxi.git"
+if use gtk3; then
+	EGIT_MASTER="gtk3"
 else
-	EGIT_REPO_URI="git://github.com/meebey/smuxi.git"
 	EGIT_MASTER="master"
 fi
 EGIT_HAS_SUBMODULES=1
