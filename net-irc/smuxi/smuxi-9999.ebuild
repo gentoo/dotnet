@@ -10,7 +10,7 @@ HOMEPAGE="http://www.smuxi.org/main/"
 
 SLOT="0"
 KEYWORDS=""
-IUSE="dbus debug gtk libnotify spell -gtk3"
+IUSE="dbus debug gtk libnotify spell" #-gtk3 ( gtk3 branch just broken )
 LICENSE="|| ( GPL-2 GPL-3 )"
 
 RDEPEND="
@@ -31,11 +31,11 @@ DEPEND="${RDEPEND}
 "
 
 EGIT_REPO_URI="git://github.com/Heather/smuxi.git"
-if use gtk3; then
-	EGIT_MASTER="gtk3"
-else
-	EGIT_MASTER="master"
-fi
+#if use gtk3; then
+#	EGIT_MASTER="gtk3"
+#else
+EGIT_MASTER="master"
+#fi
 EGIT_HAS_SUBMODULES=1
 
 DOCS=( FEATURES TODO README )
