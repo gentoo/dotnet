@@ -29,7 +29,6 @@ RDEPEND="
 	!dev-dotnet/gtk-dotnet-sharp
 	!dev-dotnet/gdk-sharp
 	!dev-dotnet/glib-sharp
-	!dev-dotnet/gio-sharp
 	!dev-dotnet/glade-sharp
 	!dev-dotnet/pango-sharp
 	!dev-dotnet/atk-sharp"
