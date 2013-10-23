@@ -17,7 +17,7 @@ IUSE="debug"
 RESTRICT="test"
 
 RDEPEND="
-	>=dev-dotnet/gtk-sharp-2.12.21
+	>=dev-dotnet/gtk-sharp-2.12.21:2
 	gnome-base/gconf
 	gnome-base/libgnomecanvas
 	gnome-base/libgnomeui

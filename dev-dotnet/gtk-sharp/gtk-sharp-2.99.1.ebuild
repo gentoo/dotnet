@@ -6,7 +6,7 @@ EAPI="5"
 
 inherit dotnet autotools base
 
-SLOT="2"
+SLOT="3"
 DESCRIPTION="gtk bindings for mono"
 LICENSE="GPL-2"
 HOMEPAGE="http://www.mono-project.com/GtkSharp"
@@ -21,7 +21,7 @@ RDEPEND="
 	x11-libs/pango
 	>=dev-libs/glib-2.31
 	dev-libs/atk
-	x11-libs/gtk+:2
+	x11-libs/gtk+:3
 	gnome-base/libglade
 	dev-perl/XML-LibXML
 	!dev-dotnet/gtk-sharp-gapi
