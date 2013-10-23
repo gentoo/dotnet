@@ -10,18 +10,17 @@ HOMEPAGE="http://banshee.fm/"
 
 LICENSE="MIT"
 SLOT="0"
-KEYWORDS="" 	# ~amd64 ~x86
-		# Fails...
+KEYWORDS="~amd64 ~x86"
 
 #switched web to - because I personally don't want to build yet another webkit-gtk
-IUSE="+aac +cdda +bpm daap doc +encode ipod karma mtp test udev -web youtube +gnome"
+IUSE="+aac +cdda +bpm daap doc +encode ipod karma mtp test udev -web youtube"
 
 RDEPEND="
 	>=dev-lang/mono-3
 	gnome-base/gnome-settings-daemon
 	sys-apps/dbus
 	>=dev-dotnet/gnome-sharp-2
-	>=dev-dotnet/gtk-sharp-2.99:3
+	>=dev-dotnet/gtk-sharp-2.12.21:2
 	>=dev-dotnet/notify-sharp-0.4.0_pre20080912-r1
 	>=media-libs/gstreamer-0.10.21-r3:0.10
 	>=media-libs/gst-plugins-base-0.10.25.2:0.10
@@ -68,9 +67,10 @@ RDEPEND="
 	)
 	udev? (
 		app-misc/media-player-info
-		>=dev-dotnet/gudev-sharp-3.0
+		dev-dotnet/gudev-sharp
 		dev-dotnet/gkeyfile-sharp
 		dev-dotnet/gtk-sharp-beans
+		dev-dotnet/gio-sharp
 	)
 "
 DEPEND="${RDEPEND}
@@ -98,6 +98,7 @@ src_configure() {
 	local myconf="--disable-dependency-tracking
 		--disable-static
 		--disable-maintainer-mode
+		--enable-gnome
 		--enable-schemas-install
 		--with-gconf-schema-file-dir=/etc/gconf/schemas
 		--with-vendor-build-id=Gentoo/${PN}/${PVR}
@@ -109,6 +110,7 @@ src_configure() {
 		--disable-ubuntuone
 		--disable-soundmenu
 		--disable-upnp"
+
 	econf \
 		$(use_enable doc docs) \
 		$(use_enable doc user-help) \
@@ -120,7 +122,6 @@ src_configure() {
 		$(use_enable youtube) \
 		$(use_enable udev gio) \
 		$(use_enable udev gio_hardware) \
-		$(use_enable gnome) \
 		${myconf}
 }
 
