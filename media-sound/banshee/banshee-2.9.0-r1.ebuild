@@ -13,7 +13,7 @@ SLOT="0"
 KEYWORDS="~amd64 ~x86"
 
 #switched web to - because I personally don't want to build yet another webkit-gtk
-IUSE="+aac +cdda +bpm daap doc +encode ipod karma mtp test udev -web youtube"
+IUSE="+aac +cdda +bpm daap doc +encode ipod karma mtp test udev -web youtube +gnome"
 
 RDEPEND="
 	>=dev-lang/mono-3
@@ -97,7 +97,6 @@ src_configure() {
 	local myconf="--disable-dependency-tracking
 		--disable-static
 		--disable-maintainer-mode
-		--enable-gnome
 		--enable-schemas-install
 		--with-gconf-schema-file-dir=/etc/gconf/schemas
 		--with-vendor-build-id=Gentoo/${PN}/${PVR}
@@ -109,7 +108,6 @@ src_configure() {
 		--disable-ubuntuone
 		--disable-soundmenu
 		--disable-upnp"
-
 	econf \
 		$(use_enable doc docs) \
 		$(use_enable doc user-help) \
@@ -121,6 +119,7 @@ src_configure() {
 		$(use_enable youtube) \
 		$(use_enable udev gio) \
 		$(use_enable udev gio_hardware) \
+		$(use_enable gnome) \
 		${myconf}
 }
 
