@@ -30,12 +30,8 @@ DEPEND="${RDEPEND}
 	virtual/pkgconfig
 "
 
-EGIT_REPO_URI="git://github.com/Heather/smuxi.git"
-#if use gtk3; then
-#	EGIT_MASTER="gtk3"
-#else
+EGIT_REPO_URI="git://github.com/meebey/smuxi.git"
 EGIT_MASTER="master"
-#fi
 EGIT_HAS_SUBMODULES=1
 
 DOCS=( FEATURES TODO README )
