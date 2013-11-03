@@ -25,6 +25,10 @@ DEPEND="dev-lang/mono
 
 RDEPEND="${DEPEND}"
 
+src_prepare() {
+	addpredict /etc/mono/registry/last-btime #nowarn
+}
+
 src_unpack() {
 	if use nuget ; then
 		echo "using nuget"

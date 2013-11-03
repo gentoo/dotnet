@@ -28,6 +28,10 @@ DEPEND="dev-lang/mono
 dev-lang/fsharp"
 RDEPEND="${DEPEND}"
 
+src_prepare() {
+	addpredict /etc/mono/registry/last-btime #nowarn
+}
+
 src_compile() {
 	ln -s tools/FAKE/tools/Newtonsoft.Json.dll "${S}"/Newtonsoft.Json.dll || die
 	ln -s tools/FAKE/tools/NuGet.Core.dll "${S}"/NuGet.Core.dll || die
