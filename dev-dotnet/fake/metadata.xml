@@ -8,4 +8,9 @@
 	  NuGet:FAKE
 	  FAKE - F# Make
 	</longdescription>
+	<use>
+		<flag name='heather'>
+			Heather fork
+		</flag>
+	</use>
 </pkgmetadata>
