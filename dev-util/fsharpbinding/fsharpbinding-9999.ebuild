@@ -47,12 +47,6 @@ src_unpack() {
 	fi
 }
 
-src_prepare() {
-	if use monodevelop; then
-		epatch "${FILESDIR}/Makefile.patch"
-	fi
-}
-
 src_configure() {
 	if use monodevelop; then
 		cd "${S}/monodevelop"
@@ -77,9 +71,9 @@ src_install() {
 	if use monodevelop; then
 	   dodir /usr/lib/monodevelop/Packs
 	   insinto /usr/lib/monodevelop/Packs
-	   PACKVERSION=`cat monodevelop/Makefile.orig | head -n 7 | tail -n 1 | grep -o "[0-9]\+.[0-9]\+.[0-9]\+\(.[0-9]\+\)\?"`
+	   PACKVERSION=`cat monodevelop/Makefile | head -n 7 | tail -n 1 | grep -o "[0-9]\+.[0-9]\+.[0-9]\+\(.[0-9]\+\)\?"`
 	   elog "Using Packversion: ${PACKVERSION}"
-	   newins "monodevelop/pack/${PACKVERSION}/local/Debug/MonoDevelop.FSharpBinding_${PACKVERSION}.mpack" "Monodevelop.FSharpBinding_${PVR}.mpack"
+	   newins "monodevelop/pack/${PACKVERSION}/mac-linux/Debug/MonoDevelop.FSharpBinding_${PACKVERSION}.mpack" "Monodevelop.FSharpBinding_${PVR}.mpack"
 	fi
 	if use emacs; then
 		cd "${S}/emacs"
