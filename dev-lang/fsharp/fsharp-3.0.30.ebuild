@@ -25,7 +25,4 @@ AUTOTOOLS_IN_SOURCE_BUILD=1
 
 src_install() {
 	autotools-utils_src_install
-
-	#for older software compatibility:
-	dosym fsharpc /usr/bin/fsc
 }
