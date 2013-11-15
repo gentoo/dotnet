@@ -1,9 +1,8 @@
 # Copyright 1999-2013 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-dotnet/libgdiplus/libgdiplus-2.10.9.ebuild $
+# $Header: $
 
 EAPI="5"
-
 inherit base eutils dotnet flag-o-matic
 
 DESCRIPTION="Library for using System.Drawing with mono"
@@ -11,7 +10,7 @@ HOMEPAGE="http://www.mono-project.com"
 
 LICENSE="MIT"
 SLOT="0"
-KEYWORDS="amd64 ~arm ppc ppc64 x86 ~amd64-fbsd ~x86-freebsd ~amd64-linux ~x86-linux ~x86-solaris"
+KEYWORDS="~amd64 ~ppc ~ppc64 ~x86 ~x86-freebsd ~amd64-linux ~x86-linux ~x86-solaris"
 SRC_URI="http://download.mono-project.com/sources/${PN}/${P}.tar.bz2"
 
 IUSE="cairo"
@@ -26,7 +25,7 @@ RDEPEND=">=dev-libs/glib-2.16:2
 	>=x11-libs/cairo-1.8.4[X]
 	media-libs/libexif
 	>=media-libs/giflib-4.2.3
-	virtual/jpeg
+	virtual/jpeg:0
 	media-libs/tiff:0
 	!cairo? ( >=x11-libs/pango-1.20 )"
 DEPEND="${RDEPEND}"
