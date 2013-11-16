@@ -34,7 +34,7 @@ EGIT_REPO_URI="git://github.com/meebey/smuxi.git"
 EGIT_MASTER="master"
 EGIT_HAS_SUBMODULES=1
 
-DOCS=( FEATURES TODO README )
+DOCS=( FEATURES README.md )
 AUTOTOOLS_IN_SOURCE_BUILD=1
 
 src_prepare() {
