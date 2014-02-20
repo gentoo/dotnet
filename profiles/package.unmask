@@ -2,3 +2,4 @@ dev-lang/mono
 virtual/monodoc
 
 dev-dotnet/gtk-sharp
+dev-dotnet/gnome-sharp
