@@ -1,2 +1,4 @@
 dev-lang/mono
 virtual/monodoc
+
+dev-dotnet/gtk-sharp
