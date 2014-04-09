@@ -1,4 +1,4 @@
-# Copyright 1999-2013 Gentoo Foundation
+# Copyright 1999-2014 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
@@ -26,7 +26,7 @@ RDEPEND=">=dev-libs/glib-2.16:2
 	>=x11-libs/cairo-1.8.4[X]
 	media-libs/libexif
 	>=media-libs/giflib-4.1.3
-	virtual/jpeg
+	virtual/jpeg:0
 	media-libs/tiff:0
 	!cairo? ( >=x11-libs/pango-1.20 )"
 DEPEND="${RDEPEND}"
