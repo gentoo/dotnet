@@ -55,16 +55,19 @@ src_configure() {
 	fi
 }
 src_compile() {
-	if use monodevelop; then
-	   cd "${S}/monodevelop"
-	   emake
-	fi
 	if use emacs; then
 		cd "${S}/emacs"
 		elisp-compile *.el
 		if [[ -n ${ELISP_TEXINFO} ]]; then
 			makeinfo ${ELISP_TEXINFO} || die
 		fi
+	fi
+	#TODO: mdtool fails to setup...
+	if use monodevelop; then
+		cd "${S}/monodevelop"
+		emake pack
+		#PACKVERSION=`cat Makefile | head -n 7 | tail -n 1 | grep -o "[0-9]\+.[0-9]\+.[0-9]\+\(.[0-9]\+\)\?"`
+		#mdtool setup pack bin/mac-linux/Debug/FSharpBinding.dll -d:pack/${PACKVERSION}/mac-linux/Debug
 	fi
 }
 src_install() {
