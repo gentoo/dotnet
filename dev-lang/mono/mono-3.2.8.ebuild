@@ -37,7 +37,7 @@ pkg_pretend() {
 	# If CONFIG_SYSVIPC is not set in your kernel .config, mono will hang while compiling.
 	# See http://bugs.gentoo.org/261869 for more info."
 	CONFIG_CHECK="SYSVIPC"
-	use kernel_linux && check_extra_config
+	use kernel_linux && nonfatal check_extra_config
 }
 
 pkg_setup() {
