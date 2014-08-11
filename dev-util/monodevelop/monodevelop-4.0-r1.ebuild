@@ -25,7 +25,6 @@ SDEPEND=">=dev-lang/mono-3.0.1
 	>=dev-dotnet/xsp-2
 	dev-util/ctags
 	sys-apps/dbus[X]
-	>=virtual/monodoc-2.0
 	|| (
 		www-client/firefox
 		www-client/firefox-bin
