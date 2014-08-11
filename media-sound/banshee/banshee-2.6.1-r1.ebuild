@@ -47,7 +47,6 @@ RDEPEND="
 	bpm? ( media-plugins/gst-plugins-soundtouch:0.10 )
 	daap? (	>=dev-dotnet/mono-zeroconf-0.8.0-r1 )
 	doc? (
-		virtual/monodoc
 		>=app-text/gnome-doc-utils-0.17.3
 	)
 	encode? (
