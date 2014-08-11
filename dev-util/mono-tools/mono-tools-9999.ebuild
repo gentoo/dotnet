@@ -16,8 +16,7 @@ SLOT="0"
 KEYWORDS=""
 IUSE="+webkit gtkhtml"
 
-RDEPEND="virtual/monodoc
-	<dev-lang/mono-3
+RDEPEND="dev-lang/mono
 	>=dev-dotnet/gtk-sharp-2.12.21
 	>=dev-dotnet/gnome-sharp-2.24.2-r1
 	gtkhtml? ( >=dev-dotnet/gtkhtml-sharp-2.24.0:2 )

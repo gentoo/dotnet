@@ -22,7 +22,6 @@ RDEPEND=">=dev-lang/mono-3.0
 	>=dev-dotnet/xsp-2
 	dev-util/ctags
 	sys-apps/dbus[X]
-	>=virtual/monodoc-2.0
 	subversion? ( dev-vcs/subversion )
 	!<dev-util/monodevelop-boo-$(get_version_component_range 1-2)
 	!<dev-util/monodevelop-java-$(get_version_component_range 1-2)

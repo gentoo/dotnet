@@ -1,4 +1,4 @@
-# Copyright 1999-2013 Gentoo Foundation
+# Copyright 1999-2014 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-util/mono-tools/mono-tools-9999.ebuild $
 
@@ -16,8 +16,7 @@ SLOT="0"
 KEYWORDS=""
 IUSE="+webkit gtkhtml"
 
-RDEPEND="virtual/monodoc
-	>=dev-dotnet/gtk-sharp-2.12.21
+RDEPEND=">=dev-dotnet/gtk-sharp-2.12.21
 	>=dev-dotnet/gnome-sharp-2.24.2-r1
 	gtkhtml? ( >=dev-dotnet/gnome-desktop-sharp-2.26.0-r2:2[gtkhtml] )
 	webkit? ( >=dev-dotnet/webkit-sharp-0.2-r1 )"

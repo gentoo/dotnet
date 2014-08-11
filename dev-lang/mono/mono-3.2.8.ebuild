@@ -19,7 +19,6 @@ KEYWORDS="~amd64 ~ppc ~ppc64 ~x86 ~amd64-linux"
 IUSE="nls minimal pax_kernel xen doc debug"
 
 COMMONDEPEND="
-	!dev-util/monodoc
 	!minimal? ( >=dev-dotnet/libgdiplus-2.10 )
 	ia64? (	sys-libs/libunwind )
 	nls? ( sys-devel/gettext )
