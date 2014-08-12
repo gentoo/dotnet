@@ -4,7 +4,7 @@
 
 EAPI="5"
 
-inherit base eutils dotnet flag-o-matic git-2
+inherit base autotools eutils dotnet flag-o-matic git-2
 
 DESCRIPTION="Library for using System.Drawing with mono"
 HOMEPAGE="http://www.mono-project.com"
@@ -33,20 +33,17 @@ DEPEND="${RDEPEND}"
 
 RESTRICT="test"
 
-PATCHES=( "${FILESDIR}/${PN}-2.10.1-libpng15.patch" )
+PATCHES=( "${FILESDIR}/${PN}-2.10.9-giflib-quantizebuffer.patch"  )
 
 src_prepare() {
-	sed -i -e 's/LT_/LTT_/g' cairo/configure.in || die
 	base_src_prepare
-	epatch "${FILESDIR}/${PN}-2.10.9-gold.patch"
-	sed -i -e 's:ungif:gif:g' configure || die
+	NOCONFIGURE="true" ./autogen.sh
 }
 
 src_configure() {
 	append-flags -fno-strict-aliasing
 	econf 	--disable-dependency-tracking		\
 		--disable-static			\
-		--with-cairo=system			\
 		$(use !cairo && printf %s --with-pango)
 }
 
