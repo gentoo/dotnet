@@ -24,7 +24,10 @@ RDEPEND="dev-lang/mono
 DEPEND="${RDEPEND}
 	sys-devel/gettext
 	virtual/pkgconfig"
-PATCHES=( "${FILESDIR}/${PN}-2.8-html-renderer-fixes.patch" )
+PATCHES=( 
+	"${FILESDIR}/${PN}-2.8-html-renderer-fixes.patch"
+	"${FILESDIR}/${P}_make_build_use_2_0.patch"
+)
 MAKEOPTS="${MAKEOPTS} -j1" #nowarn
 pkg_setup() {
 	if ! use webkit && ! use gtkhtml
