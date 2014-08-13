@@ -14,7 +14,7 @@ SRC_URI="http://download.mono-project.com/sources/${PN}/${P}.tar.bz2"
 LICENSE="MIT LGPL-2.1 GPL-2 BSD-4 NPL-1.1 Ms-PL GPL-2-with-linking-exception IDPL"
 SLOT="0"
 
-KEYWORDS="" #~amd64 ~ppc ~ppc64 ~x86 ~amd64-linux"
+KEYWORDS="~amd64 ~ppc ~ppc64 ~x86 ~amd64-linux"
 
 IUSE="nls minimal pax_kernel xen doc debug"
 
@@ -93,6 +93,15 @@ src_configure() {
 	)
 
 	autotools-utils_src_configure
+	
+	# FIX for uncompilable 3.4.0 sources
+	FF="${WORKDIR}/mono-3.4.0/mcs/tools/xbuild/targets/Microsoft.Portable.Common.targets"
+	rm -f $FF
+	touch $FF
+	echo '<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">' >> $FF
+	echo '    <Import Project="..\\Microsoft.Portable.Core.props" />' >> $FF
+	echo '    <Import Project="..\\Microsoft.Portable.Core.targets" />' >> $FF
+	echo '</Project>' >> $FF
 }
 
 src_compile() {
