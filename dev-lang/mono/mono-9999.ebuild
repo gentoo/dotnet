@@ -45,7 +45,6 @@ pkg_setup() {
 
 src_prepare() {
 	cat "${S}/mono/mini/Makefile.am.in" > "${S}/mono/mini/Makefile.am" || die
-	cat "${S}/mono/metadata/Makefile.am.in" > "${S}/mono/metadata/Makefile.am" || die
 
 	eautoreconf
 	# we need to sed in the paxctl-ng -mr in the runtime/mono-wrapper.in so it don't
