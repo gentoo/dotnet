@@ -33,7 +33,7 @@ DEPEND="${RDEPEND}"
 
 RESTRICT="test"
 
-PATCHES=( "${FILESDIR}/${PN}-2.10.9-giflib-quantizebuffer.patch"  )
+PATCHES=( "${FILESDIR}/${P}-giflib-quantizebuffer.patch"  )
 
 src_prepare() {
 	base_src_prepare
