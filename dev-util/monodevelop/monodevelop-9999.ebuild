@@ -1,4 +1,4 @@
-# Copyright 1999-2013 Gentoo Foundation
+# Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-util/monodevelop/monodevelop-9999.ebuild $
 
@@ -36,11 +36,9 @@ DEPEND="${RDEPEND}
 	x11-misc/shared-mime-info"
 
 MAKEOPTS="${MAKEOPTS} -j1" #nowarn
-RESTRICT="test"
 
 src_configure() {
 	./configure	|| die
-	nuget install nuint
 }
 
 pkg_preinst() {
