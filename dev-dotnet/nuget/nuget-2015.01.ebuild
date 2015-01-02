@@ -9,7 +9,7 @@ inherit dotnet eutils
 
 DESCRIPTION="Nuget - .NET Package Manager"
 HOMEPAGE="http://nuget.codeplex.com"
-SRC_URI="http://download-codeplex.sec.s-msft.com/Download/SourceControlFileDownload.ashx?ProjectName=nuget&changeSetId=2764f6c71ea206a60eb136c27c04005975712c19 -> nuget-archive-${PV}.zip"
+SRC_URI="http://download-codeplex.sec.s-msft.com/Download/SourceControlFileDownload.ashx?ProjectName=nuget&changeSetId=44651439bd90c1707852d47093cda9ba3fb58396 -> nuget-archive-${PV}.zip"
 S=${WORKDIR}
 
 LICENSE="Apache-2.0"

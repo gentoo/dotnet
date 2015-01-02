@@ -13,23 +13,16 @@ EGIT_REPO_URI="git://github.com/mono/monodevelop.git"
 LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS=""
-IUSE=""
+IUSE="doc"
 
-RDEPEND=">=dev-lang/mono-3.0.1
-	>=dev-dotnet/gconf-sharp-2.24.0
-	>=dev-dotnet/glade-sharp-2.12.9
-	>=dev-dotnet/gnome-sharp-2.24.0
-	>=dev-dotnet/gnomevfs-sharp-2.24.0
-	>=dev-dotnet/gtk-sharp-2.12.9
-	>=dev-dotnet/mono-addins-0.6[gtk]
+RDEPEND=">=dev-lang/mono-3.2.8
+	>=dev-dotnet/gnome-sharp-2.24.2-r1
+	>=dev-dotnet/gtk-sharp-2.12.21
+	>=dev-dotnet/mono-addins-1.0[gtk]
+	doc? ( dev-util/mono-docbrowser )
 	>=dev-dotnet/xsp-2
 	dev-util/ctags
 	sys-apps/dbus[X]
-	|| (
-		www-client/firefox
-		www-client/firefox-bin
-		www-client/seamonkey
-		)
 	!<dev-util/monodevelop-boo-$(get_version_component_range 1-2)
 	!<dev-util/monodevelop-java-$(get_version_component_range 1-2)
 	!<dev-util/monodevelop-database-$(get_version_component_range 1-2)
@@ -43,8 +36,11 @@ DEPEND="${RDEPEND}
 	x11-misc/shared-mime-info"
 
 MAKEOPTS="${MAKEOPTS} -j1" #nowarn
+RESTRICT="test"
+
 src_configure() {
 	./configure	|| die
+	nuget install nuint
 }
 
 pkg_preinst() {
