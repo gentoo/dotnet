@@ -31,13 +31,6 @@ src_prepare() {
 	addpredict /etc/mono/registry/last-btime #nowarn
 }
 
-src_compile() {
-	wget http://nuget.org/nuget.exe || die "failed to wget NuGet"
-	cp nuget.exe ./.nuget/NuGet.exe || die
-	chmod a+x ./.nuget/NuGet.exe || die
-	make antd || die "build fault"
-}
-
 src_install() {
 	elog "Installing Antd"
 	insinto /usr/lib/mono/Antd/
