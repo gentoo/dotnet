@@ -34,6 +34,6 @@ src_prepare() {
 src_install() {
 	elog "Installing Antd"
 	insinto /usr/lib/mono/Antd/
-	doins Antd/bin/Debug/*
+	doins -r Antd/bin/Release/*
 	make_wrapper antd "mono /usr/lib/mono/Antd/Antd.exe"
 }
