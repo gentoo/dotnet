@@ -37,6 +37,15 @@ DEPEND="${RDEPEND}
 	x11-terms/xterm"
 MAKEOPTS="${MAKEOPTS} -j1" #nowarn
 
+src_prepare() {
+	# Remove the git rev-parse (changelog?)
+	sed -i '/<Exec.*rev-parse/ d' ${S}/src/core/MonoDevelop.Core/MonoDevelop.Core.csproj || die
+
+	# Set specific_version to prevent binding problem
+	# when gtk#-3 is installed alongside gtk#-2
+	find ${S} -name '*.csproj' -exec sed -i 's#<SpecificVersion>.*</SpecificVersion>#<SpecificVersion>True</SpecificVersion>#' {} + || die
+}
+
 src_configure() {
 	econf \
 		--disable-update-mimedb \
