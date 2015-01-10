@@ -13,7 +13,7 @@ EGIT_REPO_URI="git://github.com/mono/monodevelop.git"
 LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS=""
-IUSE="doc"
+IUSE="doc tests"
 
 RDEPEND=">=dev-lang/mono-3.2.8
 	>=dev-dotnet/gnome-sharp-2.24.2-r1
@@ -37,8 +37,22 @@ DEPEND="${RDEPEND}
 
 MAKEOPTS="${MAKEOPTS} -j1" #nowarn
 
+src_prepare() {
+	git submodule update --init --recursive
+	# Set specific_version to prevent binding problem
+	# when gtk#-3 is installed alongside gtk#-2
+	find ${S} -name '*.csproj' -exec sed -i 's#<SpecificVersion>.*</SpecificVersion>#<SpecificVersion>True</SpecificVersion>#' {} + || die
+}
+
 src_configure() {
-	./configure	|| die
+	if use tests
+		then tests="--enable-tests"
+		else tests=""
+	fi
+	./configure \
+		--prefix=/usr \
+		--profile=stable \
+		$tests || die
 }
 
 pkg_preinst() {
