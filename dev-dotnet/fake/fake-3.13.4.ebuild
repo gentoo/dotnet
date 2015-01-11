@@ -1,4 +1,4 @@
-# Copyright 1999-2013 Gentoo Foundation
+# Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
@@ -11,7 +11,6 @@ inherit nuget dotnet eutils
 
 DESCRIPTION="FAKE - F# Make"
 HOMEPAGE="http://nuget.org/packages/FAKE"
-
 SRC_URI="https://github.com/fsharp/FAKE/archive/${NPV}.tar.gz"
 
 LICENSE="MS-PL"
@@ -57,12 +56,14 @@ src_install() {
 	if use nuget ; then
 		doins FAKE."${NPV}"/tools/FAKE.exe
 		doins FAKE."${NPV}"/tools/FakeLib.dll
+		doins FAKE."${NPV}"/tools/UnionArgParser.dll
 		nonfatal doins FAKE."${NPV}"/tools/Newtonsoft.Json.dll
 		nonfatal doins FAKE."${NPV}"/tools/Fake.SQL.dll
 		nonfatal doins FAKE."${NPV}"/tools/NuGet.Core.dll
 	else
 		doins build/FAKE.exe
 		doins build/FakeLib.dll
+		doins build/UnionArgParser.dll
 		nonfatal doins tools/FAKE/tools/Newtonsoft.Json.dll
 		nonfatal doins tools/FAKE/tools/Fake.SQL.dll
 		nonfatal doins tools/FAKE/tools/NuGet.Core.dll
