@@ -1,4 +1,4 @@
-# Copyright 1999-2013 Gentoo Foundation
+# Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
@@ -44,5 +44,9 @@ src_install() {
 	insinto /usr/lib/mono/FAKE/"${FRAMEWORK}"/
 	doins build/FAKE.exe
 	doins build/FakeLib.dll
+	doins build/UnionArgParser.dll
+	nonfatal doins tools/FAKE/tools/Newtonsoft.Json.dll
+	nonfatal doins tools/FAKE/tools/Fake.SQL.dll
+	nonfatal doins tools/FAKE/tools/NuGet.Core.dll
 	make_wrapper fake "mono /usr/lib/mono/FAKE/${FRAMEWORK}/FAKE.exe"
 }
