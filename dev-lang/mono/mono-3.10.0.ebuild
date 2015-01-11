@@ -1,4 +1,4 @@
-# Copyright 1999-2014 Gentoo Foundation
+# Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
@@ -93,7 +93,7 @@ src_configure() {
 	)
 
 	autotools-utils_src_configure
-	
+
 	# FIX for uncompilable 3.4.0 sources
 	FF="${WORKDIR}/mono-3.4.0/mcs/tools/xbuild/targets/Microsoft.Portable.Common.targets"
 	rm -f $FF
