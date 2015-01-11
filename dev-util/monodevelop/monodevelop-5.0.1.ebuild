@@ -1,4 +1,4 @@
-# Copyright 1999-2014 Gentoo Foundation
+# Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
@@ -39,11 +39,10 @@ MAKEOPTS="${MAKEOPTS} -j1" #nowarn
 
 src_prepare() {
 	# Remove the git rev-parse (changelog?)
-	sed -i '/<Exec.*rev-parse/ d' ${S}/src/core/MonoDevelop.Core/MonoDevelop.Core.csproj || die
-
+	sed -i '/<Exec.*rev-parse/ d' "${S}/src/core/MonoDevelop.Core/MonoDevelop.Core.csproj" || die
 	# Set specific_version to prevent binding problem
 	# when gtk#-3 is installed alongside gtk#-2
-	find ${S} -name '*.csproj' -exec sed -i 's#<SpecificVersion>.*</SpecificVersion>#<SpecificVersion>True</SpecificVersion>#' {} + || die
+	find "${S}" -name '*.csproj' -exec sed -i 's#<SpecificVersion>.*</SpecificVersion>#<SpecificVersion>True</SpecificVersion>#' {} + || die
 }
 
 src_configure() {

@@ -14,7 +14,7 @@ EGIT_HAS_SUBMODULES=1
 LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS=""
-IUSE="doc tests"
+IUSE="doc test"
 
 RDEPEND=">=dev-lang/mono-3.2.8
 	>=dev-dotnet/gnome-sharp-2.24.2-r1
@@ -35,24 +35,23 @@ DEPEND="${RDEPEND}
 	virtual/pkgconfig
 	sys-devel/gettext
 	x11-misc/shared-mime-info"
-
 MAKEOPTS="${MAKEOPTS} -j1" #nowarn
 
 src_prepare() {
 	# Set specific_version to prevent binding problem
 	# when gtk#-3 is installed alongside gtk#-2
-	find ${S} -name '*.csproj' -exec sed -i 's#<SpecificVersion>.*</SpecificVersion>#<SpecificVersion>True</SpecificVersion>#' {} + || die
+	find "${S}" -name '*.csproj' -exec sed -i 's#<SpecificVersion>.*</SpecificVersion>#<SpecificVersion>True</SpecificVersion>#' {} + || die
 }
 
 src_configure() {
-	if use tests
+	if use test
 		then tests="--enable-tests"
 		else tests=""
 	fi
 	./configure \
 		--prefix=/usr \
 		--profile=stable \
-		$tests || die
+		"${tests}" || die
 }
 
 pkg_preinst() {
