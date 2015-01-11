@@ -1,6 +1,8 @@
 gentoo-dotnet official overlay
 ==============================
 
+[![Build Status](https://travis-ci.org/gentoo/dotnet.png?branch=master)](https://travis-ci.org/gentoo/dotnet)
+
 Overlay Installation
 --------------------
 
