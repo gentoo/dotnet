@@ -9,6 +9,7 @@ DESCRIPTION="Integrated Development Environment for .NET"
 HOMEPAGE="http://www.monodevelop.com/"
 
 EGIT_REPO_URI="git://github.com/mono/monodevelop.git"
+EGIT_HAS_SUBMODULES=1
 
 LICENSE="GPL-2"
 SLOT="0"
@@ -38,7 +39,6 @@ DEPEND="${RDEPEND}
 MAKEOPTS="${MAKEOPTS} -j1" #nowarn
 
 src_prepare() {
-	git submodule update --init --recursive
 	# Set specific_version to prevent binding problem
 	# when gtk#-3 is installed alongside gtk#-2
 	find ${S} -name '*.csproj' -exec sed -i 's#<SpecificVersion>.*</SpecificVersion>#<SpecificVersion>True</SpecificVersion>#' {} + || die
