@@ -1,4 +1,4 @@
-# Copyright 1999-2013 Gentoo Foundation
+# Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-util/mono-tools/mono-tools-9999.ebuild $
 
@@ -14,17 +14,14 @@ EGIT_REPO_URI="git://github.com/mono/${PN}.git"
 LICENSE="GPL-2 MIT"
 SLOT="0"
 KEYWORDS=""
-IUSE="+webkit gtkhtml"
+IUSE="+webkit"
 
-RDEPEND="dev-lang/mono
-	>=dev-dotnet/gtk-sharp-2.12.21
-	>=dev-dotnet/gnome-sharp-2.24.2-r1
-	gtkhtml? ( >=dev-dotnet/gtkhtml-sharp-2.24.0:2 )
-	webkit? ( >=dev-dotnet/webkit-sharp-0.2-r1 )"
+RDEPEND=">=dev-dotnet/gtk-sharp-2.99
+	webkit? ( dev-dotnet/webkit-sharp )"
 DEPEND="${RDEPEND}
 	sys-devel/gettext
 	virtual/pkgconfig"
-PATCHES=( 
+PATCHES=(
 	"${FILESDIR}/${PN}-2.8-html-renderer-fixes.patch"
 	"${FILESDIR}/${P}_make_build_use_2_0.patch"
 )
@@ -48,7 +45,6 @@ src_prepare() {
 src_configure() {
 	econf	--disable-dependency-tracking \
 		--disable-gecko \
-		$(use_enable gtkhtml) \
 		$(use_enable webkit) \
 		--disable-monowebbrowser || die
 }
