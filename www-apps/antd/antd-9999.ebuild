@@ -11,7 +11,7 @@ DESCRIPTION="Antd"
 HOMEPAGE="http://www.anthilla.com/en/projects/antd"
 SRC_URI=""
 
-LICENSE="BSD-3"
+LICENSE="BSD-2" #BSD-3 really...
 SLOT="0"
 KEYWORDS="~x86 ~amd64"
 IUSE="+heather"
