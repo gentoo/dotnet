@@ -12,7 +12,7 @@ SRC_URI="http://download.mono-project.com/sources/${PN}/${P}.660.tar.bz2
 	https://launchpadlibrarian.net/68057829/NUnit-2.5.10.11092.zip"
 
 EGIT_REPO_URI="https://github.com/mono/nuget-binary.git"
-EGIT_CHECKOUT_DIR=${WORKDIR}/NuGet 
+EGIT_CHECKOUT_DIR=${WORKDIR}/NuGet
 
 LICENSE="GPL-2"
 SLOT="0"
@@ -49,6 +49,7 @@ src_unpack() {
 	unpack ${A}
 
 	#clone NuGet binaries
+	git-r3_fetch
 	git-r3_checkout
 }
 
