@@ -60,6 +60,9 @@ src_prepare() {
 	# when gtk#-3 is installed alongside gtk#-2
 	find "${S}" -name '*.csproj' -exec sed -i 's#<SpecificVersion>.*</SpecificVersion>#<SpecificVersion>True</SpecificVersion>#' {} + || die
 
+	#fix ASP.Net
+	epatch "${FILESDIR}/5.7-downgrade_to_mvc3.patch"
+
 	#copy missing binaries
 	mkdir -p "${S}/packages/NUnit.2.6.3/lib" || die
 	mkdir -p "${S}/packages/NUnit.Runners.2.6.3/tools/lib" || die
