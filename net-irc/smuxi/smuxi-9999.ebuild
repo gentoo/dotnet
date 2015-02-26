@@ -42,7 +42,7 @@ src_prepare() {
 }
 
 src_configure() {
-        local myeconfargs=(
+	local myeconfargs=(
 		--enable-engine-irc
 		--without-indicate
 		--with-vendor-package-version="Gentoo"
