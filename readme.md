@@ -1,6 +1,8 @@
 gentoo-dotnet official overlay
 ==============================
 
+[![Join the chat at https://gitter.im/gentoo/dotnet](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/gentoo/dotnet?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
 [![Build Status](https://travis-ci.org/gentoo/dotnet.png?branch=master)](https://travis-ci.org/gentoo/dotnet)
 
 Overlay Installation
