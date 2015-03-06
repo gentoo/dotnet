@@ -3,6 +3,9 @@
 # $Header: $
 
 EAPI="5"
+
+USE_DOTNET="net45"
+
 inherit fdo-mime gnome2-utils dotnet versionator eutils
 
 DESCRIPTION="Integrated Development Environment for .NET"
