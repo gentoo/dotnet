@@ -60,7 +60,8 @@ src_prepare() {
 	cp -fR "${WORKDIR}"/NUnit-2.6.3/bin/framework/* "${S}"/packages/NUnit.2.6.3/lib
 	cp -fR "${WORKDIR}"/NUnit-2.6.3/bin/lib/* "${S}"/packages/NUnit.Runners.2.6.3/tools/lib/ || die
 	cp -fR "${WORKDIR}"/NUnit-2.5.10.11092/bin/net-2.0/framework/* "${S}"/external/cecil/Test/libs/nunit-2.5.10/ || die
-	ln -s /usr/lib/mono/NuGet/* "${S}"/external/nuget-binary/ || die
+	ln -s /usr/lib/mono/NuGet/${FRAMEWORK}/NuGet.Core.dll "${S}"/external/nuget-binary/ || die
+	ln -s /usr/lib/mono/NuGet/${FRAMEWORK}/NuGet.exe "${S}"/external/nuget-binary/ || die
 
 	# https://github.com/gentoo/dotnet/issues/30
 	epatch "${FILESDIR}/gentoo-dotnet-issue-30.patch"
