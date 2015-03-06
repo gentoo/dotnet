@@ -60,13 +60,12 @@ src_prepare() {
 	cp -fR "${WORKDIR}"/NUnit-2.6.3/bin/framework/* "${S}"/packages/NUnit.2.6.3/lib
 	cp -fR "${WORKDIR}"/NUnit-2.6.3/bin/lib/* "${S}"/packages/NUnit.Runners.2.6.3/tools/lib/ || die
 	cp -fR "${WORKDIR}"/NUnit-2.5.10.11092/bin/net-2.0/framework/* "${S}"/external/cecil/Test/libs/nunit-2.5.10/ || die
-	cp -fR /usr/lib/mono/NuGet/4.5/* "${S}"/external/nuget-binary/ || die
 
 	# https://github.com/gentoo/dotnet/issues/30
 	epatch "${FILESDIR}/gentoo-dotnet-issue-30.patch"
 
 	#fix ASP.Net
-#	epatch "${FILESDIR}/5.7-downgrade_to_mvc3.patch"
+	epatch "${FILESDIR}/5.7-downgrade_to_mvc3.patch"
 }
 
 src_configure() {
@@ -80,6 +79,8 @@ src_configure() {
 	# https://github.com/mrward/xdt/issues/4
 	# Main.sln file is created on the fly during econf
 	epatch -p2 "${FILESDIR}/mrward-xdt-issue-4.patch"
+        # fix of https://github.com/gentoo/dotnet/issues/38
+        sed -i -E -e 's#(EXE_PATH=")(.*)(/lib/monodevelop/bin/MonoDevelop.exe")#\1'${EPREFIX}'/usr\3#g' "${S}/monodevelop" || die
 }
 
 pkg_preinst() {

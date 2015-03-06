@@ -20,7 +20,8 @@ IUSE=""
 
 # Mask 3.2.0 because of mcs compiler bug : http://stackoverflow.com/a/17926731/238232
 # it fixed in 3.2.3
-DEPEND="|| ( >=dev-lang/mono-3.2.3 <dev-lang/mono-3.2.0 )"
+DEPEND="|| ( >=dev-lang/mono-3.2.3 <dev-lang/mono-3.2.0 )
+       <=dev-dotnet/xdt-for-monodevelop-2.8.2"
 RDEPEND="${DEPEND}"
 
 pkg_setup() {
@@ -30,6 +31,10 @@ pkg_setup() {
 
 src_prepare() {
 	sed -i -e 's@RunTests@ @g' "${S}/Build/Build.proj" || die
+	cp "${FILESDIR}/rsa-4096.snk" "${S}/src/Core/" || die
+	epatch "${FILESDIR}/add-keyfile-option-to-csproj.patch"
+	sed -i -E -e "s#(\[assembly: InternalsVisibleTo(.*)\])#/* \1 */#g" "src/Core/Properties/AssemblyInfo.cs" || die
+	epatch "${FILESDIR}/strongnames-for-ebuild-2.8.1.patch"
 }
 
 src_configure() {
@@ -42,10 +47,10 @@ src_compile() {
 }
 
 src_install() {
-	elog "Installing libraries"
-
+	elog "Installing NuGet.Core.dll into GAC"
+	egacinstall "src/Core/obj/Mono Release/NuGet.Core.dll"
+	elog "Installing NuGet console application"
 	insinto /usr/lib/mono/NuGet/"${FRAMEWORK}"/
 	doins src/CommandLine/obj/Mono\ Release/NuGet.exe
-	doins src/Core/obj/Mono\ Release/NuGet.Core.dll
 	make_wrapper nuget "mono /usr/lib/mono/NuGet/${FRAMEWORK}/NuGet.exe"
 }
