@@ -38,7 +38,7 @@ src_configure() {
 
 src_compile() {
 #	xbuild Build/Build.proj /p:Configuration=Release /p:TreatWarningsAsErrors=false /tv:4.0 /p:TargetFrameworkVersion="v${FRAMEWORK}" /p:Configuration="Mono Release" /t:GoMono || die
-	esource ./build.sh
+	source ./build.sh || die
 }
 
 src_install() {
