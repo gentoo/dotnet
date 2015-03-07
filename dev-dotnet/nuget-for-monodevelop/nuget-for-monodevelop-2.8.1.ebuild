@@ -21,8 +21,15 @@ IUSE=""
 # Mask 3.2.0 because of mcs compiler bug : http://stackoverflow.com/a/17926731/238232
 # it fixed in 3.2.3
 DEPEND="|| ( >=dev-lang/mono-3.2.3 <dev-lang/mono-3.2.0 )
-	<=dev-dotnet/xdt-for-monodevelop-2.8.2"
+	<=dev-dotnet/xdt-for-monodevelop-2.8.2
+	!dev-dotnet/nuget"
 RDEPEND="${DEPEND}"
+
+# note about blocking nuget:
+# there are at least two versions of it - on from mono, one from mrward
+# see https://bugzilla.xamarin.com/show_bug.cgi?id=27693
+# i think version from mrward is enough for now, 
+# that is why there is no slotted install or two different names/locations
 
 pkg_setup() {
 	dotnet_pkg_setup
