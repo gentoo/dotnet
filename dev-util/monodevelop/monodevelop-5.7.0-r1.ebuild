@@ -69,7 +69,8 @@ src_prepare() {
 }
 
 src_configure() {
-	econf \
+	# env vars are added as the fix for https://github.com/gentoo/dotnet/issues/29
+	MCS=/usr/bin/dmcs CSC=/usr/bin/dmcs GMCS=/usr/bin/dmcs econf \
 		--disable-update-mimedb \
 		--disable-update-desktopdb \
 		--enable-monoextensions \
