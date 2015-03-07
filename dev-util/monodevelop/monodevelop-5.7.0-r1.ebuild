@@ -66,6 +66,8 @@ src_prepare() {
 
 	#fix ASP.Net
 	epatch "${FILESDIR}/5.7-downgrade_to_mvc3.patch"
+	# fix for https://github.com/gentoo/dotnet/issues/42
+	epatch "${FILESDIR}/aspnet-template-references-fix.patch"
 }
 
 src_configure() {
