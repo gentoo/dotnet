@@ -1,13 +1,14 @@
 --- work/monodevelop-5.7/src/addins/MonoDevelop.PackageManagement/MonoDevelop.PackageManagement.addin.xml	2015-01-12 22:19:13.000000000 +0300
 +++ work.new/monodevelop-5.7/src/addins/MonoDevelop.PackageManagement/MonoDevelop.PackageManagement.addin.xml	2015-03-06 07:45:39.278552461 +0300
-@@ -2,7 +2,6 @@
+@@ -2,8 +2,6 @@
  
  	<Runtime>
  		<Import assembly="MonoDevelop.PackageManagement.dll" />
 -		<Import assembly="Microsoft.Web.XmlTransform.dll" />
- 		<Import assembly="NuGet.Core.dll" />
+-		<Import assembly="NuGet.Core.dll" />
  	</Runtime>
  
+ 	<Extension path = "/MonoDevelop/Ide/Commands">
 --- work/monodevelop-5.7/Main.sln	2015-01-12 22:19:13.000000000 +0300
 +++ work.new/monodevelop-5.7/Main.sln	2015-03-06 08:00:52.860939203 +0300
 @@ -555,21 +555,13 @@
