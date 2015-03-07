@@ -17,7 +17,7 @@ KEYWORDS="~amd64 ~x86"
 IUSE="+subversion +git doc"
 
 RDEPEND=">=dev-lang/mono-3.2.8
-        <=dev-dotnet/nuget-for-monodevelop-2.8.2
+	<=dev-dotnet/nuget-for-monodevelop-2.8.2
 	>=dev-dotnet/gnome-sharp-2.24.2-r1
 	>=dev-dotnet/gtk-sharp-2.12.21
 	>=dev-dotnet/mono-addins-1.0[gtk]
@@ -79,8 +79,8 @@ src_configure() {
 	# https://github.com/mrward/xdt/issues/4
 	# Main.sln file is created on the fly during econf
 	epatch -p2 "${FILESDIR}/mrward-xdt-issue-4.patch"
-        # fix of https://github.com/gentoo/dotnet/issues/38
-        sed -i -E -e 's#(EXE_PATH=")(.*)(/lib/monodevelop/bin/MonoDevelop.exe")#\1'${EPREFIX}'/usr\3#g' "${S}/monodevelop" || die
+	# fix of https://github.com/gentoo/dotnet/issues/38
+	sed -i -E -e 's#(EXE_PATH=")(.*)(/lib/monodevelop/bin/MonoDevelop.exe")#\1'${EPREFIX}'/usr\3#g' "${S}/monodevelop" || die
 }
 
 pkg_preinst() {
