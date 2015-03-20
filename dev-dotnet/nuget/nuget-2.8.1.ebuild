@@ -9,7 +9,7 @@ inherit dotnet eutils
 
 DESCRIPTION="Nuget - .NET Package Manager"
 HOMEPAGE="http://nuget.codeplex.com"
-SRC_URI="https://github.com/mrward/nuget/archive/Release-${PV}-MonoDevelop.tar.gz -> nuget-for-monodevelop-${PV}.tar.gz"
+SRC_URI="https://github.com/mrward/nuget/archive/Release-${PV}-MonoDevelop.tar.gz -> ${P}.tar.gz"
 S=${WORKDIR}/nuget-Release-${PV}-MonoDevelop
 
 LICENSE="Apache-2.0"
