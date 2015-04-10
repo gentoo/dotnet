@@ -20,7 +20,7 @@ IUSE=""
 
 # Mask 3.2.0 and later builds because of mcs compiler bug : http://stackoverflow.com/a/17926731/238232
 # it fixed in 3.2.3.
-DEPEND="|| ( >=dev-lang/mono-3.2.3 <dev-lang/mono-3.2.0 )"
+DEPEND=">=dev-lang/mono-3.2.3"
 RDEPEND="${DEPEND}"
 
 pkg_setup() {
