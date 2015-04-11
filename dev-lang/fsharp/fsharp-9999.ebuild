@@ -1,4 +1,4 @@
-# Copyright 1999-2013 Gentoo Foundation
+# Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
@@ -15,14 +15,18 @@ SRC_URI=""
 LICENSE="Apache-2.0"
 SLOT="0"
 KEYWORDS=""
-IUSE="+unicode"
+IUSE="-unicode +fsharp4"
 
 if use unicode; then
 	EGIT_REPO_URI="git://github.com/Heather/fsharp.git"
 	EGIT_MASTER="heather"
 else
 	EGIT_REPO_URI="git://github.com/fsharp/fsharp.git"
-	EGIT_MASTER="master"
+	if use fsharp4; then
+		EGIT_MASTER="fsharp4"
+	else
+		EGIT_MASTER="master"
+	fi
 fi
 
 MAKEOPTS="-j1" #nowarn
