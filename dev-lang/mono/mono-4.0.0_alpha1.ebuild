@@ -33,6 +33,7 @@ DEPEND="${COMMONDEPEND}
 "
 
 S="${WORKDIR}/${PN}-4.0.0"
+MAKEOPTS="${MAKEOPTS} -j1" #nowarn
 
 pkg_pretend() {
 	# If CONFIG_SYSVIPC is not set in your kernel .config, mono will hang while compiling.
