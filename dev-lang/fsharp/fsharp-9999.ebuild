@@ -15,7 +15,7 @@ SRC_URI=""
 LICENSE="Apache-2.0"
 SLOT="0"
 KEYWORDS=""
-IUSE="-unicode +fsharp4"
+IUSE="-unicode -fsharp4"
 
 if use unicode; then
 	EGIT_REPO_URI="git://github.com/Heather/fsharp.git"
