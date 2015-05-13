@@ -1,0 +1,4 @@
+# mono 4.0 and 4.0.1 have serious bug with calls to .NET 2.0 3.0 3.5 libs, it's fixed in master
+=dev-lang/mono-4.0
+=dev-lang/mono-4.0.1
+=dev-lang/mono-4.0.1.28
