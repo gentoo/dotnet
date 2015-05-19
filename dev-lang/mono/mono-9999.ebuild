@@ -97,19 +97,13 @@ src_configure() {
 src_make() {
 	# Doesn't require previous mono to be installed
 	emake get-monolite-latest
-	emake EXTERNAL_MCS=${PWD}/mcs/class/lib/monolite/gmcs.exe "$@" || die "emake failed"
+	emake EXTERNAL_MCS=${PWD}/mcs/class/lib/monolite/gmcs.exe "$@"
 }
 
 src_test() {
-	emake check || die "tests fails"
+	emake check
 }
 
 src_install() {
 	autotools-utils_src_install
-
-	# Remove files not respecting LDFLAGS and that we are not supposed to provide, see Fedora
-	# mono.spec and http://www.mail-archive.com/mono-devel-list@lists.ximian.com/msg24870.html
-	# for reference.
-	rm -f "${ED}"/usr/lib/mono/{2.0,4.5}/mscorlib.dll.so
-	rm -f "${ED}"/usr/lib/mono/{2.0,4.5}/mcs.exe.so
 }
