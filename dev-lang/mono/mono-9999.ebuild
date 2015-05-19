@@ -31,8 +31,6 @@ DEPEND="${COMMONDEPEND}
 	pax_kernel? ( sys-apps/elfix )
 "
 
-MAKEOPTS="${MAKEOPTS} -j1" #nowarn
-
 pkg_pretend() {
 	# If CONFIG_SYSVIPC is not set in your kernel .config, mono will hang while compiling.
 	# See http://bugs.gentoo.org/261869 for more info."
