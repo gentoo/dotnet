@@ -32,9 +32,8 @@ DEPEND="${COMMONDEPEND}
 	pax_kernel? ( sys-apps/elfix )
 "
 
-S="${WORKDIR}/${PN}-4.0.1"
-
 MAKEOPTS="${MAKEOPTS} -j1" #nowarn
+S="${WORKDIR}/${PN}-4.0.1"
 
 pkg_pretend() {
 	# If CONFIG_SYSVIPC is not set in your kernel .config, mono will hang while compiling.

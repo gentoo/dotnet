@@ -2,7 +2,7 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
-EAPI="5"
+EAPI=5
 inherit fdo-mime gnome2-utils dotnet versionator eutils
 
 DESCRIPTION="Integrated Development Environment for .NET"
@@ -16,8 +16,7 @@ SRC_URI="http://download.mono-project.com/sources/${PN}/${P}.tar.bz2
 	https://www.nuget.org/api/v2/package/Microsoft.AspNet.Razor/3.2.2 -> Microsoft.AspNet.Razor.3.2.2.zip
 	https://www.nuget.org/api/v2/package/Microsoft.AspNet.WebPages/3.2.2 -> Microsoft.AspNet.WebPages.3.2.2.zip
 	https://www.nuget.org/api/v2/package/Microsoft.Web.Infrastructure/1.0.0.0 -> Microsoft.Web.Infrastructure.1.0.0.0.zip"
- 		 
-
+ 
 LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS="~amd64 ~x86"
@@ -54,7 +53,7 @@ src_unpack() {
 	mkdir monodevelop-5.9/packages || die
 	cd monodevelop-5.9/packages || die
 	
-	for pkg in	NUnit.2.6.3 \
+	for pkg in NUnit.2.6.3 \
 				NUnit.Runners.2.6.3 \
 				System.Web.Mvc.Extensions.Mvc.4.1.0.9 \
 				Microsoft.AspNet.Mvc.5.2.2 \
@@ -78,7 +77,7 @@ src_prepare() {
 
 	#copy missing binaries
 	cp -fR "${WORKDIR}"/NUnit-2.5.10.11092/bin/net-2.0/framework/* "${S}"/external/cecil/Test/libs/nunit-2.5.10/ || die
-	
+
 	#fix ASP.Net
 	epatch "${FILESDIR}/5.7-downgrade_to_mvc3.patch"
 	# fix for https://github.com/gentoo/dotnet/issues/42
