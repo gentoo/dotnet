@@ -16,7 +16,7 @@ SRC_URI="http://download.mono-project.com/sources/${PN}/${P}.tar.bz2
 	https://www.nuget.org/api/v2/package/Microsoft.AspNet.Razor/3.2.2 -> Microsoft.AspNet.Razor.3.2.2.zip
 	https://www.nuget.org/api/v2/package/Microsoft.AspNet.WebPages/3.2.2 -> Microsoft.AspNet.WebPages.3.2.2.zip
 	https://www.nuget.org/api/v2/package/Microsoft.Web.Infrastructure/1.0.0.0 -> Microsoft.Web.Infrastructure.1.0.0.0.zip"
- 
+
 LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS="~amd64 ~x86"
@@ -52,7 +52,7 @@ src_unpack() {
 	unpack "${P}".tar.bz2  NUnit-2.5.10.11092.zip
 	mkdir monodevelop-5.9/packages || die
 	cd monodevelop-5.9/packages || die
-	
+
 	for pkg in NUnit.2.6.3 \
 				NUnit.Runners.2.6.3 \
 				System.Web.Mvc.Extensions.Mvc.4.1.0.9 \
