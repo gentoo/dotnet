@@ -39,10 +39,10 @@ src_compile() {
 src_install() {
 	elog "Installing assemblies"
 	insinto /usr/lib/pash/
-	doins "${S}/Source/PashConsole/bin/Release/Pash.exe"
-	doins "${S}/Source/PashConsole/bin/Release/*.dll"
+	doins Source/PashConsole/bin/Release/Pash.exe
+	doins Source/PashConsole/bin/Release/*.dll
 	if use debug; then
-		doins "${S}/Source/PashConsole/bin/Release/*.mdb"
+		doins Source/PashConsole/bin/Release/*.mdb
 	fi
 	make_wrapper pash "mono /usr/lib/pash/Pash.exe"
 }
