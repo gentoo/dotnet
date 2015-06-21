@@ -8,7 +8,7 @@ inherit dotnet
 
 DESCRIPTION="An Open Source reimplementation of Windows PowerShell"
 
-LICENSE="BSD || ( GPL )"   # LICENSE syntax is defined in https://wiki.gentoo.org/wiki/GLEP:23
+LICENSE="BSD || ( GPL-2+ )"   # LICENSE syntax is defined in https://wiki.gentoo.org/wiki/GLEP:23
 
 SLOT="0"
 
@@ -25,25 +25,24 @@ RDEPEND="${DEPEND}"
 
 S="${WORKDIR}/${PROJECTNAME}-${EGIT_COMMIT}"
 
-
 METAFILETOBUILD=${PROJECTNAME}.proj
 
 src_compile() {
-    # https://bugzilla.xamarin.com/show_bug.cgi?id=9340
-    if use debug; then
-        exbuild /p:DebugSymbols=True ${METAFILETOBUILD}
-    else
-        exbuild /p:DebugSymbols=False ${METAFILETOBUILD}
-    fi
+	# https://bugzilla.xamarin.com/show_bug.cgi?id=9340
+	if use debug; then
+		exbuild /p:DebugSymbols=True ${METAFILETOBUILD}
+	else
+		exbuild /p:DebugSymbols=False ${METAFILETOBUILD}
+	fi
 }
 
 src_install() {
-    elog "Installing assemblies"
-    insinto /usr/lib/pash/
-    doins ${S}/Source/PashConsole/bin/Release/Pash.exe
-    doins ${S}/Source/PashConsole/bin/Release/*.dll
-    if use debug; then
-        doins ${S}/Source/PashConsole/bin/Release/*.mdb
-    fi
-    make_wrapper pash "mono /usr/lib/pash/Pash.exe"
+	elog "Installing assemblies"
+	insinto /usr/lib/pash/
+	doins "${S}/Source/PashConsole/bin/Release/Pash.exe"
+	doins "${S}/Source/PashConsole/bin/Release/*.dll"
+	if use debug; then
+		doins "${S}/Source/PashConsole/bin/Release/*.mdb"
+	fi
+	make_wrapper pash "mono /usr/lib/pash/Pash.exe"
 }
