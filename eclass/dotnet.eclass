@@ -81,7 +81,8 @@ unset MONO_AOT_CACHE
 # @FUNCTION: exbuild
 # @DESCRIPTION: run xbuild with Release configuration and configurated FRAMEWORK
 exbuild() {
-	xbuild "${1}" /p:Configuration=Release /tv:4.0 /p:TargetFrameworkVersion=v"${FRAMEWORK}" || die
+	elog "xbuild ""$@"" /p:Configuration=Release /tv:4.0 /p:TargetFrameworkVersion=v""${FRAMEWORK}"" || die"
+	xbuild "$@" /p:Configuration=Release /tv:4.0 /p:TargetFrameworkVersion=v"${FRAMEWORK}" || die
 }
 
 # @FUNCTION: egacinstall
