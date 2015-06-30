@@ -22,7 +22,7 @@ IUSE=""
 # it fixed in 3.2.3
 DEPEND=">=dev-lang/mono-3.2.3
 	<=dev-dotnet/xdt-for-monodevelop-2.8.2
-	!dev-dotnet/nuget"
+	!dev-dotnet/nuget-codeplex"
 RDEPEND="${DEPEND}"
 
 # note about blocking nuget:
