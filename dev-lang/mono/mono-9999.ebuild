@@ -44,7 +44,9 @@ pkg_setup() {
 }
 
 src_prepare() {
-	epatch "${FILESDIR}/systemweb.patch"
+	# issue #69 (patch no longer actual)
+	#epatch "${FILESDIR}/systemweb.patch"
+
 	cat "${S}/mono/mini/Makefile.am.in" > "${S}/mono/mini/Makefile.am" || die
 
 	eautoreconf
