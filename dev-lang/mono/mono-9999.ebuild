@@ -44,7 +44,7 @@ pkg_setup() {
 }
 
 src_prepare() {
-	epatch "${FILESDIR}/systemweb.patch"
+	epatch "${FILESDIR}/systemweb2.patch"
 	cat "${S}/mono/mini/Makefile.am.in" > "${S}/mono/mini/Makefile.am" || die
 
 	eautoreconf
