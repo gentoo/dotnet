@@ -87,18 +87,18 @@ src_prepare() {
 	#fix ASP.Net
 	cd "${T}/${P}/main"
 	epatch "${FILESDIR}/5.7-downgrade_to_mvc3.patch"
-	
+
 	# fix for https://github.com/gentoo/dotnet/issues/42
 	epatch "${FILESDIR}/aspnet-template-references-fix.patch"
 	use gnome || epatch "${FILESDIR}/5.9.5-kill-gnome.patch"
 	use qtcurve && epatch "${FILESDIR}/kill-qtcurve-warning.patch"
-	
+
 	#prepare dist package
 	cd "${T}/${P}"
 	epatch "${FILESDIR}/5.9.5-skip_merged_tar.patch"
 	./configure --profile=default || die
 	make dist || die
-	
+
 	#move it
 	mv -f "${T}/${P}/tarballs/"monodevelop-*/* "${S}" || die
 
