@@ -78,15 +78,11 @@ src_prepare() {
 }
 
 src_configure() {
-	# --without-moonlight since www-plugins/moonlight is not the only one
-	# using mono: https://bugzilla.novell.com/show_bug.cgi?id=641005#c3
-	#
 	# --with-profile4 needs to be always enabled since it's used by default
 	# and, otherwise, problems like bug #340641 appear.
 	local myeconfargs=(
 		--enable-system-aot=yes
 		--disable-quiet-build
-		--without-moonlight
 		--with-libgdiplus=$(usex minimal no installed)
 		$(use_with xen xen_opt)
 		--without-ikvm-native
