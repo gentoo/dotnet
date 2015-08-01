@@ -88,15 +88,6 @@ src_configure() {
 	)
 
 	autotools-utils_src_configure
-
-	# FIX for uncompilable 3.4.0 sources
-	FF="${WORKDIR}/mono-3.4.0/mcs/tools/xbuild/targets/Microsoft.Portable.Common.targets"
-	rm -f $FF
-	touch $FF
-	echo '<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">' >> $FF
-	echo '    <Import Project="..\\Microsoft.Portable.Core.props" />' >> $FF
-	echo '    <Import Project="..\\Microsoft.Portable.Core.targets" />' >> $FF
-	echo '</Project>' >> $FF
 }
 
 src_compile() {
