@@ -4,8 +4,9 @@
 
 EAPI=5
 AUTOTOOLS_PRUNE_LIBTOOL_FILES="all"
+AUTOTOOLS_AUTORECONF=1
 
-inherit eutils linux-info mono-env flag-o-matic pax-utils autotools-utils
+inherit eutils linux-info mono-env flag-o-matic pax-utils autotools-utils versionator
 
 DESCRIPTION="Mono runtime and class libraries, a C# compiler/interpreter"
 HOMEPAGE="http://www.mono-project.com/Main_Page"
@@ -16,11 +17,11 @@ SLOT="0"
 
 KEYWORDS="~amd64 ~ppc ~ppc64 ~x86 ~amd64-linux"
 
-IUSE="nls minimal pax_kernel xen doc debug"
+IUSE="nls minimal pax_kernel xen doc"
 
 COMMONDEPEND="
 	!minimal? ( >=dev-dotnet/libgdiplus-2.10 )
-	ia64? (	sys-libs/libunwind )
+	ia64? ( sys-libs/libunwind )
 	nls? ( sys-devel/gettext )
 "
 RDEPEND="${COMMONDEPEND}
@@ -33,7 +34,8 @@ DEPEND="${COMMONDEPEND}
 "
 
 MAKEOPTS="${MAKEOPTS} -j1" #nowarn
-S="${WORKDIR}/${PN}-4.0.2"
+
+S="${WORKDIR}/${PN}-$(get_version_component_range 1-3)"
 
 pkg_pretend() {
 	# If CONFIG_SYSVIPC is not set in your kernel .config, mono will hang while compiling.
@@ -61,61 +63,38 @@ src_prepare() {
 	# mono build system can fail otherwise
 	strip-flags
 
-	# Remove this at your own peril. Mono will barf in unexpected ways.
-	append-flags -fno-strict-aliasing
-
-	#fix vb targets http://osdir.com/ml/general/2015-05/msg20808.html
+	# Fix VB targets
+	# http://osdir.com/ml/general/2015-05/msg20808.html
 	epatch "${FILESDIR}/add_missing_vb_portable_targets.patch"
 
+	# Fix build on big-endian machines
+	# https://bugzilla.xamarin.com/show_bug.cgi?id=31779
+	epatch "${FILESDIR}/${P}-fix-decimal-ms-on-big-endian.patch"
+
+	# Fix build when sgen disabled
+	# https://bugzilla.xamarin.com/show_bug.cgi?id=32015
+	epatch "${FILESDIR}/${P}-fix-mono-dis-makefile-am-when-without-sgen.patch"
+
 	autotools-utils_src_prepare
+
 	epatch "${FILESDIR}/systemweb3.patch"
 }
 
 src_configure() {
-	# NOTE: We need the static libs for now so mono-debugger works.
-	# See http://bugs.gentoo.org/show_bug.cgi?id=256264 for details
-	#
-	# --without-moonlight since www-plugins/moonlight is not the only one
-	# using mono: https://bugzilla.novell.com/show_bug.cgi?id=641005#c3
-	#
-	# --with-profile4 needs to be always enabled since it's used by default
-	# and, otherwise, problems like bug #340641 appear.
-	#
-	# sgen fails on ppc, bug #359515
 	local myeconfargs=(
-		--enable-system-aot=yes
-		--enable-static
-		--disable-quiet-build
-		--without-moonlight
-		--with-libgdiplus=$(usex minimal no installed)
+		--disable-silent-rules
 		$(use_with xen xen_opt)
 		--without-ikvm-native
-		--with-jit
 		--disable-dtrace
-		--with-profile4
-		--with-sgen=$(usex ppc no yes)
 		$(use_with doc mcs-docs)
-		$(use_enable debug)
 		$(use_enable nls)
 	)
 
 	autotools-utils_src_configure
-
-	# FIX for uncompilable 3.4.0 sources
-	FF="${WORKDIR}/mono-3.4.0/mcs/tools/xbuild/targets/Microsoft.Portable.Common.targets"
-	rm -f $FF
-	touch $FF
-	echo '<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">' >> $FF
-	echo '    <Import Project="..\\Microsoft.Portable.Core.props" />' >> $FF
-	echo '    <Import Project="..\\Microsoft.Portable.Core.targets" />' >> $FF
-	echo '</Project>' >> $FF
 }
 
 src_compile() {
-	nonfatal autotools-utils_src_compile || {
-		eqawarn "maintainer of this ebuild has no idea why it fails. If you happen to know how to fix it - please let me know"
-		autotools-utils_src_compile
-	 }
+	autotools-utils_src_compile
 }
 
 src_test() {
