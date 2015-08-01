@@ -82,7 +82,6 @@ src_configure() {
 		--disable-silent-rules
 		$(use_with xen xen_opt)
 		--without-ikvm-native
-		--with-jit
 		--disable-dtrace
 		$(use_with doc mcs-docs)
 		$(use_enable debug)
