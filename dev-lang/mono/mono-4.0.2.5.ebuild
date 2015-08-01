@@ -21,7 +21,7 @@ IUSE="nls minimal pax_kernel xen doc"
 
 COMMONDEPEND="
 	!minimal? ( >=dev-dotnet/libgdiplus-2.10 )
-	ia64? (	sys-libs/libunwind )
+	ia64? ( sys-libs/libunwind )
 	nls? ( sys-devel/gettext )
 "
 RDEPEND="${COMMONDEPEND}
@@ -34,6 +34,7 @@ DEPEND="${COMMONDEPEND}
 "
 
 MAKEOPTS="${MAKEOPTS} -j1" #nowarn
+
 S="${WORKDIR}/${PN}-$(get_version_component_range 1-3)"
 
 pkg_pretend() {
@@ -62,7 +63,8 @@ src_prepare() {
 	# mono build system can fail otherwise
 	strip-flags
 
-	#fix vb targets http://osdir.com/ml/general/2015-05/msg20808.html
+	# Fix VB targets
+	# http://osdir.com/ml/general/2015-05/msg20808.html
 	epatch "${FILESDIR}/add_missing_vb_portable_targets.patch"
 
 	# Fix build on big-endian machines
@@ -74,6 +76,7 @@ src_prepare() {
 	epatch "${FILESDIR}/${P}-fix-mono-dis-makefile-am-when-without-sgen.patch"
 
 	autotools-utils_src_prepare
+
 	epatch "${FILESDIR}/systemweb3.patch"
 }
 
