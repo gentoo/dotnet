@@ -62,9 +62,6 @@ src_prepare() {
 	# mono build system can fail otherwise
 	strip-flags
 
-	# Remove this at your own peril. Mono will barf in unexpected ways.
-	append-flags -fno-strict-aliasing
-
 	#fix vb targets http://osdir.com/ml/general/2015-05/msg20808.html
 	epatch "${FILESDIR}/add_missing_vb_portable_targets.patch"
 
