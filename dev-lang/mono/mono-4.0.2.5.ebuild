@@ -78,8 +78,6 @@ src_prepare() {
 }
 
 src_configure() {
-	# --with-profile4 needs to be always enabled since it's used by default
-	# and, otherwise, problems like bug #340641 appear.
 	local myeconfargs=(
 		--enable-system-aot=yes
 		--disable-quiet-build
@@ -88,7 +86,6 @@ src_configure() {
 		--without-ikvm-native
 		--with-jit
 		--disable-dtrace
-		--with-profile4
 		$(use_with doc mcs-docs)
 		$(use_enable debug)
 		$(use_enable nls)
