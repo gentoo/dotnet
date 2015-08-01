@@ -78,9 +78,6 @@ src_prepare() {
 }
 
 src_configure() {
-	# NOTE: We need the static libs for now so mono-debugger works.
-	# See http://bugs.gentoo.org/show_bug.cgi?id=256264 for details
-	#
 	# --without-moonlight since www-plugins/moonlight is not the only one
 	# using mono: https://bugzilla.novell.com/show_bug.cgi?id=641005#c3
 	#
@@ -88,7 +85,6 @@ src_configure() {
 	# and, otherwise, problems like bug #340641 appear.
 	local myeconfargs=(
 		--enable-system-aot=yes
-		--enable-static
 		--disable-quiet-build
 		--without-moonlight
 		--with-libgdiplus=$(usex minimal no installed)
