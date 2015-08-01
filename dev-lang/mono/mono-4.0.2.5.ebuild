@@ -17,7 +17,7 @@ SLOT="0"
 
 KEYWORDS="~amd64 ~ppc ~ppc64 ~x86 ~amd64-linux"
 
-IUSE="nls minimal pax_kernel xen doc debug"
+IUSE="nls minimal pax_kernel xen doc"
 
 COMMONDEPEND="
 	!minimal? ( >=dev-dotnet/libgdiplus-2.10 )
@@ -84,7 +84,6 @@ src_configure() {
 		--without-ikvm-native
 		--disable-dtrace
 		$(use_with doc mcs-docs)
-		$(use_enable debug)
 		$(use_enable nls)
 	)
 
