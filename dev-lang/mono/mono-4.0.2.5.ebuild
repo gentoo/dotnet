@@ -6,7 +6,7 @@ EAPI=5
 AUTOTOOLS_PRUNE_LIBTOOL_FILES="all"
 AUTOTOOLS_AUTORECONF=1
 
-inherit eutils linux-info mono-env flag-o-matic pax-utils autotools-utils
+inherit eutils linux-info mono-env flag-o-matic pax-utils autotools-utils versionator
 
 DESCRIPTION="Mono runtime and class libraries, a C# compiler/interpreter"
 HOMEPAGE="http://www.mono-project.com/Main_Page"
@@ -34,7 +34,7 @@ DEPEND="${COMMONDEPEND}
 "
 
 MAKEOPTS="${MAKEOPTS} -j1" #nowarn
-S="${WORKDIR}/${PN}-4.0.2"
+S="${WORKDIR}/${PN}-$(get_version_component_range 1-3)"
 
 pkg_pretend() {
 	# If CONFIG_SYSVIPC is not set in your kernel .config, mono will hang while compiling.
