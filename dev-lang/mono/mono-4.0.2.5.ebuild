@@ -79,7 +79,7 @@ src_prepare() {
 
 src_configure() {
 	local myeconfargs=(
-		--disable-quiet-build
+		--disable-silent-rules
 		--with-libgdiplus=$(usex minimal no installed)
 		$(use_with xen xen_opt)
 		--without-ikvm-native
