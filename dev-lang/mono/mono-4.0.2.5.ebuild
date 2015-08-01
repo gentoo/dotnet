@@ -67,6 +67,10 @@ src_prepare() {
 	#fix vb targets http://osdir.com/ml/general/2015-05/msg20808.html
 	epatch "${FILESDIR}/add_missing_vb_portable_targets.patch"
 
+	# Fix build on big-endian machines
+	# https://bugzilla.xamarin.com/show_bug.cgi?id=31779
+	epatch "${FILESDIR}/${P}-fix-decimal-ms-on-big-endian.patch"
+
 	autotools-utils_src_prepare
 	epatch "${FILESDIR}/systemweb3.patch"
 }
