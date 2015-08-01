@@ -79,7 +79,6 @@ src_prepare() {
 
 src_configure() {
 	local myeconfargs=(
-		--enable-system-aot=yes
 		--disable-quiet-build
 		--with-libgdiplus=$(usex minimal no installed)
 		$(use_with xen xen_opt)
