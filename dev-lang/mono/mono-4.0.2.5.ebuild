@@ -4,6 +4,7 @@
 
 EAPI=5
 AUTOTOOLS_PRUNE_LIBTOOL_FILES="all"
+AUTOTOOLS_AUTORECONF=1
 
 inherit eutils linux-info mono-env flag-o-matic pax-utils autotools-utils
 
@@ -70,6 +71,10 @@ src_prepare() {
 	# Fix build on big-endian machines
 	# https://bugzilla.xamarin.com/show_bug.cgi?id=31779
 	epatch "${FILESDIR}/${P}-fix-decimal-ms-on-big-endian.patch"
+
+	# Fix build --without-sgen
+	# https://bugzilla.xamarin.com/show_bug.cgi?id=32015
+	epatch "${FILESDIR}/${P}-fix-mono-dis-makefile-am-when-without-sgen.patch"
 
 	autotools-utils_src_prepare
 	epatch "${FILESDIR}/systemweb3.patch"
