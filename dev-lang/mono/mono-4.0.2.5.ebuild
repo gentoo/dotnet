@@ -72,7 +72,7 @@ src_prepare() {
 	# https://bugzilla.xamarin.com/show_bug.cgi?id=31779
 	epatch "${FILESDIR}/${P}-fix-decimal-ms-on-big-endian.patch"
 
-	# Fix build --without-sgen
+	# Fix build when sgen disabled
 	# https://bugzilla.xamarin.com/show_bug.cgi?id=32015
 	epatch "${FILESDIR}/${P}-fix-mono-dis-makefile-am-when-without-sgen.patch"
 
@@ -89,8 +89,6 @@ src_configure() {
 	#
 	# --with-profile4 needs to be always enabled since it's used by default
 	# and, otherwise, problems like bug #340641 appear.
-	#
-	# sgen fails on ppc, bug #359515
 	local myeconfargs=(
 		--enable-system-aot=yes
 		--enable-static
@@ -102,7 +100,6 @@ src_configure() {
 		--with-jit
 		--disable-dtrace
 		--with-profile4
-		--with-sgen=$(usex ppc no yes)
 		$(use_with doc mcs-docs)
 		$(use_enable debug)
 		$(use_enable nls)
