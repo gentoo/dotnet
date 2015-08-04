@@ -22,7 +22,7 @@ DEPEND="${RDEPEND}
 
 src_prepare()
 {
-	epatch "${FILES}/gmcs.patch"
+	epatch "${FILESDIR}/gmcs.patch"
 }
 
 src_configure() {
