@@ -4,7 +4,7 @@
 
 EAPI="5"
 
-inherit mono-env multilib
+inherit eutils autotools mono-env multilib
 
 DESCRIPTION="A generic framework for creating extensible applications"
 HOMEPAGE="http://www.mono-project.com/Mono.Addins"
@@ -23,6 +23,10 @@ DEPEND="${RDEPEND}
 src_prepare()
 {
 	epatch "${FILESDIR}/gmcs.patch"
+	# eautoreconf 
+	## fails with the message "./mautil/Makefile.am:40: error: 'pkglibdir' is not a legitimate directory for 'SCRIPTS'"
+	# "${S}/autogen.sh" || die
+	## file doesn't exist
 }
 
 src_configure() {
