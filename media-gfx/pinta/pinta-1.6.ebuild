@@ -1,10 +1,10 @@
-# Copyright 1999-2013 Gentoo Foundation
+# Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-gfx/pinta/pinta-1.5_pre20121118.ebuild,v 1.1 2013/03/21 17:03:38 hasufell Exp $
+# $Header: $
 
 EAPI=5
 
-inherit autotools fdo-mime gnome2-utils mono
+inherit autotools fdo-mime gnome2-utils mono-env
 
 DESCRIPTION="Simple Painting for Gtk"
 HOMEPAGE="http://pinta-project.com"
@@ -15,7 +15,7 @@ SLOT="0"
 KEYWORDS="~amd64 ~x86"
 
 COMMON_DEPEND=">=dev-lang/mono-4.0.2
-	=dev-dotnet/gtk-sharp-2.12.21
+	~dev-dotnet/gtk-sharp-2.12.21
 	>=dev-dotnet/mono-addins-1.0[gtk]
 	"
 
@@ -38,23 +38,19 @@ src_prepare() {
 			fi
 		done
 	fi
-#	./autogen.sh || die "Autogen script failed"
+
 	eautoreconf
-	
+
 	oldstring=Version=2.0.0.0
 	newstring=Version=4.0.0.0
 	einfo "updating '$oldstring'->'$newstring'"
-	find ${S} -iname "*.csproj" -print | xargs sed -i s@${oldstring}@${newstring}@g || die
-	
+	find "${S}" -iname "*.csproj" -print | xargs sed -i "s@${oldstring}@${newstring}@g" || die
+
 	oldstring='ToolsVersion="3.5"'
 	newstring='ToolsVersion="4.0"'
 	einfo "updating '$oldstring'->'$newstring'"
-	find ${S} -iname "*.proj" -print | xargs sed -i s@${oldstring}@${newstring}@g || die
+	find "${S}" -iname "*.proj" -print | xargs sed -i "s@${oldstring}@${newstring}@g" || die
 }
-
-#src_compile(){
-#	autotools_src_compile
-#}
 
 pkg_preinst() {
 	gnome2_icon_savelist
