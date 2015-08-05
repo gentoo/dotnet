@@ -76,7 +76,7 @@ src_prepare() {
 	epatch "${FILESDIR}/${PN}-4.0.2.5-fix-mono-dis-makefile-am-when-without-sgen.patch"
 
 	# Fix atomic_add_i4 support for 32-bit ppc
-	# https://github.com/mono/mono/commit/8f379f0c8f98493180b508b9e68b9aa76c0c5bdf
+	# https://github.com/mono/mono/compare/f967c79926900343f399c75624deedaba460e544^...8f379f0c8f98493180b508b9e68b9aa76c0c5bdf
 	epatch "${FILESDIR}/${PN}-4.0.2.5-fix-ppc-atomic-add-i4.patch"
 
 	autotools-utils_src_prepare
