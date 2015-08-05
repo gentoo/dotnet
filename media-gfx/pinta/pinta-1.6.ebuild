@@ -15,7 +15,7 @@ SLOT="0"
 KEYWORDS="~amd64 ~x86"
 
 COMMON_DEPEND=">=dev-lang/mono-4.0.2
-	~dev-dotnet/gtk-sharp-2.12.21
+	>=dev-dotnet/gtk-sharp-2.12.21:2
 	>=dev-dotnet/mono-addins-1.0-r1[gtk]
 	"
 
