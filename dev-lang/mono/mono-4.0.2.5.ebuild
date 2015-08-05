@@ -75,6 +75,10 @@ src_prepare() {
 	# https://bugzilla.xamarin.com/show_bug.cgi?id=32015
 	epatch "${FILESDIR}/${P}-fix-mono-dis-makefile-am-when-without-sgen.patch"
 
+	# Fix atomic_add_i4 support for 32-bit ppc
+	# https://github.com/mono/mono/commit/8f379f0c8f98493180b508b9e68b9aa76c0c5bdf
+	epatch "${FILESDIR}/${P}-fix-ppc-atomic-add-i4.patch"
+
 	autotools-utils_src_prepare
 
 	epatch "${FILESDIR}/systemweb3.patch"
