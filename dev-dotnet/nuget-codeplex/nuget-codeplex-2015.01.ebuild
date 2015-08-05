@@ -15,7 +15,7 @@ S=${WORKDIR}
 LICENSE="Apache-2.0"
 SLOT="0"
 
-KEYWORDS="x86 amd64"
+KEYWORDS="x86 amd64 ~ppc"
 IUSE=""
 
 # Mask 3.2.0 because of mcs compiler bug : http://stackoverflow.com/a/17926731/238232
