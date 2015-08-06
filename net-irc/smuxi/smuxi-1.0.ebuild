@@ -1,9 +1,9 @@
-# Copyright 1999-2013 Gentoo Foundation
+# Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
 EAPI="5"
-inherit autotools eutils mono-env
+inherit eutils mono-env
 
 DESCRIPTION="A flexible, irssi-like and user-friendly IRC client for the Gnome Desktop"
 HOMEPAGE="http://www.smuxi.org/main/"
@@ -15,12 +15,8 @@ KEYWORDS="~amd64 ~x86"
 IUSE="dbus debug gtk libnotify spell"
 LICENSE="|| ( GPL-2 GPL-3 )"
 
-#RDEPEND="
-#	>=dev-dotnet/smartirc4net-1.0
-#"
-
-RDEPEND="
-	>=dev-lang/mono-4.0.2.5
+RDEPEND=">=dev-lang/mono-4.0.2.5
+	>=dev-dotnet/smartirc4net-1.0
 	dev-libs/stfl
 	>=dev-dotnet/log4net-1.2.10
 	>=dev-dotnet/nini-1.1.0-r2
@@ -36,17 +32,7 @@ DEPEND="${RDEPEND}
 	virtual/pkgconfig
 "
 
-#src_prepare() {
-#	sed -i "s@notify-sharp@notify-sharp-3.0@g" configure || die
-#	default
-#}
-
 src_configure() {
-	#eautoreconf
-	## gives errors
-	#./autogen.sh || die
-	## doesn't present
-
 	# Our dev-dotnet/db4o is completely unmaintained
 	# We don't have ubuntu stuff
 	econf \
