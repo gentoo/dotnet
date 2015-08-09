@@ -16,7 +16,7 @@ KEYWORDS="amd64 ppc x86"
 IUSE=""
 
 RDEPEND=">=dev-lang/mono-4.0.2.5
-	>=dev-dotnet/dbus-sharp-0.7"
+	>=dev-dotnet/dbus-sharp-0.8.1"
 DEPEND="${RDEPEND}
 	virtual/pkgconfig"
 
