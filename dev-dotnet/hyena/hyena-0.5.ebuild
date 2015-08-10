@@ -1,8 +1,8 @@
-# Copyright 1999-2013 Gentoo Foundation
+# Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
-EAPI="5"
+EAPI=5
 
 inherit dotnet versionator
 
@@ -17,7 +17,7 @@ IUSE="debug"
 
 RDEPEND=">=dev-lang/mono-2.4.2
 	dev-dotnet/glib-sharp
-	dev-dotnet/gtk-sharp"
+	dev-dotnet/gtk-sharp:2"
 DEPEND="${RDEPEND}
 	sys-apps/sed
 	virtual/pkgconfig"
