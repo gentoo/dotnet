@@ -1,8 +1,8 @@
-# Copyright 1999-2013 Gentoo Foundation
+# Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
-EAPI="5"
+EAPI=5
 inherit eutils mono-env git-2 autotools-utils
 
 DESCRIPTION="A flexible, irssi-like and user-friendly IRC client for the Gnome Desktop"
@@ -20,7 +20,7 @@ RDEPEND="
 	>=dev-dotnet/log4net-1.2.10
 	dbus? (	dev-dotnet/ndesk-dbus
 		dev-dotnet/ndesk-dbus-glib )
-	gtk? ( >=dev-dotnet/gtk-sharp-2.12 )
+	gtk? ( >=dev-dotnet/gtk-sharp-2.12:2 )
 	libnotify? ( dev-dotnet/notify-sharp )
 	spell? ( >=app-text/gtkspell-2.0.9:2 )
 "
