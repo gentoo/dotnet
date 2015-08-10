@@ -2,7 +2,7 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header:  $
 
-EAPI="5"
+EAPI=5
 
 inherit eutils dotnet multilib autotools-utils
 
@@ -16,7 +16,7 @@ KEYWORDS="~amd64 ~ppc ~x86"
 IUSE="+gtk"
 
 RDEPEND=">=dev-lang/mono-3
-	gtk? ( >=dev-dotnet/gtk-sharp-2.12.21 )"
+	gtk? ( >=dev-dotnet/gtk-sharp-2.12.21:2 )"
 DEPEND="${RDEPEND}
 	virtual/pkgconfig"
 MAKEOPTS="${MAKEOPTS} -j1" #nowarn

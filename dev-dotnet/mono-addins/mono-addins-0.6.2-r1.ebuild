@@ -2,9 +2,9 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
-EAPI="5"
+EAPI=5
 
-inherit eutils autotools mono-env multilib
+inherit eutils mono-env multilib
 
 DESCRIPTION="A generic framework for creating extensible applications"
 HOMEPAGE="http://www.mono-project.com/Mono.Addins"
@@ -16,7 +16,7 @@ KEYWORDS="~amd64 ~ppc ~x86"
 IUSE="+gtk"
 
 RDEPEND=">=dev-lang/mono-2
-	gtk? (  >=dev-dotnet/gtk-sharp-2.0 )"
+	gtk? (  >=dev-dotnet/gtk-sharp-2.0:2 )"
 DEPEND="${RDEPEND}
 	virtual/pkgconfig"
 
@@ -34,10 +34,10 @@ src_configure() {
 }
 
 src_compile() {
-	emake -j1
+	emake -j1 #nowarn
 }
 
 src_install() {
-	emake -j1 DESTDIR="${D}" install
+	emake -j1 DESTDIR="${D}" install #nowarn
 	mono_multilib_comply
 }
