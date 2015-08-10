@@ -1,8 +1,8 @@
-# Copyright 1999-2013 Gentoo Foundation
+# Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
-EAPI="5"
+EAPI=5
 
 inherit dotnet autotools versionator
 
@@ -13,16 +13,14 @@ LICENSE="GPL-2"
 KEYWORDS="~amd64 ~x86 ~ppc"
 MVER="$(get_version_component_range 1-2)"
 SRC_URI="mirror://gnome/sources/gnome-desktop-sharp/${MVER}/${P}.tar.bz2"
-IUSE="debug panel gtkhtml print gtksourceview rsvg vte wnck"
+IUSE="debug print gtksourceview rsvg vte wnck"
 
 RESTRICT="test"
 
 RDEPEND="
-	>=dev-dotnet/gtk-sharp-2.12.21
+	>=dev-dotnet/gtk-sharp-2.12.21:2
 	>=dev-dotnet/gnome-sharp-2.24.2-r1
 	gnome-base/gnome-desktop:2
-	panel? ( =gnome-base/gnome-panel-2* )
-	gtkhtml? ( =gnome-extra/gtkhtml-3* )
 	print? ( gnome-base/libgnomeprint:2.2 gnome-base/libgnomeprintui:2.2 )
 	gtksourceview? ( x11-libs/gtksourceview:2.0 )
 	rsvg? ( gnome-base/librsvg:2 )
