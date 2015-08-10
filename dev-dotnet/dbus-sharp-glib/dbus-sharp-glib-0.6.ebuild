@@ -12,7 +12,7 @@ SRC_URI="https://github.com/mono/dbus-sharp-glib/archive/v${PV}.tar.gz"
 
 LICENSE="MIT"
 SLOT="0"
-KEYWORDS="amd64 ppc x86"
+KEYWORDS="~amd64 ~ppc ~x86"
 IUSE=""
 
 RDEPEND=">=dev-lang/mono-4.0.2.5
