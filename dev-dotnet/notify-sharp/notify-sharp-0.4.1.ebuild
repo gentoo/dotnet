@@ -14,7 +14,7 @@ SRC_URI="https://github.com/meebey/notify-sharp/archive/${PV}.tar.gz"
 
 LICENSE="MIT"
 SLOT="0"
-KEYWORDS="amd64 ppc x86"
+KEYWORDS="~amd64 ~ppc ~x86"
 IUSE="doc"
 
 RDEPEND=">=dev-lang/mono-4.0.2.5
