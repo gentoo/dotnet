@@ -1,8 +1,8 @@
-# Copyright 1999-2013 Gentoo Foundation
+# Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
-EAPI="5"
+EAPI=5
 
 inherit base dotnet autotools flag-o-matic eutils git-2
 
@@ -20,7 +20,7 @@ RESTRICT="test"
 
 # Binutils is needed for libbfd
 RDEPEND="!!=dev-lang/mono-2.2
-	sys-devel/binutils
+	sys-devel/binutils:*
 	dev-libs/glib:2"
 DEPEND="${RDEPEND}
 	!dev-lang/mercury"

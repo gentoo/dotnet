@@ -34,7 +34,6 @@ DEPEND="${COMMONDEPEND}
 "
 
 MAKEOPTS="${MAKEOPTS} -j1" #nowarn
-
 S="${WORKDIR}/${PN}-$(get_version_component_range 1-3)"
 
 pkg_pretend() {
