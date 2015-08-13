@@ -3,7 +3,7 @@
 # $Id$
 
 # @ECLASS: dotnet.eclass
-# @MAINTAINER: heather@cynede.net
+# @MAINTAINER: cynede@gentoo.org
 # @BLURB: common settings and functions for mono and dotnet related packages
 # @DESCRIPTION:
 # The dotnet eclass contains common environment settings that are useful for
