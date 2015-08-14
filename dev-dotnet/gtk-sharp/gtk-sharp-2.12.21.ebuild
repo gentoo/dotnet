@@ -2,7 +2,7 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Id$
 
-EAPI="5"
+EAPI=5
 
 inherit dotnet autotools base
 
@@ -43,7 +43,10 @@ src_prepare() {
 }
 
 src_configure() {
-	econf $(use_enable debug)
+	econf	--disable-static \
+		--disable-dependency-tracking \
+		--disable-maintainer-mode \
+		$(use_enable debug)
 }
 
 src_compile() {
