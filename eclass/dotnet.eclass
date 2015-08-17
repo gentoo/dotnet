@@ -81,8 +81,51 @@ unset MONO_AOT_CACHE
 # @FUNCTION: exbuild
 # @DESCRIPTION: run xbuild with Release configuration and configurated FRAMEWORK
 exbuild() {
-	elog "xbuild ""$@"" /p:Configuration=Release /tv:4.0 /p:TargetFrameworkVersion=v""${FRAMEWORK}" ""$@""" || die"
-	xbuild /p:Configuration=Release /tv:4.0 /p:TargetFrameworkVersion=v"${FRAMEWORK}" "$@" || die
+	if use debug; then
+		CARGS=/p:Configuration=Debug
+	else
+		CARGS=/p:Configuration=Release
+	fi
+
+	if use developer; then
+		SARGS=/p:DebugSymbols=True
+	else
+		SARGS=/p:DebugSymbols=False
+	fi
+
+	elog "xbuild /tv:4.0 ""/p:TargetFrameworkVersion=v${FRAMEWORK}"" ""${CARGS}"" ""${SARGS}"" ""$@""" || die
+	xbuild /tv:4.0 "/p:TargetFrameworkVersion=v${FRAMEWORK}" "${CARGS}" "${SARGS}" "$@" || die
+}
+
+# @FUNCTION: enuspec
+# @DESCRIPTION: run nuget pack
+enuspec() {
+	if use nupkg; then
+		if use debug; then
+			PROPS=Configuration=Debug
+		else
+			PROPS=Configuration=Release
+		fi
+		nuget pack -Properties "${PROPS}" -BasePath "${S}" -OutputDirectory "${WORKDIR}" -NonInteractive -Verbosity detailed "$@" || die
+	fi
+}
+
+# @FUNCTION: enupkg
+# @DESCRIPTION: installs .nupkg into local repository
+enupkg() {
+	if use nupkg; then
+		if [ -d "/var/calculate/remote/distfiles" ]; then
+			# Control will enter here if the directory exist.
+			# this is necessary to handle calculate linux profiles feature (for corporate users)
+			elog "Installing .nupkg into /var/calculate/remote/packages/NuGet"
+			insinto /var/calculate/remote/packages/NuGet
+		else
+			# this is for all normal gentoo-based distributions
+			elog "Installing .nupkg into /usr/local/nuget/nupkg"
+			insinto /usr/local/nuget/nupkg
+		fi
+		doins "$@"
+	fi
 }
 
 # @FUNCTION: egacinstall
