@@ -30,6 +30,8 @@ SLN_FILE=nunit.linux.sln
 METAFILETOBUILD="${S}/${SLN_FILE}"
 
 src_prepare() {
+	chmod -R +rw "${S}" || die
+	epatch "${FILESDIR}/removing-tests.patch"
 	enuget_restore "${METAFILETOBUILD}"
 }
 
