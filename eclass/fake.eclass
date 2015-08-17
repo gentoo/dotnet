@@ -3,7 +3,7 @@
 # $Id$
 
 # @ECLASS: fake.eclass
-# @MAINTAINER: Heather@Cynede.net
+# @MAINTAINER: cynede@gentoo.org
 # @BLURB: Common functionality for fake apps
 # @DESCRIPTION: Common functionality needed by fake build system.
 
