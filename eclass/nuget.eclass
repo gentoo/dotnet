@@ -3,7 +3,7 @@
 # $Id$
 
 # @ECLASS: nuget.eclass
-# @MAINTAINER: Heather@Cynede.net
+# @MAINTAINER: cynede@gentoo.org
 # @BLURB: Common functionality for nuget apps
 # @DESCRIPTION: Common functionality needed by fake build system.
 
