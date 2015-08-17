@@ -29,11 +29,7 @@ SLN_FILE=NAnt.sln
 METAFILETOBUILD="${S}/${SLN_FILE}"
 
 # This build is not parallel build friendly
-MAKEOPTS="${MAKEOPTS} -j1"
-
-#src_prepare() {
-#	 nuget restore "${METAFILETOBUILD}" || die
-#}
+#MAKEOPTS="${MAKEOPTS} -j1"
 
 src_compile() {
 	exbuild "${METAFILETOBUILD}"
@@ -52,7 +48,7 @@ src_install() {
 	doins build/${DIR}/*
 
 	make_wrapper nant "mono /usr/share/nant/NAnt.exe"
-	
+
 	enupkg "${WORKDIR}/NAnt.0.93.5019.nupkg"
 
 	dodoc README.txt
