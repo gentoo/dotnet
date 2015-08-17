@@ -1,0 +1,21 @@
+diff --git a/Main/SLNTools.exe/CommandLine/CommandLineParser.cs b/Main/SLNTools.exe/CommandLine/CommandLineParser.cs
+index 5b79a8e..b97b6c0 100644
+--- a/Main/SLNTools.exe/CommandLine/CommandLineParser.cs
++++ b/Main/SLNTools.exe/CommandLine/CommandLineParser.cs
+@@ -544,6 +544,8 @@ namespace CWDev.SLNTools.CommandLine
+         /// <returns>Returns the number of columns in the current console window</returns>
+         public static int GetConsoleWindowWidth()
+         {
++            return Console.WindowWidth;
++/*
+             int screenWidth;
+             CONSOLE_SCREEN_BUFFER_INFO csbi = new CONSOLE_SCREEN_BUFFER_INFO();
+ 
+@@ -551,6 +553,7 @@ namespace CWDev.SLNTools.CommandLine
+             rc = GetConsoleScreenBufferInfo(GetStdHandle(STD_OUTPUT_HANDLE), ref csbi);
+             screenWidth = csbi.dwSize.x;
+             return screenWidth;
++*/
+         }
+ 
+         /// <summary>
