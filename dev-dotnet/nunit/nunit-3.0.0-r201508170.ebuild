@@ -5,31 +5,33 @@
 EAPI=5
 inherit mono-env nuget dotnet
 
-NAME="nant"
-HOMEPAGE="https://github.com/nant/${NAME}"
+NAME="nunit"
+HOMEPAGE="https://github.com/nunit/${NAME}"
 
-EGIT_COMMIT="45ec8aa9ad3247f340731f4e8b953c498ad3019e"
+EGIT_COMMIT="f23c6a0c27c37472e12dfc6703998fbab7ed6505"
 SRC_URI="${HOMEPAGE}/archive/${EGIT_COMMIT}.zip -> ${PF}.zip"
 S="${WORKDIR}/${NAME}-${EGIT_COMMIT}"
 
 SLOT="0"
 
-DESCRIPTION=".NET build tool"
-LICENSE="GPL-2"
+DESCRIPTION="NUnit test suite for mono applications"
+LICENSE="MIT" # https://github.com/nunit/nunit/blob/master/LICENSE.txt
 KEYWORDS="~amd64 ~ppc ~x86"
 IUSE="developer nupkg debug"
 
-RDEPEND=">=dev-lang/mono-4.0.2.5"
+RDEPEND=">=dev-lang/mono-4.0.2.5
+	dev-dotnet/nant[nupkg]
+"
 DEPEND="${RDEPEND}
-	virtual/pkgconfig
 "
 
 S="${WORKDIR}/${NAME}-${EGIT_COMMIT}"
-SLN_FILE=NAnt.sln
+SLN_FILE=nunit.linux.sln
 METAFILETOBUILD="${S}/${SLN_FILE}"
 
-# This build is not parallel build friendly
-#MAKEOPTS="${MAKEOPTS} -j1"
+src_prepare() {
+	enuget_restore "${METAFILETOBUILD}"
+}
 
 src_compile() {
 	exbuild "${METAFILETOBUILD}"
@@ -44,12 +46,10 @@ src_install() {
 		DIR="Release"
 	fi
 
-	insinto "/usr/share/nant/"
+	insinto "/usr/share/nunit/"
 	doins build/${DIR}/*
 
-	make_wrapper nant "mono /usr/share/nant/NAnt.exe"
+	make_wrapper nunit "mono /usr/share/nunit/NUnit.exe"
 
-	enupkg "${WORKDIR}/NAnt.0.93.5019.nupkg"
-
-	dodoc README.txt
+	enupkg "${WORKDIR}/NUnit.3.0.0.nupkg"
 }
