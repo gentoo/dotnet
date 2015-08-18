@@ -3,7 +3,7 @@
 # $Id$
 
 EAPI=5
-inherit mono-env dotnet
+inherit mono-env nuget dotnet
 
 NAME="nant"
 HOMEPAGE="https://github.com/nant/${NAME}"
