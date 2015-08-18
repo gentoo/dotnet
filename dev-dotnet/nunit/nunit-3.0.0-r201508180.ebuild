@@ -8,7 +8,7 @@ inherit mono-env nuget dotnet
 NAME="nunit"
 HOMEPAGE="https://github.com/nunit/${NAME}"
 
-EGIT_COMMIT="f23c6a0c27c37472e12dfc6703998fbab7ed6505"
+EGIT_COMMIT="1a9cf07e4010f81ba3242cd19f40c73884a19ff4"
 SRC_URI="${HOMEPAGE}/archive/${EGIT_COMMIT}.zip -> ${PF}.zip"
 S="${WORKDIR}/${NAME}-${EGIT_COMMIT}"
 
@@ -25,6 +25,8 @@ RDEPEND=">=dev-lang/mono-4.0.2.5
 DEPEND="${RDEPEND}
 "
 
+FRAMEWORK=4.5
+
 S="${WORKDIR}/${NAME}-${EGIT_COMMIT}"
 SLN_FILE=nunit.linux.sln
 METAFILETOBUILD="${S}/${SLN_FILE}"
@@ -32,6 +34,7 @@ METAFILETOBUILD="${S}/${SLN_FILE}"
 src_prepare() {
 	chmod -R +rw "${S}" || die
 	epatch "${FILESDIR}/removing-tests.patch"
+	epatch "${FILESDIR}/removing-2.0-compatibiility.patch"
 	enuget_restore "${METAFILETOBUILD}"
 }
 
@@ -49,7 +52,7 @@ src_install() {
 	fi
 
 	insinto "/usr/share/nunit/"
-	doins build/${DIR}/*
+	doins bin/${DIR}/*
 
 	make_wrapper nunit "mono /usr/share/nunit/NUnit.exe"
 
