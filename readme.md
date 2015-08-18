@@ -20,7 +20,4 @@ Overlay Installation
  - Fork & Contribute & Pull Request
  - Open requests on https://bugs.gentoo.org with solutions from this overlay
 
-4.0.12 Monodevelop, FAKE:
-![logo](http://i.imgur.com/IePWA4j.jpg)
-4.0.0 Monodevelop, F# Chess:
 ![logo](http://i.imgur.com/4OmyG5d.jpg)
