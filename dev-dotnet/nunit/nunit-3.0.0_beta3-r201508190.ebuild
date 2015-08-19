@@ -8,16 +8,19 @@ inherit mono-env nuget dotnet
 NAME="nunit"
 HOMEPAGE="https://github.com/nunit/${NAME}"
 
-EGIT_COMMIT="1a9cf07e4010f81ba3242cd19f40c73884a19ff4"
+EGIT_COMMIT="f8fe36f7aa806016a0d26e370774c7f5bb79d647"
 SRC_URI="${HOMEPAGE}/archive/${EGIT_COMMIT}.zip -> ${PF}.zip"
 S="${WORKDIR}/${NAME}-${EGIT_COMMIT}"
 
-SLOT="0"
+SLOT="3"
 
 DESCRIPTION="NUnit test suite for mono applications"
 LICENSE="MIT" # https://github.com/nunit/nunit/blob/master/LICENSE.txt
 KEYWORDS="~amd64 ~ppc ~x86"
-IUSE="developer nupkg debug"
+#USE_DOTNET="net20 net40 net45"
+USE_DOTNET="net45"
+IUSE="developer nupkg debug doc net45"
+USE="${USE} net45" # force FRAMEWORK=4.5
 
 RDEPEND=">=dev-lang/mono-4.0.2.5
 	dev-dotnet/nant[nupkg]
@@ -25,11 +28,9 @@ RDEPEND=">=dev-lang/mono-4.0.2.5
 DEPEND="${RDEPEND}
 "
 
-FRAMEWORK=4.5
-
 S="${WORKDIR}/${NAME}-${EGIT_COMMIT}"
-SLN_FILE=nunit.linux.sln
-METAFILETOBUILD="${S}/${SLN_FILE}"
+FILE_TO_BUILD=NUnit.proj
+METAFILETOBUILD="${S}/${FILE_TO_BUILD}"
 
 src_prepare() {
 	chmod -R +rw "${S}" || die
@@ -40,7 +41,8 @@ src_prepare() {
 
 src_compile() {
 	exbuild "${METAFILETOBUILD}"
-	enuspec "${FILESDIR}/${SLN_FILE}.nuspec"
+	enuspec "${FILESDIR}/${PN}.nuspec"
+	# PN = Package name, for example vim.
 }
 
 src_install() {
@@ -51,10 +53,25 @@ src_install() {
 		DIR="Release"
 	fi
 
-	insinto "/usr/share/nunit/"
-	doins bin/${DIR}/*
+	SLOTTEDDIR="/usr/share/nunit-${SLOT}/"
+	insinto "${SLOTTEDDIR}"
+	doins bin/${DIR}/*.{config,dll,exe}
+	# install: cannot stat 'bin/Release/*.mdb': No such file or directory
+	if use developer; then
+		doins bin/${DIR}/*.{mdb}
+	fi
 
-	make_wrapper nunit "mono /usr/share/nunit/NUnit.exe"
+#	into /usr
+#	dobin ${FILESDIR}/nunit-console
+	make_wrapper nunit "mono ${SLOTTEDDIR}/nunit-console.exe"
+
+	if use doc; then
+#		dodoc ${WORKDIR}/doc/*.txt
+#		dohtml ${WORKDIR}/doc/*.html
+#		insinto /usr/share/${P}/samples
+#		doins -r ${WORKDIR}/samples/*
+		dodoc LICENSE.txt NOTICES.txt CHANGES.txt
+	fi
 
 	enupkg "${WORKDIR}/NUnit.3.0.0.nupkg"
 }
