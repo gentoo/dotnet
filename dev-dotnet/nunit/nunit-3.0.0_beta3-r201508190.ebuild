@@ -34,7 +34,8 @@ METAFILETOBUILD="${S}/${FILE_TO_BUILD}"
 
 src_prepare() {
 	chmod -R +rw "${S}" || die
-	epatch "${FILESDIR}/removing-tests.patch"
+	#epatch "${FILESDIR}/removing-tests.patch"
+	epatch "${FILESDIR}/removing-tests-from-nproj.patch"
 	epatch "${FILESDIR}/removing-2.0-compatibiility.patch"
 	enuget_restore "${METAFILETOBUILD}"
 }
@@ -58,7 +59,7 @@ src_install() {
 	doins bin/${DIR}/*.{config,dll,exe}
 	# install: cannot stat 'bin/Release/*.mdb': No such file or directory
 	if use developer; then
-		doins bin/${DIR}/*.{mdb}
+		doins bin/${DIR}/*.mdb
 	fi
 
 #	into /usr

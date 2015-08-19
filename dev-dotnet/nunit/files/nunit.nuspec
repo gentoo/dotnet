@@ -21,10 +21,12 @@
     <file src="LICENSE.txt" />
     <file src="NOTICES.txt" />
     <file src="CHANGES.txt" />
+<!--
     <file src="bin/$Configuration$/net-2.0/nunit.framework.dll" target="lib/net20" />
     <file src="bin/$Configuration$/net-2.0/nunit.framework.xml" target="lib/net20" />
     <file src="bin/$Configuration$/net-4.0/nunit.framework.dll" target="lib/net40" />
     <file src="bin/$Configuration$/net-4.0/nunit.framework.xml" target="lib/net40" />
+-->
     <file src="bin/$Configuration$/net-4.5/nunit.framework.dll" target="lib/net45" />
     <file src="bin/$Configuration$/net-4.5/nunit.framework.xml" target="lib/net45" />
   </files>
