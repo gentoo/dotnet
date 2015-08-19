@@ -7,3 +7,7 @@ net40 - .NET 4.0 Framework
 net45 - .NET 4.5 Framework
 fake - F# Make build system
 nuget - Grab binary from nuget
+gac - register library assemblies in the gac (where ebuild allows that)
+developer - create .mdb files
+debug - build Debug configuration instead of Release default
+
