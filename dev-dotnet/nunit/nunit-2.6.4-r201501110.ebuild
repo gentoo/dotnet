@@ -19,7 +19,7 @@ LICENSE="BSD" # actually not, it is NUnit license - http://nunit.org/nuget/licen
 KEYWORDS="~amd64 ~ppc ~x86"
 #USE_DOTNET="net20 net40 net45"
 USE_DOTNET="net45"
-IUSE="developer nupkg debug doc net45"
+IUSE="net45 developer debug gac nupkg doc"
 
 #USE="${USE} net45 " dev-dotnet/nunit/nunit-2.6.4-r201501110.ebuild: Ebuild contains assignment to read-only variable on line: 23
 FRAMEWORK=4.5 # force it in another way
@@ -47,7 +47,6 @@ src_compile() {
 }
 
 src_install() {
-	DIR=""
 	if use debug; then
 		DIR="Debug"
 	else
@@ -65,6 +64,16 @@ src_install() {
 #	into /usr
 #	dobin ${FILESDIR}/nunit-console
 	make_wrapper nunit264 "mono ${SLOTTEDDIR}/nunit-console.exe"
+
+	if use gac; then
+		if use debug; then
+			DIR="Debug"
+		else
+			DIR="Release"
+		fi
+
+		egacinstall "${S}/bin/${DIR}/lib/nunit-console-runner.dll"
+	fi
 
 	if use doc; then
 #		dodoc ${WORKDIR}/doc/*.txt

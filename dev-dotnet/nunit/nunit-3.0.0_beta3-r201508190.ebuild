@@ -19,9 +19,9 @@ LICENSE="MIT" # https://github.com/nunit/nunit/blob/master/LICENSE.txt
 KEYWORDS="~amd64 ~ppc ~x86"
 #USE_DOTNET="net20 net40 net45"
 USE_DOTNET="net45"
-IUSE="developer nupkg debug doc net45"
+IUSE="net45 developer debug nupkg doc"
 
-USE="${USE} net45" # dev-dotnet/nunit/nunit-3.0.0_beta3-r201508190.ebuild: Ebuild contains assignment to read-only variable on line: 23
+#USE="${USE} net45" # dev-dotnet/nunit/nunit-3.0.0_beta3-r201508190.ebuild: Ebuild contains assignment to read-only variable on line: 23
 FRAMEWORK=4.5 # force it another way
 
 RDEPEND=">=dev-lang/mono-4.0.2.5
