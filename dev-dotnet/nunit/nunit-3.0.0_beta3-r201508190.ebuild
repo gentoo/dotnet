@@ -71,7 +71,7 @@ src_install() {
 #		dohtml ${WORKDIR}/doc/*.html
 #		insinto /usr/share/${P}/samples
 #		doins -r ${WORKDIR}/samples/*
-		dodoc LICENSE.txt NOTICES.txt CHANGES.txt
+		doins LICENSE.txt NOTICES.txt CHANGES.txt
 	fi
 
 	enupkg "${WORKDIR}/NUnit.3.0.0.nupkg"
