@@ -20,7 +20,9 @@ KEYWORDS="~amd64 ~ppc ~x86"
 #USE_DOTNET="net20 net40 net45"
 USE_DOTNET="net45"
 IUSE="developer nupkg debug doc net45"
-USE="${USE} net45" # force FRAMEWORK=4.5
+
+#USE="${USE} net45 " dev-dotnet/nunit/nunit-2.6.4-r201501110.ebuild: Ebuild contains assignment to read-only variable on line: 23
+FRAMEWORK=4.5 # force it in another way
 
 RDEPEND=">=dev-lang/mono-4.0.2.5
 	dev-dotnet/nant[nupkg]
