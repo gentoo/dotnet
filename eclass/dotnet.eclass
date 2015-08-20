@@ -38,13 +38,16 @@ done
 # @FUNCTION: dotnet_pkg_setup
 # @DESCRIPTION:  This function set FRAMEWORK
 dotnet_pkg_setup() {
+	EBUILD_FRAMEWORK=""
 	for x in ${USE_DOTNET} ; do
+#		elog "Cycle, start, x=""${x}"""
 		case ${x} in
-			net45) if use net45; then F="4.5"; fi;;
-			net40) if use net40; then F="4.0"; fi;;
-			net35) if use net35; then F="3.5"; fi;;
-			net20) if use net20; then F="2.0"; fi;;
+			net45) EBF="4.5"; if use net45; then F="${EBF}";fi;;
+			net40) EBF="4.0"; if use net40; then F="${EBF}";fi;;
+			net35) EBF="3.5"; if use net35; then F="${EBF}";fi;;
+			net20) EBF="2.0"; if use net20; then F="${EBF}";fi;;
 		esac
+#		elog "Cycle, after switch, F=""${F}"", EBF=""${EBF}"""
 		if [[ -z ${FRAMEWORK} ]]; then
 			if [[ ${F} ]]; then
 				FRAMEWORK="${F}";
@@ -52,9 +55,23 @@ dotnet_pkg_setup() {
 		else
 			version_is_at_least "${F}" "${FRAMEWORK}" || FRAMEWORK="${F}"
 		fi
+		if [[ -z ${EBUILD_FRAMEWORK} ]]; then
+			if [[ ${EBF} ]]; then
+				EBUILD_FRAMEWORK="${EBF}";
+			fi
+		else
+			version_is_at_least "${EBF}" "${EBUILD_FRAMEWORK}" || EBUILD_FRAMEWORK="${EBF}"
+		fi
+#		elog "Cycle, the end, FRAMEWORK=""${FRAMEWORK}"", EBUILD_FRAMEWORK=""${EBUILD_FRAMEWORK}"" "
 	done
 	if [[ -z ${FRAMEWORK} ]]; then
-		FRAMEWORK="4.0"
+		if [[ -z ${EBUILD_FRAMEWORK} ]]; then
+			FRAMEWORK="4.0"
+			elog "Ebuild doesn't contain USE_DOTNET="
+		else
+			FRAMEWORK="${EBUILD_FRAMEWORK}"
+			elog "User did not set any netNN use-flags in make.conf or profile, .ebuild demands USE_DOTNET=""${USE_DOTNET}"""
+		fi
 	fi
 	einfo " -- USING .NET ${FRAMEWORK} FRAMEWORK -- "
 }
