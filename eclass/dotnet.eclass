@@ -24,6 +24,7 @@ inherit eutils versionator mono-env
 # Use flags added to IUSE
 
 DEPEND+=" dev-lang/mono"
+IUSE+=" debug developer"
 
 # SET default use flags according on DOTNET_TARGETS
 for x in ${USE_DOTNET}; do
