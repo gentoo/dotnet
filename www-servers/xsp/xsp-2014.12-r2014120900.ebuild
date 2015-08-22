@@ -21,8 +21,12 @@ SLOT="0"
 KEYWORDS="~amd64 ~ppc ~x86"
 IUSE="doc test developer debug"
 
-RDEPEND="dev-db/sqlite:3"
-DEPEND="${RDEPEND}"
+COMMON_DEPEND="dev-db/sqlite:3
+	!dev-dotnet/xsp
+	"
+
+RDEPEND="${COMMON_DEPEND}"
+DEPEND="${COMMON_DEPEND}"
 
 src_prepare() {
 	epatch "${FILESDIR}/aclocal-fix.patch"
@@ -49,15 +53,8 @@ src_configure() {
 	./configure || die
 }
 
-METAFILETOBUILD=xsp.sln
-
 src_compile() {
 	exbuild xsp.sln
-	if use developer; then
-		exbuild /p:DebugSymbols=True ${METAFILETOBUILD}
-	else
-		exbuild /p:DebugSymbols=False ${METAFILETOBUILD}
-	fi
 }
 
 pkg_preinst() {
