@@ -53,8 +53,6 @@ src_configure() {
 	./configure || die
 }
 
-METAFILETOBUILD=xsp.sln
-
 src_compile() {
 	exbuild xsp.sln
 }
