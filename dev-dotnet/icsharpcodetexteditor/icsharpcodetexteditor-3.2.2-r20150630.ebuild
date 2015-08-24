@@ -1,6 +1,6 @@
 # Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: $
+# $Id$
 
 EAPI="5"
 
@@ -47,8 +47,15 @@ src_compile() {
 }
 
 src_install() {
+	DIR=""
+	if use debug; then
+		DIR="Debug"
+	else
+		DIR="Release"
+	fi
+
 	if use gac; then
-		egacinstall Project/bin/Release/ICSharpCode.TextEditor.dll
+		egacinstall Project/bin/${DIR}/ICSharpCode.TextEditor.dll
 	fi
 
 	enupkg "${WORKDIR}/ICSharpCode.TextEditor.3.2.2.nupkg"

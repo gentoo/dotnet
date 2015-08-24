@@ -21,6 +21,6 @@
   </metadata>
   <files>
     <!-- * is for .dll and .mdb -->
-    <file src="Project/bin/Release/ICSharpCode.TextEditor.*" target="lib/net40/" />
+    <file src="Project/bin/$Configuration$/ICSharpCode.TextEditor.*" target="lib/net45/" />
   </files>
 </package>
