@@ -6,7 +6,11 @@ net35 - .NET 3.5 Framework
 net40 - .NET 4.0 Framework
 net45 - .NET 4.5 Framework
 fake - F# Make build system
+
 nuget - Grab binary from nuget
+# is nuget use necessary now, when we have source-compiled version of nuget from ebuild?
+
+nupkg - build binary package for local repository
 gac - register library assemblies in the gac (where ebuild allows that)
 developer - create .mdb files
 debug - build Debug configuration instead of Release default
