@@ -72,7 +72,6 @@ src_compile() {
 	enuspec "Build/${NUSPEC_FILENAME}"
 }
 
-
 src_install() {
 	DIR=""
 	if use debug; then
