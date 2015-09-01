@@ -83,7 +83,6 @@ src_install() {
 	FINAL_DLL=Src/Newtonsoft.Json/bin/${DIR}/Net45/Newtonsoft.Json.dll
 
 	if use gac; then
-		estrongname "${FINAL_DLL}"
 		egacinstall "${FINAL_DLL}"
 	fi
 
