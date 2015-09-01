@@ -26,6 +26,9 @@ inherit eutils versionator mono-env
 DEPEND+=" dev-lang/mono"
 IUSE+=" debug developer"
 
+# SRC_URI+=" https://github.com/mono/mono/raw/master/mcs/class/mono.snk"
+# I was unable to setup it this ^^ way
+
 # SET default use flags according on DOTNET_TARGETS
 for x in ${USE_DOTNET}; do
 	case ${x} in
@@ -41,14 +44,12 @@ done
 dotnet_pkg_setup() {
 	EBUILD_FRAMEWORK=""
 	for x in ${USE_DOTNET} ; do
-#		elog "Cycle, start, x=""${x}"""
 		case ${x} in
 			net45) EBF="4.5"; if use net45; then F="${EBF}";fi;;
 			net40) EBF="4.0"; if use net40; then F="${EBF}";fi;;
 			net35) EBF="3.5"; if use net35; then F="${EBF}";fi;;
 			net20) EBF="2.0"; if use net20; then F="${EBF}";fi;;
 		esac
-#		elog "Cycle, after switch, F=""${F}"", EBF=""${EBF}"""
 		if [[ -z ${FRAMEWORK} ]]; then
 			if [[ ${F} ]]; then
 				FRAMEWORK="${F}";
@@ -63,7 +64,6 @@ dotnet_pkg_setup() {
 		else
 			version_is_at_least "${EBF}" "${EBUILD_FRAMEWORK}" || EBUILD_FRAMEWORK="${EBF}"
 		fi
-#		elog "Cycle, the end, FRAMEWORK=""${FRAMEWORK}"", EBUILD_FRAMEWORK=""${EBUILD_FRAMEWORK}"" "
 	done
 	if [[ -z ${FRAMEWORK} ]]; then
 		if [[ -z ${EBUILD_FRAMEWORK} ]]; then
@@ -111,8 +111,23 @@ exbuild() {
 		SARGS=/p:DebugSymbols=False
 	fi
 
-	elog "xbuild /tv:4.0 ""/p:TargetFrameworkVersion=v${FRAMEWORK}"" ""${CARGS}"" ""${SARGS}"" ""$@""" || die
-	xbuild /tv:4.0 "/p:TargetFrameworkVersion=v${FRAMEWORK}" "${CARGS}" "${SARGS}" "$@" || die
+	# http://stackoverflow.com/questions/7903321/only-sign-assemblies-with-strong-name-during-release-build
+	if use gac; then
+		if [[ -z ${SNK_FILENAME} ]]; then
+			# elog ${BASH_SOURCE}
+			SNK_FILENAME=/var/lib/layman/dotnet/eclass/mono.snk
+			# sn - Digitally sign/verify/compare strongnames on CLR assemblies. 
+			# man sn = http://linux.die.net/man/1/sn
+		fi
+		KARGS1=/p:SignAssembly=true 
+		KARGS2=/p:AssemblyOriginatorKeyFile=${SNK_FILENAME}
+	else
+		KARGS1=
+		KARGS2=
+	fi
+
+	elog "xbuild /tv:4.0 ""/p:TargetFrameworkVersion=v${FRAMEWORK}"" ""${CARGS}"" ""${SARGS}"" ""${KARGS1}"" ""${KARGS2}"" ""$@""" || die
+	xbuild /tv:4.0 "/p:TargetFrameworkVersion=v${FRAMEWORK}" "${CARGS}" "${SARGS}" "${KARGS1}" "${KARGS2}" "$@" || die
 }
 
 # @FUNCTION: egacinstall
