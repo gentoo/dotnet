@@ -96,6 +96,13 @@ export XDG_CONFIG_HOME="${T}"
 
 unset MONO_AOT_CACHE
 
+# @FUNCTION: exbuild_raw
+# @DESCRIPTION: run xbuild with given parameters
+exbuild_raw() {
+	elog """$@"""
+	xbuild "$@" || die
+}
+
 # @FUNCTION: exbuild
 # @DESCRIPTION: run xbuild with Release configuration and configurated FRAMEWORK
 exbuild() {
@@ -111,6 +118,17 @@ exbuild() {
 		SARGS=/p:DebugSymbols=False
 	fi
 
+	if [[ -z ${TOOLS_VERSION} ]]; then
+		TOOLS_VERSION=4.0
+	fi
+
+	PARAMETERS="/v:detailed /tv:${TOOLS_VERSION} ""/p:TargetFrameworkVersion=v${FRAMEWORK}"" ""${CARGS}"" ""${SARGS}"" ""$@"""
+	exbuild_raw ${PARAMETERS}
+}
+
+# @FUNCTION: exbuild_strong
+# @DESCRIPTION: run xbuild with default key signing
+exbuild_strong() {
 	# http://stackoverflow.com/questions/7903321/only-sign-assemblies-with-strong-name-during-release-build
 	if use gac; then
 		if [[ -z ${SNK_FILENAME} ]]; then
@@ -125,9 +143,8 @@ exbuild() {
 		KARGS1=
 		KARGS2=
 	fi
-
-	elog "xbuild /tv:4.0 ""/p:TargetFrameworkVersion=v${FRAMEWORK}"" ""${CARGS}"" ""${SARGS}"" ""${KARGS1}"" ""${KARGS2}"" ""$@""" || die
-	xbuild /tv:4.0 "/p:TargetFrameworkVersion=v${FRAMEWORK}" "${CARGS}" "${SARGS}" "${KARGS1}" "${KARGS2}" "$@" || die
+	PARAMETERS=" ""${KARGS1}"" ""${KARGS2}"" ""$@"""
+	exbuild "${PARAMETERS}"
 }
 
 # @FUNCTION: egacinstall
