@@ -8,7 +8,7 @@ inherit mono-env nuget dotnet
 NAME="mono-packaging-tools"
 HOMEPAGE="https://github.com/ArsenShnurkov/${NAME}"
 
-EGIT_COMMIT="a5dc391d0aa5024de6d172faac0f5fe010442450"
+EGIT_COMMIT="ee72ffc532722db0c77778f9429cef5727ae81cc"
 SRC_URI="${HOMEPAGE}/archive/${EGIT_COMMIT}.zip -> ${PF}.zip"
 S="${WORKDIR}/${NAME}-${EGIT_COMMIT}"
 

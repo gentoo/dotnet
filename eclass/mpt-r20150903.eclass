@@ -8,28 +8,30 @@
 # @DESCRIPTION:
 # This eclass include function wrappers
 
-inherit eutils versionator mono-env dotnet
+#inherit eutils versionator mono-env dotnet
+
+TOOLS_PATH=/usr/bin
 
 DEPEND+=" dev-util/mono-packaging-tools"
 
 # @FUNCTION: empt-gitmodules
 # @DESCRIPTION:  wraps mpt-gitmodules
 empt-gitmodules() {
-	mpt-gitmodules $@ || die
+	"${TOOLS_PATH}/mpt-gitmodules" $@ || die
 }
 
 # @FUNCTION: empt-sln
 # @DESCRIPTION:  wraps mpt-sln
 empt-sln() {
-	empt-sln $@ || die
+	"${TOOLS_PATH}/empt-sln" $@ || die
 }
 # @FUNCTION: empt-csproj
 # @DESCRIPTION:  wraps mpt-csproj
 empt-csproj() {
-	empt-csproj $@ || die
+	"${TOOLS_PATH}/empt-csproj" $@ || die
 }
 # @FUNCTION: eempt-machine
 # @DESCRIPTION:  wraps empt-machine
 empt-machine() {
-	empt-machine $@ || die
+	"${TOOLS_PATH}/empt-machine" $@ || die
 }
