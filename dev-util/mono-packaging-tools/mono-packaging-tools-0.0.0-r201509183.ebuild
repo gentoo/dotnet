@@ -8,7 +8,7 @@ inherit mono-env nuget dotnet
 NAME="mono-packaging-tools"
 HOMEPAGE="https://github.com/ArsenShnurkov/${NAME}"
 
-EGIT_COMMIT="ee72ffc532722db0c77778f9429cef5727ae81cc"
+EGIT_COMMIT="50492004fdda1dfd4f4504b4c1780f6250b3f529"
 SRC_URI="${HOMEPAGE}/archive/${EGIT_COMMIT}.zip -> ${PF}.zip"
 S="${WORKDIR}/${NAME}-${EGIT_COMMIT}"
 
@@ -19,9 +19,13 @@ LICENSE="GPL-3"
 KEYWORDS="~amd64 ~ppc ~x86"
 IUSE="developer nupkg debug"
 
-COMMON_DEPENDENCIES=">=dev-lang/mono-4.2"
-RDEPEND="${COMMON_DEPENDENCIES}"
-DEPEND="${COMMON_DEPENDENCIES}"
+COMMON_DEPENDENCIES=">=dev-lang/mono-4.2
+	>=dev-dotnet/eto-parse-1.4.0[nupkg]
+	"
+DEPEND="${COMMON_DEPENDENCIES}
+	"
+RDEPEND="${COMMON_DEPENDENCIES}
+	"
 
 S="${WORKDIR}/${NAME}-${EGIT_COMMIT}"
 # PN = Package name, for example vim.
@@ -44,8 +48,13 @@ src_compile() {
 }
 
 install_tool() {
+	MONO=/usr/bin/mono
 	doins $1/bin/${DIR}/*
-	make_wrapper $1 "mono /usr/share/${PN}/$1.exe"
+	if use developer; then
+		make_wrapper $1 "${MONO} --debug /usr/share/${PN}/$1.exe"
+	else
+		make_wrapper $1 "${MONO} /usr/share/${PN}/$1.exe"
+	fi;
 }
 
 src_install() {
