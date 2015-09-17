@@ -1,0 +1,13 @@
+diff -r -u orig/Eto.Parse/Eto.Parse.nuspec patched/Eto.Parse/Eto.Parse.nuspec
+--- orig/Eto.Parse/Eto.Parse.nuspec	2015-09-17 23:55:59.000000000 +0300
++++ patched/Eto.Parse/Eto.Parse.nuspec	2015-09-18 00:02:02.436429389 +0300
+@@ -49,4 +49,7 @@
+     <copyright>Copyright 2013 by Curtis Wensley</copyright>
+     <tags>parser generator regex irony grammar fluent yacc lex ebnf bnf gold</tags>
+   </metadata>
+-</package>
+\ No newline at end of file
++  <files>
++    <file src="Eto.Parse/bin/$Configuration$/net40/Eto.Parse.*" target="lib/net45" />
++  </files>
++</package>
