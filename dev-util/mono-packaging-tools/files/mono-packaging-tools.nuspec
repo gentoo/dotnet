@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<package >
+  <metadata>
+    <id>mono-packaging-tools</id>
+    <version>@VERSION@</version>
+    <authors>dotnet@gentoo.org</authors>
+    <owners>dotnet</owners>
+    <licenseUrl>https://github.com/ArsenShnurkov/mono-packaging-tools/blob/master/LICENSE</licenseUrl> <!-- GPL-3 -->
+    <projectUrl>https://arsenshnurkov.github.io/mono-packaging-tools/</projectUrl>
+    <iconUrl>https://arsenshnurkov.github.io/mono-packaging-tools/resources/icon32x32.png</iconUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Various utils for packaging mono projects</description>
+    <releaseNotes>https://arsenshnurkov.github.io/mono-packaging-tools/release-notes/notes-@VERSION@.htm</releaseNotes>
+    <tags>mono portage packaging</tags>
+    <dependencies>
+    </dependencies>
+  </metadata>
+ <files>
+    <!-- * will cover .dll .mdb .config and .xml-->
+    <file src="mpt-gitmodules/bin/$Configuration$/*" target="lib/net45/" />
+    <file src="mpt-sln/bin/$Configuration$/*" target="lib/net45/" />
+    <file src="mpt-csproj/bin/$Configuration$/*" target="lib/net45/" />
+    <file src="mpt-machine/bin/$Configuration$/*" target="lib/net45/" />
+  </files>
+</package>
