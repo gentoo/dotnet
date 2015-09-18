@@ -8,7 +8,7 @@ inherit mono-env nuget dotnet
 NAME="mono-packaging-tools"
 HOMEPAGE="https://github.com/ArsenShnurkov/${NAME}"
 
-EGIT_COMMIT="50492004fdda1dfd4f4504b4c1780f6250b3f529"
+EGIT_COMMIT="b1261238bf03e84a30bf965d17c809a8a14d1cc1"
 SRC_URI="${HOMEPAGE}/archive/${EGIT_COMMIT}.zip -> ${PF}.zip"
 S="${WORKDIR}/${NAME}-${EGIT_COMMIT}"
 
@@ -70,6 +70,7 @@ src_install() {
 	install_tool mpt-sln
 	install_tool mpt-csproj
 	install_tool mpt-machine
+	install_tool mpt-nuget
 
 	enupkg "${WORKDIR}/${PN}.${PV}.nupkg"
 
