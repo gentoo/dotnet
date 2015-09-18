@@ -25,13 +25,21 @@ empt-gitmodules() {
 empt-sln() {
 	"${TOOLS_PATH}/empt-sln" $@ || die
 }
+
 # @FUNCTION: empt-csproj
 # @DESCRIPTION:  wraps mpt-csproj
 empt-csproj() {
 	"${TOOLS_PATH}/empt-csproj" $@ || die
 }
-# @FUNCTION: eempt-machine
+
+# @FUNCTION: empt-machine
 # @DESCRIPTION:  wraps empt-machine
 empt-machine() {
 	"${TOOLS_PATH}/empt-machine" $@ || die
+}
+
+# @FUNCTION: empt-nuget
+# @DESCRIPTION:  wraps empt-nuget
+empt-nuget() {
+	"${TOOLS_PATH}/empt-nuget" $@ || die
 }
