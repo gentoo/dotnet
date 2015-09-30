@@ -32,6 +32,7 @@ RDEPEND="${DEPEND}"
 # that is why there is no slotted install or two different names/locations
 
 pkg_setup() {
+	addwrite "/usr/share/.mono/keypairs"
 	dotnet_pkg_setup
 	mozroots --import --sync --machine
 }
