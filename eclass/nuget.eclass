@@ -66,7 +66,9 @@ else
 fi
 
 # @FUNCTION: nuget_src_unpack
-# @DESCRIPTION: Runs nuget.
+# @DESCRIPTION: my idea of nuget was following:
+# Here is usage example where nuget is alternative way: https://github.com/gentoo/dotnet/blob/master/dev-dotnet/fake
+# Src_compile does nothing and src_install just installs sources from nuget_src_unpack
 nuget_src_unpack() {
 	default
 	nuget install "${NPN}" -Version "${NPV}" -OutputDirectory "${P}"
