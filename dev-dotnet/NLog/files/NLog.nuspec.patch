@@ -1,0 +1,14 @@
+diff --git a/src/NuGet/NLog/NLog.nuspec b/src/NuGet/NLog/NLog.nuspec
+index 273ed21..305451b 100644
+--- a/src/NuGet/NLog/NLog.nuspec
++++ b/src/NuGet/NLog/NLog.nuspec
+@@ -17,4 +17,8 @@ For your main project also need to install "NLog Configuration" package.</descri
+     <licenseUrl>http://raw.github.com/NLog/NLog/master/LICENSE.txt</licenseUrl>
+     <tags>logging, log, tracing, logfiles, NLog</tags>
+   </metadata>
++  <files>
++    <file src="build/bin/$configuration$/Mono 4.x/NLog.dll" target="lib\net45\" />
++    <file src="build/bin/$configuration$/Mono 4.x/NLog.Extended.dll" target="lib\net45\" />
++  </files>
+ </package>
+\ No newline at end of file

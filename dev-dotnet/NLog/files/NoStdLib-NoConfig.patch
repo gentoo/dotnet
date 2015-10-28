@@ -1,0 +1,81 @@
+diff --git a/src/NLog.Extended/NLog.Extended.mono4.csproj b/src/NLog.Extended/NLog.Extended.mono4.csproj
+index 80eac6b..4c8bf1b 100644
+--- a/src/NLog.Extended/NLog.Extended.mono4.csproj
++++ b/src/NLog.Extended/NLog.Extended.mono4.csproj
+@@ -8,8 +8,6 @@
+     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+     <ErrorReport>prompt</ErrorReport>
+     <FileAlignment>512</FileAlignment>
+-    <NoStdLib>true</NoStdLib>
+-    <NoConfig>true</NoConfig>
+     <OutputType>Library</OutputType>
+     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+     <ProjectGuid>{F801A1F9-1024-4446-BF9E-A923137340B8}</ProjectGuid>
+diff --git a/src/NLog/NLog.mono4.csproj b/src/NLog/NLog.mono4.csproj
+index cf48986..d0a07f1 100644
+--- a/src/NLog/NLog.mono4.csproj
++++ b/src/NLog/NLog.mono4.csproj
+@@ -8,8 +8,6 @@
+     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+     <ErrorReport>prompt</ErrorReport>
+     <FileAlignment>512</FileAlignment>
+-    <NoConfig>true</NoConfig>
+-    <NoStdLib>true</NoStdLib>
+     <NoWarn>0419</NoWarn>
+     <OutputType>Library</OutputType>
+     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+diff --git a/src/NLogAutoLoadExtension/NLogAutoLoadExtension.mono4.csproj b/src/NLogAutoLoadExtension/NLogAutoLoadExtension.mono4.csproj
+index 02fa2ca..7798377 100644
+--- a/src/NLogAutoLoadExtension/NLogAutoLoadExtension.mono4.csproj
++++ b/src/NLogAutoLoadExtension/NLogAutoLoadExtension.mono4.csproj
+@@ -21,7 +21,6 @@
+     <ErrorReport>prompt</ErrorReport>
+     <WarningLevel>4</WarningLevel>
+     <OutputPath>bin\Debug</OutputPath>
+-    <NoStdLib>true</NoStdLib>
+     <IntermediateOutputPath>$(BaseOutputDirectory)obj\$(Configuration)\Mono 4.x</IntermediateOutputPath>
+   </PropertyGroup>
+   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+@@ -32,12 +31,9 @@
+     <ErrorReport>prompt</ErrorReport>
+     <WarningLevel>4</WarningLevel>
+     <OutputPath>bin\Release</OutputPath>
+-    <NoStdLib>true</NoStdLib>
+     <IntermediateOutputPath>$(BaseOutputDirectory)obj\$(Configuration)\Mono 4.x</IntermediateOutputPath>
+   </PropertyGroup>
+   <PropertyGroup>
+-    <NoStdLib>true</NoStdLib>
+-    <NoConfig>true</NoConfig>
+     <OutputPath>$(BaseOutputDirectory)bin\$(Configuration)\Mono 4.x</OutputPath>
+     <IntermediateOutputPath>$(BaseOutputDirectory)obj\$(Configuration)\Mono 4.x</IntermediateOutputPath>
+   </PropertyGroup>
+diff --git a/tests/SampleExtensions/SampleExtensions.mono4.csproj b/tests/SampleExtensions/SampleExtensions.mono4.csproj
+index e3d0803..d84de8d 100644
+--- a/tests/SampleExtensions/SampleExtensions.mono4.csproj
++++ b/tests/SampleExtensions/SampleExtensions.mono4.csproj
+@@ -17,8 +17,6 @@
+     <DebugType>full</DebugType>
+     <Optimize>false</Optimize>
+     <DefineConstants>DEBUG;TRACE</DefineConstants>
+-    <NoStdLib>true</NoStdLib>
+-    <NoConfig>true</NoConfig>
+     <ErrorReport>prompt</ErrorReport>
+     <WarningLevel>4</WarningLevel>
+     <IntermediateOutputPath>$(BaseOutputDirectory)obj\$(Configuration)\Mono 4.x</IntermediateOutputPath>
+@@ -28,16 +26,12 @@
+     <DebugType>pdbonly</DebugType>
+     <Optimize>true</Optimize>
+     <DefineConstants>TRACE</DefineConstants>
+-    <NoStdLib>true</NoStdLib>
+-    <NoConfig>true</NoConfig>
+     <ErrorReport>prompt</ErrorReport>
+     <WarningLevel>4</WarningLevel>
+     <IntermediateOutputPath>$(BaseOutputDirectory)obj\$(Configuration)\Mono 4.x</IntermediateOutputPath>
+     <OutputPath>$(BaseOutputDirectory)bin\$(Configuration)\Mono 4.x</OutputPath>
+   </PropertyGroup>
+   <PropertyGroup>
+-    <NoStdLib>true</NoStdLib>
+-    <NoConfig>true</NoConfig>
+     <DefineConstants>MONO;MONO4_0;$(DefineConstants)</DefineConstants>
+     <OutputPath>$(BaseOutputDirectory)bin\$(Configuration)\Mono 4.x</OutputPath>
+     <IntermediateOutputPath>$(BaseOutputDirectory)obj\$(Configuration)\Mono 4.x</IntermediateOutputPath>
