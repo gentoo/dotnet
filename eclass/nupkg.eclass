@@ -9,6 +9,13 @@
 
 inherit dotnet
 
+# @FUNCTION: enuget_restore
+# @DESCRIPTION: run nuget restore
+# accepts path to .sln or .proj or .csproj file to restore as parameter
+enuget_restore() {
+	nuget restore "$@" || die
+}
+
 # @FUNCTION: enuspec
 # @DESCRIPTION: run nuget pack
 # accepts path to .nuspec file as parameter
@@ -51,3 +58,12 @@ enupkg() {
 if [[ -n $NUGET_NO_DEPEND ]]; then
 	DEPEND+=" dev-dotnet/nuget"
 fi
+
+NPN=${PN/_/.}
+if [[ $PV == *_alpha* ]] || [[ $PV == *_beta* ]] || [[ $PV == *_pre* ]]
+then
+	NPV=${PVR/_/-}
+else
+	NPV=${PVR}
+fi
+
