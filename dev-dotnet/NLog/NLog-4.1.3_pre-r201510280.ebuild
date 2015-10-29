@@ -13,7 +13,7 @@ EGIT_COMMIT="c3eb07ff89523154dc2385c7db0ba9437bff3362"
 SRC_URI="${HOMEPAGE}/archive/${EGIT_BRANCH}/${EGIT_COMMIT}.zip -> ${PF}.zip"
 S="${WORKDIR}/${NAME}-${EGIT_COMMIT}"
 
-SLOT="0" 
+SLOT="0"
 
 DESCRIPTION=" NLog - Advanced .NET and Silverlight Logging http://nlog-project.org"
 LICENSE="BSD" # https://github.com/ArsenShnurkov/NLog/blob/master/LICENSE.txt
