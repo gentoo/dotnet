@@ -4,15 +4,14 @@
 
 EAPI=5
 
-# mono-env
-inherit  dotnet nupkg
+inherit nupkg
 
 HOMEPAGE="http://projects.qnetp.net/projects/show/monotorrent"
 DESCRIPTION="Monotorrent is an open source C# bittorrent library"
 LICENSE="MIT"
 SLOT="0"
 KEYWORDS="~amd64 ~x86"
-IUSE="net45 +gac +nupkg pkg-config debug developer"
+IUSE="net45 +gac +nupkg +pkg-config debug developer"
 USE_DOTNET="net45"
 
 COMMON_DEPEND=">=dev-lang/mono-4.0.2.5
@@ -25,18 +24,16 @@ DEPEND="${COMMON_DEPEND}
 	virtual/pkgconfig
 "
 
-NAME="monotorrent"
+NAME="MonoTorrent"
 REPOSITORY="https://github.com/ArsenShnurkov/${NAME}"
 LICENSE_URL="${REPOSITORY}/blob/master/src/LICENSE"
 ICONMETA="https://openclipart.org/detail/198771/mono-torrent"
 ICON_URL="https://openclipart.org/download/198771/mono-torrent.svg"
 
-# monotorrent-1.0.0-r201510130
 EGIT_BRANCH="master"
 EGIT_COMMIT="a76e4cd552d0fff51e47a25fe050efff672f34b2"
 SRC_URI="${REPOSITORY}/archive/${EGIT_BRANCH}/${EGIT_COMMIT}.zip -> ${PF}.zip
 	mirror://gentoo/mono.snk.bz2"
-#S="${WORKDIR}/${NAME}-${EGIT_COMMIT}"
 S="${WORKDIR}/${NAME}-${EGIT_BRANCH}"
 
 # The hack we do to get the dll installed in the GAC makes the unit-tests
@@ -45,12 +42,8 @@ RESTRICT="test"
 
 FILE_TO_BUILD=./src/MonoTorrent.sln
 
-#METAFILETOBUILD="${S}/${FILE_TO_BUILD}"
-#gives Reference 'AlphaFS, Version=2.0.0.0, Culture=neutral, PublicKeyToken=4d31a58f7d7ad5c9, processorArchitecture=MSIL' not resolved
-
 METAFILETOBUILD="src/MonoTorrent/MonoTorrent.csproj"
 
-# leafpad /var/lib/layman/dotnet/eclass/nupkg.eclass &
 NUGET_VERSION="${PVR//-r/.}"
 
 src_prepare() {
@@ -72,7 +65,6 @@ src_configure() {
 }
 
 src_compile() {
-	# emake -j1 ASSEMBLY_COMPILER_COMMAND="/usr/bin/gmcs" -keyfile:${WORKDIR}/mono.snk
 	exbuild /p:SignAssembly=true "/p:AssemblyOriginatorKeyFile=${WORKDIR}/mono.snk" "${METAFILETOBUILD}"
 
 	# run nuget_pack
@@ -84,9 +76,7 @@ src_install() {
 
 	enupkg "${WORKDIR}/monotorrent.${NUGET_VERSION}.nupkg"
 
-	if use pkg-config; then
-		install_pc_file
-	fi
+	install_pc_file
 }
 
 create_nuspec_file()
@@ -122,15 +112,17 @@ EOF
 
 install_pc_file()
 {
-	dodir /usr/$(get_libdir)/pkgconfig
-	ebegin "Installing .pc file"
-	sed  \
-		-e "s:@LIBDIR@:$(get_libdir):" \
-		-e "s:@PACKAGENAME@:${PN}:" \
-		-e "s:@DESCRIPTION@:${DESCRIPTION}:" \
-		-e "s:@VERSION@:${PV}:" \
-		-e 's;@LIBS@;-r:${libdir}/mono/monotorrent/MonoTorrent.dll;' \
-		"${FILESDIR}"/${PN}.pc.in > "${D}"/usr/$(get_libdir)/pkgconfig/${PN}.pc
-	PKG_CONFIG_PATH="${D}/usr/$(get_libdir)/pkgconfig/" pkg-config --exists monotorrent || die ".pc file failed to validate."
-	eend $?
+	if use pkg-config; then
+		dodir /usr/$(get_libdir)/pkgconfig
+		ebegin "Installing .pc file"
+		sed  \
+			-e "s:@LIBDIR@:$(get_libdir):" \
+			-e "s:@PACKAGENAME@:${PN}:" \
+			-e "s:@DESCRIPTION@:${DESCRIPTION}:" \
+			-e "s:@VERSION@:${PV}:" \
+			-e 's;@LIBS@;-r:${libdir}/mono/monotorrent/MonoTorrent.dll;' \
+			"${FILESDIR}"/${PN}.pc.in > "${D}"/usr/$(get_libdir)/pkgconfig/${PN}.pc || die
+		PKG_CONFIG_PATH="${D}/usr/$(get_libdir)/pkgconfig/" pkg-config --exists monotorrent || die ".pc file failed to validate."
+		eend $?
+	fi
 }
