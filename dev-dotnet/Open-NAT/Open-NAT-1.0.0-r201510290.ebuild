@@ -8,7 +8,7 @@ EAPI=5
 inherit  dotnet nupkg
 
 HOMEPAGE="https://lontivero.github.io/Open.NAT"
-DESCRIPTION="Lightweight and easy-to-use class library to allow port forwarding in NAT devices with UPNP and/or PMP"
+DESCRIPTION="Lightweight and easy-to-use class library to use port forwarding in NAT devices with UPNP and/or PMP"
 LICENSE="MIT"
 SLOT="0"
 KEYWORDS="~amd64 ~x86"
@@ -80,21 +80,15 @@ patch_nuspec_file()
 		else
 			DIR="Release"
 		fi
-		patch <<EOF $1 || die "patching of $1 failed"
-diff --git a/Open.Nat/Open.Nat.nuspec b/Open.Nat/Open.Nat.nuspec
-index 1da1488..c562699 100644
---- a/Open.Nat/Open.Nat.nuspec
-+++ b/Open.Nat/Open.Nat.nuspec
-@@ -64,4 +64,8 @@
-       Tracing improvements
-     </releaseNotes>
-   </metadata>
-+       <files> <!-- https://docs.nuget.org/create/nuspec-reference -->
-+               <file src="${OUTPUT_DIR}/${DIR}/*.dll" target="lib\net45\" />
-+               <file src="${OUTPUT_DIR}/${DIR}/*.mdb" target="lib\net45\" />
-+       </files>
- </package>
-EOF
+		FILES_STRING=`cat <<-EOF || die "files at patch_nuspec_file()"
+		       <files> <!-- https://docs.nuget.org/create/nuspec-reference -->
+		               <file src="${OUTPUT_DIR}/${DIR}/*.dll" target="lib\net45\" />
+		               <file src="${OUTPUT_DIR}/${DIR}/*.mdb" target="lib\net45\" />
+		       </files>
+		EOF
+		`
+		einfo ${FILES_STRING}
+		replace "</package>" "${FILES_STRING}</package>" -- $1 || die "replace at patch_nuspec_file()"
 	fi
 }
 

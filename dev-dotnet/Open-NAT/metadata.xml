@@ -15,6 +15,7 @@
 		<remote-id type="github">lontivero/Open.NAT</remote-id>
 	</upstream>
 	<use>
+		<flag name='pkg-config'>create .pc file(s) for .dll(s) installed to gac</flag>
 	</use>
 	<longdescription lang="en">
                 Lightweight and easy-to-use class library to allow port forwarding in NAT devices with UPNP and/or PMP
