@@ -78,6 +78,7 @@ src_prepare() {
 	autotools-utils_src_prepare
 
 	epatch "${FILESDIR}/systemweb3.patch"
+	epatch "${FILESDIR}/fix-for-GitExtensions-issue-2710.patch"
 }
 
 src_configure() {
