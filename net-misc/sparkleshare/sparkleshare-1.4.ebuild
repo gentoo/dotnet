@@ -28,7 +28,6 @@ COMMON_DEPEND=">=dev-lang/mono-2.8
 "
 RDEPEND="${COMMON_DEPEND}
 	>=dev-vcs/git-1.8
-	gnome-base/gvfs
 	net-misc/curl[ssl]
 	net-misc/openssh
 "
