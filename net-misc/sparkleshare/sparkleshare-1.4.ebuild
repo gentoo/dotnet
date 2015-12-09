@@ -17,7 +17,7 @@ HOMEPAGE="http://www.sparkleshare.org"
 SRC_URI="https://github.com/hbons/${MY_PN}/archive/${PV}.tar.gz -> ${MY_P}.tar.gz"
 
 LICENSE="GPL-3"
-KEYWORDS="amd64 x86"
+KEYWORDS="~amd64 ~x86"
 SLOT="0"
 IUSE="" # ayatana
 
