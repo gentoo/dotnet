@@ -3,6 +3,6 @@
 <pkgmetadata>
 	<herd>gnome</herd>
 	<upstream>
-		<remote-id type="bitbucket">hbons/sparkleshare</remote-id>
+		<remote-id type="github">hbons/sparkleshare</remote-id>
 	</upstream>
 </pkgmetadata>
