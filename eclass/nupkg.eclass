@@ -16,6 +16,36 @@ enuget_restore() {
 	nuget restore "$@" || die
 }
 
+# @FUNCTION: enuget_download_rogue_binary
+# @DESCRIPTION: downloads a binary package from 3rd untrusted party repository
+# accepts Id of package as parameter
+enuget_download_rogue_binary() {
+	if [ -d "/var/calculate/remote/distfiles" ]; then
+		NUGET_LOCAL_REPOSITORY_PATH=/var/calculate/remote/packages/NuGet
+	else
+		# this is for all normal gentoo-based distributions
+		NUGET_LOCAL_REPOSITORY_PATH=/usr/local/nuget/nupkg
+	fi
+	#einfo "Downloading rogue binary '$1' into '${NUGET_LOCAL_REPOSITORY_PATH}'"
+	# https://www.nuget.org/api/v2/package/{packageID}/{packageVersion}
+	
+	# this will give "* ACCESS DENIED:  open_wr:      /var/calculate/remote/packages/NuGet" message
+	# wget -c https://www.nuget.org/api/v2/package/$1/$2 -o "${LOCAL_NUGET_REPOSITORY_PATH}"
+
+	einfo "Downloading rogue binary '$1' into '${T}/$1.$2.nupkg'"
+	wget -c https://www.nuget.org/api/v2/package/$1/$2 --directory-prefix="${T}/" --output-document="$1.$2.nupkg" || die
+        # -p ignores directory if it is already exists
+	mkdir -p "${T}/NuGet/" || die
+	echo <<\EOF >"${T}/NuGet/NuGet.Config" || die
+<?xml version="1.0" encoding="utf-8" ?>
+<configuration><config>
+<add key="repositoryPath" value="${T}" />
+</config></configuration>
+EOF
+	einfo "Installing rogue binary '$1' into '${S}'"
+	nuget install "$1" -Version "$2" -OutputDirectory ${S}
+}
+
 # @FUNCTION: enuspec
 # @DESCRIPTION: run nuget pack
 # accepts path to .nuspec file as parameter
