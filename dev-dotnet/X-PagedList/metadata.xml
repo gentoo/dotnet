@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
+<pkgmetadata>
+	<herd>dotnet</herd>
+	<maintainer> <!-- https://wiki.gentoo.org/wiki/User:Cynede -->
+		<email>cynede@gentoo.org</email>
+		<name>Heather Cynede</name>
+	</maintainer>
+	<upstream>
+		<bugs-to>https://github.com/kpi-ua/X.PagedList/issues/</bugs-to>
+		<remote-id type="github">kpi-ua/X.PagedList</remote-id>
+	</upstream>
+	<use>
+		<flag name='pkg-config'>create .pc file(s) for .dll(s) installed to gac</flag>
+	</use>
+	<longdescription lang="en">
+                Nugget for easily paging through any IEnumerable/IQueryable in Asp.Net MVC
+        </longdescription>
+	<longdescription lang="ru">
+                Набор функций для вывода списков в движке Razor (из ASP .NET)
+        </longdescription>
+</pkgmetadata>
