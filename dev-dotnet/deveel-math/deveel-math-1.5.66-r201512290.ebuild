@@ -60,7 +60,9 @@ NUSPEC_FILE_NAME=nuget/dmath.noplatform.tmpl.nuspec
 # PR 	Package revision, or r0 if no revision exists.
 NUSPEC_VERSION=$(get_version_component_range 1-3)"${PR//r/.}"
 
-ICON_URL="https://raw.githubusercontent.com/ArsenShnurkov/dotnet/master/dev-dotnet/deveel-math/files/Deveel.Math.png"
+# see https://github.com/mrward/monodevelop-nuget-addin/issues/59
+#ICON_URL="file://${FILESDIR}/Deveel.Math.png"
+ICON_URL="https://raw.githubusercontent.com/ArsenShnurkov/dotnet/deveel-math/dev-dotnet/deveel-math/files/Deveel.Math.png"
 
 # rm -rf /var/tmp/portage/dev-dotnet/deveel-math-*
 # emerge =deveel-math-1.5.66-r201507280
