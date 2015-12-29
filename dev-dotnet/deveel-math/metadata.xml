@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
+<pkgmetadata>
+	<herd>dotnet</herd>
+	<maintainer> <!-- https://wiki.gentoo.org/wiki/User:Cynede -->
+		<email>cynede@gentoo.org</email>
+		<name>Heather Cynede</name>
+	</maintainer>
+	<upstream>
+		<bugs-to>https://github.com/deveel/deveel-math/issues/</bugs-to>
+		<remote-id type="github">deveel/deveel-math</remote-id>
+	</upstream>
+	<use>
+		<flag name='pkg-config'>create .pc file(s) for .dll(s) installed to gac</flag>
+	</use>
+	<longdescription lang="en">Deveel Math is the port to .NET/Mono of the Apache Harmony Math component, that is used to handle operations on big numbers in a fast and secure way.
+
+	This package supports all the processor architectures (Any CPU).</longdescription>
+	<longdescription lang="ru">
+                .NET-версия библиотека Apache Harmony Math. Содержит класс BigNumeric в дополнение к BigInteger. Может быть использована на платформа v &lt; 4 (AnuCPU)
+        </longdescription>
+</pkgmetadata>

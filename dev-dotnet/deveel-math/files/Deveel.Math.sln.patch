@@ -1,0 +1,28 @@
+--- a/src/Deveel.Math.sln
++++ b/src/Deveel.Math.sln
+@@ -14,8 +14,6 @@ Global
+ EndProject
+ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Deveel.Math.NUnit", "Deveel.Math.NUnit\Deveel.Math.NUnit.csproj", "{473247F5-FDF7-41D2-96DC-B550903227F0}"
+ EndProject
+-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Deveel.Math.Portable", "Deveel.Math\Deveel.Math.Portable.csproj", "{A70E4F11-A520-4145-8D8E-3743B3A3BC3B}"
+-EndProject
+ Global
+ 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+ 		Debug|Any CPU = Debug|Any CPU
+@@ -50,16 +48,6 @@
+ 		{473247F5-FDF7-41D2-96DC-B550903227F0}.Release|x64.Build.0 = Release|x64
+ 		{473247F5-FDF7-41D2-96DC-B550903227F0}.Release|x86.ActiveCfg = Release|x86
+ 		{473247F5-FDF7-41D2-96DC-B550903227F0}.Release|x86.Build.0 = Release|x86
+-		{A70E4F11-A520-4145-8D8E-3743B3A3BC3B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+-		{A70E4F11-A520-4145-8D8E-3743B3A3BC3B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+-		{A70E4F11-A520-4145-8D8E-3743B3A3BC3B}.Debug|x64.ActiveCfg = Debug|Any CPU
+-		{A70E4F11-A520-4145-8D8E-3743B3A3BC3B}.Debug|x86.ActiveCfg = Debug|Any CPU
+-		{A70E4F11-A520-4145-8D8E-3743B3A3BC3B}.Debug|x86.Build.0 = Debug|Any CPU
+-		{A70E4F11-A520-4145-8D8E-3743B3A3BC3B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+-		{A70E4F11-A520-4145-8D8E-3743B3A3BC3B}.Release|Any CPU.Build.0 = Release|Any CPU
+-		{A70E4F11-A520-4145-8D8E-3743B3A3BC3B}.Release|x64.ActiveCfg = Release|x64
+-		{A70E4F11-A520-4145-8D8E-3743B3A3BC3B}.Release|x64.Build.0 = Release|x64
+-		{A70E4F11-A520-4145-8D8E-3743B3A3BC3B}.Release|x86.ActiveCfg = Release|x86
+ 	EndGlobalSection
+ 	GlobalSection(SolutionProperties) = preSolution
+ 		HideSolutionNode = FALSE
