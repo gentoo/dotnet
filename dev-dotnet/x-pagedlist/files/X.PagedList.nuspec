@@ -7,7 +7,7 @@
     <owners>Troy Goode, Andrew Gubskiy</owners>
     <licenseUrl>https://github.com/kpi-ua/X.PagedList/blob/master/LICENSE</licenseUrl>
     <projectUrl>https://github.com/kpi-ua/X.PagedList</projectUrl>
-    <iconUrl>https://github.com/ArsenShnurkov/X.PagedList/blob/switching-from-pcl/misc/list.svg</iconUrl>
+    <iconUrl>https://raw.githubusercontent.com/ArsenShnurkov/X.PagedList/switching-from-pcl/misc/list.svg</iconUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>Nugget for easily paging through any IEnumerable/IQueryable in Asp.Net MVC</description>
     <copyright>Copyright 2015</copyright>
