@@ -1,0 +1,32 @@
+--- a/src/Deveel.Math/Deveel.Math.csproj
++++ b/src/Deveel.Math/Deveel.Math.csproj
+@@ -1,10 +1,8 @@
+ ﻿<?xml version="1.0" encoding="utf-8"?>
+-<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
++<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+   <PropertyGroup>
+     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+-    <ProductVersion>9.0.30729</ProductVersion>
+-    <SchemaVersion>2.0</SchemaVersion>
+     <ProjectGuid>{DAB16486-ED07-4D2D-8E09-DB259C583F02}</ProjectGuid>
+     <OutputType>Library</OutputType>
+     <AppDesignerFolder>Properties</AppDesignerFolder>
+@@ -209,15 +220,11 @@
+     <MonoDevelop>
+       <Properties>
+         <Policies>
+-          <StandardHeader inheritsSet="Apache2License" />
++          <StandardHeader Text="&#xA; Copyright ${Year}  ${CopyrightHolder}&#xA;&#xA;   Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);&#xA;   you may not use this file except in compliance with the License.&#xA;   You may obtain a copy of the License at&#xA;&#xA;       http://www.apache.org/licenses/LICENSE-2.0&#xA;&#xA;   Unless required by applicable law or agreed to in writing, software&#xA;   distributed under the License is distributed on an &quot;AS IS&quot; BASIS,&#xA;   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.&#xA;   See the License for the specific language governing permissions and&#xA;   limitations under the License." IncludeInNewFiles="True" />
+           <ChangeLogPolicy inheritsSet="Mono" />
+         </Policies>
+       </Properties>
+     </MonoDevelop>
+     <VisualStudio />
+   </ProjectExtensions>
+-  <PropertyGroup>
+-    <PostBuildEvent>IF NOT EXIST "$(SolutionDir)..\dist\$(PlatformName)" MKDIR "$(SolutionDir)..\dist\$(PlatformName)"
+-COPY "$(TargetDir)" "$(SolutionDir)..\dist\$(PlatformName)"</PostBuildEvent>
+-  </PropertyGroup>
+ </Project>
+\ No newline at end of file

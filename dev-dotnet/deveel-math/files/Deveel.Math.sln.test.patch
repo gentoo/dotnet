@@ -1,0 +1,30 @@
+--- a/src/Deveel.Math.sln
++++ b/src/Deveel.Math.sln
+@@ -4,8 +4,6 @@
+ MinimumVisualStudioVersion = 10.0.40219.1
+ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Deveel.Math", "Deveel.Math\Deveel.Math.csproj", "{DAB16486-ED07-4D2D-8E09-DB259C583F02}"
+ EndProject
+-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Deveel.Math.NUnit", "Deveel.Math.NUnit\Deveel.Math.NUnit.csproj", "{473247F5-FDF7-41D2-96DC-B550903227F0}"
+-EndProject
+ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{83B688C3-528C-4BA3-A9AD-8A3D62B1D3AB}"
+ 	ProjectSection(SolutionItems) = preProject
+ 		.nuget\NuGet.Config = .nuget\NuGet.Config
+@@ -36,18 +34,6 @@ Global
+ 		{DAB16486-ED07-4D2D-8E09-DB259C583F02}.Release|x64.Build.0 = Release|x64
+ 		{DAB16486-ED07-4D2D-8E09-DB259C583F02}.Release|x86.ActiveCfg = Release|x86
+ 		{DAB16486-ED07-4D2D-8E09-DB259C583F02}.Release|x86.Build.0 = Release|x86
+-		{473247F5-FDF7-41D2-96DC-B550903227F0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+-		{473247F5-FDF7-41D2-96DC-B550903227F0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+-		{473247F5-FDF7-41D2-96DC-B550903227F0}.Debug|x64.ActiveCfg = Debug|Any CPU
+-		{473247F5-FDF7-41D2-96DC-B550903227F0}.Debug|x64.Build.0 = Debug|Any CPU
+-		{473247F5-FDF7-41D2-96DC-B550903227F0}.Debug|x86.ActiveCfg = Debug|Any CPU
+-		{473247F5-FDF7-41D2-96DC-B550903227F0}.Debug|x86.Build.0 = Debug|Any CPU
+-		{473247F5-FDF7-41D2-96DC-B550903227F0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+-		{473247F5-FDF7-41D2-96DC-B550903227F0}.Release|Any CPU.Build.0 = Release|Any CPU
+-		{473247F5-FDF7-41D2-96DC-B550903227F0}.Release|x64.ActiveCfg = Release|x64
+-		{473247F5-FDF7-41D2-96DC-B550903227F0}.Release|x64.Build.0 = Release|x64
+-		{473247F5-FDF7-41D2-96DC-B550903227F0}.Release|x86.ActiveCfg = Release|x86
+-		{473247F5-FDF7-41D2-96DC-B550903227F0}.Release|x86.Build.0 = Release|x86
+ 	EndGlobalSection
+ 	GlobalSection(SolutionProperties) = preSolution
+ 		HideSolutionNode = FALSE
