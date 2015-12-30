@@ -1,0 +1,26 @@
+--- a/DryIoc/DryIoc.csproj	2015-12-11 17:54:55.000000000 +0300
++++ b/DryIoc/DryIoc.csproj	2015-12-30 18:22:23.000000000 +0300
+@@ -10,7 +10,7 @@
+     <AppDesignerFolder>Properties</AppDesignerFolder>
+     <RootNamespace>DryIoc</RootNamespace>
+     <AssemblyName>DryIoc</AssemblyName>
+-    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
++    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+     <FileAlignment>512</FileAlignment>
+   </PropertyGroup>
+   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+@@ -34,14 +34,8 @@
+     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+   </PropertyGroup>
+   <ItemGroup>
+-    <Reference Include="System" />
+-    <Reference Include="System.Core" />
+-  </ItemGroup>
+-  <ItemGroup>
+     <Compile Include="Container.cs" />
+     <Compile Include="FactoryCompiler.cs" />
+-    <Compile Include="Ported-net40.cs" />
+-    <Compile Include="Ported-net45.cs" />
+     <Compile Include="Properties\AssemblyInfo.cs" />
+   </ItemGroup>
+   <ItemGroup />

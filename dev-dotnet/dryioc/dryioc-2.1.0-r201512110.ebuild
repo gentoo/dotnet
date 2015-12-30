@@ -2,13 +2,12 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Id$
 
-# 2015-11-17, portage-2.2.25 has been committed and it comes with complete EAPI 6 support
-# https://archives.gentoo.org/gentoo-dev/message/73cc181e4949b88abfbd68f8a8ca9254
-# EAPI=6
+EAPI=6
 # !!! Unable to do any operations on 'dev-dotnet/dryioc-2.1.0-r201512110',
 # !!! since its EAPI is higher than this portage version's. Please upgrade
 # !!! to a portage version that supports EAPI '6'.
-EAPI=5
+# 2015-11-17, portage-2.2.25 has been committed and it comes with complete EAPI 6 support
+# https://archives.gentoo.org/gentoo-dev/message/73cc181e4949b88abfbd68f8a8ca9254
 
 inherit versionator vcs-snapshot dotnet nupkg
 
@@ -39,8 +38,8 @@ DEPEND="${COMMON_DEPEND}
 	virtual/pkgconfig
 "
 
-NAME="DryIoc"
-REPOSITORY_NAME="dadhi/DryIoc"
+NAME=DryIoc
+REPOSITORY_NAME="dadhi/dryioc"
 REPOSITORY_URL="https://bitbucket.org/dadhi/dryioc"
 EHG_REVISION="9f1954dd921acc432c22f1feff108c4d7ff87ffd"
 HG_COMMIT="${EHG_REVISION:0:8}"
@@ -49,8 +48,9 @@ HG_COMMIT="${EHG_REVISION:0:8}"
 SRC_URI="${REPOSITORY_URL}/get/${HG_COMMIT}.tar.gz -> ${PF}.tar.gz
 	mirror://gentoo/mono.snk.bz2"
 
-METAFILETOBUILD="DryIoc.sln"
-NUSPEC_FILE_NAME=NuGet/DryIocZero.nuspec
+#METAFILETOBUILD="DryIoc.sln"
+METAFILETOBUILD="DryIoc/DryIoc.csproj"
+NUSPEC_FILE_NAME=DryIoc.nuspec
 
 # get_version_component_range is from inherit versionator
 # PR 	Package revision, or r0 if no revision exists.
@@ -58,18 +58,22 @@ NUSPEC_VERSION=$(get_version_component_range 1-3)"${PR//r/.}"
 ICON_URL="https://bitbucket.org/account/dadhi/avatar/256/?ts=1451481107"
 
 # rm -rf /var/tmp/portage/dev-dotnet/dryioc-*
-# emerge =dryioc-2.1.0-r201512110
+# emerge -v =dryioc-2.1.0-r201512110
 # leafpad /var/tmp/portage/dev-dotnet/dryioc-2.1.0-r201512110/temp/build.log &
+
+S=${WORKDIR}/dadhi-dryioc-${EHG_REVISION:0:12}
 
 src_unpack()
 {
 	default
-	rm ${S}/src/.nuget/NuGet.exe || die
+	rm ${S}/.nuget/NuGet.exe || die
 }
 
 src_prepare() {
-	# /var/tmp/portage/dev-dotnet/deveel-math-1.5.66-r201512290/work/deveel-math-portage-packaging
+	default
+	# /var/tmp/portage/dev-dotnet/dryioc-2.1.0-r201512110/work/dadhi-dryioc-9f1954dd921a
 	einfo "patching project files"
+	eapply "${FILESDIR}/DryIoc.csproj.patch"
 	if ! use test ; then
 		einfo "removing unit tests from solution"
 	fi
@@ -77,6 +81,7 @@ src_prepare() {
 	einfo "restoring packages (NUnit)"
 	enuget_restore "${METAFILETOBUILD}"
 
+	cp "${FILESDIR}/${NUSPEC_FILE_NAME}" "${S}/${NUSPEC_FILE_NAME}" || die
 	patch_nuspec_file "${S}/${NUSPEC_FILE_NAME}"
 }
 
@@ -97,9 +102,9 @@ src_test() {
 }
 
 src_install() {
-	enupkg "${WORKDIR}/dmath.${NUSPEC_VERSION}.nupkg"
+	enupkg "${WORKDIR}/${NAME}.${NUSPEC_VERSION}.nupkg"
 
-	egacinstall "src/Deveel.Math/bin/${DIR}/DryIoc.dll"
+	egacinstall "bin/${DIR}/DryIoc.dll"
 
 	install_pc_file
 }
@@ -111,8 +116,8 @@ patch_nuspec_file()
 			DIR="Debug"
 FILES_STRING=`cat <<-EOF || die "${DIR} files at patch_nuspec_file()"
 	<files> <!-- https://docs.nuget.org/create/nuspec-reference -->
-		<file src="src/Deveel.Math/bin/${DIR}/DryIoc.dll" target="lib\net45\" />
-		<file src="src/Deveel.Math/bin/${DIR}/DryIoc.dll.mdb" target="lib\net45\" />
+		<file src="bin/${DIR}/DryIoc.dll" target="lib\net45\" />
+		<file src="bin/${DIR}/DryIoc.dll.mdb" target="lib\net45\" />
 	</files>
 EOF
 `
@@ -120,7 +125,7 @@ EOF
 		DIR="Release"
 FILES_STRING=`cat <<-EOF || die "${DIR} files at patch_nuspec_file()"
 	<files> <!-- https://docs.nuget.org/create/nuspec-reference -->
-		<file src="src/Deveel.Math/bin/${DIR}/DryIoc.dll" target="lib\net45\" />
+		<file src="bin/${DIR}/DryIoc.dll" target="lib\net45\" />
 	</files>
 EOF
 `
