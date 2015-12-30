@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
+<pkgmetadata>
+	<herd>dotnet</herd>
+	<maintainer> <!-- https://wiki.gentoo.org/wiki/User:Cynede -->
+		<email>cynede@gentoo.org</email>
+		<name>Heather Cynede</name>
+	</maintainer>
+	<upstream>
+		<bugs-to>https://bitbucket.org/dadhi/dryioc/issues</bugs-to>
+		<remote-id type="bitbucket">dadhi/dryioc</remote-id>
+	</upstream>
+	<use>
+		<flag name='pkg-config'>create .pc file(s) for .dll(s) installed to gac</flag>
+	</use>
+	<longdescription lang="en">
+		fast, small, full-featured IoC Container for .NET
+	</longdescription>
+	<longdescription lang="ru">
+                IoC Container для .NET
+        </longdescription>
+</pkgmetadata>
