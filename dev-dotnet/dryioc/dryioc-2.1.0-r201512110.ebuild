@@ -56,8 +56,8 @@ NUSPEC_FILE_NAME=DryIoc.nuspec
 # PR 	Package revision, or r0 if no revision exists.
 NUSPEC_VERSION=$(get_version_component_range 1-3)"${PR//r/.}"
 #ICON_URL="https://bitbucket.org/account/dadhi/avatar/256/?ts=1451481107"
-ICON_URL="https://raw.githubusercontent.com/ArsenShnurkov/dotnet/dryioc/dev-dotnet/dryioc/files/icon.png"
-#ICON_URL="https://raw.githubusercontent.com/gentoo/dotnet/master/dev-dotnet/dryioc/files/icon.png"
+#ICON_URL="https://raw.githubusercontent.com/ArsenShnurkov/dotnet/dryioc/dev-dotnet/dryioc/files/icon.png"
+ICON_URL="https://raw.githubusercontent.com/gentoo/dotnet/master/dev-dotnet/dryioc/files/icon.png"
 
 # rm -rf /var/tmp/portage/dev-dotnet/dryioc-*
 # emerge -v =dryioc-2.1.0-r201512110
