@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
+<pkgmetadata>
+	<herd>dotnet</herd>
+	<maintainer> <!-- https://wiki.gentoo.org/wiki/User:Cynede -->
+		<email>cynede@gentoo.org</email>
+		<name>Heather Cynede</name>
+	</maintainer>
+	<upstream>
+		<bugs-to>https://github.com/deveel/deveeldb/issues</bugs-to>
+		<remote-id type="github">deveel/deveeldb</remote-id>
+	</upstream>
+	<use>
+		<flag name='pkg-config'>create .pc file(s) for .dll(s) installed to gac</flag>
+	</use>
+	<longdescription lang="en">
+		DeveelDB is a complete SQL database system, primarly developed for .NET/Mono frameworks
+	</longdescription>
+	<longdescription lang="ru">
+                DeveelDB это СУБД для mono и .Net, есть переменные и хранимые процедуры
+        </longdescription>
+</pkgmetadata>
