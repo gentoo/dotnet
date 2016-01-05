@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
+<pkgmetadata>
+	<herd>dotnet</herd>
+	<maintainer> <!-- https://wiki.gentoo.org/wiki/User:Cynede -->
+		<email>cynede@gentoo.org</email>
+		<name>Heather Cynede</name>
+	</maintainer>
+	<upstream>
+		<bugs-to>https://irony.codeplex.com/workitem/list/basic</bugs-to>
+		<!-- validity error : Value "codeplex" for attribute type of remote-id is not among the enumerated set
+		see https://bugs.gentoo.org/show_bug.cgi?id=563578 
+		https://devmanual.gentoo.org/ebuild-writing/misc-files/metadata/
+		https://gitweb.gentoo.org/data/dtd.git/tree/metadata.dtd?id=551e00fc42ed21f6a6ff6129b5b85e64725d9665#n76 -->
+		<!-- remote-id type="codeplex">irony</remote-id -->
+	</upstream>
+	<use>
+		<flag name='pkg-config'>create .pc file(s) for .dll(s) installed to gac</flag>
+	</use>
+	<longdescription lang="en">
+		parsing framework for C# on LALR(1)
+	</longdescription>
+	<longdescription lang="ru">
+		фреймворк для написания LALR(1) парсеров на C#
+	</longdescription>
+</pkgmetadata>

@@ -1,0 +1,56 @@
+--- a/Irony/010.Irony.2012.csproj	2013-12-12 22:41:50.000000000 +0400
++++ b/Irony/010.Irony.2012.csproj	2016-01-05 21:02:12.000000000 +0300
+@@ -3,7 +3,7 @@
+   <PropertyGroup>
+     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+-    <ProductVersion>9.0.30729</ProductVersion>
++    <ProductVersion>8.0.30703</ProductVersion>
+     <SchemaVersion>2.0</SchemaVersion>
+     <ProjectGuid>{D81F5C91-D7DB-46E5-BC99-49488FB6814C}</ProjectGuid>
+     <OutputType>Library</OutputType>
+@@ -60,8 +60,6 @@
+     <DebugType>pdbonly</DebugType>
+     <Optimize>true</Optimize>
+     <OutputPath>bin\Release\</OutputPath>
+-    <DefineConstants>
+-    </DefineConstants>
+     <ErrorReport>prompt</ErrorReport>
+     <WarningLevel>4</WarningLevel>
+     <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+@@ -69,9 +67,7 @@
+   </PropertyGroup>
+   <ItemGroup>
+     <Reference Include="System" />
+-    <Reference Include="System.Core">
+-      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+-    </Reference>
++    <Reference Include="System.Core" />
+     <Reference Include="System.Data" />
+     <Reference Include="System.Drawing" />
+     <Reference Include="System.Numerics" />
+@@ -110,7 +106,6 @@
+     <Compile Include="Parsing\Terminals\ImpliedSymbolTerminal.cs" />
+     <Compile Include="Parsing\Terminals\LineContinuationTerminal.cs" />
+     <Compile Include="Parsing\Terminals\QuotedValueLiteral.cs" />
+-    <Compile Include="Parsing\Terminals\RegexLiteral.cs" />
+     <Compile Include="Parsing\Terminals\FreeTextLiteral.cs" />
+     <Compile Include="Parsing\Terminals\WikiTerminals\WikiBlockTerminal.cs" />
+     <Compile Include="Parsing\Terminals\WikiTerminals\WikiTagTerminal.cs" />
+@@ -151,7 +146,6 @@
+     <Compile Include="Parsing\Terminals\_Terminal.cs" />
+     <Compile Include="Parsing\Scanner\Token.cs" />
+     <Compile Include="Parsing\Scanner\Scanner.cs" />
+-    <Compile Include="Parsing\Terminals\RegexBasedTerminal.cs" />
+     <Compile Include="Parsing\Grammar\BnfTerm.cs" />
+     <Compile Include="Parsing\Grammar\Grammar.cs" />
+     <Compile Include="Parsing\Terminals\TerminalFactory.cs" />
+@@ -163,6 +157,8 @@
+       <DesignTime>True</DesignTime>
+       <DependentUpon>Resources.resx</DependentUpon>
+     </Compile>
++    <Compile Include="Parsing\Terminals\RegExLiteral.cs" />
++    <Compile Include="Parsing\Terminals\RegExBasedTerminal.cs" />
+   </ItemGroup>
+   <ItemGroup>
+     <EmbeddedResource Include="Resources.resx">
