@@ -55,7 +55,7 @@ EGIT_COMMIT="7ad0b1563ae111535715dbf6d1f25034887720c5"
 # SRC_URI 	A list of source URIs for the package.
 # Can contain USE-conditional parts, see https://devmanual.gentoo.org/ebuild-writing/variables/index.html#src_uri
 # PF 	Full package name, ${PN}-${PVR}, for example vim-6.3-r1
-SRC_URI="${REPOSITORY_URL}/archive/${EGIT_COMMIT}.zip -> ${PF}.zip
+SRC_URI="${REPOSITORY_URL}/archive/${EGIT_COMMIT}.zip -> ${PN}-${PV}.zip
 	mirror://gentoo/mono.snk.bz2"
 
 NAME=${PN}
@@ -65,23 +65,24 @@ S="${WORKDIR}/${NAME}-${EGIT_COMMIT}"
 #EGIT_BRANCH="mono-attempt-3"
 
 METAFILETOBUILD="src/deveeldb/deveeldb.csproj"
-NUSPEC_FILE_NAME=nuget/deveeldb.nuspec
+NUSPEC_FILE_NAME=deveeldb.nuspec
 
-
-# get_version_component_range is from inherit versionator
-# PR 	Package revision, or r0 if no revision exists.
-NUSPEC_VERSION=$(get_version_component_range 1-3)"${PR//r/.}"
-
-# >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 
 #https://raw.githubusercontent.com/ArsenShnurkov/dotnet/deveeldb/dev-dotnet/deveeldb/files/color.png
 EBUILD_REPOSITORY_NAME="ArsenShnurkov/deveeldb"
 EBUILD_BRANCH="deveeldb"
+#https://raw.githubusercontent.com/ArsenShnurkov/dotnet/deveeldb/dev-dotnet/deveeldb/files/color.png
 ICON_URL="https://raw.githubusercontent.com/${EBUILD_REPOSITORY_NAME}/${EBUILD_BRANCH}/${CATEGORY}/${P}/files/color.png"
 
 # rm -rf rm -rf /var/tmp/portage/dev-dotnet/deveeldb-*
 # emerge -v =deveeldb-2.0_pre_alpha_p20160101-r0
 # leafpad /var/tmp/portage/dev-dotnet/deveeldb-2.0_pre_alpha_p20160101-r0/temp/build.log &
+
+# get_version_component_range is from inherit versionator
+# PR 	Package revision, or r0 if no revision exists.
+COMMIT_DATE_INDEX=$(get_version_component_count ${PV} )
+COMMIT_DATE=$(get_version_component_range $COMMIT_DATE_INDEX ${PV} )
+NUSPEC_VERSION=$(get_version_component_range 1-2)"${COMMIT_DATE//p/.}${PR//r/.}"
 
 src_unpack()
 {
@@ -111,13 +112,15 @@ src_prepare() {
 	# /var/tmp/portage/dev-dotnet/deveeldb-2.0_pre_alpha_p20160101-r0/work/deveeldb-7ad0b1563ae111535715dbf6d1f25034887720c5
 
 	einfo "patching project files"
-	eapply "${FILESDIR}/deveeldb.csproj.patch"
+	eapply "${FILESDIR}/deveeldb-nuget-dependencies.patch"
+	# git diff /var/calculate/remote/distfiles/egit-src/deveeldb.git/src/deveeldb/packages.deveeldb.config
+	# git diff /var/calculate/remote/distfiles/egit-src/deveeldb.git/src/deveeldb/deveeldb.csproj
 	if ! use test ; then
 		einfo "removing unit tests from solution"
 	fi
 
 	einfo "restoring packages (Deveel.Math, DryIoc)"
-	#enuget_restore "${METAFILETOBUILD}"
+	enuget_restore "${METAFILETOBUILD}"
 
 	#enuget_restore "src/nuget-config/packages.config"
 	#<package id="coveralls.net" version="0.5.0" />
@@ -126,8 +129,8 @@ src_prepare() {
 
 	# irony-framework should be packaged before continuing with this ebuild
 
-	#cp "${FILESDIR}/${NUSPEC_FILE_NAME}" "${S}/${NUSPEC_FILE_NAME}" || die
-	#patch_nuspec_file "${S}/${NUSPEC_FILE_NAME}"
+	cp "${FILESDIR}/${NUSPEC_FILE_NAME}" "${S}/${NUSPEC_FILE_NAME}" || die
+	patch_nuspec_file "${S}/${NUSPEC_FILE_NAME}"
 }
 
 src_configure() {
@@ -149,7 +152,7 @@ src_test() {
 src_install() {
 	enupkg "${WORKDIR}/${NAME}.${NUSPEC_VERSION}.nupkg"
 
-	egacinstall "bin/${DIR}/DeveelDB.dll"
+	egacinstall "src/deveeldb/bin/${DIR}/deveeldb.dll"
 
 	install_pc_file
 }
@@ -161,8 +164,8 @@ patch_nuspec_file()
 			DIR="Debug"
 FILES_STRING=`cat <<-EOF || die "${DIR} files at patch_nuspec_file()"
 	<files> <!-- https://docs.nuget.org/create/nuspec-reference -->
-		<file src="bin/${DIR}/DeveelDB.dll" target="lib\net45\" />
-		<file src="bin/${DIR}/DeveelDB.dll.mdb" target="lib\net45\" />
+		<file src="src/deveeldb/bin/${DIR}/deveeldb.dll" target="lib\net45\" />
+		<file src="src/deveeldb/bin/${DIR}/deveeldb.dll.mdb" target="lib\net45\" />
 	</files>
 EOF
 `
@@ -170,7 +173,7 @@ EOF
 		DIR="Release"
 FILES_STRING=`cat <<-EOF || die "${DIR} files at patch_nuspec_file()"
 	<files> <!-- https://docs.nuget.org/create/nuspec-reference -->
-		<file src="bin/${DIR}/DeveelDB.dll" target="lib\net45\" />
+		<file src="src/deveeldb/bin/${DIR}/deveeldb.dll" target="lib\net45\" />
 	</files>
 EOF
 `
