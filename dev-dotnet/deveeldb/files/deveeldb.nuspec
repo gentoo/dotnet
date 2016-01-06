@@ -18,9 +18,9 @@
 		<tags>sql db database data embedded deveel sql-92 sql-99 select query mono</tags>
 		<dependencies>
 			<group targetFramework="net45">
-				<dependency id="dmath" />
 				<dependency id="DryIoc" />
-				<dependency id="Irony" />
+				<dependency id="dmath" />
+				<dependency id="deveel-irony" />
 			</group>
 		</dependencies>
 	</metadata>

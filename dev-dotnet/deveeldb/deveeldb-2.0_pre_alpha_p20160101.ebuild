@@ -46,6 +46,9 @@ RDEPEND="${COMMON_DEPEND}
 
 DEPEND="${COMMON_DEPEND}
 	test? ( dev-dotnet/nunit:2[nupkg] )
+	dev-dotnet/deveel-irony[nupkg]
+	dev-dotnet/deveel-math[nupkg]
+	dev-dotnet/dryioc[nupkg]
 	virtual/pkgconfig
 "
 
@@ -69,10 +72,10 @@ NUSPEC_FILE_NAME=deveeldb.nuspec
 
 
 #https://raw.githubusercontent.com/ArsenShnurkov/dotnet/deveeldb/dev-dotnet/deveeldb/files/color.png
-EBUILD_REPOSITORY_NAME="ArsenShnurkov/deveeldb"
+EBUILD_REPOSITORY_NAME="ArsenShnurkov/dotnet"
 EBUILD_BRANCH="deveeldb"
 #https://raw.githubusercontent.com/ArsenShnurkov/dotnet/deveeldb/dev-dotnet/deveeldb/files/color.png
-ICON_URL="https://raw.githubusercontent.com/${EBUILD_REPOSITORY_NAME}/${EBUILD_BRANCH}/${CATEGORY}/${P}/files/color.png"
+ICON_URL="https://raw.githubusercontent.com/${EBUILD_REPOSITORY_NAME}/${EBUILD_BRANCH}/${CATEGORY}/${PN}/files/color.png"
 
 # rm -rf rm -rf /var/tmp/portage/dev-dotnet/deveeldb-*
 # emerge -v =deveeldb-2.0_pre_alpha_p20160101-r0
@@ -112,15 +115,21 @@ src_prepare() {
 	# /var/tmp/portage/dev-dotnet/deveeldb-2.0_pre_alpha_p20160101-r0/work/deveeldb-7ad0b1563ae111535715dbf6d1f25034887720c5
 
 	einfo "patching project files"
-	eapply "${FILESDIR}/deveeldb-nuget-dependencies.patch"
-	# git diff /var/calculate/remote/distfiles/egit-src/deveeldb.git/src/deveeldb/packages.deveeldb.config
-	# git diff /var/calculate/remote/distfiles/egit-src/deveeldb.git/src/deveeldb/deveeldb.csproj
-	if ! use test ; then
-		einfo "removing unit tests from solution"
+	eapply "${FILESDIR}/repositories.config.patch"
+	eapply "${FILESDIR}/packages.deveeldb.config.patch"
+	eapply "${FILESDIR}/deveeldb.csproj.patch"
+
+	if use test ; then
+		eapply "${FILESDIR}/packages.deveeldb-nunit.config.patch"
+		eapply "${FILESDIR}/deveeldb-nunit.csproj.patch"
+		eapply "${FILESDIR}/deveeldb-nunit.sln.patch"
 	fi
 
 	einfo "restoring packages (Deveel.Math, DryIoc)"
 	enuget_restore "${METAFILETOBUILD}"
+	if use test ; then
+		enuget_restore "src/deveeldb-nunit.sln"
+	fi
 
 	#enuget_restore "src/nuget-config/packages.config"
 	#<package id="coveralls.net" version="0.5.0" />
@@ -138,7 +147,11 @@ src_configure() {
 }
 
 src_compile() {
-	exbuild /p:SignAssembly=true "/p:AssemblyOriginatorKeyFile=${WORKDIR}/mono.snk" "${METAFILETOBUILD}"
+	if use test ; then
+		exbuild /p:SignAssembly=true "/p:AssemblyOriginatorKeyFile=${WORKDIR}/mono.snk" "src/deveeldb-nunit.sln"
+	else
+		exbuild /p:SignAssembly=true "/p:AssemblyOriginatorKeyFile=${WORKDIR}/mono.snk" "${METAFILETOBUILD}"
+	fi
 
 	# run nuget_pack
 	einfo "setting .nupkg version to ${NUSPEC_VERSION}"
@@ -147,6 +160,12 @@ src_compile() {
 
 src_test() {
 	default
+	if use debug; then
+		DIR="Debug"
+	else
+		DIR="Release"
+	fi
+	/usr/bin/nunit264 "${S}/src/deveeldb-nunit/bin/${DIR}/deveeldb-nunit.dll" || die
 }
 
 src_install() {
@@ -169,8 +188,8 @@ FILES_STRING=`cat <<-EOF || die "${DIR} files at patch_nuspec_file()"
 	</files>
 EOF
 `
-	else
-		DIR="Release"
+		else
+			DIR="Release"
 FILES_STRING=`cat <<-EOF || die "${DIR} files at patch_nuspec_file()"
 	<files> <!-- https://docs.nuget.org/create/nuspec-reference -->
 		<file src="src/deveeldb/bin/${DIR}/deveeldb.dll" target="lib\net45\" />

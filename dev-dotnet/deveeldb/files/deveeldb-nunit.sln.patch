@@ -1,0 +1,47 @@
+diff -u -r -N a/src/deveeldb-nunit.sln b/src/deveeldb-nunit.sln
+--- a/src/deveeldb-nunit.sln	1970-01-01 03:00:00.000000000 +0300
++++ b/src/deveeldb-nunit.sln	2016-01-06 16:29:49.000000000 +0300
+@@ -0,0 +1,43 @@
++﻿
++Microsoft Visual Studio Solution File, Format Version 11.00
++# Visual Studio 2010
++Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "deveeldb-nunit", "deveeldb-nunit\deveeldb-nunit.csproj", "{F583D8C8-97A2-4460-9C03-40E48A9A2B3A}"
++EndProject
++Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "deveeldb", "deveeldb\deveeldb.csproj", "{A14222AE-1B48-4863-A0CA-1D6C2AB2190B}"
++EndProject
++Global
++	GlobalSection(SolutionConfigurationPlatforms) = preSolution
++		Debug|Any CPU = Debug|Any CPU
++		Release|Any CPU = Release|Any CPU
++		Debug|x86 = Debug|x86
++		Release|x86 = Release|x86
++		Debug|x64 = Debug|x64
++		Release|x64 = Release|x64
++	EndGlobalSection
++	GlobalSection(ProjectConfigurationPlatforms) = postSolution
++		{A14222AE-1B48-4863-A0CA-1D6C2AB2190B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
++		{A14222AE-1B48-4863-A0CA-1D6C2AB2190B}.Debug|Any CPU.Build.0 = Debug|Any CPU
++		{A14222AE-1B48-4863-A0CA-1D6C2AB2190B}.Debug|x64.ActiveCfg = Debug|x64
++		{A14222AE-1B48-4863-A0CA-1D6C2AB2190B}.Debug|x64.Build.0 = Debug|x64
++		{A14222AE-1B48-4863-A0CA-1D6C2AB2190B}.Debug|x86.ActiveCfg = Debug|x86
++		{A14222AE-1B48-4863-A0CA-1D6C2AB2190B}.Debug|x86.Build.0 = Debug|x86
++		{A14222AE-1B48-4863-A0CA-1D6C2AB2190B}.Release|Any CPU.ActiveCfg = Release|Any CPU
++		{A14222AE-1B48-4863-A0CA-1D6C2AB2190B}.Release|Any CPU.Build.0 = Release|Any CPU
++		{A14222AE-1B48-4863-A0CA-1D6C2AB2190B}.Release|x64.ActiveCfg = Release|x64
++		{A14222AE-1B48-4863-A0CA-1D6C2AB2190B}.Release|x64.Build.0 = Release|x64
++		{A14222AE-1B48-4863-A0CA-1D6C2AB2190B}.Release|x86.ActiveCfg = Release|x86
++		{A14222AE-1B48-4863-A0CA-1D6C2AB2190B}.Release|x86.Build.0 = Release|x86
++		{F583D8C8-97A2-4460-9C03-40E48A9A2B3A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
++		{F583D8C8-97A2-4460-9C03-40E48A9A2B3A}.Debug|Any CPU.Build.0 = Debug|Any CPU
++		{F583D8C8-97A2-4460-9C03-40E48A9A2B3A}.Debug|x64.ActiveCfg = Debug|x64
++		{F583D8C8-97A2-4460-9C03-40E48A9A2B3A}.Debug|x64.Build.0 = Debug|x64
++		{F583D8C8-97A2-4460-9C03-40E48A9A2B3A}.Debug|x86.ActiveCfg = Debug|x86
++		{F583D8C8-97A2-4460-9C03-40E48A9A2B3A}.Debug|x86.Build.0 = Debug|x86
++		{F583D8C8-97A2-4460-9C03-40E48A9A2B3A}.Release|Any CPU.ActiveCfg = Release|Any CPU
++		{F583D8C8-97A2-4460-9C03-40E48A9A2B3A}.Release|Any CPU.Build.0 = Release|Any CPU
++		{F583D8C8-97A2-4460-9C03-40E48A9A2B3A}.Release|x64.ActiveCfg = Release|x64
++		{F583D8C8-97A2-4460-9C03-40E48A9A2B3A}.Release|x64.Build.0 = Release|x64
++		{F583D8C8-97A2-4460-9C03-40E48A9A2B3A}.Release|x86.ActiveCfg = Release|x86
++		{F583D8C8-97A2-4460-9C03-40E48A9A2B3A}.Release|x86.Build.0 = Release|x86
++	EndGlobalSection
++EndGlobal
