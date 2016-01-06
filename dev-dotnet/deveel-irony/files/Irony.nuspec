@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
+    <metadata>
+        <id>deveel-irony</id>
+        <version>$version$</version>
+        <authors>Roman Ivantsov, Antonello Provenzano</authors>
+        <licenseUrl>https://raw.githubusercontent.com/deveel/irony/master/License.txt</licenseUrl>
+        <projectUrl>https://github.com/deveel/irony</projectUrl>
+        <iconUrl>$package_iconUrl$</iconUrl>
+        <requireLicenseAcceptance>false</requireLicenseAcceptance>
+        <description>Irony is a development kit for implementing languages on .NET platform. In Irony the target language grammar is coded directly in c# using operator overloading to express grammar constructs. Irony's scanner and parser modules use the grammar encoded as c# class to control the parsing process.</description>
+        <copyright>Copyright (c) 2013 Roman Ivantsov, 2016 Antonello Provenzano</copyright>
+        <language>en-US</language>
+        <tags>irony ast grammar bnf</tags>
+    </metadata>
+</package>

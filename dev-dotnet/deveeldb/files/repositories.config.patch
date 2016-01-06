@@ -1,0 +1,22 @@
+--- a/src/packages/repositories.config	2016-01-01 04:52:00.000000000 +0300
++++ b/src/packages/repositories.config	2016-01-06 16:51:14.000000000 +0300
+@@ -1,16 +1,5 @@
+ ﻿<?xml version="1.0" encoding="utf-8"?>
+ <repositories>
+-  <repository path="..\deveeldb.gis.nunit\packages.deveeldb.gis.nunit.config" />
+-  <repository path="..\deveeldb.linq.nunit\packages.deveeldb.linq.nunit.config" />
+-  <repository path="..\deveeldb.log4net\packages.config" />
+-  <repository path="..\deveeldb.xml.nunit\packages.deveeldb.xml.nunit.config" />
+-  <repository path="..\deveeldb\packages.config" />
+-  <repository path="..\deveeldb\packages.deveeldb.config" />
+-  <repository path="..\deveeldb\packages.deveeldb.pcl.config" />
+-  <repository path="..\deveeldb-gis\packages.config" />
+-  <repository path="..\deveeldb-gis\packages.deveeldb-gis.config" />
+-  <repository path="..\deveeldb-lucene\packages.config" />
+-  <repository path="..\deveeldb-lucene\packages.deveeldb-lucene.config" />
+-  <repository path="..\deveeldb-nunit\packages.config" />
+-  <repository path="..\deveeldb-nunit\packages.deveeldb-nunit.config" />
++  <repository path="../deveeldb/packages.deveeldb.config" />
++  <repository path="../deveeldb-nunit/packages.deveeldb-nunit.config" />
+ </repositories>
+\ No newline at end of file

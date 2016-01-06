@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
+	<metadata minClientVersion="2.0"> <!-- NuGet 2.0 was released on 2012-06-19 -->
+		<id>deveeldb</id>
+		<version>$version$</version>
+		<title>DeveelDB Kernel</title>
+		<authors>Antonello Provenzano</authors>
+		<owners>antonello</owners>
+		<licenseUrl>http://www.apache.org/licenses/LICENSE-2.0.txt</licenseUrl>
+		<projectUrl>http://github.com/deveel/deveeldb</projectUrl>
+		<iconUrl>$package_iconUrl$</iconUrl>
+		<requireLicenseAcceptance>false</requireLicenseAcceptance>
+		<description>This is the kernel library of DeveelDB SQL System
+
+		DeveelDB is an embeddable SQL-99 Relational Database Management System oriented to the .NET/Mono frameworks, providing rich functionalities and high performances managing SQL databases within applications.</description>
+		<releaseNotes></releaseNotes>
+		<copyright>(c) 2010-2016 Deveel</copyright>
+		<tags>sql db database data embedded deveel sql-92 sql-99 select query mono</tags>
+		<dependencies>
+			<group targetFramework="net45">
+				<dependency id="DryIoc" />
+				<dependency id="dmath" />
+				<dependency id="deveel-irony" />
+			</group>
+		</dependencies>
+	</metadata>
+</package>
