@@ -64,12 +64,10 @@ SRC_URI="${REPOSITORY_URL}/archive/${EGIT_COMMIT}.zip -> ${PN}-${PV}.zip
 NAME=${PN}
 S="${WORKDIR}/${NAME}-${EGIT_COMMIT}"
 
-
 #EGIT_BRANCH="mono-attempt-3"
 
 METAFILETOBUILD="src/deveeldb/deveeldb.csproj"
 NUSPEC_FILE_NAME=deveeldb.nuspec
-
 
 #https://raw.githubusercontent.com/ArsenShnurkov/dotnet/deveeldb/dev-dotnet/deveeldb/files/color.png
 EBUILD_REPOSITORY_NAME="ArsenShnurkov/dotnet"
