@@ -68,7 +68,7 @@ S=${WORKDIR}/dadhi-dryioc-${EHG_REVISION:0:12}
 src_unpack()
 {
 	default
-	rm ${S}/.nuget/NuGet.exe || die
+	rm "${S}/.nuget/NuGet.exe" || die
 }
 
 src_prepare() {

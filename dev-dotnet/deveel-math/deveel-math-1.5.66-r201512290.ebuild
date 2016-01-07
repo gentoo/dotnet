@@ -71,7 +71,7 @@ ICON_URL="https://raw.githubusercontent.com/ArsenShnurkov/dotnet/deveel-math/dev
 src_unpack()
 {
 	default
-	rm ${S}/src/.nuget/NuGet.exe || die
+	rm "${S}/src/.nuget/NuGet.exe" || die
 }
 
 src_prepare() {

@@ -1,0 +1,45 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+  <metadata>
+    <id>$nuget_id$</id>
+    <version>$nuget_version$</version>
+    <title>Json.NET</title>
+    <description>$nuget_description$</description>
+    <authors>James Newton-King</authors>
+    <language>en-US</language>
+    <projectUrl>$nuget_projectUrl$</projectUrl>
+    <iconUrl>$nuget_iconUrl$</iconUrl>
+    <licenseUrl>$nuget_licenseUrl$</licenseUrl>
+    <tags>json</tags>
+    <dependencies>
+      <group targetFramework="net45" />
+      <group targetFramework=".NETPlatform5.0">
+        <dependency id="Microsoft.CSharp" version="4.0.0" />
+        <dependency id="System.Collections" version="4.0.10" />
+        <dependency id="System.Collections.Concurrent" version="4.0.10" />
+        <dependency id="System.ComponentModel.TypeConverter" version="4.0.0" />
+        <dependency id="System.Diagnostics.Debug" version="4.0.10" />
+        <dependency id="System.Diagnostics.Tools" version="4.0.0" />
+        <dependency id="System.Dynamic.Runtime" version="4.0.10" />
+        <dependency id="System.Globalization" version="4.0.10" />
+        <dependency id="System.IO" version="4.0.10" />
+        <dependency id="System.Linq" version="4.0.0" />
+        <dependency id="System.Linq.Expressions" version="4.0.10" />
+        <dependency id="System.ObjectModel" version="4.0.10" />
+        <dependency id="System.Reflection" version="4.0.10" />
+        <dependency id="System.Reflection.Extensions" version="4.0.0" />
+        <dependency id="System.Runtime" version="4.0.20" />
+        <dependency id="System.Runtime.Extensions" version="4.0.10" />
+        <dependency id="System.Runtime.Numerics" version="4.0.0" />
+        <dependency id="System.Runtime.Serialization.Primitives" version="4.0.10" />
+        <dependency id="System.Text.Encoding" version="4.0.10" />
+        <dependency id="System.Text.Encoding.Extensions" version="4.0.10" />
+        <dependency id="System.Text.RegularExpressions" version="4.0.10" />
+        <dependency id="System.Threading" version="4.0.10" />
+        <dependency id="System.Threading.Tasks" version="4.0.10" />
+        <dependency id="System.Xml.ReaderWriter" version="4.0.10" />
+        <dependency id="System.Xml.XDocument" version="4.0.10" />
+      </group>
+    </dependencies>
+  </metadata>
+</package>

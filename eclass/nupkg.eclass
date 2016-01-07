@@ -9,6 +9,44 @@
 
 inherit dotnet
 
+# @FUNCTION: get_nuget_trusted_archives_location
+# @USAGE: [directory]
+# @DESCRIPTION:
+# returns base directory for various nuget folders.
+get_nuget_trusted_archives_location() {
+	if [ -d "/var/calculate/remote/distfiles" ]; then
+		# Control will enter here if the directory exist.
+		# this is necessary to handle calculate linux profiles feature (for corporate users)
+		echo /var/calculate/remote/packages/NuGet
+	else
+		# this is for all normal gentoo-based distributions
+		echo /usr/local/nuget/nupkg
+	fi
+}
+
+# @FUNCTION: get_nuget_trusted_icons_location
+# @USAGE: [directory]
+# @DESCRIPTION:
+# returns base directory for monodevelop addin icons
+get_nuget_trusted_icons_location() {
+	echo $(get_nuget_trusted_archives_location)/icons
+}
+
+# @FUNCTION: get_nuget_trusted_unpacked_location
+# @USAGE: [directory]
+# @DESCRIPTION:
+# returns base directory for package content (system wide installation location)
+get_nuget_trusted_unpacked_location() {
+	if [ -d "/var/calculate/remote/distfiles" ]; then
+		# Control will enter here if the directory exist.
+		# this is necessary to handle calculate linux profiles feature (for corporate users)
+		echo /var/calculate/remote/distfiles/NuGet
+	else
+		# this is for all normal gentoo-based distributions
+		echo /usr/local/nuget/packages
+	fi
+}
+
 # @FUNCTION: enuget_restore
 # @DESCRIPTION: run nuget restore
 # accepts path to .sln or .proj or .csproj file to restore as parameter
@@ -20,18 +58,6 @@ enuget_restore() {
 # @DESCRIPTION: downloads a binary package from 3rd untrusted party repository
 # accepts Id of package as parameter
 enuget_download_rogue_binary() {
-	if [ -d "/var/calculate/remote/distfiles" ]; then
-		NUGET_LOCAL_REPOSITORY_PATH=/var/calculate/remote/packages/NuGet
-	else
-		# this is for all normal gentoo-based distributions
-		NUGET_LOCAL_REPOSITORY_PATH=/usr/local/nuget/nupkg
-	fi
-	#einfo "Downloading rogue binary '$1' into '${NUGET_LOCAL_REPOSITORY_PATH}'"
-	# https://www.nuget.org/api/v2/package/{packageID}/{packageVersion}
-	
-	# this will give "* ACCESS DENIED:  open_wr:      /var/calculate/remote/packages/NuGet" message
-	# wget -c https://www.nuget.org/api/v2/package/$1/$2 -o "${LOCAL_NUGET_REPOSITORY_PATH}"
-
 	einfo "Downloading rogue binary '$1' into '${T}/$1.$2.nupkg'"
 	wget -c https://www.nuget.org/api/v2/package/$1/$2 --directory-prefix="${T}/" --output-document="$1.$2.nupkg" || die
         # -p ignores directory if it is already exists
@@ -42,8 +68,8 @@ enuget_download_rogue_binary() {
 <add key="repositoryPath" value="${T}" />
 </config></configuration>
 EOF
-	einfo "Installing rogue binary '$1' into '${S}'"
-	nuget install "$1" -Version "$2" -OutputDirectory ${S}
+	einfo "Installing rogue binary '$1' into '${S}/packages'"
+	nuget install "$1" -Version "$2" -OutputDirectory "${S}/packages"
 }
 
 # @FUNCTION: enuspec
@@ -67,16 +93,8 @@ enuspec() {
 # accepts path to .nupkg file as parameter
 enupkg() {
 	if use nupkg; then
-		if [ -d "/var/calculate/remote/distfiles" ]; then
-			# Control will enter here if the directory exist.
-			# this is necessary to handle calculate linux profiles feature (for corporate users)
-			elog "Installing .nupkg into /var/calculate/remote/packages/NuGet"
-			insinto /var/calculate/remote/packages/NuGet
-		else
-			# this is for all normal gentoo-based distributions
-			elog "Installing .nupkg into /usr/local/nuget/nupkg"
-			insinto /usr/local/nuget/nupkg
-		fi
+		elog "enupkg $@ -> $(get_nuget_trusted_archives_location)"
+		insinto $(get_nuget_trusted_archives_location)
 		doins "$@"
 	fi
 }
@@ -85,7 +103,7 @@ enupkg() {
 # @DESCRIPTION Set false to net depend on nuget
 : ${NUGET_NO_DEPEND:=}
 
-if [[ -n $NUGET_NO_DEPEND ]]; then
+if [[ -n ${NUGET_NO_DEPEND} ]]; then
 	DEPEND+=" dev-dotnet/nuget"
 fi
 
@@ -96,4 +114,3 @@ then
 else
 	NPV=${PVR}
 fi
-

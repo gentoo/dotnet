@@ -1,4 +1,4 @@
-# Copyright 1999-2015 Gentoo Foundation
+# Copyright 1999-2016 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Id$
 
@@ -86,6 +86,7 @@ src_prepare() {
 	#fix ASP.Net
 	cd "${T}/${P}/main"
 	epatch "${FILESDIR}/5.7-downgrade_to_mvc3.patch"
+	epatch "${FILESDIR}/local-nuget-icons.patch"
 
 	# fix for https://github.com/gentoo/dotnet/issues/42
 	epatch "${FILESDIR}/aspnet-template-references-fix.patch"
@@ -104,9 +105,9 @@ src_prepare() {
 	#copy missing binaries
 	mkdir -p "${S}"/external/cecil/Test/libs/nunit-2.5.10/ || die
 	cp -fR "${T}"/NUnit-2.5.10.11092/bin/net-2.0/framework/* "${S}"/external/cecil/Test/libs/nunit-2.5.10/ || die
-	mv -f "${T}/packages" "${S}"
+	mv -f "${T}/packages" "${S}" || die
 
-	epatch "${FILESDIR}/local-nuget-icons.patch"
+	default
 }
 
 src_configure() {
