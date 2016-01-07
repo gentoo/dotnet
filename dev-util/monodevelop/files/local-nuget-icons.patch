@@ -1,0 +1,48 @@
+From c5f730b3ffcecfd15dc291353332a6a3f0bb515a Mon Sep 17 00:00:00 2001
+From: Matt Ward <matt.ward@xamarin.com>
+Date: Sat, 2 Jan 2016 15:29:00 +0000
+Subject: [PATCH] [NuGet] Support NuGet packages that use icons from local
+ files.
+
+Allows a NuGet package to use an icon, shown in the Add Packages
+dialog, taken from the local file system using a file url.
+Previously this would fail with an invalid cast exception.
+---
+ .../MonoDevelop.PackageManagement/ImageLoader.cs           | 14 ++++++++++++--
+ 1 file changed, 12 insertions(+), 2 deletions(-)
+
+diff --git a/main/src/addins/MonoDevelop.PackageManagement/MonoDevelop.PackageManagement/ImageLoader.cs b/main/src/addins/MonoDevelop.PackageManagement/MonoDevelop.PackageManagement/ImageLoader.cs
+index 07b7b99..98eff92 100644
+--- a/main/src/addins/MonoDevelop.PackageManagement/MonoDevelop.PackageManagement/ImageLoader.cs
++++ b/main/src/addins/MonoDevelop.PackageManagement/MonoDevelop.PackageManagement/ImageLoader.cs
+@@ -91,8 +91,7 @@ namespace MonoDevelop.PackageManagement
+ 		ImageLoadedEventArgs LoadImage (Uri uri, object state)
+ 		{
+ 			try {
+-				var httpClient = new HttpClient (uri);
+-				Stream stream = httpClient.GetResponse ().GetResponseStream ();
++				Stream stream = GetResponseStream (uri);
+ 				Image image = Image.FromStream (stream);
+ 
+ 				return new ImageLoadedEventArgs (image, uri, state);
+@@ -101,6 +100,17 @@ namespace MonoDevelop.PackageManagement
+ 			}
+ 		}
+ 
++		static Stream GetResponseStream (Uri uri)
++		{
++			if (uri.IsFile) {
++				var request = WebRequest.Create (uri);
++				return request.GetResponse ().GetResponseStream ();
++			}
++
++			var httpClient = new HttpClient (uri);
++			return httpClient.GetResponse ().GetResponseStream ();
++		}
++
+ 		void OnLoaded (ITask<ImageLoadedEventArgs> task, Uri uri, object state)
+ 		{
+ 			if (task.IsFaulted) {
+-- 
+2.6.0
+
