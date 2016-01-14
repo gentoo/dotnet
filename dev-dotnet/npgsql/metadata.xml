@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
+<pkgmetadata>
+	<herd>dotnet</herd>
+	<maintainer> <!-- https://wiki.gentoo.org/wiki/User:Cynede -->
+		<email>cynede@gentoo.org</email>
+		<name>Heather Cynede</name>
+	</maintainer>
+	<upstream>
+		<bugs-to>https://github.com/npgsql/npgsql/issues</bugs-to>
+		<remote-id type="github">npgsql/npgsql</remote-id>
+	</upstream>
+	<use>
+		<flag name='pkg-config'>create .pc file(s) for .dll(s) installed to gac</flag>
+	</use>
+	<longdescription lang="en">Npgsql is an open source ADO.NET Data Provider for PostgreSQL,
+it allows programs written in C#, F# and similar to access the PostgreSQL database server.
+It is implemented in 100% C# code. Works with PostgreSQL 9.x and above.</longdescription>
+	<longdescription lang="ru">Npgsql это ADO.NET DataProvider для СУБД PostgreSQL.
+Можно использовать для работы с сервером баз данных на языках C#, F# и других, выполняющихся в CLR.
+100% кода библиотека реализовано при помощи управляемого C#. Работает с PostgreSQL 9.x и выше.</longdescription>
+</pkgmetadata>
