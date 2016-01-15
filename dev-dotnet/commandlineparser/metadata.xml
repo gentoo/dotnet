@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
+<pkgmetadata>
+	<herd>dotnet</herd>
+	<maintainer> <!-- https://wiki.gentoo.org/wiki/User:Cynede -->
+		<email>cynede@gentoo.org</email>
+		<name>Heather Cynede</name>
+	</maintainer>
+	<upstream>
+		<bugs-to>https://github.com/mgrosperrin/commandlineparser/issues</bugs-to>
+		<remote-id type="github">ArsenShnurkov/commandlineparser</remote-id>
+	</upstream>
+	<use>
+		<flag name='aot'>compile to machine code and store to disk during install, to save time later during startups</flag>
+		<flag name='pkg-config'>create .pc file(s) for .dll(s) installed to gac</flag>
+	</use>
+	<longdescription lang="en">
+		MGR.CommandLineParser is a multi-command line parser. It uses System.ComponentModel.DataAnnotations to declare and validate the commands.
+	</longdescription>
+	<longdescription lang="ru">
+		Библиотека для написания кода, анализирующего параметры, переданные из интерпретатора командной строки. Использует System.ComponentModel.DataAnnotations
+	</longdescription>
+</pkgmetadata>
