@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+  <metadata>
+    <id>$nuget_id$</id>
+    <version>$nuget_version$</version>
+    <title>CommandLine parser</title>
+    <description>$nuget_description$</description>
+    <authors>Matthias Grosperrin</authors>
+    <language>en-US</language>
+    <projectUrl>$nuget_projectUrl$</projectUrl>
+    <iconUrl>$nuget_iconUrl$</iconUrl>
+    <licenseUrl>$nuget_licenseUrl$</licenseUrl>
+    <tags>json</tags>
+    <dependencies>
+      <group targetFramework="net45" />
+    </dependencies>
+  </metadata>
+</package>
