@@ -38,7 +38,7 @@ DEPEND="${COMMON_DEPENDENCIES}
 	>=dev-dotnet/nunit-2.6.4-r201501110:2[nupkg]
 "
 
-METAFILETOBUILD=Npgsql.sln
+METAFILETOBUILD=src/Npgsql/Npgsql.csproj
 
 NUSPEC_FILENAME="npgsql.nuspec"
 COMMIT_DATE_INDEX=$(get_version_component_count ${PV} )
@@ -76,6 +76,9 @@ src_prepare() {
 
 src_compile() {
 	exbuild /p:SignAssembly=true "/p:AssemblyOriginatorKeyFile=${WORKDIR}/mono.snk" "${METAFILETOBUILD}"
+	if use test; then
+		exbuild /p:SignAssembly=true "/p:AssemblyOriginatorKeyFile=${WORKDIR}/mono.snk" "test\Npgsql.Tests\Npgsql.Tests.csproj"
+	fi
 
 	NUSPEC_PROPS+="nuget_version=${NUSPEC_VERSION};"
 	NUSPEC_PROPS+="nuget_id=${NUSPEC_ID};"
@@ -85,6 +88,10 @@ src_compile() {
 	NUSPEC_PROPS+="nuget_iconUrl=file://${ICON_URL}"
 	elog "NUSPEC_PROPS=${NUSPEC_PROPS}"
 	enuspec -Prop "${NUSPEC_PROPS}" "${S}/${NUSPEC_FILENAME}"
+}
+
+src_test() {
+	default
 }
 
 src_install() {
