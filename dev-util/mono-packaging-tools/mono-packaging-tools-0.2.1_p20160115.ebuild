@@ -55,7 +55,7 @@ src_prepare() {
 	#change version in .nuspec
 	# PV = Package version (excluding revision, if any), for example 6.3.
 	# It should reflect the upstream versioning scheme
-	sed "s/@VERSION@/${PV}/g" "${FILESDIR}/${NUGET_PACKAGE_ID}.nuspec" >"${S}/${NUGET_PACKAGE_ID}.nuspec" || die
+	sed "s/@VERSION@/${PV}/g" "${FILESDIR}/${NUSPEC_FILENAME}" >"${S}/${NUSPEC_FILENAME}" || die
 
 	enuget_restore "${METAFILETOBUILD}"
 }
