@@ -1,10 +1,10 @@
-# Copyright 1999-2015 Gentoo Foundation
+# Copyright 1999-2016 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Id$
 
 EAPI=5
 
-inherit autotools eutils dotnet flag-o-matic
+inherit eutils dotnet
 
 DESCRIPTION="Library for using System.Drawing with mono"
 HOMEPAGE="http://www.mono-project.com"
@@ -31,23 +31,14 @@ RDEPEND=">=dev-libs/glib-2.2.3:2
 	!cairo? ( >=x11-libs/pango-1.20 )"
 DEPEND="${RDEPEND}"
 
-RESTRICT="test"
-
-src_prepare() {
-	sed -i -e 's:ungif:gif:g' configure.ac || die
-	append-flags -fno-strict-aliasing
-	eautoreconf
-}
-
 src_configure() {
 	econf \
 		--disable-dependency-tracking \
 		--disable-static \
-		$(usex cairo "" "--with-pango")
+		$(use_with cairo pango)
 }
 
 src_install () {
-	MAKEOPTS+=" -j1"
 	default
 
 	dotnet_multilib_comply
