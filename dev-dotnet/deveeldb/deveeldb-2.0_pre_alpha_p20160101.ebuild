@@ -23,7 +23,7 @@ inherit nupkg
 # (q) https://devmanual.gentoo.org/ebuild-writing/variables/
 HOMEPAGE=http://deveel.github.io/deveeldb/
 
-DESCRIPTION="DeveelDB is a complete SQL database system, primarly developed for .NET/Mono frameworks"
+DESCRIPTION="DeveelDB is a complete SQL DBMS, primarly developed for CLR/CLI frameworks"
 LICENSE="Apache-2.0"
 LICENSE_URL="http://www.apache.org/licenses/LICENSE-2.0"
 SLOT="0"
