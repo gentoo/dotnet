@@ -28,6 +28,4 @@
  		void OnLoaded (ITask<ImageLoadedEventArgs> task, Uri uri, object state)
  		{
  			if (task.IsFaulted) {
--- 
-2.6.0
 
