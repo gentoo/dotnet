@@ -2,7 +2,7 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Id$
 
-EAPI=5
+EAPI=6
 
 inherit eutils dotnet
 
@@ -25,7 +25,7 @@ RDEPEND=">=dev-libs/glib-2.2.3:2
 	x11-libs/libXt
 	>=x11-libs/cairo-1.8.4[X]
 	media-libs/libexif
-	>=media-libs/giflib-4.2.3
+	>=media-libs/giflib-5.1.2
 	virtual/jpeg:0
 	media-libs/tiff:0
 	!cairo? ( >=x11-libs/pango-1.20 )"
