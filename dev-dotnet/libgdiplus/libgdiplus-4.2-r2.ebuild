@@ -25,23 +25,11 @@ RDEPEND=">=dev-libs/glib-2.2.3:2
 	x11-libs/libXt
 	>=x11-libs/cairo-1.8.4[X]
 	media-libs/libexif
-	>=media-libs/giflib-4.2.3
+	>=media-libs/giflib-5.1.2
 	virtual/jpeg:0
 	media-libs/tiff:0
 	!cairo? ( >=x11-libs/pango-1.20 )"
 DEPEND="${RDEPEND}"
-
-src_prepare() {
-	# ${PV} = Package version (excluding revision, if any), for example 6.3
-	eapply "${FILESDIR}/libgdiplus-${PV}-giflib-quantizebuffer.patch"
-	sed -i -e 's:ungif:gif:g' configure.ac || die
-	#append-flags -fno-strict-aliasing
-	# append-flags: command not found
-	#eautoreconf
-	# eautoreconf: command not found
-
-	eapply_user
-}
 
 src_configure() {
 	econf \
