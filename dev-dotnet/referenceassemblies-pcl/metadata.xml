@@ -8,7 +8,6 @@ does not validate against /var/calculate/remote/distfiles/metadata.dtd
 xmllint &ndash;&ndash;noout &ndash;&ndash;schema /var/calculate/remote/distfiles/metadata.dtd /var/lib/layman/dotnet/dev-dotnet/referenceassemblies-pcl/metadata.xml
 -->
 <pkgmetadata>
-	<herd>dotnet</herd>
 	<maintainer> <!-- https://wiki.gentoo.org/wiki/User:Cynede -->
 		<email>cynede@gentoo.org</email>
 		<name>Heather Cynede</name>
