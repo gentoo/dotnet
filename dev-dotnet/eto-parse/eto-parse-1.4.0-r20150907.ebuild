@@ -1,4 +1,4 @@
-# Copyright 1999-2015 Gentoo Foundation
+# Copyright 1999-2016 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Id$
 
@@ -14,7 +14,7 @@ S="${WORKDIR}/${NAME}-${EGIT_COMMIT}"
 
 SLOT="0"
 
-DESCRIPTION="Recursive descent LL(k) parser for .NET with Fluent API, BNF, EBNF and Gold Grammars"
+DESCRIPTION="CLI parser with API, recursive descent, LL(k), for BNF, EBNF and Gold Grammars"
 LICENSE="MIT" # https://raw.githubusercontent.com/picoe/Eto.Parse/master/LICENSE
 KEYWORDS="~amd64 ~ppc ~x86"
 

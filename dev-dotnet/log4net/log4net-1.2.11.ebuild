@@ -1,4 +1,4 @@
-# Copyright 1999-2015 Gentoo Foundation
+# Copyright 1999-2016 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Id$
 
@@ -8,7 +8,7 @@ inherit eutils mono-env multilib versionator
 
 PV_MAJOR=$(get_version_component_range 1-2)
 
-DESCRIPTION="tool to help the programmer output log statements to a variety of output targets."
+DESCRIPTION="tool to help the programmer output log statements to a variety of output targets"
 HOMEPAGE="http://logging.apache.org/log4net/"
 SRC_URI="mirror://apache/logging/log4net/source/${P}-src.zip
 	http://dev.gentoo.org/~pacho/dotnet/log4net.snk"

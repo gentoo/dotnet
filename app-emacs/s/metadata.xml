@@ -1,10 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
 <pkgmetadata>
-	<maintainer>
-		<email>heather@cynede.net</email>
+	<maintainer type="project">
+	      <email>dotnet@gentoo.org</email>
+	      <description>Gentoo Dotnet Project</description>
 	</maintainer>
-	<longdescription>
-	  The long lost Emacs string manipulation library.
+	<longdescription lang="en">
+		The long lost Emacs string manipulation library.
+	</longdescription>
+	<longdescription lang="ru">
+		Билиотека для работы со строками в Emacs
 	</longdescription>
 </pkgmetadata>

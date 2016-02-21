@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
 <pkgmetadata>
-	<maintainer> <!-- https://wiki.gentoo.org/wiki/User:Cynede -->
-		<email>cynede@gentoo.org</email>
-		<name>Heather Cynede</name>
+	<maintainer type="project">
+		<email>dotnet@gentoo.org</email>
+		<description>Gentoo Dotnet Project</description>
 	</maintainer>
 	<upstream>
 		<bugs-to>https://github.com/deveel/deveeldb/issues</bugs-to>
@@ -16,6 +16,6 @@
 		DeveelDB is a complete SQL database system, primarly developed for .NET/Mono frameworks
 	</longdescription>
 	<longdescription lang="ru">
-                DeveelDB это СУБД для mono и .Net, есть переменные и хранимые процедуры
-        </longdescription>
+		DeveelDB это СУБД для mono и .Net, есть переменные и хранимые процедуры
+	</longdescription>
 </pkgmetadata>
