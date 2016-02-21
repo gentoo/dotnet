@@ -1,16 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
 <pkgmetadata>
-	<maintainer>
-		<email>heather@cynede.net</email>
+	<maintainer type="project">
+		<email>dotnet@gentoo.org</email>
+		<description>Gentoo Dotnet Project</description>
 	</maintainer>
-	<longdescription>
-	  NuGet:FAKE
-	  FAKE - F# Make
-	</longdescription>
 	<use>
 		<flag name='heather'>
 			Heather fork
 		</flag>
 	</use>
+	<longdescription lang="en">
+		NuGet:FAKE
+		FAKE - F# Make
+	</longdescription>
+	<longdescription lang="ru">
+		FAKE - вычисление зависимостей на F#
+	</longdescription>
 </pkgmetadata>

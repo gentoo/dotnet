@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
 <pkgmetadata>
-	<maintainer> <!-- https://wiki.gentoo.org/wiki/User:Cynede -->
-		<email>cynede@gentoo.org</email>
-		<name>Heather Cynede</name>
+	<maintainer type="project">
+		<email>dotnet@gentoo.org</email>
+		<description>Gentoo Dotnet Project</description>
 	</maintainer>
 	<upstream>
 		<maintainer status="inactive">
@@ -17,9 +17,9 @@
 		<flag name='pkg-config'>create .pc file(s) for .dll(s) installed to gac</flag>
 	</use>
 	<longdescription lang="en">
-                Lightweight and easy-to-use class library to allow port forwarding in NAT devices with UPNP and/or PMP
-        </longdescription>
+		Lightweight and easy-to-use class library to allow port forwarding in NAT devices with UPNP and/or PMP
+	</longdescription>
 	<longdescription lang="ru">
-                Библиотека-клиент для пробрасывания портов через файрволл  по протоколам UPnP и/или PMP
-        </longdescription>
+		Библиотека-клиент для пробрасывания портов через файрволл  по протоколам UPnP и/или PMP
+    </longdescription>
 </pkgmetadata>

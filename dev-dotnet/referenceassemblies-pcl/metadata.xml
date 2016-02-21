@@ -1,23 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
-<!--
-https://devmanual.gentoo.org/ebuild-writing/misc-files/metadata/ 
-Document /var/lib/layman/dotnet/dev-dotnet/referenceassemblies-pcl/metadata.xml
-does not validate against /var/calculate/remote/distfiles/metadata.dtd
-
-xmllint &ndash;&ndash;noout &ndash;&ndash;schema /var/calculate/remote/distfiles/metadata.dtd /var/lib/layman/dotnet/dev-dotnet/referenceassemblies-pcl/metadata.xml
--->
 <pkgmetadata>
-	<maintainer> <!-- https://wiki.gentoo.org/wiki/User:Cynede -->
-		<email>cynede@gentoo.org</email>
-		<name>Heather Cynede</name>
+	<maintainer type="project">
+		<email>dotnet@gentoo.org</email>
+		<description>Gentoo Dotnet Project</description>
 	</maintainer>
-	<use>
-	</use>
 	<longdescription lang="en">
-                .NET Portable Class Library reference assemblies
-        </longdescription>
+		.NET Portable Class Library reference assemblies
+    </longdescription>
 	<longdescription lang="ru">
-                переносимые библиотеки классов (PCL) собранные Microsoft-ом
-        </longdescription>
+        переносимые библиотеки классов (PCL) собранные Microsoft-ом
+    </longdescription>
 </pkgmetadata>

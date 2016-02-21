@@ -1,4 +1,4 @@
-# Copyright 1999-2015 Gentoo Foundation
+# Copyright 1999-2016 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Id$
 
@@ -8,7 +8,7 @@ EAPI=5
 inherit  dotnet nupkg
 
 HOMEPAGE="https://lontivero.github.io/Open.NAT"
-DESCRIPTION="Lightweight and easy-to-use class library to use port forwarding in NAT devices with UPNP and/or PMP"
+DESCRIPTION="Class library to use port forwarding in NAT devices with UPNP and/or PMP"
 LICENSE="MIT"
 SLOT="0"
 KEYWORDS="~amd64 ~x86"

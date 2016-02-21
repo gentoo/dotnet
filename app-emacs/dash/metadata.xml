@@ -1,10 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
 <pkgmetadata>
-	<maintainer>
-		<email>heather@cynede.net</email>
+	<maintainer type="project">
+	      <email>dotnet@gentoo.org</email>
+	      <description>Gentoo Dotnet Project</description>
 	</maintainer>
-	<longdescription>
-	  A modern list api for Emacs. No 'cl required.
+	<longdescription lang="en">
+		A modern list api for Emacs. No 'cl required.
+	</longdescription>
+	<longdescription lang="ru">
+		API для работы со строками в Emacs, не требует common list
 	</longdescription>
 </pkgmetadata>
