@@ -74,7 +74,6 @@ src_compile() {
 	PARAMETERS+=" /p:AssemblyOriginatorKeyFile=${WORKDIR}/mono.snk"
 	PARAMETERS+=" /v:detailed"
 
-
 	for x in ${USE_DOTNET} ; do
 		FW_UPPER=${x:3:1}
 		FW_LOWER=${x:4:1}
@@ -94,7 +93,7 @@ src_compile() {
 
 src_install() {
 	enupkg "${WORKDIR}/${NUSPEC_ID}.${NUSPEC_VERSION}.nupkg"
-	
+
 	if use debug; then
 		DIR=Debug
 	else
