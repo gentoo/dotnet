@@ -14,8 +14,8 @@
 	</use>
 	<longdescription lang="en">
 		System.Reflection alternative to generate and inspect .NET executables and libraries (.NET over PE/COFF+)
-	</use>
+	</longdescription>
 	<longdescription lang="ru">
 		Альтернатива библиотеке System.Reflection для создания и анализа .NET сборок (.NET поверх PE/COFF+)
-    </longdescription>
+	</longdescription>
 </pkgmetadata>

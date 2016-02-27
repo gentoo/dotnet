@@ -13,8 +13,8 @@ DESCRIPTION="System.Reflection alternative to generate and inspect .NET executab
 LICENSE="MIT"
 SLOT="0"
 KEYWORDS="~amd64 ~x86"
-IUSE="net45 +gac +nupkg +pkg-config debug developer"
-USE_DOTNET="net45"
+USE_DOTNET="net35 net40 net45"
+IUSE="net35 net40 net45 +gac +nupkg +pkg-config debug developer"
 
 COMMON_DEPEND=">=dev-lang/mono-4.0.2.5
 "
@@ -41,16 +41,18 @@ S="${WORKDIR}/${NAME}-${EGIT_BRANCH}"
 
 METAFILETOBUILD="./Mono.Cecil.sln"
 
-OUTPUT_DIR=Mono.Cecil/bin
-GAC_DLL_NAME=mono.cecil
+GAC_DLL_NAME=Mono.Cecil
 
+NUSPEC_ID="Mono.Cecil"
 NUSPEC_FILE="${S}/Mono.Cecil.nuspec"
-NUSPEC_VERSION="${PVR//-r/.}"
+NUSPEC_VERSION="${PV//_p/.}"
 
 src_prepare() {
 	enuget_restore "${METAFILETOBUILD}"
 
-	patch_nuspec_file ${NUSPEC_FILE}
+	eapply "${FILESDIR}/nuspec.patch"
+
+	eapply_user
 }
 
 src_configure() {
@@ -58,38 +60,54 @@ src_configure() {
 }
 
 src_compile() {
-	exbuild /p:SignAssembly=true "/p:AssemblyOriginatorKeyFile=${WORKDIR}/mono.snk" "${METAFILETOBUILD}"
+	if [[ -z ${TOOLS_VERSION} ]]; then
+		TOOLS_VERSION=4.0
+	fi
+	PARAMETERS=" /tv:${TOOLS_VERSION}"
+	if use developer; then
+		SARGS=/p:DebugSymbols=True
+	else
+		SARGS=/p:DebugSymbols=False
+	fi
+	PARAMETERS+=" ${SARGS}"
+	PARAMETERS+=" /p:SignAssembly=true"
+	PARAMETERS+=" /p:AssemblyOriginatorKeyFile=${WORKDIR}/mono.snk"
+	PARAMETERS+=" /v:detailed"
+
+
+	for x in ${USE_DOTNET} ; do
+		FW_UPPER=${x:3:1}
+		FW_LOWER=${x:4:1}
+		PARAMETERS_2=" /p:TargetFrameworkVersion=v${FW_UPPER}.${FW_LOWER}"
+		if use debug; then
+			CARGS=/p:Configuration=net_${FW_UPPER}_${FW_LOWER}_Debug
+		else
+			CARGS=/p:Configuration=net_${FW_UPPER}_${FW_LOWER}_Release
+		fi
+		PARAMETERS_2+=" ${CARGS}"
+		exbuild_raw ${PARAMETERS} ${PARAMETERS_2} "${METAFILETOBUILD}"
+	done
 
 	# run nuget_pack
-	enuspec -Prop version=${NUSPEC_VERSION} ${NUSPEC_FILE}
+	enuspec -Prop "id=${NUSPEC_ID};version=${NUSPEC_VERSION}" ${NUSPEC_FILE}
 }
 
 src_install() {
-	enupkg "${WORKDIR}/${NAME}.${NUSPEC_VERSION}.nupkg"
+	enupkg "${WORKDIR}/${NUSPEC_ID}.${NUSPEC_VERSION}.nupkg"
+	
+	if use debug; then
+		DIR=Debug
+	else
+		DIR=Release
+	fi
 
-	egacinstall "${OUTPUT_DIR}/${DIR}/${GAC_DLL_NAME}.dll"
+	for x in ${USE_DOTNET} ; do
+		FW_UPPER=${x:3:1}
+		FW_LOWER=${x:4:1}
+		egacinstall "bin/net_${FW_UPPER}_${FW_LOWER}_${DIR}/${GAC_DLL_NAME}.dll"
+	done
 
 	install_pc_file
-}
-
-patch_nuspec_file()
-{
-	if use nupkg; then
-		if use debug; then
-			DIR="Debug"
-		else
-			DIR="Release"
-		fi
-		FILES_STRING=`cat <<-EOF || die "files at patch_nuspec_file()"
-		       <files> <!-- https://docs.nuget.org/create/nuspec-reference -->
-		               <file src="${OUTPUT_DIR}/${DIR}/*.dll" target="lib\net45\" />
-		               <file src="${OUTPUT_DIR}/${DIR}/*.mdb" target="lib\net45\" />
-		       </files>
-		EOF
-		`
-		einfo ${FILES_STRING}
-		replace "</package>" "${FILES_STRING}</package>" -- $1 || die "replace at patch_nuspec_file()"
-	fi
 }
 
 PC_FILE_NAME=${PN}
