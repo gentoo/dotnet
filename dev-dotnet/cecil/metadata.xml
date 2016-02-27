@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
+<pkgmetadata>
+	<maintainer type="project">
+		<email>dotnet@gentoo.org</email>
+		<description>Gentoo Dotnet Project</description>
+	</maintainer>
+	<upstream>
+		<bugs-to>https://github.com/jbevain/cecil/issues/</bugs-to>
+		<remote-id type="github">jbevain/cecil</remote-id>
+	</upstream>
+	<use>
+		<flag name='pkg-config'>create .pc file(s) for .dll(s) installed to gac</flag>
+	</use>
+	<longdescription lang="en">
+		System.Reflection alternative to generate and inspect .NET executables and libraries (.NET over PE/COFF+)
+	</longdescription>
+	<longdescription lang="ru">
+		Альтернатива библиотеке System.Reflection для создания и анализа .NET сборок (.NET поверх PE/COFF+)
+	</longdescription>
+</pkgmetadata>

@@ -1,0 +1,34 @@
+diff --git a/Mono.Cecil.nuspec b/Mono.Cecil.nuspec
+index e01234e..f7c2372 100644
+--- a/Mono.Cecil.nuspec
++++ b/Mono.Cecil.nuspec
+@@ -1,23 +1,23 @@
+ <?xml version="1.0"?>
+ <package xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+   <metadata xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+-    <id>Mono.Cecil</id>
+-    <version>0.9.6.0</version>
++    <id>$id$</id>
++    <version>$version$</version>
+     <title>Mono.Cecil</title>
+     <authors>Jb Evain</authors>
+     <owners>Jb Evain</owners>
+     <licenseUrl>http://opensource.org/licenses/mit-license.php</licenseUrl>
+     <requireLicenseAcceptance>false</requireLicenseAcceptance>
+     <projectUrl>http://github.com/jbevain/cecil/</projectUrl>
++    <iconUrl>file:///var/lib/layman/dotnet/dev-dotnet/cecil/files/niget_icon_64x64.png</iconUrl>
+     <summary>Cecil is a library written by Jb Evain to generate and inspect programs and libraries in the ECMA CIL format.</summary>
+     <description>Cecil is a library written by Jb Evain to generate and inspect programs and libraries in the ECMA CIL format. It has full support for generics, and support some debugging symbol format. In simple English, with Cecil, you can load existing managed assemblies, browse all the contained types, modify them on the fly and save back to the disk the modified assembly.</description>
+     <language>en-US</language>
+     <tags>assembly assemblies module modules il cil msil bytecode reflection injection cecil mono aop</tags>
+   </metadata>
+   <files>
+-    <file src="bin\net_3_5_Release\*.dll" target="lib/net35" />
+-    <file src="bin\net_4_0_Release\*.dll" target="lib/net40" />
+-    <file src="bin\net_4_5_Release\*.dll" target="lib/net45" />
+-    <file src="bin\pcl_Release\*.dll" target="lib/portable-net40+sl5+win8+wp8+wpa" />
++    <file src="bin/net_3_5_$configuration$/*.dll" target="lib/net35" />
++    <file src="bin/net_4_0_$configuration$/*.dll" target="lib/net40" />
++    <file src="bin/net_4_5_$configuration$/*.dll" target="lib/net45" />
+   </files>
+ </package>
