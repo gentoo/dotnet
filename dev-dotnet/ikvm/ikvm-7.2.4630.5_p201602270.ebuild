@@ -1,16 +1,27 @@
-# Copyright 1999-2015 Gentoo Foundation
+# Copyright 1999-2016 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Id$
 
-EAPI="4"
+EAPI="6"
 
 inherit eutils dotnet multilib java-pkg-2
 
 DESCRIPTION="Java VM for .NET"
 HOMEPAGE="http://www.ikvm.net/ http://weblog.ikvm.net/"
-SRC_URI="http://www.frijters.net/openjdk-7u4-stripped.zip
-	http://www.frijters.net/${PN}src-${PV}.zip"
 LICENSE="ZLIB GPL-2-with-linking-exception"
+
+GITHUBNAME="mono/ikvm-fork"
+EGIT_BRANCH="master"
+EGIT_COMMIT="00252c18fc0a4a206e45461736a890acb785a9d8"
+GITHUBACC=${GITHUBNAME%/*}
+GITHUBREPO=${GITHUBNAME#*/}
+GITFILENAME=${GITHUBREPO}-${GITHUBACC}-${PV}-${EGIT_COMMIT}
+GITHUB_ZIP="https://api.github.com/repos/${GITHUBACC}/${GITHUBREPO}/zipball/${EGIT_COMMIT} -> ${GITFILENAME}.zip"
+S="${WORKDIR}/${GITFILENAME}"
+
+SRC_URI="http://www.frijters.net/openjdk-7u4-stripped.zip
+	mirror://gentoo/mono.snk.bz2
+	${GITHUB_ZIP}"
 
 SLOT="0"
 KEYWORDS="~amd64 ~x86"
@@ -26,23 +37,30 @@ DEPEND="${RDEPEND}
 	virtual/pkgconfig
 	app-arch/sharutils"
 
+src_unpack() {
+	default_src_unpack
+	einfo '"'${WORKDIR}/${GITHUBACC}-${GITHUBREPO}-'"'*
+	mv "${WORKDIR}/${GITHUBACC}-${GITHUBREPO}-"* "${WORKDIR}/${GITFILENAME}" || die
+}
+
 src_prepare() {
 	# We cannot rely on Mono Crypto Service Provider as it doesn't work inside
 	# sandbox, we simply hard-code the path to a bundled key like Debian does.
-	epatch "${FILESDIR}"/${PN}-7.1.4532.2-key.patch
-	mkdir -p ../debian/ || die
-	uudecode < "${FILESDIR}"/mono.snk.uu -o ../debian/mono.snk || die
+	#epatch "${FILESDIR}"/${PN}-7.1.4532.2-key.patch
+	#mkdir -p ../debian/ || die
+	#uudecode < "${FILESDIR}"/mono.snk.uu -o ../debian/mono.snk || die
 
 	# Ensures that we use Mono's bundled copy of SharpZipLib instead of relying
 	# on ikvm-bin one
-	sed -i -e 's:../bin/ICSharpCode.SharpZipLib.dll:ICSharpCode.SharpZipLib.dll:' \
-		ikvmc/ikvmc.build ikvmstub/ikvmstub.build || die
+	#sed -i -e 's:../bin/ICSharpCode.SharpZipLib.dll:ICSharpCode.SharpZipLib.dll:' \
+	#	ikvmc/ikvmc.build ikvmstub/ikvmstub.build || die
 
-	sed -i -e 's:pkg-config --cflags:pkg-config --cflags --libs:' \
-		native/native.build || die
+	#sed -i -e 's:pkg-config --cflags:pkg-config --cflags --libs:' \
+	#	native/native.build || die
 
 	mkdir -p "${T}"/home/test
 	java-pkg-2_src_prepare
+	eapply_user
 }
 
 src_configure() {
