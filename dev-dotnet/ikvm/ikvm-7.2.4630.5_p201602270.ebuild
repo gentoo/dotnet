@@ -25,13 +25,14 @@ SRC_URI="http://www.frijters.net/openjdk-7u4-stripped.zip
 
 SLOT="0"
 KEYWORDS="~amd64 ~x86"
-IUSE=""
+IUSE="+net45"
+USE_DOTNET="net45"
 
 RDEPEND=">=dev-lang/mono-2
 	dev-libs/glib"
 DEPEND="${RDEPEND}
 	!dev-dotnet/ikvm-bin
-	>=dev-dotnet/nant-0.85
+	dev-util/nant
 	>=virtual/jdk-1.7
 	app-arch/unzip
 	virtual/pkgconfig
@@ -68,7 +69,7 @@ src_configure() {
 }
 
 src_compile() {
-	XDG_CONFIG_HOME="${T}/home/test" nant -t:mono-2.0 signed || die "ikvm build failed"
+	XDG_CONFIG_HOME="${T}/home/test" nant -t:mono-4.5 signed || die "ikvm build failed"
 }
 
 generate_pkgconfig() {
