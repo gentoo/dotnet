@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
+<pkgmetadata>
+	<maintainer type="project">
+		<email>dotnet@gentoo.org</email>
+		<description>Gentoo Dotnet Project</description>
+	</maintainer>
+	<use>
+		<flag name='developer'>enables debug information for any of debug and release builds</flag>
+		<flag name='nupkg'>creates local nuget package</flag>
+	</use>
+</pkgmetadata>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<package >
+  <metadata>
+    <id>NAnt</id>
+    <version>0.93.5019</version>
+    <authors>dotnet@gentoo.org</authors>
+    <owners>dotnet</owners>
+    <licenseUrl>http://nant.sourceforge.net/license.html</licenseUrl> <!-- GPLv2 -->
+    <projectUrl>http://nant.sourceforge.net/</projectUrl>
+    <iconUrl>https://raw.githubusercontent.com/nant/nant/master/examples/Solution/cpp/WinForms/app.ico</iconUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Package description</description>
+    <releaseNotes>https://github.com/nant/nant/blob/master/doc/releasenotes.html</releaseNotes>
+    <copyright></copyright>
+    <tags>nant</tags>
+    <dependencies>
+    </dependencies>
+  </metadata>
+ <files>
+    <!-- * will cover .dll .mdb .config and .xml-->
+    <file src="build/$Configuration$/*" target="lib/net40/" />
+  </files>
+</package>
