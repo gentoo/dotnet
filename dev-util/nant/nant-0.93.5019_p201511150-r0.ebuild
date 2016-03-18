@@ -1,35 +1,45 @@
-# Copyright 1999-2013 Gentoo Foundation
+# Copyright 1999-2016 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Id$
 
-EAPI=5
+EAPI=6
 inherit mono-env nuget dotnet
 
-NAME="nant"
 HOMEPAGE="https://github.com/nant/${NAME}"
+DESCRIPTION=".NET build tool"
+LICENSE="GPL-2"
 
-EGIT_COMMIT="45ec8aa9ad3247f340731f4e8b953c498ad3019e"
-SRC_URI="${HOMEPAGE}/archive/${EGIT_COMMIT}.zip -> ${PF}.zip"
-S="${WORKDIR}/${NAME}-${EGIT_COMMIT}"
+EGIT_COMMIT="19bec6eca205af145e3c176669bbd57e1712be2a"
+EGIT_BRANCH="master"
+GITHUBNAME="nant/nant"
+GITHUBACC=${GITHUBNAME%/*}
+GITHUBREPO=${GITHUBNAME#*/}
+GITFILENAME=${GITHUBREPO}-${GITHUBACC}-${PV}-${EGIT_COMMIT}
+GITHUB_ZIP="https://api.github.com/repos/${GITHUBACC}/${GITHUBREPO}/zipball/${EGIT_COMMIT} -> ${GITFILENAME}.zip"
+SRC_URI="${GITHUB_ZIP} mirror://gentoo/mono.snk.bz2"
+S="${WORKDIR}/${GITFILENAME}"
 
 SLOT="0"
 
-DESCRIPTION=".NET build tool"
-LICENSE="GPL-2"
 KEYWORDS="~amd64 ~ppc ~x86"
 IUSE="developer nupkg debug"
 
-RDEPEND=">=dev-lang/mono-4.0.2.5"
+RDEPEND=">=dev-lang/mono-4.4.0.40
+	!dev-dotnet/nant"
 DEPEND="${RDEPEND}
 	virtual/pkgconfig
 "
 
-S="${WORKDIR}/${NAME}-${EGIT_COMMIT}"
 SLN_FILE=NAnt.sln
 METAFILETOBUILD="${S}/${SLN_FILE}"
 
 # This build is not parallel build friendly
 #MAKEOPTS="${MAKEOPTS} -j1"
+
+src_unpack() {
+	default_src_unpack
+	mv "${WORKDIR}/${GITHUBACC}-${GITHUBREPO}-"* "${WORKDIR}/${GITFILENAME}" || die
+}
 
 src_compile() {
 	exbuild "${METAFILETOBUILD}"
