@@ -1,0 +1,23 @@
+diff --git a/ikvm.build b/ikvm.build
+index 5ba38cc..1b2869a 100644
+--- a/ikvm.build
++++ b/ikvm.build
+@@ -11,18 +11,7 @@
+          <call target="managed" />
+     </target>
+     <target name="managed" depends="clean-managed CommonAssemblyInfo">
+-        <nant buildfile="tools/tools.build" />
+         <nant buildfile="reflect/reflect.build" />
+-        <nant buildfile="ikvmstub/ikvmstub.build" />
+-        <nant buildfile="runtime/runtime.build" target="first-pass" />
+-        <nant buildfile="awt/awt.build" target="first-pass" />
+-        <nant buildfile="ikvmc/ikvmc.build" />
+-        <nant buildfile="openjdk/openjdk.build" />
+-        <nant buildfile="runtime/runtime.build" />
+-        <nant buildfile="openjdk/openjdk.build" target="tools" />
+-        <nant buildfile="ikvm/ikvm.build" />
+-        <nant buildfile="awt/awt.build" />
+-        <nant buildfile="jvm/jvm.build" />
+     </target>
+     <target name="CommonAssemblyInfo">
+         <copy file="CommonAssemblyInfo.cs.in" tofile="CommonAssemblyInfo.cs" overwrite="true">
