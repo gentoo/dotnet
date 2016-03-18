@@ -45,6 +45,9 @@ src_unpack() {
 }
 
 src_prepare() {
+	eapply "${FILESDIR}/ikvm.build.patch"
+	#cp "${FILESDIR}/ikvm.build" "${S}/ikvm.build" || die
+
 	# We cannot rely on Mono Crypto Service Provider as it doesn't work inside
 	# sandbox, we simply hard-code the path to a bundled key like Debian does.
 	#epatch "${FILESDIR}"/${PN}-7.1.4532.2-key.patch
@@ -96,7 +99,7 @@ generate_pkgconfig() {
 src_install() {
 	local dll dllbase exe
 	insinto /usr/$(get_libdir)/${PN}
-	doins bin/*.exe
+#	doins bin/*.exe
 
 	dodir /bin
 	for exe in bin/*.exe
