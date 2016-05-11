@@ -10,6 +10,7 @@ Overlay Installation
 
  - emerge -av layman
  - layman -a dotnet
+ - add `DOTNET_TARGETS="net45 net40"` to `make.conf`
 
 <hr/>
 
