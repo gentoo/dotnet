@@ -66,7 +66,7 @@ src_install() {
 	insinto /usr/share/icons/hicolor/scalable/apps
 	local ICON_NAME=smuxi.svg
 	newicon -s scalable "${DISTDIR}/${ICON_NAME}" "${ICON_NAME}"
-	make_desktop_entry "/usr/local/bin/smuxi-frontend-gnome" "Smuxi" "/usr/share/icons/hicolor/scalable/apps/${ICON_NAME}"
+	make_desktop_entry "/usr/bin/smuxi-frontend-gnome" "Smuxi" "/usr/share/icons/hicolor/scalable/apps/${ICON_NAME}"
 }
 
 pkg_postinst() {
