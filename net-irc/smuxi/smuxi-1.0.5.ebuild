@@ -8,7 +8,7 @@ inherit eutils gnome2-utils mono-env
 DESCRIPTION="A flexible, irssi-like and user-friendly IRC client for the Gnome Desktop"
 HOMEPAGE="http://www.smuxi.org/main/"
 SRC_URI="http://www.smuxi.org/jaws/data/files/${P}.tar.gz
-    https://github.com/meebey/smuxi/raw/master/images/icon_square.svg -> smuxi.svg"
+	https://github.com/meebey/smuxi/raw/master/images/icon_square.svg -> smuxi.svg"
 #SRC_URI="https://github.com/meebey/smuxi/archive/${PV}.tar.gz"
 
 SLOT="0"
@@ -24,7 +24,7 @@ RDEPEND=">=dev-lang/mono-4.0.2.5
 	gtk? ( >=dev-dotnet/gtk-sharp-2.12.21:2 )
 	libnotify? ( >=dev-dotnet/notify-sharp-0.4 )
 	libnotify? ( <dev-dotnet/notify-sharp-3 )
-	dbus? ( >=dev-dotnet/dbus-sharp-glib-0.6 )
+	dbus? ( >=dev-dotnet/dbus-sharp-glib-0.6:* )
 	spell? ( >=app-text/gtkspell-2.0.9:2 )
 "
 DEPEND="${RDEPEND}

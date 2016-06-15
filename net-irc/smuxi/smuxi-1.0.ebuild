@@ -1,8 +1,8 @@
-# Copyright 1999-2015 Gentoo Foundation
+# Copyright 1999-2016 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Id$
 
-EAPI=5
+EAPI=6
 inherit eutils mono-env
 
 DESCRIPTION="A flexible, irssi-like and user-friendly IRC client for the Gnome Desktop"
@@ -23,7 +23,7 @@ RDEPEND=">=dev-lang/mono-4.0.2.5
 	gtk? ( >=dev-dotnet/gtk-sharp-2.12.21:2 )
 	libnotify? ( >=dev-dotnet/notify-sharp-0.4 )
 	libnotify? ( <dev-dotnet/notify-sharp-3 )
-	dbus? ( >=dev-dotnet/dbus-sharp-glib-0.6 )
+	dbus? ( >=dev-dotnet/dbus-sharp-glib-0.6:* )
 	spell? ( >=app-text/gtkspell-2.0.9:2 )
 "
 DEPEND="${RDEPEND}
