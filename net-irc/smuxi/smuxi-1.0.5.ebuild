@@ -3,11 +3,12 @@
 # $Id$
 
 EAPI=6
-inherit eutils mono-env
+inherit eutils gnome2-utils mono-env
 
 DESCRIPTION="A flexible, irssi-like and user-friendly IRC client for the Gnome Desktop"
 HOMEPAGE="http://www.smuxi.org/main/"
-SRC_URI="http://www.smuxi.org/jaws/data/files/${P}.tar.gz"
+SRC_URI="http://www.smuxi.org/jaws/data/files/${P}.tar.gz
+	https://github.com/meebey/smuxi/raw/master/images/icon_square.svg -> smuxi.svg"
 #SRC_URI="https://github.com/meebey/smuxi/archive/${PV}.tar.gz"
 
 SLOT="0"
@@ -32,6 +33,14 @@ DEPEND="${RDEPEND}
 	virtual/pkgconfig
 "
 
+pkg_preinst() {
+	gnome2_icon_savelist
+}
+
+src_prepare() {
+	default
+}
+
 src_configure() {
 	# Our dev-dotnet/db4o is completely unmaintained
 	# We don't have ubuntu stuff
@@ -48,4 +57,22 @@ src_configure() {
 	$(use_with spell gtkspell)
 
 	touch README
+}
+
+src_install() {
+	default
+
+	elog "Installing desktop icon"
+	insinto /usr/share/icons/hicolor/scalable/apps
+	local ICON_NAME=smuxi.svg
+	newicon -s scalable "${DISTDIR}/${ICON_NAME}" "${ICON_NAME}"
+	make_desktop_entry "/usr/local/bin/smuxi-frontend-gnome" "Smuxi" "/usr/share/icons/hicolor/scalable/apps/${ICON_NAME}"
+}
+
+pkg_postinst() {
+	gnome2_icon_cache_update
+}
+
+pkg_postrm() {
+	gnome2_icon_cache_update
 }
