@@ -9,7 +9,7 @@ DESCRIPTION="A flexible, irssi-like and user-friendly IRC client for the Gnome D
 HOMEPAGE="http://www.smuxi.org/main/"
 
 SRC_URI="https://github.com/ArsenShnurkov/shnurise-tarballs/raw/master/${P}.tar.gz"
-S="${WORKDIR}/${PN}-$(get_version_component_range 1-3)"
+S="${WORKDIR}/${PN}-$(get_version_component_range 1-2)"
 
 SLOT="0"
 KEYWORDS="~amd64 ~x86"
