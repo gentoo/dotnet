@@ -12,7 +12,7 @@
 		XSP is a standalone web server written in C# that can be used to run
 		your ASP.NET applications.
 	</longdescription>
-	<longdescription lang="ru-RU">
+	<longdescription lang="ru">
 		XSP веб-сервер на чистом C# для запуска ASP.NET приложений.
 	</longdescription>
 </pkgmetadata>

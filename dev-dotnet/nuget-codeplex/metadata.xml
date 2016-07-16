@@ -8,7 +8,7 @@
 	<longdescription lang="en">
 		NuGet - .NET Package Manager
 	</longdescription>
-	<longdescription lang="ru-RU">
+	<longdescription lang="ru">
 		NuGet - пакетный менеджер, чистый C#
 	</longdescription>
 </pkgmetadata>

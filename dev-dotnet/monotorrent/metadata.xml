@@ -6,10 +6,6 @@
 		<description>Gentoo Dotnet Project</description>
 	</maintainer>
 	<upstream>
-		<maintainer status="inactive">
-			<email>unknown</email>
-			<name>unknown</name>
-		</maintainer>
 		<bugs-to>https://github.com/mono/monotorrent/issues/</bugs-to>
 		<remote-id type="github">mono/monotorrent</remote-id>
 	</upstream>
