@@ -8,6 +8,7 @@
 	<upstream>
 		<maintainer status="active">
 			<email>cameronwhite91@gmail.com</email>
+			<name>Cameron White</name>
 		</maintainer>
 		<changelog>https://github.com/PintaProject/Pinta/commits/release-1.6</changelog>
 		<doc lang="en">http://pinta-project.com/howto</doc>

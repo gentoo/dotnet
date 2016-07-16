@@ -5,7 +5,7 @@
 		<email>dotnet@gentoo.org</email>
 		<description>Gentoo Dotnet Project</description>
 	</maintainer>
-	<maintainer>
+	<maintainer type="person">
 		<email>angelos@gentoo.org</email>
 		<name>Christoph Mende</name>
 	</maintainer>
