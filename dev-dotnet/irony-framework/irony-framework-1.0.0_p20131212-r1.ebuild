@@ -139,7 +139,7 @@ RDEPEND="${COMMON_DEPEND}
 "
 
 DEPEND="${COMMON_DEPEND}
-	test? ( dev-dotnet/nunit:2[nupkg] )
+	test? ( dev-util/nunit:2[nupkg] )
 	virtual/pkgconfig
 "
 

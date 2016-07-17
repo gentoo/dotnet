@@ -1,8 +1,8 @@
-# Copyright 1999-2015 Gentoo Foundation
+# Copyright 1999-2016 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Id$
 
-EAPI=5
+EAPI=6
 
 inherit versionator dotnet nupkg
 
@@ -27,7 +27,7 @@ RDEPEND="${COMMON_DEPEND}
 "
 
 DEPEND="${COMMON_DEPEND}
-	test? ( dev-dotnet/nunit:2[nupkg] )
+	test? ( dev-util/nunit:2[nupkg] )
 	virtual/pkgconfig
 "
 
@@ -87,6 +87,7 @@ src_prepare() {
 	enuget_restore "${METAFILETOBUILD}"
 
 	patch_nuspec_file "${S}/${NUSPEC_FILE_NAME}"
+	default
 }
 
 src_configure() {

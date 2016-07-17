@@ -1,8 +1,8 @@
-# Copyright 1999-2013 Gentoo Foundation
+# Copyright 1999-2016 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Id$
 
-EAPI=5
+EAPI=6
 inherit mono-env nuget dotnet
 
 NAME="nunit"
@@ -22,7 +22,7 @@ USE_DOTNET="net45"
 IUSE="net45 developer debug nupkg doc"
 
 RDEPEND=">=dev-lang/mono-4.0.2.5
-	dev-dotnet/nant[nupkg]
+	dev-util/nant[nupkg]
 "
 DEPEND="${RDEPEND}
 "
@@ -37,6 +37,7 @@ src_prepare() {
 	epatch "${FILESDIR}/removing-tests-from-nproj.patch"
 	epatch "${FILESDIR}/removing-2.0-compatibiility.patch"
 	enuget_restore "${METAFILETOBUILD}"
+	default
 }
 
 src_compile() {

@@ -1,4 +1,4 @@
-# Copyright 1999-2015 Gentoo Foundation
+# Copyright 1999-2016 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Id$
 
@@ -45,7 +45,7 @@ RDEPEND="${COMMON_DEPEND}
 "
 
 DEPEND="${COMMON_DEPEND}
-	test? ( dev-dotnet/nunit:2[nupkg] )
+	test? ( dev-util/nunit:2[nupkg] )
 	dev-dotnet/deveel-irony[nupkg]
 	dev-dotnet/deveel-math[nupkg]
 	dev-dotnet/dryioc[nupkg]
@@ -138,6 +138,7 @@ src_prepare() {
 
 	cp "${FILESDIR}/${NUSPEC_FILE_NAME}" "${S}/${NUSPEC_FILE_NAME}" || die
 	patch_nuspec_file "${S}/${NUSPEC_FILE_NAME}"
+	default
 }
 
 src_configure() {

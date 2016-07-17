@@ -30,12 +30,12 @@ DESCRIPTION="Json.NET is a popular high-performance JSON framework for .NET"
 LICENSE="MIT"
 LICENSE_URL="https://raw.github.com/JamesNK/Newtonsoft.Json/master/LICENSE.md"
 
-KEYWORDS="~amd64 ~ppc ~x86"
+KEYWORDS="~amd64 ~x86"
 COMMON_DEPENDENCIES="|| ( >=dev-lang/mono-4.2 <dev-lang/mono-9999 )"
 RDEPEND="${COMMON_DEPENDENCIES}
 "
 DEPEND="${COMMON_DEPENDENCIES}
-	>=dev-dotnet/nunit-2.6.4-r201501110:2[nupkg]
+	dev-util/nunit:2[nupkg]
 "
 
 METAFILETOBUILD=Src/Newtonsoft.Json.sln
