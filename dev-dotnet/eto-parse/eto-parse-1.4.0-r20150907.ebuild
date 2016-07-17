@@ -34,7 +34,7 @@ IUSE="developer nupkg debug"
 COMMON_DEPENDENCIES=">=dev-lang/mono-4.2"
 DEPEND="${COMMON_DEPENDENCIES}
 	"
-#	test? ( >=dev-dotnet/nunit-2.6.4-r201501110:2[nupkg] )
+#	test? ( >=dev-util/nunit-2.6.4-r201501110:2[nupkg] )
 RDEPEND="${COMMON_DEPENDENCIES}
 	"
 
