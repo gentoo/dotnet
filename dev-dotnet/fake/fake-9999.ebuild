@@ -1,4 +1,4 @@
-# Copyright 1999-2015 Gentoo Foundation
+# Copyright 1999-2016 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Id$
 
@@ -14,15 +14,10 @@ SRC_URI=""
 LICENSE="MS-PL"
 SLOT="0"
 KEYWORDS=""
-IUSE="heather"
+IUSE=""
 
-if use heather; then
-	EGIT_REPO_URI="git://github.com/Heather/FAKE.git"
-	EGIT_MASTER="develop"
-else
-	EGIT_REPO_URI="git://github.com/fsharp/FAKE.git"
-	EGIT_MASTER="develop"
-fi
+EGIT_REPO_URI="git://github.com/fsharp/FAKE.git"
+EGIT_MASTER="develop"
 
 DEPEND="dev-lang/mono
 dev-lang/fsharp"

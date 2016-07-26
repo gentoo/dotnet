@@ -5,11 +5,6 @@
 		<email>dotnet@gentoo.org</email>
 		<description>Gentoo Dotnet Project</description>
 	</maintainer>
-	<use>
-		<flag name='heather'>
-			Heather fork
-		</flag>
-	</use>
 	<longdescription lang="en">
 		NuGet:FAKE
 		FAKE - F# Make
