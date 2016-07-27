@@ -32,10 +32,28 @@ DEPEND="${CDEPEND}
 "
 RDEPEND="${CDEPEND}"
 
+src_unpack() {
+	default
+	# remove rogue binaries
+	rm -rf "${S}/Lib/NuGet/" || die
+	rm -rf "${S}/Lib/CustomBuildTasks/CustomBuildTasks.dll" || die
+}
+
 src_prepare() {
 	eapply "${FILESDIR}/sln.patch"
 	eapply "${FILESDIR}/csproj-remove-nuget-targets-check.patch"
 	eapply "${FILESDIR}/packages-config-remove-xunit.patch"
-	enuget_restore "${S}/LibGit2Sharp.sln"
+	eapply "${FILESDIR}/remove-NativeBinaries-package-dependency.patch"
+	echo "/usr/lib64/libgit2.so" >"LibGit2Sharp/libgit2_filename.txt" || die
+	enuget_restore "LibGit2Sharp.sln"
 	default
+}
+
+src_compile() {
+	# recreate custom build tasks .dll
+	sed -i "s#<OutputPath>.*</OutputPath>#<OutputPath>.</OutputPath>#g" "Lib/CustomBuildTasks/CustomBuildTasks.csproj" || die
+	exbuild "Lib/CustomBuildTasks/CustomBuildTasks.csproj"
+
+	# main compileation
+	exbuild "LibGit2Sharp.sln"
 }
