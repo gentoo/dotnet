@@ -1,0 +1,13 @@
+--- a/nuget.package/LibGit2Sharp.nuspec	2016-03-04 19:26:33.000000000 +0300
++++ b/nuget.package.new/LibGit2Sharp.nuspec	2016-07-27 07:25:06.091068466 +0300
+@@ -14,9 +14,6 @@
+     <tags>libgit2 git wrapper bindings API dvcs vcs</tags>
+   </metadata>
+   <files>
+-    <file src="..\README.md" target="App_Readme\LibGit2Sharp.README.md" />
+-    <file src="..\LICENSE.md" target="App_Readme\LibGit2Sharp.LICENSE.md" />
+-    <file src="..\CHANGES.md" target="App_Readme\LibGit2Sharp.CHANGES.md" />
+-    <file src="bin\$configuration$\$id$.pdb" target="lib\net40" />
++    <file src="LibGit2Sharp/bin/$configuration$/$id$.dll" target="lib/net40" />
+   </files>
+ </package>
