@@ -8,8 +8,9 @@ inherit mono-env nuget dotnet
 NAME="nunit"
 HOMEPAGE="https://github.com/nunit/${NAME}"
 
-EGIT_COMMIT="f8fe36f7aa806016a0d26e370774c7f5bb79d647"
-SRC_URI="${HOMEPAGE}/archive/${EGIT_COMMIT}.zip -> ${PF}.zip"
+EGIT_COMMIT="dd39deaa2c805783cb069878b58b0447d0849849"
+SRC_URI="${HOMEPAGE}/archive/${EGIT_COMMIT}.tar.gz -> ${PF}.tar.gz"
+RESTRICT="mirror"
 S="${WORKDIR}/${NAME}-${EGIT_COMMIT}"
 
 SLOT="3"
