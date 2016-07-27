@@ -1,0 +1,3 @@
+move dev-dotnet/xsp www-servers/xsp
+move dev-dotnet/nant dev-util/nant
+move dev-dotnet/nunit dev-util/nunit
