@@ -4,6 +4,8 @@
 
 EAPI=6
 
+KEYWORDS="~amd64 ~x86"
+
 USE_DOTNET="net45"
 EBUILD_FRAMEWORK="4.5"
 IUSE="${USE_DOTNET} +gac +nupkg"
