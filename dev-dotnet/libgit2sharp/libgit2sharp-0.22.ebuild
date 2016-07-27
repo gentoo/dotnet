@@ -4,15 +4,13 @@
 
 EAPI=6
 
-KEYWORDS="~amd64 ~x86"
+KEYWORDS="~x86 ~amd64"
 
 USE_DOTNET="net45"
 EBUILD_FRAMEWORK="4.5"
 IUSE="${USE_DOTNET} +gac +nupkg"
 
 inherit nuget nupkg
-
-KEYWORDS="amd64 x86 ~ppc-macos"
 
 DESCRIPTION="A C# PInvoke wrapper library for LibGit2 C library"
 
