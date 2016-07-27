@@ -35,3 +35,8 @@ RDEPEND="${CDEPEND}"
 src_unpack() {
     nuget restore ${S}/LibGit2Sharp.sln || die
 }
+
+src_prepare() {
+	eapply "${FILESDIR}/sln.patch"
+	default
+}
