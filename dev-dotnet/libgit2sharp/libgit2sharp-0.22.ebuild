@@ -7,7 +7,7 @@ EAPI=6
 USE_DOTNET="net45"
 IUSE="${USE_DOTNET}"
 
-inherit nupkg
+inherit nuget nupkg
 
 KEYWORDS="amd64 x86 ~ppc-macos"
 
@@ -32,11 +32,10 @@ DEPEND="${CDEPEND}
 "
 RDEPEND="${CDEPEND}"
 
-src_unpack() {
-    nuget restore ${S}/LibGit2Sharp.sln || die
-}
-
 src_prepare() {
 	eapply "${FILESDIR}/sln.patch"
+	eapply "${FILESDIR}/csproj-remove-nuget-targets-check.patch"
+	eapply "${FILESDIR}/packages-config-remove-xunit.patch"
+	enuget_restore "${S}/LibGit2Sharp.sln"
 	default
 }
