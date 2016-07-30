@@ -51,7 +51,6 @@ DEPEND="${CDEPEND}
 RDEPEND="${CDEPEND}
 "
 
-
 S="${WORKDIR}/${NAME}-${EGIT_COMMIT}"
 FILE_TO_BUILD=NUnit.proj
 METAFILETOBUILD="${S}/${FILE_TO_BUILD}"
@@ -71,7 +70,7 @@ src_prepare() {
 	else
 		DIR=""
 	fi
-	
+
 	sed -i "s=\\\$version\\\$=${NUGET_PACKAGE_VERSION}=g" "${S}/nuget/"*.nuspec || die
 	#sed -i "s=\\\${package.version}=${NUGET_PACKAGE_VERSION}=g" "${S}/nuget/"*.nuspec || die
 	#sed -i '/test/d' "${S}/nuget/"*.nuspec || die
