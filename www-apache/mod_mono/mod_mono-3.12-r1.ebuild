@@ -5,7 +5,7 @@
 EAPI=6
 
 # Watch the order of these!
-inherit autotools apache-module eutils go-mono mono
+inherit autotools apache-module eutils go-mono mono-env
 
 KEYWORDS="~amd64 ~x86"
 
@@ -44,7 +44,7 @@ src_configure() {
 	export LIBS="$(pkg-config --libs apr-1)"
 	go-mono_src_configure \
 		$(use_enable debug) \
-		--with-apxs="${APXS}" \
+		--with-apxs="/usr/bin/apxs" \
 		--with-apr-config="/usr/bin/apr-1-config" \
 		--with-apu-config="/usr/bin/apu-1-config"
 }
