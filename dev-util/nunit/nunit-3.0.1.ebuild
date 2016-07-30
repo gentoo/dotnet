@@ -20,7 +20,7 @@ LICENSE="MIT" # https://github.com/nunit/nunit/blob/master/LICENSE.txt
 KEYWORDS="~amd64 ~ppc ~x86"
 #USE_DOTNET="net20 net40 net45"
 USE_DOTNET="net45"
-IUSE="net45 developer debug nupkg doc"
+IUSE="net45 developer debug nupkg gac doc"
 
 RDEPEND=">=dev-lang/mono-4.0.2.5
 	dev-util/nant[nupkg]
@@ -104,8 +104,8 @@ src_install() {
 		doins LICENSE.txt NOTICES.txt CHANGES.txt
 	fi
 
-	enupkg "${WORKDIR}/NUnit.${NUNIT_PACKAGE_VERSION}.nupkg"
-	enupkg "${WORKDIR}/NUnit.Runners.${NUNIT_PACKAGE_VERSION}.nupkg"
-	enupkg "${WORKDIR}/NUnit.Console.${NUNIT_PACKAGE_VERSION}.nupkg"
-	enupkg "${WORKDIR}/NUnit.Engine.${NUNIT_PACKAGE_VERSION}.nupkg"
+	enupkg "${WORKDIR}/NUnit.${NUGET_PACKAGE_VERSION}.nupkg"
+	enupkg "${WORKDIR}/NUnit.Runners.${NUGET_PACKAGE_VERSION}.nupkg"
+	enupkg "${WORKDIR}/NUnit.Console.${NUGET_PACKAGE_VERSION}.nupkg"
+	enupkg "${WORKDIR}/NUnit.Engine.${NUGET_PACKAGE_VERSION}.nupkg"
 }
