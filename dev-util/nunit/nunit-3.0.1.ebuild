@@ -20,13 +20,37 @@ LICENSE="MIT" # https://github.com/nunit/nunit/blob/master/LICENSE.txt
 KEYWORDS="~amd64 ~ppc ~x86"
 #USE_DOTNET="net20 net40 net45"
 USE_DOTNET="net45"
-IUSE="net45 developer debug nupkg gac doc"
+IUSE="+net45 developer debug nupkg gac doc"
 
-RDEPEND=">=dev-lang/mono-4.0.2.5
-	dev-util/nant[nupkg]
+CDEPEND=">=dev-lang/mono-4.0.2.5
+	net45? (
+		developer? (
+			debug?  ( dev-dotnet/cecil[net45,gac,developer,debug] )
+			!debug? ( dev-dotnet/cecil[net45,gac,developer] )
+		)
+		!developer? (
+			debug?  ( dev-dotnet/cecil[net45,gac,debug] )
+			!debug? ( dev-dotnet/cecil[net45,gac] )
+		)
+	)
 "
-DEPEND="${RDEPEND}
+
+DEPEND="${CDEPEND}
+	net45? (
+		developer? (
+			debug? ( dev-util/nant[net45,nupkg,developer,debug] )
+			!debug? ( dev-util/nant[net45,nupkg,developer] )
+		)
+		!developer? (
+			debug? ( dev-util/nant[net45,nupkg,debug] )
+			!debug? ( dev-util/nant[net45,nupkg] )
+		)
+	)
 "
+
+RDEPEND="${CDEPEND}
+"
+
 
 S="${WORKDIR}/${NAME}-${EGIT_COMMIT}"
 FILE_TO_BUILD=NUnit.proj
