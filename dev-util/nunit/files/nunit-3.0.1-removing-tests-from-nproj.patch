@@ -1,0 +1,208 @@
+diff --git a/NUnit.proj b/NUnit.proj
+index de5633b..28f9628 100644
+--- a/NUnit.proj
++++ b/NUnit.proj
+@@ -244,162 +244,6 @@
+   
+   <!-- End Region -->
+ 
+-  <!-- Region Test Targets -->
+-
+-  <Target Name="TestAll" Label="Run tests for all framework builds, the engine and the console"
+-      DependsOnTargets="TestAllFrameworks;TestEngine;TestAddins;TestV2Driver;TestConsole" />
+-    
+-  <Target Name="Test" Label="Run tests for the current framework, engine and console"
+-      DependsOnTargets="TestFramework;TestEngine;TestAddins;TestV2Driver;TestConsole" />
+-
+-  <Target Name="TestAllFrameworks"
+-      Label="Test the framework for the current config and all runtimes">
+-    
+-    <MSBuild Projects="$(MSBuildProjectFullPath)"
+-         Targets="TestFrameworkIfSupported;TestNUnitLiteIfSupported"
+-         Properties="Framework=%(SupportedFrameworks.Identity)"
+-         ContinueOnError="$(ContinueOnFailure)" />
+-    
+-  </Target>
+-
+-  <Target Name="TestFrameworkIfSupported"
+-      Label="Run framework tests conditionally, for use by TestAllFrameworks">
+-
+-    <CallTarget Targets="TestFramework"
+-          ContinueOnError="$(ContinueOnFailure)"
+-          Condition="'$(Runtime)' != 'netcf' And '$(Runtime)' != 'silverlight'" />
+-
+-  </Target>
+-
+-  <Target Name="TestNUnitLiteIfSupported"
+-      Label="Run NUnitLite tests conditionally, for use by TestAllFrameworks">
+-
+-    <CallTarget Targets="TestNUnitLite"
+-          ContinueOnError="$(ContinueOnFailure)"
+-          Condition="'$(Runtime)' != 'netcf' And '$(Runtime)' != 'silverlight'" />
+-
+-  </Target>
+-
+-  <Target Name="TestFramework" DependsOnTargets="_CreateResultDir"
+-      Label="Run framework tests for a runtime without checking for errors">
+-
+-    <Message Text="******************************************************************" />
+-    <Message Text="* Testing NUnitFramework $(Framework) - $(Configuration)" />
+-    <Message Text="******************************************************************" />
+-
+-    <Error Condition="'$(Runtime)' == 'netcf' Or '$(Runtime)' == 'silverlight'"
+-      Text="The full NUnit framework cannot be tested under $(Runtime)" />
+-
+-    <Exec Condition="'$(Runtime)' == 'portable'" 
+-        WorkingDirectory="$(ConsoleBuildDir)\$(Runtime)" 
+-        Command='$(ManagedExeLauncher) $(ConsoleBuildDir)\$(Runtime)\nunit.portable.tests.exe $(TestOptions)'
+-        ContinueOnError="$(ContinueOnFailure)" />
+-
+-    <Exec Condition="'$(Runtime)' != 'portable'"
+-        WorkingDirectory="$(ConsoleBuildDir)"
+-        Command='$(ManagedExeLauncher) $(ConsoleRunner) $(Framework)/nunit.framework.tests.dll "-result:$(ResultDir)/NUnitFrameworkResult-$(Framework).xml;format=$(ResultFormat)" $(TestOptions)'
+-        ContinueOnError="$(ContinueOnFailure)" />
+-
+-  </Target>
+-
+-  <Target Name="TestNUnitLite" DependsOnTargets="_CreateResultDir"
+-          Label="Run tests of the NUnitLite runner">
+-
+-    <Message Text="******************************************************************" />
+-    <Message Text="* Testing NUnitLite $(Framework) - $(Configuration)" />
+-    <Message Text="******************************************************************" />
+-
+-    <Exec Condition="'$(Runtime)' != 'silverlight' AND '$(Runtime)' != 'portable' "
+-          WorkingDirectory="$(FrameworkBuildDir)"
+-          Command='$(ManagedExeLauncher) nunitlite.tests.exe "-result:$(ResultDir)/NUnitliteResult-$(Framework).xml;format=$(ResultFormat)" $(TestOptions)'
+-          ContinueOnError="$(ContinueOnFailure)" />
+-
+-		<Exec Condition="'$(Runtime)' == 'portable'"
+-          WorkingDirectory="$(FrameworkBuildDir)"
+-          Command='$(ManagedExeLauncher) nunitlite.tests.exe $(TestOptions)'
+-          ContinueOnError="$(ContinueOnFailure)" />
+-
+-  </Target>
+-
+-  <Target Name="TestEngine"
+-      Label ="Run the engine tests"
+-      DependsOnTargets="_CreateResultDir">
+-
+-    <Message Text="******************************************************************" />
+-    <Message Text="* Testing the NUnit Engine - $(Configuration)" />
+-    <Message Text="******************************************************************" />
+-
+-    <Exec WorkingDirectory="$(EngineBuildDir)"
+-        Command='$(ManagedExeLauncher) $(ConsoleRunner) nunit.engine.tests.dll "-result:$(ResultDir)/EngineResult.xml;format=$(ResultFormat)" $(TestOptions)'
+-        ContinueOnError="$(ContinueOnFailure)"/>
+-
+-  </Target>
+-
+-  <Target Name="TestAddins"
+-      Label ="Run the addin tests"
+-      DependsOnTargets="_CreateResultDir">
+-
+-    <Message Text="******************************************************************" />
+-    <Message Text="* Testing the Engine Addins - $(Configuration)" />
+-    <Message Text="******************************************************************" />
+-
+-    <Exec WorkingDirectory="$(EngineBuildDir)"
+-        Command='$(ManagedExeLauncher) $(ConsoleRunner) addins/tests/addin-tests.dll "-result:$(ResultDir)/AddinResult.xml;format=$(ResultFormat)" $(TestOptions)'
+-        ContinueOnError="$(ContinueOnFailure)"/>
+-
+-  </Target>
+-
+-  <Target Name="TestV2Driver"
+-    Label = "Run tests of the NUnit V2 Driver"
+-    DependsOnTargets="_CreateResultDir">
+-
+-    <Message Text="******************************************************************" />
+-    <Message Text="* Testing the NUnit V2 Driver - $(Configuration)" />
+-    <Message Text="******************************************************************" />
+-    
+-    <Exec WorkingDirectory="$(EngineBuildDir)"
+-      Command='$(ManagedExeLauncher) $(ConsoleRunner) addins/v2-tests/nunit.v2.driver.tests.dll "-result:$(ResultDir)/V2DriverResult.xml;format=$(ResultFormat)"  $(TestOptions)'
+-      ContinueOnError="$(ContinueOnFailure)"/>
+-    
+-  </Target>
+-  
+-  <Target Name="TestConsole"
+-      Label="Run the console tests"
+-      DependsOnTargets="_CreateResultDir">
+-    
+-    <Message Text="******************************************************************" />
+-    <Message Text="* Testing the Console Runner - $(Configuration)" />
+-    <Message Text="******************************************************************" />
+-    
+-    <Exec WorkingDirectory="$(ConsoleBuildDir)"
+-        Command='$(ManagedExeLauncher) $(ConsoleRunner) nunit3-console.tests.dll "-result:$(ResultDir)/ConsoleResult.xml;format=$(ResultFormat)" $(TestOptions)'
+-        ContinueOnError="$(ContinueOnFailure)" />
+-    
+-  </Target>
+-  
+-  <Target Name="_CreateResultDir">
+-    
+-    <MakeDir Directories="$(ResultDir)"  Condition="!Exists('$(ResultDir)')"/>
+-    
+-  </Target>
+-  
+-  <!-- End Region -->
+-
+-  <!-- Region Coverage Targets -->
+-
+-  <Target Name="TestCoverage">
+-    <CallTarget Targets="_NUnitCoverage" Condition="'$(Runtime)' != 'netcf'"></CallTarget>
+-  </Target>
+-  
+-  <Target Name="_NUnitCoverage">
+-    <Error Condition="'$(Runtime)' == 'netcf'" Text="The full NUnit framework cannot be tested under $(Runtime)"></Error>
+-    <Exec WorkingDirectory="$(FrameworkBuildDir)"
+-        Command='$(ManagedExeLauncher) $(PartCoverDir)\PartCover.exe --target "$(ConsoleRunner)" --target-args "$(Framework)/nunit.framework.tests.dll $(TestOptions)" --include [nunit.framework]* --output NUnitTestCoverage.xml'>
+-    </Exec>
+-  </Target>
+-  
+-  <!-- End Region -->
+-  
+   <!-- Region Packaging Targets -->
+   
+   <!-- *********************************************************************** -->
+@@ -691,13 +535,6 @@
+     <NUnitProjects Include="$(FrameworkSrcDir)\nunitlite.runner\nunitlite.runner-$(ProjectSuffix).csproj"></NUnitProjects>
+     <NUnitProjects Include="$(FrameworkSrcDir)\mock-assembly\mock-nunit-assembly-$(ProjectSuffix).csproj"
+       Condition="'$(Runtime)' != 'netcf' And '$(Runtime)' != 'silverlight'"></NUnitProjects>
+-    <NUnitProjects Include="$(FrameworkSrcDir)\testdata\nunit.testdata-$(ProjectSuffix).csproj"></NUnitProjects>
+-		<NUnitProjects Include="$(FrameworkSrcDir)\nunit.portable.tests\nunit.portable.tests.csproj"
+-      Condition="'$(Runtime)' == 'portable'"></NUnitProjects>
+-    <NUnitProjects Include="$(FrameworkSrcDir)\slow-tests\slow-nunit-tests-$(ProjectSuffix).csproj"
+-      Condition="'$(Runtime)' != 'netcf' And '$(Runtime)' != 'silverlight' And '$(Runtime)' != 'portable'"></NUnitProjects>
+-    <NUnitProjects Include="$(FrameworkSrcDir)\tests\nunit.framework.tests-$(ProjectSuffix).csproj"></NUnitProjects>
+-    <NUnitProjects Include="$(FrameworkSrcDir)\nunitlite.tests\nunitlite.tests-$(ProjectSuffix).csproj"></NUnitProjects>
+   </ItemGroup>
+   
+   <ItemGroup Label="Projects for building the engine">
+@@ -705,26 +542,15 @@
+     <EngineProjects Include="$(EngineSrcDir)\nunit.engine.api\nunit.engine.api.csproj" />
+     <EngineProjects Include="$(EngineSrcDir)\nunit.engine\nunit.engine.csproj" />
+     <EngineProjects Include="$(EngineSrcDir)\nunit-agent\nunit-agent.csproj" />
+-    <EngineProjects Include="$(EngineSrcDir)\nunit-agent\nunit-agent-x86.csproj" />
+ 
+-    <!-- Test Assemblies -->
+-    <EngineProjects Include="$(EngineSrcDir)\nunit.engine.tests\nunit.engine.tests.csproj" />  
+-    
+     <!-- Addins -->
+     <EngineProjects Include="$(AddinSrcDir)\nunit-project-loader\nunit-project-loader.csproj" />
+     <EngineProjects Include="$(AddinSrcDir)\vs-project-loader\vs-project-loader.csproj" />
+     <EngineProjects Include="$(AddinSrcDir)\nunit-v2-result-writer\nunit-v2-result-writer.csproj" />
+-    <EngineProjects Include="$(AddinSrcDir)\nunit.v2.driver\nunit.v2.driver.csproj" />
+-
+-    <!-- Addin tests -->
+-    <EngineProjects Include="$(AddinSrcDir)\addin-tests\addin-tests.csproj" />
+-    <EngineProjects Include="$(AddinSrcDir)\nunit.v2.driver.tests\nunit.v2.driver.tests.csproj" />
+-
+   </ItemGroup>
+ 
+   <ItemGroup Label="Projects for building the console runner">
+     <ConsoleProjects Include="$(ConsoleSrcDir)\nunit3-console\nunit3-console.csproj" />
+-    <ConsoleProjects Include="$(ConsoleSrcDir)\nunit3-console.tests\nunit3-console.tests.csproj" />
+   </ItemGroup>
+   
+   <!-- End Region -->

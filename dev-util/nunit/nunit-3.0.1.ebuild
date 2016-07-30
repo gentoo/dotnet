@@ -10,7 +10,7 @@ HOMEPAGE="https://github.com/nunit/${NAME}"
 
 EGIT_COMMIT="dd39deaa2c805783cb069878b58b0447d0849849"
 SRC_URI="${HOMEPAGE}/archive/${EGIT_COMMIT}.tar.gz -> ${PF}.tar.gz"
-RESTRICT="mirror"
+#RESTRICT="mirror"
 S="${WORKDIR}/${NAME}-${EGIT_COMMIT}"
 
 SLOT="3"
@@ -34,21 +34,30 @@ METAFILETOBUILD="${S}/${FILE_TO_BUILD}"
 
 src_prepare() {
 	chmod -R +rw "${S}" || die
-	#epatch "${FILESDIR}/removing-tests.patch"
-	epatch "${FILESDIR}/removing-tests-from-nproj.patch"
-	epatch "${FILESDIR}/removing-2.0-compatibiility.patch"
+	eapply "${FILESDIR}/nunit-3.0.1-removing-tests-from-nproj.patch"
 	enuget_restore "${METAFILETOBUILD}"
+
+	if use debug; then
+		DIR="Debug"
+	else
+		DIR="Release"
+	fi
+	sed -i '/x86/d' "${S}/nuget/"*.nuspec || die
+	sed -i '/log4net/d' "${S}/nuget/"*.nuspec || die
+	sed -i 's#\\#/#g' "${S}/nuget/"*.nuspec || die
+	sed -i "s#\${package.version}#$(get_version_component_range 1-3)#g" "${S}/nuget/"*.nuspec || die
+	sed -i "s#\${project.base.dir}##g" "${S}/nuget/"*.nuspec || die
+	sed -i "s#\${current.build.dir}#bin/${DIR}#g" "${S}/nuget/"*.nuspec || die
 	default
 }
 
 src_compile() {
 	exbuild "${METAFILETOBUILD}"
-	enuspec "${FILESDIR}/${PN}.nuspec"
-	# PN = Package name, for example vim.
+	enuspec "${S}/nuget/nunit.nuspec"
+	enuspec "${S}/nuget/nunit.runners.nuspec"
 }
 
 src_install() {
-	DIR=""
 	if use debug; then
 		DIR="Debug"
 	else
@@ -67,6 +76,16 @@ src_install() {
 #	dobin ${FILESDIR}/nunit-console
 	make_wrapper nunit "mono ${SLOTTEDDIR}/nunit-console.exe"
 
+	if use gac; then
+		if use debug; then
+			DIR="Debug"
+		else
+			DIR="Release"
+		fi
+
+		egacinstall "${S}/bin/${DIR}/lib/nunit-console-runner.dll"
+	fi
+
 	if use doc; then
 #		dodoc ${WORKDIR}/doc/*.txt
 #		dohtml ${WORKDIR}/doc/*.html
@@ -76,4 +95,5 @@ src_install() {
 	fi
 
 	enupkg "${WORKDIR}/NUnit.3.0.0.nupkg"
+	enupkg "${WORKDIR}/NUnit.Runners.$(get_version_component_range 1-3).nupkg"
 }
