@@ -1,13 +1,13 @@
-# Copyright 1999-2015 Gentoo Foundation
+# Copyright 1999-2016 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Id$
 
-EAPI=5
+EAPI=6
 
 # Watch the order of these!
 inherit autotools apache-module multilib eutils go-mono mono
 
-KEYWORDS="amd64 ppc x86"
+KEYWORDS="~amd64 ~x86"
 
 DESCRIPTION="Apache module for Mono"
 HOMEPAGE="http://www.mono-project.com/Mod_mono"
