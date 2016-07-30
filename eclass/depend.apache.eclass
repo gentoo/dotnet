@@ -162,6 +162,8 @@ depend.apache_pkg_setup() {
 		else
 			_init_no_apache
 		fi
+	else
+		_init_apache2
 	fi
 }
 
@@ -226,7 +228,9 @@ need_apache2() {
 
 	DEPEND="${DEPEND} ${APACHE2_DEPEND}"
 	RDEPEND="${RDEPEND} ${APACHE2_DEPEND}"
-	_init_apache2
+	case "${EAPI:-0}" in
+	0|1|2|3|4|5) _init_apache2 ;;
+	esac
 }
 
 # @FUNCTION: need_apache2_2
@@ -237,7 +241,9 @@ need_apache2_2() {
 
 	DEPEND="${DEPEND} ${APACHE2_2_DEPEND}"
 	RDEPEND="${RDEPEND} ${APACHE2_2_DEPEND}"
-	_init_apache2
+	case "${EAPI:-0}" in
+	0|1|2|3|4|5) _init_apache2 ;;
+	esac
 }
 
 # @FUNCTION: need_apache2_4
@@ -248,7 +254,9 @@ need_apache2_4() {
 
         DEPEND="${DEPEND} ${APACHE2_4_DEPEND}"
         RDEPEND="${RDEPEND} ${APACHE2_4_DEPEND}"
-        _init_apache2
+	case "${EAPI:-0}" in
+	0|1|2|3|4|5) _init_apache2 ;;
+	esac
 }
 
 # @FUNCTION: has_apache
