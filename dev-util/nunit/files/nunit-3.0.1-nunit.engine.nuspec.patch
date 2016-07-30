@@ -1,0 +1,16 @@
+diff --git a/nuget/nunit.engine.nuspec b/nuget/nunit.engine.nuspec
+index 04086bf..53f3be6 100644
+--- a/nuget/nunit.engine.nuspec
++++ b/nuget/nunit.engine.nuspec
+@@ -23,10 +23,7 @@
+     <file src="CHANGES.txt" />
+     <file src="bin\nunit.engine.dll" target="lib" />
+     <file src="bin\nunit.engine.api.dll" target="lib" />
+-    <file src="bin\Mono.Cecil.dll" target="lib" />
+     <file src="bin\nunit-agent.exe" target="lib" />
+     <file src="bin\nunit-agent.exe.config" target="lib" />
+-    <file src="bin\nunit-agent-x86.exe" target="lib" />
+-    <file src="bin\nunit-agent-x86.exe.config" target="lib" />
+   </files>
+ </package>
+\ No newline at end of file

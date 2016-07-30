@@ -1,0 +1,20 @@
+diff --git a/nuget/nunit.nuspec b/nuget/nunit.nuspec
+index 71634a9..b450080 100644
+--- a/nuget/nunit.nuspec
++++ b/nuget/nunit.nuspec
+@@ -32,15 +32,7 @@ Supported platforms:
+     <file src="LICENSE.txt" />
+     <file src="NOTICES.txt" />
+     <file src="CHANGES.txt" />
+-    <file src="bin/net-2.0/nunit.framework.dll" target="lib/net20" />
+-    <file src="bin/net-2.0/nunit.framework.xml" target="lib/net20" />
+-    <file src="bin/net-4.0/nunit.framework.dll" target="lib/net40" />
+-    <file src="bin/net-4.0/nunit.framework.xml" target="lib/net40" />
+     <file src="bin/net-4.5/nunit.framework.dll" target="lib/net45" />
+     <file src="bin/net-4.5/nunit.framework.xml" target="lib/net45" />
+-    <file src="bin/portable/nunit.framework.dll" target="lib/dotnet" />
+-    <file src="bin/portable/nunit.framework.xml" target="lib/dotnet" />
+-    <file src="bin/portable/nunit.framework.dll" target="lib/portable-net45+win8+wp8+wpa81+Xamarin.Mac+MonoAndroid10+MonoTouch10+Xamarin.iOS10" />
+-    <file src="bin/portable/nunit.framework.xml" target="lib/portable-net45+win8+wp8+wpa81+Xamarin.Mac+MonoAndroid10+MonoTouch10+Xamarin.iOS10" />
+   </files>
+ </package>
