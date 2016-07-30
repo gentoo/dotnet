@@ -5,7 +5,7 @@
 EAPI=6
 
 # Watch the order of these!
-inherit autotools apache-module eutils mono
+inherit autotools apache-module eutils go-mono mono
 
 KEYWORDS="~amd64 ~x86"
 
@@ -14,6 +14,10 @@ HOMEPAGE="http://www.mono-project.com/Mod_mono"
 LICENSE="Apache-2.0"
 SLOT="0"
 IUSE="debug"
+EGIT_COMMIT="f21ce5a86a610aba053042324970706a9c424681"
+SRC_URI="https://github.com/mono/mod_mono/archive/${EGIT_COMMIT}.tar.gz -> ${PN}-${PV}.tar.gz"
+RESTRICT="mirror"
+S="${WORKDIR}/mod_mono-${EGIT_COMMIT}"
 
 CDEPEND=""
 DEPEND="${CDEPEND}"
@@ -32,8 +36,6 @@ src_prepare() {
 	sed -e "s:@LIBDIR@:$(get_libdir):" "${FILESDIR}/${APACHE2_MOD_CONF}.conf" \
 		> "${WORKDIR}/${APACHE2_MOD_CONF##*/}.conf" || die
 
-	epatch "${FILESDIR}"/${PN}-2.10-apache-2.4.patch
-
 	eautoreconf
 	go-mono_src_prepare
 }
@@ -46,6 +48,7 @@ src_configure() {
 		--with-apr-config="/usr/bin/apr-1-config" \
 		--with-apu-config="/usr/bin/apu-1-config"
 }
+
 src_compile() {
 	go-mono_src_compile
 }
