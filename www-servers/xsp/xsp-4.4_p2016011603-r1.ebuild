@@ -12,8 +12,10 @@ inherit eutils systemd dotnet user autotools
 DESCRIPTION="XSP is a small web server that can host ASP.NET pages"
 HOMEPAGE="http://www.mono-project.com/ASP.NET"
 
-EGIT_COMMIT="e272a2c006211b6b03be2ef5bbb9e3f8fefd0768"
-SRC_URI="http://github.com/mono/xsp/archive/${EGIT_COMMIT}.zip -> ${P}.zip"
+EGIT_COMMIT="c98e068f5647fb06ff2fbef7cd5f1b35417362b1"
+SRC_URI="http://github.com/mono/xsp/archive/${EGIT_COMMIT}.tar.gz -> ${PN}-${PV}.tar.gz"
+
+RESTRICT="mirror"
 S="${WORKDIR}/xsp-${EGIT_COMMIT}"
 
 LICENSE="MIT"

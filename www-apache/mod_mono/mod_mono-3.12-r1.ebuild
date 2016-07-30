@@ -22,7 +22,7 @@ S="${WORKDIR}/mod_mono-${EGIT_COMMIT}"
 CDEPEND=""
 DEPEND="${CDEPEND}"
 RDEPEND="${CDEPEND}
-	>=www-servers/xsp-2014.12-r2014120900
+	>=www-servers/xsp-4.4
 	"
 
 APACHE2_MOD_CONF="2.2/70_${PN}"
