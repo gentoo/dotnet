@@ -17,7 +17,7 @@ SLOT="3"
 
 DESCRIPTION="NUnit test suite for mono applications"
 LICENSE="MIT" # https://github.com/nunit/nunit/blob/master/LICENSE.txt
-KEYWORDS="~amd64 ~ppc ~x86"
+KEYWORDS="~amd64 ~x86"
 #USE_DOTNET="net20 net40 net45"
 USE_DOTNET="net45"
 IUSE="+net45 developer debug nupkg gac doc"
