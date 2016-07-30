@@ -1,19 +1,21 @@
-# Copyright 1999-2015 Gentoo Foundation
+# Copyright 1999-2016 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Id$
 
-EAPI="5"
+EAPI="6"
 
 USE_DOTNET="net35 net40 net45"
 PATCHDIR="${FILESDIR}/2.2/"
 
-inherit base eutils systemd dotnet user autotools autotools-utils
+inherit eutils systemd dotnet user autotools
 
 DESCRIPTION="XSP is a small web server that can host ASP.NET pages"
 HOMEPAGE="http://www.mono-project.com/ASP.NET"
 
-EGIT_COMMIT="e272a2c006211b6b03be2ef5bbb9e3f8fefd0768"
-SRC_URI="http://github.com/mono/xsp/archive/${EGIT_COMMIT}.zip -> ${P}.zip"
+EGIT_COMMIT="c98e068f5647fb06ff2fbef7cd5f1b35417362b1"
+SRC_URI="http://github.com/mono/xsp/archive/${EGIT_COMMIT}.tar.gz -> ${PN}-${PV}.tar.gz"
+
+RESTRICT="mirror"
 S="${WORKDIR}/xsp-${EGIT_COMMIT}"
 
 LICENSE="MIT"
@@ -41,6 +43,7 @@ src_prepare() {
 	if test -z "$NO_LIBTOOLIZE"; then
 		${LIBTOOL}ize --force --copy
 	fi
+	eapply_user
 	eautoconf
 }
 
