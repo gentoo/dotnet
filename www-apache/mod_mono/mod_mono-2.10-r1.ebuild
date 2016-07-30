@@ -5,7 +5,7 @@
 EAPI=6
 
 # Watch the order of these!
-inherit autotools apache-module multilib eutils go-mono mono
+inherit autotools apache-module eutils mono
 
 KEYWORDS="~amd64 ~x86"
 
@@ -15,8 +15,11 @@ LICENSE="Apache-2.0"
 SLOT="0"
 IUSE="debug"
 
-DEPEND="=dev-dotnet/xsp-${GO_MONO_REL_PV}*"
-RDEPEND="${DEPEND}"
+CDEPEND=""
+DEPEND="${CDEPEND}"
+RDEPEND="${CDEPEND}
+	>=www-servers/xsp-2014.12-r2014120900
+	"
 
 APACHE2_MOD_CONF="2.2/70_${PN}"
 APACHE2_MOD_DEFINE="MONO"
