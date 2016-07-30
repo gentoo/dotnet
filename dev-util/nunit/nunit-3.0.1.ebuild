@@ -32,22 +32,30 @@ S="${WORKDIR}/${NAME}-${EGIT_COMMIT}"
 FILE_TO_BUILD=NUnit.proj
 METAFILETOBUILD="${S}/${FILE_TO_BUILD}"
 
+NUGET_PACKAGE_VERSION="$(get_version_component_range 1-3)"
+
 src_prepare() {
 	chmod -R +rw "${S}" || die
 	eapply "${FILESDIR}/nunit-3.0.1-removing-tests-from-nproj.patch"
+	eapply "${FILESDIR}/nunit-3.0.1-nuget.nuspec.patch"
+	eapply "${FILESDIR}/nunit-3.0.1-nunit.console.nuspec.patch"
+	eapply "${FILESDIR}/nunit-3.0.1-nunit.engine.nuspec.patch"
 	enuget_restore "${METAFILETOBUILD}"
 
 	if use debug; then
 		DIR="Debug"
 	else
-		DIR="Release"
+		DIR=""
 	fi
-	sed -i '/x86/d' "${S}/nuget/"*.nuspec || die
-	sed -i '/log4net/d' "${S}/nuget/"*.nuspec || die
+	
+	sed -i "s=\\\$version\\\$=${NUGET_PACKAGE_VERSION}=g" "${S}/nuget/"*.nuspec || die
+	#sed -i "s=\\\${package.version}=${NUGET_PACKAGE_VERSION}=g" "${S}/nuget/"*.nuspec || die
+	#sed -i '/test/d' "${S}/nuget/"*.nuspec || die
+	#sed -i '/x86/d' "${S}/nuget/"*.nuspec || die
+	#sed -i '/log4net/d' "${S}/nuget/"*.nuspec || die
 	sed -i 's#\\#/#g' "${S}/nuget/"*.nuspec || die
-	sed -i "s#\${package.version}#$(get_version_component_range 1-3)#g" "${S}/nuget/"*.nuspec || die
-	sed -i "s#\${project.base.dir}##g" "${S}/nuget/"*.nuspec || die
-	sed -i "s#\${current.build.dir}#bin/${DIR}#g" "${S}/nuget/"*.nuspec || die
+	#sed -i "s#\\${project.base.dir}##g" "${S}/nuget/"*.nuspec || die
+	sed -i "s#bin/#bin/${DIR}/#g" "${S}/nuget/"*.nuspec || die
 	default
 }
 
@@ -55,6 +63,8 @@ src_compile() {
 	exbuild "${METAFILETOBUILD}"
 	enuspec "${S}/nuget/nunit.nuspec"
 	enuspec "${S}/nuget/nunit.runners.nuspec"
+	enuspec "${S}/nuget/nunit.console.nuspec"
+	enuspec "${S}/nuget/nunit.engine.nuspec"
 }
 
 src_install() {
@@ -94,6 +104,8 @@ src_install() {
 		doins LICENSE.txt NOTICES.txt CHANGES.txt
 	fi
 
-	enupkg "${WORKDIR}/NUnit.3.0.0.nupkg"
-	enupkg "${WORKDIR}/NUnit.Runners.$(get_version_component_range 1-3).nupkg"
+	enupkg "${WORKDIR}/NUnit.${NUNIT_PACKAGE_VERSION}.nupkg"
+	enupkg "${WORKDIR}/NUnit.Runners.${NUNIT_PACKAGE_VERSION}.nupkg"
+	enupkg "${WORKDIR}/NUnit.Console.${NUNIT_PACKAGE_VERSION}.nupkg"
+	enupkg "${WORKDIR}/NUnit.Engine.${NUNIT_PACKAGE_VERSION}.nupkg"
 }
