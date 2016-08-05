@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
+  <metadata>
+    <id>Mono.Options</id>
+    <version>4.4.0.0</version>
+    <title>Mono.Options</title>
+    <authors>Xamarin Inc.</authors>
+    <owners>Xamarin Inc.</owners>
+    <licenseUrl>https://components.xamarin.com/license/mono.options</licenseUrl>
+    <iconUrl>https://xamarin-component-icons.s3.amazonaws.com/mono.options.png</iconUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>A Getopt::Long-inspired option parsing library for C#.</description>
+    <summary>A Getopt::Long-inspired option parsing library for C#.</summary>
+    <copyright>Copyright 2016 Xamarin Inc.</copyright>
+  </metadata>
+  <files>
+    <file src="Mono.Options.dll" target="lib/net40" />
+  </files>
+</package>
