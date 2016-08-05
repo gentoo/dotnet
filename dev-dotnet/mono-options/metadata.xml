@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
+<pkgmetadata>
+	<maintainer type="project">
+		<email>dotnet@gentoo.org</email>
+		<name>Gentoo Dotnet Project</name>
+	</maintainer>
+	<longdescription lang="en">
+		Code for parsing command line parameters
+	</longdescription>
+	<longdescription lang="ru">
+		методы для считывания параметров командной строки
+	</longdescription>
+	<use>
+		<flag name='gac'>n/a</flag>
+		<flag name='nupkg'>n/a</flag>
+		<flag name='developer'>n/a</flag>
+	</use>
+</pkgmetadata>
