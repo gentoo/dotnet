@@ -21,7 +21,7 @@ S="${WORKDIR}/${GITFILENAME}"
 
 SLOT="0"
 
-KEYWORDS="~amd64 ~ppc ~x86"
+KEYWORDS="~amd64 ~x86"
 IUSE="+net45 developer nupkg debug"
 USE_DOTNET="net45"
 
