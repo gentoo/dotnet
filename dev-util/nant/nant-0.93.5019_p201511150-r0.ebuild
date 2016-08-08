@@ -21,12 +21,13 @@ S="${WORKDIR}/${GITFILENAME}"
 
 SLOT="0"
 
-KEYWORDS="~amd64 ~ppc ~x86"
+KEYWORDS="~amd64 ~x86"
 IUSE="+net45 developer nupkg debug"
 USE_DOTNET="net45"
 
 RDEPEND=">=dev-lang/mono-4.4.0.40
-	!dev-dotnet/nant"
+	!dev-dotnet/nant
+	nupkg? ( dev-dotnet/nuget )"
 DEPEND="${RDEPEND}
 	virtual/pkgconfig
 "
