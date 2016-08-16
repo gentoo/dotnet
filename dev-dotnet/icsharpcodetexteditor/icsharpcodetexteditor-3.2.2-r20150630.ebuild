@@ -1,4 +1,4 @@
-# Copyright 1999-2015 Gentoo Foundation
+# Copyright 1999-2016 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Id$
 
@@ -15,7 +15,7 @@ EGIT_COMMIT="24903d58cddab7d0ff17fc96a8bb25f66e6eea56"
 SRC_URI="${HOMEPAGE}/archive/${EGIT_COMMIT}.zip -> ${P}-${PR}.zip"
 
 SLOT="0"
-KEYWORDS="amd64 ppc x86"
+KEYWORDS="~amd64 ~x86 ~ppc"
 DEPEND="|| ( >=dev-lang/mono-3.4.0 <dev-lang/mono-9999 )	"
 RDEPEND="${DEPEND}"
 USE_DOTNET="net45"
