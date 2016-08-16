@@ -147,17 +147,6 @@ exbuild_strong() {
 	exbuild "${PARAMETERS}"
 }
 
-# @FUNCTION: egacinstall
-# @DESCRIPTION:  install package to GAC
-egacinstall() {
-	use !prefix && has "${EAPI:-0}" 0 1 2 && ED="${D}"
-	gacutil -i "${1}" \
-		-root "${ED}"/usr/$(get_libdir) \
-		-gacdir /usr/$(get_libdir) \
-		-package ${2:-${GACPN:-${PN}}} \
-		|| die "installing ${1} into the Global Assembly Cache failed"
-}
-
 # @FUNCTION: dotnet_multilib_comply
 # @DESCRIPTION:  multilib comply
 dotnet_multilib_comply() {
