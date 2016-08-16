@@ -3,16 +3,15 @@
 # $Id$
 
 EAPI=6
-
-inherit autotools eutils dotnet flag-o-matic git-r3
+inherit eutils dotnet flag-o-matic
 
 DESCRIPTION="Library for using System.Drawing with mono"
 HOMEPAGE="http://www.mono-project.com"
 
 LICENSE="MIT"
 SLOT="0"
-KEYWORDS=""
-EGIT_REPO_URI="http://github.com/mono/${PN}.git"
+KEYWORDS="~amd64 ~ppc ~ppc64 ~x86 ~x86-freebsd ~amd64-linux ~x86-linux ~x86-solaris"
+SRC_URI="http://download.mono-project.com/sources/${PN}/${P}.tar.bz2"
 
 IUSE="cairo"
 
@@ -25,7 +24,7 @@ RDEPEND=">=dev-libs/glib-2.16:2
 	x11-libs/libXt
 	>=x11-libs/cairo-1.8.4[X]
 	media-libs/libexif
-	>=media-libs/giflib-4.1.3
+	>=media-libs/giflib-4.2.3
 	virtual/jpeg:0
 	media-libs/tiff:0
 	!cairo? ( >=x11-libs/pango-1.20 )"
@@ -33,17 +32,20 @@ DEPEND="${RDEPEND}"
 
 RESTRICT="test"
 
-PATCHES=( "${FILESDIR}/${P}-giflib-quantizebuffer.patch"  )
+PATCHES=("${FILESDIR}/${P}-gold.patch"
+	"${FILESDIR}/${PN}-2.10.1-libpng15.patch"
+	"${FILESDIR}/${PN}-2.10.9-giflib-quantizebuffer.patch")
 
 src_prepare() {
 	base_src_prepare
-	NOCONFIGURE="true" ./autogen.sh
+	sed -i -e 's:ungif:gif:g' configure || die
 }
 
 src_configure() {
 	append-flags -fno-strict-aliasing
 	econf 	--disable-dependency-tracking		\
 		--disable-static			\
+		--with-cairo=system			\
 		$(use !cairo && printf %s --with-pango)
 }
 

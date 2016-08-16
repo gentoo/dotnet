@@ -1,11 +1,11 @@
-# Copyright 1999-2015 Gentoo Foundation
+# Copyright 1999-2016 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Id$
 
-EAPI="5"
+EAPI=6
 USE_DOTNET="net45"
 
-inherit dotnet eutils
+inherit dotnet eutils gac
 
 # This ebuild provides a forked version of nuget modified to work with MonoDevelop.
 # See https://bugzilla.xamarin.com/show_bug.cgi?id=27693

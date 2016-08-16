@@ -2,9 +2,9 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Id$
 
-EAPI="5"
+EAPI=6
 
-inherit eutils nuget dotnet
+inherit eutils nuget dotnet gac
 
 DESCRIPTION="ICSharpCode.TextEditor library"
 LICENSE="MIT"

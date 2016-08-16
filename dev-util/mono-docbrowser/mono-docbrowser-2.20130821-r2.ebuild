@@ -10,10 +10,11 @@ DESCRIPTION="monodoc stripped from mono-tools"
 HOMEPAGE="http://www.mono-project.com/"
 
 EGIT_REPO_URI="git://github.com/mono/mono-tools.git"
+EGIT_COMMIT="3d28f26e1ca93ea7ead9ff2aae1897ec01c1ceb8"
 
 LICENSE="GPL-2 MIT"
 SLOT="0"
-KEYWORDS=""
+KEYWORDS="~amd64 ~x86"
 IUSE="+webkit gtkhtml"
 
 # gtkhtml is currently deprecated in Gentoo tree

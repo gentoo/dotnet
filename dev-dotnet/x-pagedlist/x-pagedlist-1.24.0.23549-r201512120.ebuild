@@ -1,10 +1,10 @@
-# Copyright 1999-2015 Gentoo Foundation
+# Copyright 1999-2016 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Id$
 
-EAPI=5
+EAPI=6
 
-inherit versionator dotnet nupkg
+inherit versionator dotnet nupkg gac
 
 HOMEPAGE="https://github.com/kpi-ua/X.PagedList/"
 DESCRIPTION="Nugget for easily paging through any IEnumerable/IQueryable in Asp.Net MVC"

@@ -2,8 +2,8 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Id$
 
-EAPI=5
-inherit mono-env nuget dotnet
+EAPI=6
+inherit mono-env nuget dotnet gac
 
 NAME="Eto.Parse"
 HOMEPAGE="https://github.com/picoe/${NAME}"

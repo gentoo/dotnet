@@ -16,7 +16,7 @@ USE_DOTNET="net45"
 
 KEYWORDS="~amd64 ~x86"
 
-inherit versionator dotnet nupkg
+inherit versionator dotnet nupkg gac
 
 HOMEPAGE=https://github.com/deveel/irony
 NAME=irony

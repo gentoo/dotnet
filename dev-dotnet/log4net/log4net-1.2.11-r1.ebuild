@@ -2,9 +2,9 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Id$
 
-EAPI=5
+EAPI=6
 
-inherit eutils mono-env dotnet multilib versionator
+inherit eutils mono-env dotnet multilib versionator gac
 
 PV_MAJOR=$(get_version_component_range 1-2)
 

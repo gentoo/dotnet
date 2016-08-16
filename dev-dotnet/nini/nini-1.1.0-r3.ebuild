@@ -1,10 +1,10 @@
-# Copyright 1999-2015 Gentoo Foundation
+# Copyright 1999-2016 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Id$
 
-EAPI=5
+EAPI=6
 
-inherit mono-env dotnet multilib versionator
+inherit mono-env dotnet multilib versionator gac
 
 DESCRIPTION="Nini - A configuration library for .NET"
 HOMEPAGE="http://nini.sourceforge.net"

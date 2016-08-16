@@ -4,7 +4,7 @@
 
 EAPI=6
 
-inherit nupkg
+inherit nupkg gac
 
 HOMEPAGE="http://cecil.pe/"
 DESCRIPTION="System.Reflection alternative to generate and inspect .NET executables/libraries"

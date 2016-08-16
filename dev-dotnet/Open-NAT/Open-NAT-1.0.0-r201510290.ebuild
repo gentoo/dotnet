@@ -2,10 +2,9 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Id$
 
-EAPI=5
+EAPI=6
 
-# mono-env
-inherit  dotnet nupkg
+inherit  dotnet nupkg gac
 
 HOMEPAGE="https://lontivero.github.io/Open.NAT"
 DESCRIPTION="Class library to use port forwarding in NAT devices with UPNP and/or PMP"

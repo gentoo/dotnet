@@ -1,10 +1,10 @@
-# Copyright 1999-2015 Gentoo Foundation
+# Copyright 1999-2016 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Id$
 
-EAPI=5
+EAPI=6
 
-inherit nupkg
+inherit nupkg gac
 
 HOMEPAGE="http://projects.qnetp.net/projects/show/monotorrent"
 DESCRIPTION="Monotorrent is an open source C# bittorrent library"
