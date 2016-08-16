@@ -31,9 +31,9 @@ DESCRIPTION="allows any program developed for .NET framework to access a Postgre
 LICENSE="npgsql"
 LICENSE_URL="https://github.com/npgsql/npgsql/blob/develop/LICENSE.txt"
 
-KEYWORDS="~amd64 ~ppc ~x86"
+KEYWORDS="~amd64"
 COMMON_DEPENDENCIES="|| ( >=dev-lang/mono-4.2 <dev-lang/mono-9999 )
-	nupkg? ( dev-util/nunit )
+	nupkg? ( dev-dotnet/nuget )
 "
 RDEPEND="${COMMON_DEPENDENCIES}
 "
