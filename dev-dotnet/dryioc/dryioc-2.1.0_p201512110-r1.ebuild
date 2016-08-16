@@ -46,7 +46,7 @@ HG_COMMIT="${EHG_REVISION:0:8}"
 
 # PF 	Full package name, ${PN}-${PVR}, for example vim-6.3-r1
 SRC_URI="${REPOSITORY_URL}/get/${HG_COMMIT}.tar.gz -> ${PF}.tar.gz
-	https://raw.githubusercontent.com/ArsenShnurkov/dotnet/dryioc/dev-dotnet/dryioc/files/icon.png -> ${PF}.icon.png
+	nupkg? ( https://raw.githubusercontent.com/ArsenShnurkov/dotnet/dryioc/dev-dotnet/dryioc/files/icon.png -> ${PF}.icon.png )
 	gac? ( mirror://gentoo/mono.snk.bz2 )
 	"
 #RESTRICT="mirror"
@@ -79,6 +79,7 @@ src_prepare() {
 	default
 	# /var/tmp/portage/dev-dotnet/dryioc-2.1.0-r201512110/work/dadhi-dryioc-9f1954dd921a
 	einfo "patching project files"
+	sed -i 's=\r$==g' "${METAFILETOBUILD}" || die
 	eapply "${FILESDIR}/DryIoc.csproj.patch"
 	if ! use test ; then
 		einfo "removing unit tests from solution"
@@ -112,8 +113,10 @@ src_install() {
 
 	egacinstall "bin/${DIR}/DryIoc.dll"
 
-	insinto "$(get_nuget_trusted_icons_location)"
-	newins "${DISTDIR}/${PF}.icon.png" "${NUSPEC_ID}.${NUSPEC_VERSION}.png"
+	if use nupkg; then
+		insinto "$(get_nuget_trusted_icons_location)"
+		newins "${DISTDIR}/${PF}.icon.png" "${NUSPEC_ID}.${NUSPEC_VERSION}.png"
+	fi
 
 	install_pc_file
 }

@@ -1,25 +1,27 @@
-# Copyright 1999-2015 Gentoo Foundation
+# Copyright 1999-2016 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Id$
 
-EAPI=5
+EAPI=6
 inherit mono-env nuget dotnet
 
 NAME="mono-packaging-tools"
 HOMEPAGE="https://github.com/ArsenShnurkov/${NAME}"
 
-EGIT_COMMIT="b1261238bf03e84a30bf965d17c809a8a14d1cc1"
-SRC_URI="${HOMEPAGE}/archive/${EGIT_COMMIT}.zip -> ${PF}.zip"
+EGIT_COMMIT="50b799d3bcfd12fd4d1c651f55f8dcf81d6ac2d2"
+SRC_URI="${HOMEPAGE}/archive/${EGIT_COMMIT}.tar.gz -> ${PF}.tar.gz"
+RESTRICT="mirror"
 S="${WORKDIR}/${NAME}-${EGIT_COMMIT}"
 
 SLOT="0"
 
 DESCRIPTION="mono packaging helpers"
 LICENSE="GPL-3"
-KEYWORDS="~amd64 ~ppc ~x86"
+KEYWORDS="~amd64 ~x86"
 IUSE="developer nupkg debug"
 
 COMMON_DEPENDENCIES=">=dev-lang/mono-4.2
+	dev-dotnet/mono-options[gac]
 	>=dev-dotnet/eto-parse-1.4.0[nupkg]
 	"
 DEPEND="${COMMON_DEPENDENCIES}
@@ -40,6 +42,7 @@ src_prepare() {
 	sed "s/@VERSION@/${PV}/g" "${FILESDIR}/${NUGET_PACKAGE_ID}.nuspec" >"${S}/${NUGET_PACKAGE_ID}.nuspec" || die
 
 	enuget_restore "${METAFILETOBUILD}"
+	default
 }
 
 src_compile() {

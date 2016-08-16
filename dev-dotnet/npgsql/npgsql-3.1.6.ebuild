@@ -21,7 +21,7 @@ HOMEPAGE="https://github.com/npgsql/${NAME}"
 
 EGIT_COMMIT="a7e147759c3756b6d22f07f5602aacd21f93d48d"
 SRC_URI="${HOMEPAGE}/archive/${EGIT_COMMIT}.tar.gz -> ${P}.tar.gz
-	http://www.npgsql.org/css/img/postgresql-header.png
+	nupkg? ( http://www.npgsql.org/css/img/postgresql-header.png )
 	gac? ( mirror://gentoo/mono.snk.bz2 )"
 RESTRICT="mirror"
 S="${WORKDIR}/${NAME}-${EGIT_COMMIT}"
@@ -110,12 +110,13 @@ src_install() {
 
 	FINAL_DLL=src/Npgsql/bin/${DIR}/Npgsql.dll
 
-	if use gac; then
-		egacinstall "${FINAL_DLL}"
-	fi
+	insinto ${PREFIX}/usr/lib/mono/${EBUILD_FRAMEWORK}
+	doins ${FINAL_DLL}
 
-	insinto "$(get_nuget_trusted_icons_location)"
-	newins "${DISTDIR}/${ICON_FILENAME}" "${NUSPEC_ID}.${NUSPEC_VERSION}.png"
+	if use nupkg; then
+		insinto "$(get_nuget_trusted_icons_location)"
+		newins "${DISTDIR}/${ICON_FILENAME}" "${NUSPEC_ID}.${NUSPEC_VERSION}.png"
+	fi
 
 	enupkg "${WORKDIR}/${NUSPEC_ID}.${NUSPEC_VERSION}.nupkg"
 
@@ -172,12 +173,12 @@ EOF
 
 pkg_postinst()
 {
-	egacadd "${libdir}/Npgsql.dll"
-	emachineadd "${libdir}/Npgsql.dll" "Npgsql" "Npgsql Data Provider"
+	egacadd "${PREFIX}/usr/lib/mono/${EBUILD_FRAMEWORK}/Npgsql.dll"
+	emachineadd "Npgsql" "Npgsql Data Provider" "${PREFIX}/usr/lib/mono/${EBUILD_FRAMEWORK}/Npgsql.dll"
 }
 
 pkg_prerm()
 {
 	egacdel "Npgsql"
-	emachinedel "Npgsql"
+	emachinedel "Npgsql" "Npgsql Data Provider" "${PREFIX}/usr/lib/mono/${EBUILD_FRAMEWORK}/Npgsql.dll"
 }
