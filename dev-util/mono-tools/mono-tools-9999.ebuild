@@ -4,7 +4,7 @@
 
 EAPI=6
 
-inherit dotnet autotools git-2
+inherit dotnet autotools git-r3
 
 DESCRIPTION="Set of useful Mono related utilities"
 HOMEPAGE="http://www.mono-project.com/"

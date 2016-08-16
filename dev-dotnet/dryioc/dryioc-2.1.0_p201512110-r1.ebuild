@@ -9,7 +9,7 @@ EAPI=6
 # 2015-11-17, portage-2.2.25 has been committed and it comes with complete EAPI 6 support
 # https://archives.gentoo.org/gentoo-dev/message/73cc181e4949b88abfbd68f8a8ca9254
 
-inherit versionator vcs-snapshot dotnet nupkg
+inherit versionator vcs-snapshot dotnet gac nupkg
 
 HOMEPAGE="https://bitbucket.org/dadhi/dryioc"
 DESCRIPTION="fast, small, full-featured IoC Container for .NET"
@@ -24,7 +24,7 @@ KEYWORDS="~amd64 ~x86"
 # nupkg = create .nupkg file from .nuspec
 # gac = install into gac
 # pkg-config = register in pkg-config database
-IUSE="net45 debug developer test +nupkg +gac +pkg-config"
+IUSE="net45 debug developer test +nupkg +pkg-config"
 USE_DOTNET="net45"
 
 COMMON_DEPEND=">=dev-lang/mono-4.0.2.5
@@ -46,17 +46,21 @@ HG_COMMIT="${EHG_REVISION:0:8}"
 
 # PF 	Full package name, ${PN}-${PVR}, for example vim-6.3-r1
 SRC_URI="${REPOSITORY_URL}/get/${HG_COMMIT}.tar.gz -> ${PF}.tar.gz
-	mirror://gentoo/mono.snk.bz2"
+	https://raw.githubusercontent.com/ArsenShnurkov/dotnet/dryioc/dev-dotnet/dryioc/files/icon.png -> ${PF}.icon.png
+	gac? ( mirror://gentoo/mono.snk.bz2 )
+	"
+#RESTRICT="mirror"
 
 #METAFILETOBUILD="DryIoc.sln"
 METAFILETOBUILD="DryIoc/DryIoc.csproj"
+NUSPEC_ID=DryIoc
 NUSPEC_FILE_NAME=DryIoc.nuspec
 
 # get_version_component_range is from inherit versionator
 # PR 	Package revision, or r0 if no revision exists.
 NUSPEC_VERSION=$(get_version_component_range 1-3)"${PR//r/.}"
 #ICON_URL="https://bitbucket.org/account/dadhi/avatar/256/?ts=1451481107"
-#ICON_URL="https://raw.githubusercontent.com/ArsenShnurkov/dotnet/dryioc/dev-dotnet/dryioc/files/icon.png"
+#ICON_URL=""
 ICON_URL="https://raw.githubusercontent.com/gentoo/dotnet/master/dev-dotnet/dryioc/files/icon.png"
 
 # rm -rf /var/tmp/portage/dev-dotnet/dryioc-*
@@ -107,6 +111,9 @@ src_install() {
 	enupkg "${WORKDIR}/${NAME}.${NUSPEC_VERSION}.nupkg"
 
 	egacinstall "bin/${DIR}/DryIoc.dll"
+
+	insinto "$(get_nuget_trusted_icons_location)"
+	newins "${DISTDIR}/${PF}.icon.png" "${NUSPEC_ID}.${NUSPEC_VERSION}.png"
 
 	install_pc_file
 }

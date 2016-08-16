@@ -13,8 +13,12 @@ case ${EAPI:-0} in
 	6) ;;
 esac
 
-DEPEND+=" dev-lang/mono"
 IUSE+=" +gac"
+
+DEPEND+=" dev-lang/mono
+	"
+RDEPEND+=" dev-lang/mono
+	"
 
 # SRC_URI+=" https://github.com/mono/mono/raw/master/mcs/class/mono.snk"
 # I was unable to setup it this ^^ way
@@ -28,4 +32,26 @@ egacinstall() {
 		-gacdir /usr/$(get_libdir) \
 		-package ${2:-${GACPN:-${PN}}} \
 		|| die "installing ${1} into the Global Assembly Cache failed"
+}
+
+# @FUNCTION: egacadd
+# @DESCRIPTION:  install package to GAC
+egacadd() {
+	use !prefix && has "${EAPI:-0}" 0 1 2 && ED="${D}"
+	gacutil -i "${1}" \
+		-root "${ED}"/usr/$(get_libdir) \
+		-gacdir /usr/$(get_libdir) \
+		-package ${2:-${GACPN:-${PN}}} \
+		|| die "installing ${1} into the Global Assembly Cache failed"
+}
+
+# @FUNCTION: egacdel
+# @DESCRIPTION:  remove package from GAC
+egacdel() {
+	use !prefix && has "${EAPI:-0}" 0 1 2 && ED="${D}"
+	gacutil -r "${1}" \
+		-root "${ED}"/usr/$(get_libdir) \
+		-gacdir /usr/$(get_libdir) \
+		-package ${2:-${GACPN:-${PN}}}
+	# don't die
 }

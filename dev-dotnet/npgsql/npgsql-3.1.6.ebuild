@@ -11,7 +11,7 @@ EAPI=6
 # gac = install into gac
 # pkg-config = register in pkg-config database
 USE_DOTNET="net45"
-IUSE="${USE_DOTNET} debug developer test +nupkg +gac +pkg-config +machine"
+IUSE="${USE_DOTNET} debug developer test +pkg-config"
 
 inherit gac machine nupkg
 
@@ -21,8 +21,8 @@ HOMEPAGE="https://github.com/npgsql/${NAME}"
 
 EGIT_COMMIT="a7e147759c3756b6d22f07f5602aacd21f93d48d"
 SRC_URI="${HOMEPAGE}/archive/${EGIT_COMMIT}.tar.gz -> ${P}.tar.gz
-	gac? ( mirror://gentoo/mono.snk.bz2 )
-	http://www.npgsql.org/css/img/postgresql-header.png"
+	http://www.npgsql.org/css/img/postgresql-header.png
+	gac? ( mirror://gentoo/mono.snk.bz2 )"
 RESTRICT="mirror"
 S="${WORKDIR}/${NAME}-${EGIT_COMMIT}"
 
@@ -168,4 +168,16 @@ EOF
 		PKG_CONFIG_PATH="${D}/usr/$(get_libdir)/pkgconfig/" pkg-config --exists "${PC_FILE_NAME}" || die ".pc file failed to validate."
 		eend $?
 	fi
+}
+
+pkg_postinst()
+{
+	egacadd "${libdir}/Npgsql.dll"
+	emachineadd "${libdir}/Npgsql.dll" "Npgsql" "Npgsql Data Provider"
+}
+
+pkg_prerm()
+{
+	egacdel "Npgsql"
+	emachinedel "Npgsql"
 }

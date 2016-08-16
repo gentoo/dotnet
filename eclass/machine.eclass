@@ -22,11 +22,14 @@ RDEPEND+=" dev-lang/mono
 
 IUSE+=" +machine"
 
-# SRC_URI+=" https://github.com/mono/mono/raw/master/mcs/class/mono.snk"
-# I was unable to setup it this ^^ way
-
-# @FUNCTION: emachineinstall
+# @FUNCTION: emachineadd
 # @DESCRIPTION:  install a provider into machine.config
-emachineinstall() {
+emachineadd() {
 	einfo "Installing $1 into machine.config"
+}
+
+# @FUNCTION: emachinedel
+# @DESCRIPTION: remove a provider from machine.config
+emachinedel() {
+	einfo "Removing $1 from machine.config"
 }
