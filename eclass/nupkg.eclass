@@ -11,6 +11,9 @@ inherit dotnet
 
 IUSE+=" +nupkg"
 
+DEPEND+=" dev-dotnet/nuget"
+RDEPEND+=" dev-dotnet/nuget"
+
 # @FUNCTION: get_nuget_trusted_icons_location
 # @USAGE: [directory]
 # @DESCRIPTION:

@@ -1,16 +1,16 @@
-# Copyright 1999-2015 Gentoo Foundation
+# Copyright 1999-2016 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Id$
 
-EAPI="5"
+EAPI="6"
 
-inherit dotnet autotools base
+inherit dotnet autotools
 
 SLOT="2"
 DESCRIPTION="gnome bindings for mono"
 HOMEPAGE="http://www.mono-project.com/GtkSharp"
 LICENSE="GPL-2"
-KEYWORDS="~amd64 ~x86 ~ppc ~x86-fbsd"
+KEYWORDS="~amd64 ~x86 ~ppc"
 SRC_URI="mirror://gnome/sources/gnome-sharp/2.24/${P}.tar.bz2"
 IUSE="debug"
 
@@ -30,7 +30,7 @@ DEPEND="${RDEPEND}
 	sys-devel/automake:1.11"
 
 src_prepare() {
-	base_src_prepare
+	default
 	eautoreconf
 	elibtoolize
 }

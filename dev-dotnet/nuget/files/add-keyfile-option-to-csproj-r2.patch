@@ -1,0 +1,6 @@
+--- a/src/Core/Core.csproj
++++ b/src/Core/Core.csproj
+@@ -8,1 +8,3 @@
+     <AssemblyName>NuGet.Core</AssemblyName>
++    <SignAssembly>true</SignAssembly>
++    <AssemblyOriginatorKeyFile>rsa-4096.snk</AssemblyOriginatorKeyFile>
