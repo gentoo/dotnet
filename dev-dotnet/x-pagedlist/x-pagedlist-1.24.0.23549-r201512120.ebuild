@@ -122,7 +122,7 @@ EOF
 		fi
 
 		einfo ${FILES_STRING}
-		replace "</package>" "${FILES_STRING}</package>" -- $1 || die "replace at patch_nuspec_file()"
+		sed -i 's#</package>#${FILES_STRING}</package>#' $1 || die "replace at patch_nuspec_file()"
 	fi
 }
 

@@ -5,7 +5,7 @@
 EAPI="6"
 USE_DOTNET="net45"
 
-inherit dotnet eutils
+inherit dotnet eutils gac
 
 # This ebuild provides a forked version of nuget modified to work with MonoDevelop.
 # See https://bugzilla.xamarin.com/show_bug.cgi?id=27693
