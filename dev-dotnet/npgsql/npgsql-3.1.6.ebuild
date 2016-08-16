@@ -19,9 +19,10 @@ NAME="npgsql"
 NUSPEC_ID="${NAME}"
 HOMEPAGE="https://github.com/npgsql/${NAME}"
 
-EGIT_COMMIT="25703d852a5fed28dde238e2312c982482ea91e0"
-SRC_URI="${HOMEPAGE}/archive/${EGIT_COMMIT}.zip -> ${P}.zip
-	mirror://gentoo/mono.snk.bz2"
+EGIT_COMMIT="a7e147759c3756b6d22f07f5602aacd21f93d48d"
+SRC_URI="${HOMEPAGE}/archive/${EGIT_COMMIT}.tar.gz -> ${P}.tar.gz
+	gac? ( mirror://gentoo/mono.snk.bz2 )"
+RESTRICT="mirror"
 S="${WORKDIR}/${NAME}-${EGIT_COMMIT}"
 
 SLOT="0"
@@ -31,14 +32,18 @@ LICENSE="npgsql"
 LICENSE_URL="https://github.com/npgsql/npgsql/blob/develop/LICENSE.txt"
 
 KEYWORDS="~amd64 ~ppc ~x86"
-COMMON_DEPENDENCIES="|| ( >=dev-lang/mono-4.2 <dev-lang/mono-9999 )"
+COMMON_DEPENDENCIES="|| ( >=dev-lang/mono-4.2 <dev-lang/mono-9999 )
+	nupkg? ( dev-util/nunit )
+"
 RDEPEND="${COMMON_DEPENDENCIES}
 "
 DEPEND="${COMMON_DEPENDENCIES}
-	>=dev-dotnet/nunit-2.6.4-r201501110:2[nupkg]
+	nupkg? ( dev-util/nunit:2[nupkg] )
+	!nupkg? ( dev-util/nunit:2 )
 "
 
-METAFILETOBUILD=src/Npgsql/Npgsql.csproj
+NPGSQL_CSPROJ=src/Npgsql/Npgsql.csproj
+METAFILETOBUILD=${NPGSQL_CSPROJ}
 
 NUSPEC_FILENAME="npgsql.nuspec"
 COMMIT_DATE_INDEX=$(get_version_component_count ${PV} )
@@ -50,7 +55,6 @@ ICON_FILENAME=postgresql-header.png
 ICON_URL=$(get_nuget_trusted_icons_location)/${NUSPEC_ID}.${NUSPEC_VERSION}.png
 
 src_unpack() {
-	default
 	# Installing 'NLog 3.2.0.0'.
 	# Installing 'AsyncRewriter 0.6.0'.
 	# Installing 'EntityFramework 5.0.0'.
@@ -61,6 +65,7 @@ src_unpack() {
 	enuget_download_rogue_binary "EntityFramework" "5.0.0"
 	enuget_download_rogue_binary "EntityFramework" "6.1.3"
 	#enuget_download_rogue_binary "NUnit" "2.6.4"
+	default
 }
 
 src_prepare() {
@@ -75,9 +80,10 @@ src_prepare() {
 }
 
 src_compile() {
+	#exbuild /t:RewriteAsync "${NPGSQL_CSPROJ}"
 	exbuild /p:SignAssembly=true "/p:AssemblyOriginatorKeyFile=${WORKDIR}/mono.snk" "${METAFILETOBUILD}"
 	if use test; then
-		exbuild /p:SignAssembly=true "/p:AssemblyOriginatorKeyFile=${WORKDIR}/mono.snk" "test\Npgsql.Tests\Npgsql.Tests.csproj"
+		exbuild /p:SignAssembly=true "/p:AssemblyOriginatorKeyFile=${WORKDIR}/mono.snk" "test/Npgsql.Tests/Npgsql.Tests.csproj"
 	fi
 
 	NUSPEC_PROPS+="nuget_version=${NUSPEC_VERSION};"
@@ -101,7 +107,7 @@ src_install() {
 		DIR="Release"
 	fi
 
-	FINAL_DLL=npgsql/bin/${DIR}/Net45/npgsql.dll
+	FINAL_DLL=src/Npgsql/bin/${DIR}/Npgsql.dll
 
 	if use gac; then
 		egacinstall "${FINAL_DLL}"
@@ -125,7 +131,7 @@ patch_nuspec_file()
 		fi
 FILES_STRING=`cat <<-EOF || die "${DIR} files at patch_nuspec_file()"
 	<files> <!-- https://docs.nuget.org/create/nuspec-reference -->
-		<file src="npgsql/bin/${DIR}/Net45/Newtonsoft.Json.*" target="lib\net45\" />
+		<file src="src/Npgsql/bin/${DIR}/Npgsql.dll" target="lib\net45\" />
 	</files>
 EOF
 `
