@@ -101,28 +101,27 @@ patch_nuspec_file()
 	if use nupkg; then
 		if use debug; then
 			DIR="Debug"
-FILES_STRING=`cat <<-EOF || die "${DIR} files at patch_nuspec_file()"
-	<files> <!-- https://docs.nuget.org/create/nuspec-reference -->
-		<file src="src/X.PagedList/bin/${DIR}/X.PagedList.dll" target="lib\net45\" />
-		<file src="src/X.PagedList.Mvc/bin/${DIR}/X.PagedList.Mvc.dll" target="lib\net45\" />
-		<file src="src/X.PagedList/bin/${DIR}/X.PagedList.dll.mdb" target="lib\net45\" />
-		<file src="src/X.PagedList.Mvc/bin/${DIR}/X.PagedList.Mvc.dll.mdb" target="lib\net45\" />
-	</files>
-EOF
-`
+			FILES_STRING=`sed 's/[\/&]/\\\\&/g' <<-EOF || die "escaping replacement string characters"
+			  <files> <!-- https://docs.nuget.org/create/nuspec-reference -->
+			    <file src="src/X.PagedList/bin/${DIR}/X.PagedList.dll" target="lib\net45\" />
+			    <file src="src/X.PagedList.Mvc/bin/${DIR}/X.PagedList.Mvc.dll" target="lib\net45\" />
+			    <file src="src/X.PagedList/bin/${DIR}/X.PagedList.dll.mdb" target="lib\net45\" />
+			    <file src="src/X.PagedList.Mvc/bin/${DIR}/X.PagedList.Mvc.dll.mdb" target="lib\net45\" />
+			  </files>
+			EOF
+			`
 		else
 			DIR="Release"
-FILES_STRING=`cat <<-EOF || die "${DIR} files at patch_nuspec_file()"
-	<files> <!-- https://docs.nuget.org/create/nuspec-reference -->
-		<file src="src/X.PagedList/bin/${DIR}/X.PagedList.dll" target="lib\net45\" />
-		<file src="src/X.PagedList.Mvc/bin/${DIR}/X.PagedList.Mvc.dll" target="lib\net45\" />
-	</files>
-EOF
-`
+			FILES_STRING=`sed 's/[\/&]/\\\\&/g' <<-EOF || die "escaping replacement string characters"
+			  <files> <!-- https://docs.nuget.org/create/nuspec-reference -->
+			    <file src="src/X.PagedList/bin/${DIR}/X.PagedList.dll" target="lib\net45\" />
+			    <file src="src/X.PagedList.Mvc/bin/${DIR}/X.PagedList.Mvc.dll" target="lib\net45\" />
+			  </files>
+			EOF
+			`
 		fi
 
-		einfo ${FILES_STRING}
-		sed -i 's#</package>#${FILES_STRING}</package>#' $1 || die "replace at patch_nuspec_file()"
+		sed -i 's/<\/package>/'"${FILES_STRING//$'\n'/\\$'\n'}"'\n&/g' $1 || die "escaping line endings"
 	fi
 }
 

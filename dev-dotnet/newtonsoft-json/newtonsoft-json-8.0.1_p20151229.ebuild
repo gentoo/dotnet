@@ -117,14 +117,13 @@ patch_nuspec_file()
 		else
 			DIR="Release"
 		fi
-FILES_STRING=`cat <<-EOF || die "${DIR} files at patch_nuspec_file()"
-	<files> <!-- https://docs.nuget.org/create/nuspec-reference -->
-		<file src="Src/Newtonsoft.Json/bin/${DIR}/Net45/Newtonsoft.Json.*" target="lib\net45\" />
-	</files>
-EOF
-`
-		einfo ${FILES_STRING}
-		sed -i 's#</package>#${FILES_STRING}</package>#' $1 || die "replace at patch_nuspec_file()"
+		FILES_STRING=`sed 's/[\/&]/\\\\&/g' <<-EOF || die "escaping replacement string characters"
+		  <files> <!-- https://docs.nuget.org/create/nuspec-reference -->
+		    <file src="Src/Newtonsoft.Json/bin/${DIR}/Net45/Newtonsoft.Json.*" target="lib\net45\" />
+		  </files>
+		EOF
+		`
+		sed -i 's/<\/package>/'"${FILES_STRING//$'\n'/\\$'\n'}"'\n&/g' $1 || die "escaping line endings"
 	fi
 }
 
