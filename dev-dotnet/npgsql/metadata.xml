@@ -9,8 +9,13 @@
 		<bugs-to>https://github.com/npgsql/npgsql/issues</bugs-to>
 		<remote-id type="github">npgsql/npgsql</remote-id>
 	</upstream>
-	<use>
+	<use lang="en">
+		<flag name='machine'>register ADO .NET data provider in machine.config</flag>
 		<flag name='pkg-config'>create .pc file(s) for .dll(s) installed to gac</flag>
+	</use>
+	<use lang="ru">
+		<flag name='machine'>регистрирует  фабрику ADO .NET провайдера в файле machine.config</flag>
+		<flag name='pkg-config'>создаёт .pc файл для .dll-ки, устанавливаемой в gac</flag>
 	</use>
 	<longdescription lang="en">Npgsql is an open source ADO.NET Data Provider for PostgreSQL,
 it allows programs written in C#, F# and similar to access the PostgreSQL database server.

@@ -11,9 +11,9 @@ EAPI=6
 # gac = install into gac
 # pkg-config = register in pkg-config database
 USE_DOTNET="net45"
-IUSE="${USE_DOTNET} debug developer test +nupkg +gac +pkg-config"
+IUSE="${USE_DOTNET} debug developer test +nupkg +gac +pkg-config +machine"
 
-inherit nupkg
+inherit gac machine nupkg
 
 NAME="npgsql"
 NUSPEC_ID="${NAME}"
