@@ -33,13 +33,14 @@ S="${WORKDIR}/${NAME}-${EGIT_COMMIT}"
 # PN = Package name, for example vim.
 SLN_FILE=${PN}.sln
 METAFILETOBUILD="${S}/${SLN_FILE}"
-NUGET_PACKAGE_ID="${NAME}"
+NUSPEC_ID="${NAME}"
+NUSPEC_VERSION=$(get_version_component_range 1-3)"${PR//r/.}"
 
 src_prepare() {
 	#change version in .nuspec
 	# PV = Package version (excluding revision, if any), for example 6.3.
 	# It should reflect the upstream versioning scheme
-	sed "s/@VERSION@/${PV}/g" "${FILESDIR}/${NUGET_PACKAGE_ID}.nuspec" >"${S}/${NUGET_PACKAGE_ID}.nuspec" || die
+	sed "s/@VERSION@/${NUSPEC_VERSION}/g" "${FILESDIR}/${NUSPEC_ID}.nuspec" >"${S}/${NUSPEC_ID}.nuspec" || die
 
 	enuget_restore "${METAFILETOBUILD}"
 	default
@@ -47,7 +48,7 @@ src_prepare() {
 
 src_compile() {
 	exbuild "${METAFILETOBUILD}"
-	enuspec "${NUGET_PACKAGE_ID}.nuspec"
+	enuspec "${NUSPEC_ID}.nuspec"
 }
 
 install_tool() {
@@ -75,7 +76,7 @@ src_install() {
 	install_tool mpt-machine
 	install_tool mpt-nuget
 
-	enupkg "${WORKDIR}/${PN}.${PV}.nupkg"
+	enupkg "${WORKDIR}/${NUSPEC_ID}.${NUSPEC_VERSION}.nupkg"
 
 	dodoc README.md
 }
