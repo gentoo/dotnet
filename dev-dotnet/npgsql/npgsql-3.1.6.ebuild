@@ -21,7 +21,8 @@ HOMEPAGE="https://github.com/npgsql/${NAME}"
 
 EGIT_COMMIT="a7e147759c3756b6d22f07f5602aacd21f93d48d"
 SRC_URI="${HOMEPAGE}/archive/${EGIT_COMMIT}.tar.gz -> ${P}.tar.gz
-	gac? ( mirror://gentoo/mono.snk.bz2 )"
+	gac? ( mirror://gentoo/mono.snk.bz2 )
+	http://www.npgsql.org/css/img/postgresql-header.png"
 RESTRICT="mirror"
 S="${WORKDIR}/${NAME}-${EGIT_COMMIT}"
 
@@ -114,7 +115,7 @@ src_install() {
 	fi
 
 	insinto "$(get_nuget_trusted_icons_location)"
-	newins "${FILESDIR}/${ICON_FILENAME}" "${NUSPEC_ID}.${NUSPEC_VERSION}.png"
+	newins "${DISTDIR}/${ICON_FILENAME}" "${NUSPEC_ID}.${NUSPEC_VERSION}.png"
 
 	enupkg "${WORKDIR}/${NUSPEC_ID}.${NUSPEC_VERSION}.nupkg"
 
