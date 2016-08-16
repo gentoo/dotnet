@@ -4,7 +4,7 @@
 
 EAPI=6
 
-inherit autotools eutils dotnet flag-o-matic git-r3
+inherit eutils dotnet flag-o-matic git-r3
 
 DESCRIPTION="Library for using System.Drawing with mono"
 HOMEPAGE="http://www.mono-project.com"
