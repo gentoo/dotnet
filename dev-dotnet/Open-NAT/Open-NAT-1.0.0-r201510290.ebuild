@@ -2,10 +2,9 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Id$
 
-EAPI=5
+EAPI=6
 
-# mono-env
-inherit  dotnet nupkg
+inherit  dotnet nupkg gac
 
 HOMEPAGE="https://lontivero.github.io/Open.NAT"
 DESCRIPTION="Class library to use port forwarding in NAT devices with UPNP and/or PMP"
@@ -80,15 +79,14 @@ patch_nuspec_file()
 		else
 			DIR="Release"
 		fi
-		FILES_STRING=`cat <<-EOF || die "files at patch_nuspec_file()"
-		       <files> <!-- https://docs.nuget.org/create/nuspec-reference -->
-		               <file src="${OUTPUT_DIR}/${DIR}/*.dll" target="lib\net45\" />
-		               <file src="${OUTPUT_DIR}/${DIR}/*.mdb" target="lib\net45\" />
-		       </files>
+		FILES_STRING=`sed 's/[\/&]/\\\\&/g' <<-EOF || die "escaping replacement string characters"
+		  <files> <!-- https://docs.nuget.org/create/nuspec-reference -->
+		    <file src="${OUTPUT_DIR}/${DIR}/*.dll" target="lib\net45\" />
+		    <file src="${OUTPUT_DIR}/${DIR}/*.mdb" target="lib\net45\" />
+		  </files>
 		EOF
 		`
-		einfo ${FILES_STRING}
-		replace "</package>" "${FILES_STRING}</package>" -- $1 || die "replace at patch_nuspec_file()"
+		sed -i 's/<\/package>/'"${FILES_STRING//$'\n'/\\$'\n'}"'\n&/g' $1 || die "escaping line endings"
 	fi
 }
 

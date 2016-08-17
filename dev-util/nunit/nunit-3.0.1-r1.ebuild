@@ -3,7 +3,7 @@
 # $Id$
 
 EAPI=6
-inherit mono-env nuget dotnet
+inherit mono-env nuget dotnet gac
 
 NAME="nunit"
 HOMEPAGE="https://github.com/nunit/${NAME}"

@@ -4,7 +4,7 @@
 
 EAPI=6
 
-inherit versionator dotnet nupkg
+inherit versionator dotnet nupkg gac
 
 HOMEPAGE="https://github.com/deveel/deveel-math/"
 DESCRIPTION="A library for handling big numbers and decimals under Mono/.NET frameworks"
@@ -121,25 +121,24 @@ patch_nuspec_file()
 	if use nupkg; then
 		if use debug; then
 			DIR="Debug"
-FILES_STRING=`cat <<-EOF || die "${DIR} files at patch_nuspec_file()"
-	<files> <!-- https://docs.nuget.org/create/nuspec-reference -->
-		<file src="src/Deveel.Math/bin/AnyCPU/${DIR}/Deveel.Math.dll" target="lib\net45\" />
-		<file src="src/Deveel.Math/bin/AnyCPU/${DIR}/Deveel.Math.dll.mdb" target="lib\net45\" />
-	</files>
-EOF
-`
-	else
-		DIR="Release"
-FILES_STRING=`cat <<-EOF || die "${DIR} files at patch_nuspec_file()"
-	<files> <!-- https://docs.nuget.org/create/nuspec-reference -->
-		<file src="src/Deveel.Math/bin/AnyCPU/${DIR}/Deveel.Math.dll" target="lib\net45\" />
-	</files>
-EOF
-`
+			FILES_STRING=`sed 's/[\/&]/\\\\&/g' <<-EOF || die "escaping replacement string characters"
+			  <files> <!-- https://docs.nuget.org/create/nuspec-reference -->
+			    <file src="src/Deveel.Math/bin/AnyCPU/${DIR}/Deveel.Math.dll" target="lib\net45\" />
+			    <file src="src/Deveel.Math/bin/AnyCPU/${DIR}/Deveel.Math.dll.mdb" target="lib\net45\" />
+			  </files>
+			EOF
+			`
+		else
+			DIR="Release"
+			FILES_STRING=`sed 's/[\/&]/\\\\&/g' <<-EOF || die "escaping replacement string characters"
+			  <files> <!-- https://docs.nuget.org/create/nuspec-reference -->
+			    <file src="src/Deveel.Math/bin/AnyCPU/${DIR}/Deveel.Math.dll" target="lib\net45\" />
+			  </files>
+			EOF
+			`
 		fi
 
-		einfo ${FILES_STRING}
-		replace "</package>" "${FILES_STRING}</package>" -- $1 || die "replace at patch_nuspec_file()"
+		sed -i 's/<\/package>/'"${FILES_STRING//$'\n'/\\$'\n'}"'\n&/g' $1 || die "escaping line endings"
 	fi
 }
 

@@ -1,10 +1,10 @@
-# Copyright 1999-2015 Gentoo Foundation
+# Copyright 1999-2016 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Id$
 
-EAPI=5
+EAPI=6
 
-inherit nupkg
+inherit nupkg gac
 
 HOMEPAGE="http://projects.qnetp.net/projects/show/monotorrent"
 DESCRIPTION="Monotorrent is an open source C# bittorrent library"
@@ -87,26 +87,26 @@ create_nuspec_file()
 		else
 			DIR="Release"
 		fi
-		cat <<EOF >$1 || die
-<?xml version="1.0"?>
-<package>
-	<metadata>
-		<id>${PN}</id>
-		<version>${NUGET_VERSION}</version>
-		<authors>unknown</authors>
-		<owners>unknown</owners>
-		<licenseUrl>${LICENSE_URL}</licenseUrl>
-		<projectUrl>${HOMEPAGE}</projectUrl>
-		<iconUrl>${ICON_URL}</iconUrl>
-		<requireLicenseAcceptance>false</requireLicenseAcceptance>
-		<description>${DESCRIPTION}</description>
-	</metadata>
-	<files> <!-- https://docs.nuget.org/create/nuspec-reference -->
-		<file src="build/MonoTorrent/${DIR}/*.dll" target="lib\net45\" />
-		<file src="build/MonoTorrent/${DIR}/*.mdb" target="lib\net45\" />
-	</files>
-</package>
-EOF
+		cat <<-EOF >$1 || die
+		  <?xml version="1.0"?>
+		  <package>
+		    <metadata>
+		      <id>${PN}</id>
+		      <version>${NUGET_VERSION}</version>
+		      <authors>unknown</authors>
+		      <owners>unknown</owners>
+		      <licenseUrl>${LICENSE_URL}</licenseUrl>
+		      <projectUrl>${HOMEPAGE}</projectUrl>
+		      <iconUrl>${ICON_URL}</iconUrl>
+		      <requireLicenseAcceptance>false</requireLicenseAcceptance>
+		      <description>${DESCRIPTION}</description>
+		    </metadata>
+		    <files> <!-- https://docs.nuget.org/create/nuspec-reference -->
+		      <file src="build/MonoTorrent/${DIR}/*.dll" target="lib\net45\" />
+		      <file src="build/MonoTorrent/${DIR}/*.mdb" target="lib\net45\" />
+		    </files>
+		  </package>
+		EOF
 	fi
 }
 

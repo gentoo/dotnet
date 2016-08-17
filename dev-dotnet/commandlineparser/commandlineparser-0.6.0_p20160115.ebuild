@@ -14,7 +14,7 @@ USE_DOTNET="net45"
 # pkg-config = register in pkg-config database
 IUSE="${USE_DOTNET} debug test +developer +aot +nupkg +gac +pkg-config"
 
-inherit nupkg
+inherit gac nupkg
 
 HOMEPAGE="https://github.com/mgrosperrin/commandlineparser/releases"
 DESCRIPTION="command line parser on System.ComponentModel.DataAnnotations"
@@ -190,14 +190,13 @@ patch_nuspec_file()
 		else
 			DIR="Release"
 		fi
-FILES_STRING=`cat <<-EOF || die "${DIR} files at patch_nuspec_file()"
-	<files> <!-- https://docs.nuget.org/create/nuspec-reference -->
-		<file src="src/MGR.CommandLineParser/bin/${DIR}/MGR.CommandLineParser.*" target="lib\net45\" />
-	</files>
-EOF
-`
-		einfo ${FILES_STRING}
-		replace "</package>" "${FILES_STRING}</package>" -- $1 || die "replace at patch_nuspec_file()"
+		FILES_STRING=`sed 's/[\/&]/\\\\&/g' <<-EOF || die "escaping replacement string characters"
+		  <files> <!-- https://docs.nuget.org/create/nuspec-reference -->
+		    <file src="src/MGR.CommandLineParser/bin/${DIR}/MGR.CommandLineParser.*" target="lib\net45\" />
+		  </files>
+		EOF
+		`
+		sed -i 's/<\/package>/'"${FILES_STRING//$'\n'/\\$'\n'}"'\n&/g' $1 || die "escaping line endings"
 	fi
 }
 

@@ -1,9 +1,9 @@
-# Copyright 1999-2015 Gentoo Foundation
+# Copyright 1999-2016 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Id$
 
-EAPI=5
-inherit mono-env nuget dotnet
+EAPI=6
+inherit mono-env nuget dotnet gac
 
 NAME="SharpZipLib"
 HOMEPAGE="https://github.com/icsharpcode/${NAME}"

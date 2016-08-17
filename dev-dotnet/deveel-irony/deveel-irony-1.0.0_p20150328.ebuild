@@ -16,7 +16,7 @@ USE_DOTNET="net45"
 
 KEYWORDS="~amd64 ~x86"
 
-inherit versionator dotnet nupkg
+inherit versionator dotnet nupkg gac
 
 HOMEPAGE=https://github.com/deveel/irony
 NAME=irony
@@ -90,7 +90,7 @@ EOF
 		fi
 
 		einfo ${FILES_STRING}
-		replace "</package>" "${FILES_STRING}</package>" -- $1 || die "replace at patch_nuspec_file()"
+		sed -i 's#</package>#${FILES_STRING}</package>#' $1 || die "replace at patch_nuspec_file()"
 	fi
 }
 

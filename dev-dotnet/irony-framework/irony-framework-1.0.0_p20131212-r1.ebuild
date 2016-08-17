@@ -16,7 +16,7 @@ USE_DOTNET="net45"
 
 KEYWORDS="~amd64 ~x86"
 
-inherit versionator vcs-snapshot dotnet nupkg
+inherit versionator vcs-snapshot dotnet nupkg gac
 
 NAME=irony
 EHG_REVISION=09918247d378a0e3deedae2af563fa5f402530f9
@@ -71,25 +71,23 @@ epatch_nuspec_file()
 	if use nupkg; then
 		if use debug; then
 			DIR="Debug"
-FILES_STRING=`cat <<-EOF || die "${DIR} files at patch_nuspec_file()"
-	<files> <!-- https://docs.nuget.org/create/nuspec-reference -->
-		<file src="Irony/bin/${DIR}/Irony.dll" target="lib\net45\" />
-		<file src="Irony/bin/${DIR}/Irony.dll.mdb" target="lib\net45\" />
-	</files>
-EOF
-`
-	else
-		DIR="Release"
-FILES_STRING=`cat <<-EOF || die "${DIR} files at patch_nuspec_file()"
-	<files> <!-- https://docs.nuget.org/create/nuspec-reference -->
-		<file src="Irony/bin/${DIR}/Irony.dll" target="lib\net45\" />
-	</files>
-EOF
-`
+			FILES_STRING=`sed 's/[\/&]/\\\\&/g' <<-EOF || die "escaping replacement string characters"
+			  <files> <!-- https://docs.nuget.org/create/nuspec-reference -->
+			    <file src="Irony/bin/${DIR}/Irony.dll" target="lib\net45\" />
+			    <file src="Irony/bin/${DIR}/Irony.dll.mdb" target="lib\net45\" />
+			  </files>
+			EOF
+			`
+		else
+			DIR="Release"
+			FILES_STRING=`sed 's/[\/&]/\\\\&/g' <<-EOF || die "escaping replacement string characters"
+			  <files> <!-- https://docs.nuget.org/create/nuspec-reference -->
+			    <file src="Irony/bin/${DIR}/Irony.dll" target="lib\net45\" />
+			  </files>
+			EOF
+			`
 		fi
-
-		einfo ${FILES_STRING}
-		replace "</package>" "${FILES_STRING}</package>" -- $1 || die "replace at patch_nuspec_file()"
+		sed -i 's/<\/package>/'"${FILES_STRING//$'\n'/\\$'\n'}"'\n&/g' $1 || die "escaping line endings"
 	fi
 }
 

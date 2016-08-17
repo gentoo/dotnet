@@ -1,11 +1,11 @@
-# Copyright 1999-2015 Gentoo Foundation
+# Copyright 1999-2016 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Id$
 
-EAPI="5"
+EAPI=6
 USE_DOTNET="net45"
 
-inherit dotnet eutils
+inherit dotnet eutils gac
 
 DESCRIPTION="Microsoft's Xml Document Transformation library"
 HOMEPAGE="https://github.com/mrward/xdt"
@@ -15,7 +15,7 @@ SLOT="0"
 SRC_URI="https://github.com/mrward/xdt/archive/Release-NuGet-${PV}-Mono.tar.gz -> xdt-for-monodevelop-${PV}.tar.gz"
 S=${WORKDIR}/xdt-Release-NuGet-${PV}-Mono
 
-KEYWORDS="x86 amd64"
+KEYWORDS="x86 amd64 ~ppc"
 IUSE=""
 
 DEPEND="|| ( dev-lang/mono )"
