@@ -56,16 +56,27 @@ enuget_download_rogue_binary() {
 # Src_compile does nothing and src_install just installs sources from nuget_src_unpack
 nuget_src_unpack() {
 	default
+	einfo "src_unpack() from nuget.eclass is called"
 
 	NPN=${PN/_/.}
 
-	if [[ $PV == *_alpha* ]] || [[ $PV == *_beta* ]] || [[ $PV == *_pre* ]] || [[ $PV == *_p* ]]
-	then
-		NPV=${PVR/_/-}
+	if [[ $PV == *_alpha* ]] ; then
+		NPV=${PVR/_alpha/.}
 	else
-		NPV=${PVR}
+		if [[ $PV == *_beta* ]] ; then
+			NPV=${PVR/_beta/.}
+		else
+			if [[ $PV == *_pre* ]] ; then
+				NPV=${PVR/_pre/.}
+			else
+				if [[ $PV == *_p* ]] ; then
+					NPV=${PVR/_p/.}
+				else
+					NPV=${PVR}
+				fi
+			fi
+		fi
 	fi
-
 	nuget install "${NPN}" -Version "${NPV}" -OutputDirectory "${P}"
 }
 
