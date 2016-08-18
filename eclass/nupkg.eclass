@@ -100,19 +100,3 @@ enupkg() {
 		doins "$@"
 	fi
 }
-
-# @ECLASS_VARIABLE: NUGET_DEPEND
-# @DESCRIPTION Set false to net depend on nuget
-: ${NUGET_NO_DEPEND:=}
-
-if [[ -n ${NUGET_NO_DEPEND} ]]; then
-	DEPEND+=" dev-dotnet/nuget"
-fi
-
-NPN=${PN/_/.}
-if [[ $PV == *_alpha* ]] || [[ $PV == *_beta* ]] || [[ $PV == *_pre* ]]
-then
-	NPV=${PVR/_/-}
-else
-	NPV=${PVR}
-fi

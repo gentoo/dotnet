@@ -11,10 +11,16 @@
 
 inherit nupkg
 
-IUSE+=" +nuget"
+# @ECLASS_VARIABLE: NUGET_DEPEND
+# @DESCRIPTION Set false to net depend on nuget
+: ${NUGET_NO_DEPEND:=}
 
-DEPEND+=" nuget? ( dev-dotnet/nuget )"
-RDEPEND+=" nuget? ( dev-dotnet/nuget )"
+if [[ -n ${NUGET_NO_DEPEND} ]]; then
+	IUSE+=" +nuget"
+	
+	DEPEND+=" nuget? ( dev-dotnet/nuget )"
+	RDEPEND+=" nuget? ( dev-dotnet/nuget )"
+fi
 
 # @FUNCTION: enuget_download_rogue_binary
 # @DESCRIPTION: downloads a binary package from 3rd untrusted party repository
@@ -50,6 +56,16 @@ enuget_download_rogue_binary() {
 # Src_compile does nothing and src_install just installs sources from nuget_src_unpack
 nuget_src_unpack() {
 	default
+
+	NPN=${PN/_/.}
+
+	if [[ $PV == *_alpha* ]] || [[ $PV == *_beta* ]] || [[ $PV == *_pre* ]] || [[ $PV == *_p* ]]
+	then
+		NPV=${PVR/_/-}
+	else
+		NPV=${PVR}
+	fi
+
 	nuget install "${NPN}" -Version "${NPV}" -OutputDirectory "${P}"
 }
 
