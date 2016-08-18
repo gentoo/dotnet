@@ -3,7 +3,7 @@
 # $Id$
 
 EAPI=6
-inherit mono-env nuget dotnet
+inherit mono-env nupkg dotnet
 
 NAME="mono-packaging-tools"
 HOMEPAGE="https://github.com/ArsenShnurkov/${NAME}"
@@ -22,7 +22,7 @@ IUSE="developer nupkg debug"
 
 COMMON_DEPENDENCIES=">=dev-lang/mono-4.2
 	dev-dotnet/mono-options[gac]
-	>=dev-dotnet/eto-parse-1.4.0[nupkg]
+	>=dev-dotnet/eto-parse-1.4.0[gac]
 	"
 DEPEND="${COMMON_DEPENDENCIES}
 	"

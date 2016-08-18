@@ -80,6 +80,7 @@ src_prepare() {
 #
 #		enuget_restore "${METAFILETOBUILD}"
 #	fi ;
+	default
 }
 
 src_compile() {
