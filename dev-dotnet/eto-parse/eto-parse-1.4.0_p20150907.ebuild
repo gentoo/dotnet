@@ -3,7 +3,7 @@
 # $Id$
 
 EAPI=6
-inherit mono-env nuget dotnet gac
+inherit mono-env dotnet gac nupkg
 
 NAME="Eto.Parse"
 HOMEPAGE="https://github.com/picoe/${NAME}"
@@ -17,12 +17,13 @@ SLOT="0"
 
 DESCRIPTION="CLI parser with API, recursive descent, LL(k), for BNF, EBNF and Gold Grammars"
 LICENSE="MIT" # https://raw.githubusercontent.com/picoe/Eto.Parse/master/LICENSE
-KEYWORDS="~amd64 ~ppc ~x86"
+KEYWORDS="~amd64 ~x86"
 
 # notes on testing, from https://devmanual.gentoo.org/ebuild-writing/functions/src_test/index.html
 # FEATURES+="test"
 
-IUSE="developer nupkg debug"
+USE_DOTNET="net45"
+IUSE="${USE_DOTNET} developer nupkg debug"
 
 # there is no "test" in IUSE, because test project and solution are not build
 # there is no "gac" in IUSE, because utilities for patching are not ready
@@ -32,7 +33,9 @@ IUSE="developer nupkg debug"
 # DEPEND - dependencies which are required to unpack, patch, compile or install the package
 # RDEPEND - dependencies which are required at runtime
 
-COMMON_DEPENDENCIES=">=dev-lang/mono-4.2"
+COMMON_DEPENDENCIES=">=dev-lang/mono-4.2
+	nupkg? ( dev-dotnet/nuget )
+	"
 DEPEND="${COMMON_DEPENDENCIES}
 	"
 #	test? ( >=dev-util/nunit-2.6.4-r201501110:2[nupkg] )
@@ -51,6 +54,10 @@ METAFILETOBUILD="${S}/Eto.Parse/Eto.Parse.csproj" # building .csproj instead of 
 # NUSPEC_FILE=${FILESDIR}/nuget-2.8.3.nuspec
 NUSPEC_FILE=Eto.Parse/Eto.Parse.nuspec
 
+COMMIT_DATESTAMP_INDEX=$(get_version_component_count ${PV} )
+COMMIT_DATESTAMP=$(get_version_component_range $COMMIT_DATESTAMP_INDEX ${PV} )
+NUSPEC_VERSION=$(get_version_component_range 1-3)"${COMMIT_DATESTAMP//p/.}${PR//r/}"
+
 src_prepare() {
 	rm -rf "${S}/.nuget"
 	# notes on escaping, from
@@ -61,13 +68,13 @@ src_prepare() {
 	#change version in .nuspec
 
 	sed -e "s/\\\$id\\\$/${NAME}/g" \
-	  -e "s/\\\$version\\\$/${PV}/g" \
+	  -e "s/\\\$version\\\$/${NUSPEC_VERSION}/g" \
 	  -e "s/\\\$title\\\$/${P}/g" \
 	  -e "s/\\\$author\\\$/Curtis Wensley/g" \
 	  -e "s/\\\$description\\\$/${DESCRIPTION}/g" \
 	  -i "${NUSPEC_FILE}" || die
 
-	epatch "${FILESDIR}/nuspec.patch"
+	eapply "${FILESDIR}/nuspec.patch"
 
 #	if use test; then
 #
@@ -81,6 +88,7 @@ src_prepare() {
 #
 #		enuget_restore "${METAFILETOBUILD}"
 #	fi ;
+
 	default
 }
 
@@ -105,5 +113,5 @@ src_install() {
 	#fi
 	# egacinstall "Eto.Parse/bin/${DIR}/net40/Eto.Parse.dll"
 
-	enupkg "${WORKDIR}/${NAME}.${PV}.nupkg"
+	enupkg "${WORKDIR}/${NAME}.${NUSPEC_VERSION}.nupkg"
 }
