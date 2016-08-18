@@ -3,7 +3,11 @@
 # $Id$
 
 EAPI=6
+
+USE_DOTNET="net45"
 inherit mono-env dotnet gac nupkg
+
+IUSE="${USE_DOTNET} developer nupkg debug"
 
 NAME="Eto.Parse"
 HOMEPAGE="https://github.com/picoe/${NAME}"
@@ -22,8 +26,6 @@ KEYWORDS="~amd64 ~x86"
 # notes on testing, from https://devmanual.gentoo.org/ebuild-writing/functions/src_test/index.html
 # FEATURES+="test"
 
-USE_DOTNET="net45"
-IUSE="${USE_DOTNET} developer nupkg debug"
 
 # there is no "test" in IUSE, because test project and solution are not build
 # there is no "gac" in IUSE, because utilities for patching are not ready
@@ -93,7 +95,7 @@ src_prepare() {
 }
 
 src_compile() {
-	exbuild "${METAFILETOBUILD}"
+	exbuild_strong "${METAFILETOBUILD}"
 	enuspec "${NUSPEC_FILE}"
 }
 
@@ -104,14 +106,13 @@ src_test() {
 }
 
 src_install() {
-	# ebuild is not ready for gac install
-	#DIR=""
-	#if use debug; then
-	#	DIR="Debug"
-	#else
-	#	DIR="Release"
-	#fi
-	# egacinstall "Eto.Parse/bin/${DIR}/net40/Eto.Parse.dll"
+	DIR=""
+	if use debug; then
+		DIR="Debug"
+	else
+		DIR="Release"
+	fi
+	egacinstall "Eto.Parse/bin/${DIR}/net40/Eto.Parse.dll"
 
 	enupkg "${WORKDIR}/${NAME}.${NUSPEC_VERSION}.nupkg"
 }
