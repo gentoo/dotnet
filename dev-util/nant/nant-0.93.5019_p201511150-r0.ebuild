@@ -3,7 +3,7 @@
 # $Id$
 
 EAPI=6
-inherit mono-env nuget dotnet
+inherit mono-env nupkg
 
 HOMEPAGE="https://github.com/nant/${NAME}"
 DESCRIPTION=".NET build tool"

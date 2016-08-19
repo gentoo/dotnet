@@ -5,7 +5,7 @@
 EAPI=6
 
 USE_DOTNET="net45"
-inherit mono-env dotnet gac nupkg
+inherit mono-env gac nupkg
 
 IUSE="${USE_DOTNET} developer nupkg debug"
 
@@ -25,7 +25,6 @@ KEYWORDS="~amd64 ~x86"
 
 # notes on testing, from https://devmanual.gentoo.org/ebuild-writing/functions/src_test/index.html
 # FEATURES+="test"
-
 
 # there is no "test" in IUSE, because test project and solution are not build
 # there is no "gac" in IUSE, because utilities for patching are not ready

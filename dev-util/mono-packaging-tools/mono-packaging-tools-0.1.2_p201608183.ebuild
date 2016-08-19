@@ -3,7 +3,7 @@
 # $Id$
 
 EAPI=6
-inherit mono-env nupkg dotnet
+inherit mono-env nupkg
 
 NAME="mono-packaging-tools"
 HOMEPAGE="https://github.com/ArsenShnurkov/${NAME}"

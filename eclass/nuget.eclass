@@ -50,6 +50,24 @@ enuget_download_rogue_binary() {
 	      nuget install "$1" -Version "$2" -SolutionDirectory "${T}" -ConfigFile "${CONFIG_PATH}/${CONFIG_NAME}" -OutputDirectory "${S}/packages" -Verbosity detailed || die
 }
 
+if [[ $PV == *_alpha* ]] ; then
+	NPV=${PVR/_alpha/-alpha}
+else
+	if [[ $PV == *_beta* ]] ; then
+		NPV=${PVR/_beta/-beta}
+	else
+		if [[ $PV == *_pre* ]] ; then
+			NPV=${PVR/_pre/-pre}
+		else
+			if [[ $PV == *_p* ]] ; then
+				NPV=${PVR/_p/-p}
+			else
+				NPV=${PVR}
+			fi
+		fi
+	fi
+fi
+
 # @FUNCTION: nuget_src_unpack
 # @DESCRIPTION: Runs nuget
 # Here is usage example where nuget is alternative way: https://github.com/gentoo/dotnet/blob/master/dev-dotnet/fake
@@ -60,23 +78,6 @@ nuget_src_unpack() {
 
 	NPN=${PN/_/.}
 
-	if [[ $PV == *_alpha* ]] ; then
-		NPV=${PVR/_alpha/.}
-	else
-		if [[ $PV == *_beta* ]] ; then
-			NPV=${PVR/_beta/.}
-		else
-			if [[ $PV == *_pre* ]] ; then
-				NPV=${PVR/_pre/.}
-			else
-				if [[ $PV == *_p* ]] ; then
-					NPV=${PVR/_p/.}
-				else
-					NPV=${PVR}
-				fi
-			fi
-		fi
-	fi
 	nuget install "${NPN}" -Version "${NPV}" -OutputDirectory "${P}"
 }
 

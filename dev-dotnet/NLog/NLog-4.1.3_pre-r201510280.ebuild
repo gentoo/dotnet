@@ -3,7 +3,7 @@
 # $Id$
 
 EAPI=6
-inherit mono-env dotnet nupkg gac
+inherit mono-env gac nupkg
 
 NAME="NLog"
 HOMEPAGE="https://github.com/ArsenShnurkov/${NAME}"

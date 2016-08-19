@@ -4,7 +4,7 @@
 
 EAPI=6
 
-inherit versionator dotnet nupkg gac
+inherit versionator gac nupkg
 
 HOMEPAGE="https://github.com/deveel/deveel-math/"
 DESCRIPTION="A library for handling big numbers and decimals under Mono/.NET frameworks"

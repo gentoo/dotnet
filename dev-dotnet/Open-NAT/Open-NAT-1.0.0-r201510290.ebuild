@@ -4,7 +4,7 @@
 
 EAPI=6
 
-inherit  dotnet nupkg gac
+inherit gac nupkg
 
 HOMEPAGE="https://lontivero.github.io/Open.NAT"
 DESCRIPTION="Class library to use port forwarding in NAT devices with UPNP and/or PMP"

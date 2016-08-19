@@ -29,7 +29,7 @@ IUSE="+net45"
 USE_DOTNET="net45"
 
 RDEPEND=">=dev-lang/mono-2
-	dev-libs/glib"
+	dev-libs/glib:*"
 DEPEND="${RDEPEND}
 	!dev-dotnet/ikvm-bin
 	dev-util/nant

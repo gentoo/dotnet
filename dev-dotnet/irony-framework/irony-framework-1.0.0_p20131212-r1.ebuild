@@ -16,7 +16,7 @@ USE_DOTNET="net45"
 
 KEYWORDS="~amd64 ~x86"
 
-inherit versionator vcs-snapshot dotnet nupkg gac
+inherit versionator vcs-snapshot gac nupkg
 
 NAME=irony
 EHG_REVISION=09918247d378a0e3deedae2af563fa5f402530f9
