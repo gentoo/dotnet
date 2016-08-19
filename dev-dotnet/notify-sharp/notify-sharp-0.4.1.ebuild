@@ -1,8 +1,8 @@
-# Copyright 1999-2015 Gentoo Foundation
+# Copyright 1999-2016 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Id$
 
-EAPI=5
+EAPI=6
 inherit autotools eutils dotnet
 
 MY_P=${PN}-${PV#*_pre}
@@ -19,8 +19,8 @@ IUSE="doc"
 
 RDEPEND=">=dev-lang/mono-4.0.2.5
 	>=dev-dotnet/gtk-sharp-2.12.21:2
-	>=dev-dotnet/dbus-sharp-0.7
-	>=dev-dotnet/dbus-sharp-glib-0.5
+	>=dev-dotnet/dbus-sharp-0.7:*
+	>=dev-dotnet/dbus-sharp-glib-0.5:*
 	>=x11-libs/libnotify-0.4.5"
 DEPEND="${RDEPEND}"
 

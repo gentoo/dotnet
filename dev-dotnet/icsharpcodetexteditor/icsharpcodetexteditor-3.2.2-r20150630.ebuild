@@ -4,7 +4,7 @@
 
 EAPI=6
 
-inherit eutils nuget dotnet gac
+inherit eutils gac nupkg
 
 DESCRIPTION="ICSharpCode.TextEditor library"
 LICENSE="MIT"

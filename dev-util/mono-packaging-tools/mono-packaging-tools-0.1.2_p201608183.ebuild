@@ -3,12 +3,12 @@
 # $Id$
 
 EAPI=6
-inherit mono-env nuget dotnet
+inherit mono-env nupkg
 
 NAME="mono-packaging-tools"
 HOMEPAGE="https://github.com/ArsenShnurkov/${NAME}"
 
-EGIT_COMMIT="50b799d3bcfd12fd4d1c651f55f8dcf81d6ac2d2"
+EGIT_COMMIT="a99068a066aa17e82b2469665c8484667d348490"
 SRC_URI="${HOMEPAGE}/archive/${EGIT_COMMIT}.tar.gz -> ${PF}.tar.gz"
 RESTRICT="mirror"
 S="${WORKDIR}/${NAME}-${EGIT_COMMIT}"
@@ -22,7 +22,7 @@ IUSE="developer nupkg debug"
 
 COMMON_DEPENDENCIES=">=dev-lang/mono-4.2
 	dev-dotnet/mono-options[gac]
-	>=dev-dotnet/eto-parse-1.4.0[nupkg]
+	>=dev-dotnet/eto-parse-1.4.0[gac]
 	"
 DEPEND="${COMMON_DEPENDENCIES}
 	"

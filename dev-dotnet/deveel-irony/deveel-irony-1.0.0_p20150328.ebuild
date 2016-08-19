@@ -11,12 +11,12 @@ EAPI=6
 # nupkg = create .nupkg file from .nuspec
 # gac = install into gac
 # pkg-config = register in pkg-config database
-IUSE="net45 debug +developer test +nupkg +gac +pkg-config"
 USE_DOTNET="net45"
+IUSE="net45 debug +developer test +nupkg +gac +pkg-config"
 
 KEYWORDS="~amd64 ~x86"
 
-inherit versionator dotnet nupkg gac
+inherit versionator gac nupkg
 
 HOMEPAGE=https://github.com/deveel/irony
 NAME=irony

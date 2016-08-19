@@ -47,9 +47,9 @@ NPGSQL_CSPROJ=src/Npgsql/Npgsql.csproj
 METAFILETOBUILD=${NPGSQL_CSPROJ}
 
 NUSPEC_FILENAME="npgsql.nuspec"
-COMMIT_DATE_INDEX=$(get_version_component_count ${PV} )
-COMMIT_DATE=$(get_version_component_range $COMMIT_DATE_INDEX ${PV} )
-NUSPEC_VERSION=$(get_version_component_range 1-3)"${COMMIT_DATE//p/.}${PR//r/}"
+COMMIT_DATESTAMP_INDEX=$(get_version_component_count ${PV} )
+COMMIT_DATESTAMP=$(get_version_component_range $COMMIT_DATESTAMP_INDEX ${PV} )
+NUSPEC_VERSION=$(get_version_component_range 1-3)"${COMMIT_DATESTAMP//p/.}${PR//r/}"
 
 ICON_FILENAME=postgresql-header.png
 #ICON_URL=http://www.npgsql.org/css/img/postgresql-header.png

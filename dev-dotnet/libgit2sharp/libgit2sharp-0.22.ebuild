@@ -10,7 +10,7 @@ USE_DOTNET="net45"
 EBUILD_FRAMEWORK="4.5"
 IUSE="${USE_DOTNET} +gac +nupkg"
 
-inherit nuget nupkg
+inherit nupkg
 
 DESCRIPTION="A C# PInvoke wrapper library for LibGit2 C library"
 

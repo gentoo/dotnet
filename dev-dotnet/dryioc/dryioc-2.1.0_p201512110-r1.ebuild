@@ -9,7 +9,7 @@ EAPI=6
 # 2015-11-17, portage-2.2.25 has been committed and it comes with complete EAPI 6 support
 # https://archives.gentoo.org/gentoo-dev/message/73cc181e4949b88abfbd68f8a8ca9254
 
-inherit versionator vcs-snapshot dotnet gac nupkg
+inherit versionator vcs-snapshot gac nupkg
 
 HOMEPAGE="https://bitbucket.org/dadhi/dryioc"
 DESCRIPTION="fast, small, full-featured IoC Container for .NET"

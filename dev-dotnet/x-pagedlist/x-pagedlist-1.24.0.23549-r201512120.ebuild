@@ -4,7 +4,7 @@
 
 EAPI=6
 
-inherit versionator dotnet nupkg gac
+inherit versionator gac nupkg
 
 HOMEPAGE="https://github.com/kpi-ua/X.PagedList/"
 DESCRIPTION="Nugget for easily paging through any IEnumerable/IQueryable in Asp.Net MVC"
