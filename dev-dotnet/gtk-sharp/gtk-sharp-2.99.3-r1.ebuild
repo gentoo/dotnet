@@ -40,6 +40,7 @@ src_prepare() {
 	base_src_prepare
 	eautoreconf
 	libtoolize
+	eapply_user
 }
 
 src_configure() {
