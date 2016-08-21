@@ -30,6 +30,7 @@ src_prepare() {
 	cp "${FILESDIR}/rsa-4096.snk" "${S}/XmlTransform" || die
 	epatch "${FILESDIR}/add-keyfile-option-to-csproj.patch"
 	sed -i -e "s/1.0.0/${PV}/g"  "${S}/XmlTransform/Properties/AssemblyInfo.cs" || die
+	eapply_user
 }
 
 src_configure() {
