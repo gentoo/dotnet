@@ -22,7 +22,7 @@ HOMEPAGE="http://arsenshnurkov.github.io/mono-packaging-tools"
 
 REPOSITORY_URL="https://github.com/ArsenShnurkov/${NAME}"
 
-EGIT_COMMIT="17bfa8a2c3a7c3f6507e0226764066750ef91f03"
+EGIT_COMMIT="a99068a066aa17e82b2469665c8484667d348490"
 SRC_URI="${REPOSITORY_URL}/archive/${EGIT_COMMIT}.tar.gz -> ${PF}.tar.gz"
 RESTRICT="mirror"
 S="${WORKDIR}/${NAME}-${EGIT_COMMIT}"
@@ -35,7 +35,7 @@ LICENSE_URL="https://raw.githubusercontent.com/ArsenShnurkov/mono-packaging-tool
 
 COMMON_DEPENDENCIES="|| ( >=dev-lang/mono-4.2 <dev-lang/mono-9999 )
 	dev-dotnet/mono-options[gac]
-	>dev-dotnet/sln-tools-1.1.3[gac]
+	>=dev-dotnet/slntools-1.1.3_p201508170-r1[gac]
 	>=dev-dotnet/eto-parse-1.4.0[gac]
 	"
 DEPEND="${COMMON_DEPENDENCIES}
@@ -48,7 +48,7 @@ METAFILETOBUILD="${S}/${SLN_FILE}"
 NUSPEC_ID="${NAME}"
 COMMIT_DATE_INDEX="$(get_version_component_count ${PV} )"
 COMMIT_DATE="$(get_version_component_range $COMMIT_DATE_INDEX ${PV} )"
-NUSPEC_VERSION="$(get_version_component_range 1-3)${COMMIT_DATE//p/.}${PR//r/}"
+NUSPEC_VERSION="$(get_version_component_range 1-3)${COMMIT_DATE//p/.}"
 NUSPEC_FILENAME="${PN}.nuspec"
 #ICON_FILENAME="${PN}.png"
 #ICON_FINALNAME="${NUSPEC_ID}.${NUSPEC_VERSION}.png"
