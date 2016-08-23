@@ -88,7 +88,7 @@ src_install() {
 	# || die is not necessary after doins,
 	# see examples at https://devmanual.gentoo.org/ebuild-writing/functions/src_install/index.html
 	doins Main/SLNTools.exe/bin/${DIR}/CWDev.SLNTools.Core.dll
-	if use debug; then
+	if use developer; then
 		doins Main/SLNTools.exe/bin/${DIR}/CWDev.SLNTools.Core.dll.mdb
 	fi
 	egacinstall Main/SLNTools.exe/bin/${DIR}/CWDev.SLNTools.Core.dll
@@ -96,7 +96,7 @@ src_install() {
 	if use cli; then
 		doins Main/SLNTools.exe/bin/${DIR}/CWDev.SLNTools.UIKit.dll
 		doins Main/SLNTools.exe/bin/${DIR}/SLNTools.exe
-		if use debug; then
+		if use developer; then
 			doins Main/SLNTools.exe/bin/${DIR}/CWDev.SLNTools.UIKit.dll.mdb
 			doins Main/SLNTools.exe/bin/${DIR}/SLNTools.exe.mdb
 		fi
