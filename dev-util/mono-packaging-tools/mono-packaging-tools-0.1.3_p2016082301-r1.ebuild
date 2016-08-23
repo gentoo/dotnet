@@ -5,7 +5,7 @@
 EAPI=6 # >=portage-2.2.25
 KEYWORDS="~x86 ~amd64"
 
-USE_DOTNET="net45 +developer doc"
+USE_DOTNET="net45"
 # debug = debug configuration (symbols and defines for debugging)
 # test = allow NUnit tests to run
 # developer = generate symbols information (to view line numbers in stack traces, either in debug or release configuration)
@@ -22,7 +22,7 @@ HOMEPAGE="http://arsenshnurkov.github.io/mono-packaging-tools"
 
 REPOSITORY_URL="https://github.com/ArsenShnurkov/${NAME}"
 
-EGIT_COMMIT="a99068a066aa17e82b2469665c8484667d348490"
+EGIT_COMMIT="bf86a694b4734b56082eddc3dc28cea7a764d928"
 SRC_URI="${REPOSITORY_URL}/archive/${EGIT_COMMIT}.tar.gz -> ${PF}.tar.gz"
 RESTRICT="mirror"
 S="${WORKDIR}/${NAME}-${EGIT_COMMIT}"
