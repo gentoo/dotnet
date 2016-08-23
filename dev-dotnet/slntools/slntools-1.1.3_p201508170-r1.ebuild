@@ -1,15 +1,16 @@
-# Copyright 1999-2015 Gentoo Foundation
+# Copyright 1999-2016 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Id$
 
-EAPI=5
-inherit dotnet
+EAPI=6
+inherit dotnet gac
 
 NAME="slntools"
 HOMEPAGE="https://github.com/ArsenShnurkov/${NAME}"
 
 EGIT_COMMIT="705869e96a2f0e401be03f8e8478df3e1f2b9373"
 SRC_URI="${HOMEPAGE}/archive/${EGIT_COMMIT}.zip -> ${PF}.zip"
+RESTRICT="mirror"
 S="${WORKDIR}/${NAME}-${EGIT_COMMIT}"
 
 SLOT=0
@@ -27,17 +28,7 @@ S="${WORKDIR}/${NAME}-${EGIT_COMMIT}"
 SLN_FILE=SLNTools.sln
 METAFILETOBUILD="${S}/Main/${SLN_FILE}"
 
-src_unpack()
-{
-	# /usr/portage/distfiles/csquery-1.3.5.200.zip
-	# /var/tmp/portage/dev-dotnet/csquery-1.3.5.200-r20150522/work/CsQuery-696ac0533a3e665a34cdc4050d1f46e91f5a3356
-	default
-}
-
 src_prepare() {
-
-	default
-
 	epatch "${FILESDIR}/remove-wix-project-from-sln-file.patch"
 
 	# System.EntryPointNotFoundException: GetStdHandle
@@ -48,7 +39,10 @@ src_prepare() {
 	# http://stackoverflow.com/questions/23824961/c-sharp-to-mono-getconsolewindow-exception
 	epatch "${FILESDIR}/console-window-width.patch"
 
-	nuget restore "${METAFILETOBUILD}" || die
+	# no need to restore if all dependencies are from GAC
+	# nuget restore "${METAFILETOBUILD}" || die
+
+	default
 }
 
 src_compile() {
@@ -99,6 +93,8 @@ src_install() {
 	doins Main/SLNTools.exe/bin/${DIR}/SLNTools.exe.mdb
 
 	make_wrapper slntools "mono /usr/share/slntools/SLNTools.exe"
+
+	egac-install Main/SLNTools.exe/bin/${DIR}/CWDev.SLNTools.Core.dll
 
 	if use nupkg; then
 		if [ -d "/var/calculate/remote/distfiles" ]; then

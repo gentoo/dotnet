@@ -25,7 +25,7 @@ COMMON_DEPENDENCIES=">=dev-lang/mono-4.2
 	>=dev-dotnet/eto-parse-1.4.0[gac]
 	"
 DEPEND="${COMMON_DEPENDENCIES}
-	"
+	sys-apps/sed"
 RDEPEND="${COMMON_DEPENDENCIES}
 	"
 
