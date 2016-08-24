@@ -1,23 +1,26 @@
-# Copyright 1999-2015 Gentoo Foundation
+# Copyright 1999-2016 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Id$
 
-EAPI=5
-inherit dotnet
+EAPI=6
+KEYWORDS="~amd64 ~x86"
+USE_DOTNET="net45"
+# cli = do install command line interface
+IUSE="${USE_DOTNET} developer gac nupkg debug cli"
+inherit dotnet gac
 
 NAME="slntools"
 HOMEPAGE="https://github.com/ArsenShnurkov/${NAME}"
 
 EGIT_COMMIT="705869e96a2f0e401be03f8e8478df3e1f2b9373"
 SRC_URI="${HOMEPAGE}/archive/${EGIT_COMMIT}.zip -> ${PF}.zip"
+RESTRICT="mirror"
 S="${WORKDIR}/${NAME}-${EGIT_COMMIT}"
 
 SLOT=0
 
 DESCRIPTION="Validator.nu HTML Parser, a HTML5 parser, port from Java Version 1.4 to C#"
 LICENSE="MIT" # https://github.com/jamietre/HtmlParserSharp/blob/master/LICENSE.txt
-KEYWORDS="~amd64 ~x86"
-IUSE="developer nupkg debug"
 
 RDEPEND=">=dev-lang/mono-4.0.2.5"
 DEPEND="${RDEPEND}
@@ -27,17 +30,7 @@ S="${WORKDIR}/${NAME}-${EGIT_COMMIT}"
 SLN_FILE=SLNTools.sln
 METAFILETOBUILD="${S}/Main/${SLN_FILE}"
 
-src_unpack()
-{
-	# /usr/portage/distfiles/csquery-1.3.5.200.zip
-	# /var/tmp/portage/dev-dotnet/csquery-1.3.5.200-r20150522/work/CsQuery-696ac0533a3e665a34cdc4050d1f46e91f5a3356
-	default
-}
-
 src_prepare() {
-
-	default
-
 	epatch "${FILESDIR}/remove-wix-project-from-sln-file.patch"
 
 	# System.EntryPointNotFoundException: GetStdHandle
@@ -48,7 +41,10 @@ src_prepare() {
 	# http://stackoverflow.com/questions/23824961/c-sharp-to-mono-getconsolewindow-exception
 	epatch "${FILESDIR}/console-window-width.patch"
 
-	nuget restore "${METAFILETOBUILD}" || die
+	# no need to restore if all dependencies are from GAC
+	# nuget restore "${METAFILETOBUILD}" || die
+
+	default
 }
 
 src_compile() {
@@ -69,7 +65,7 @@ src_compile() {
 		ARGS="${ARGS} /p:DebugSymbols=False"
 	fi
 
-	exbuild ${ARGS} ${METAFILETOBUILD}
+	exbuild_strong ${ARGS} ${METAFILETOBUILD}
 
 	if use nupkg; then
 		nuget pack "${FILESDIR}/${SLN_FILE}.nuspec" -Properties ${ARGSN} -BasePath "${S}" -OutputDirectory "${WORKDIR}" -NonInteractive -Verbosity detailed
@@ -92,13 +88,20 @@ src_install() {
 	# || die is not necessary after doins,
 	# see examples at https://devmanual.gentoo.org/ebuild-writing/functions/src_install/index.html
 	doins Main/SLNTools.exe/bin/${DIR}/CWDev.SLNTools.Core.dll
-	doins Main/SLNTools.exe/bin/${DIR}/CWDev.SLNTools.Core.dll.mdb
-	doins Main/SLNTools.exe/bin/${DIR}/CWDev.SLNTools.UIKit.dll
-	doins Main/SLNTools.exe/bin/${DIR}/CWDev.SLNTools.UIKit.dll.mdb
-	doins Main/SLNTools.exe/bin/${DIR}/SLNTools.exe
-	doins Main/SLNTools.exe/bin/${DIR}/SLNTools.exe.mdb
+	if use developer; then
+		doins Main/SLNTools.exe/bin/${DIR}/CWDev.SLNTools.Core.dll.mdb
+	fi
+	egacinstall Main/SLNTools.exe/bin/${DIR}/CWDev.SLNTools.Core.dll
 
-	make_wrapper slntools "mono /usr/share/slntools/SLNTools.exe"
+	if use cli; then
+		doins Main/SLNTools.exe/bin/${DIR}/CWDev.SLNTools.UIKit.dll
+		doins Main/SLNTools.exe/bin/${DIR}/SLNTools.exe
+		if use developer; then
+			doins Main/SLNTools.exe/bin/${DIR}/CWDev.SLNTools.UIKit.dll.mdb
+			doins Main/SLNTools.exe/bin/${DIR}/SLNTools.exe.mdb
+		fi
+		make_wrapper slntools "mono /usr/share/slntools/SLNTools.exe"
+	fi
 
 	if use nupkg; then
 		if [ -d "/var/calculate/remote/distfiles" ]; then

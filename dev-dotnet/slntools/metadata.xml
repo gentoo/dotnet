@@ -5,8 +5,14 @@
 		<email>dotnet@gentoo.org</email>
 		<description>Gentoo Dotnet Project</description>
 	</maintainer>
-	<use>
+	<use lang="en">
 		<flag name='developer'>enables debug information for any of debug and release builds</flag>
 		<flag name='nupkg'>creates local nuget package</flag>
+		<flag name='cli'>installs command line interface</flag>
+	</use>
+	<use lang="ru">
+		<flag name='developer'>управляет генерированием и установкой .mdb-файлов, запуском mono с ключом --debug</flag>
+		<flag name='nupkg'>создаёт локальный .nupkg-пакет для nuget</flag>
+		<flag name='cli'>устанавливает .exe-файлы. Без этого флага произойдёт только установка в gac, если она не запрещена</flag>
 	</use>
 </pkgmetadata>

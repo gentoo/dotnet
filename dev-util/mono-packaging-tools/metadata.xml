@@ -5,4 +5,18 @@
 		<email>dotnet@gentoo.org</email>
 		<description>Gentoo Dotnet Project</description>
 	</maintainer>
+	<upstream>
+		<bugs-to>https://github.com/ArsenShnurkov/mono-packaging-tools/issues</bugs-to>
+		<remote-id type="github">ArsenShnurkov/mono-packaging-tools</remote-id>
+	</upstream>
+	<use>
+		<flag name='aot'>compile to machine code and store to disk during install, to save time later during startups</flag>
+		<flag name='pkg-config'>create .pc file(s) for .dll(s) installed to gac</flag>
+	</use>
+	<longdescription lang="en">
+		Various utils for packaging mono projects
+	</longdescription>
+	<longdescription lang="ru">
+		Вспомогательные утилиты для использования в ebuild-ах для clr-приложений
+	</longdescription>
 </pkgmetadata>

@@ -17,9 +17,11 @@
   </metadata>
  <files>
     <!-- * will cover .dll .mdb .config and .xml-->
-    <file src="mpt-gitmodules/bin/$Configuration$/*" target="lib/net45/" />
-    <file src="mpt-sln/bin/$Configuration$/*" target="lib/net45/" />
-    <file src="mpt-csproj/bin/$Configuration$/*" target="lib/net45/" />
-    <file src="mpt-machine/bin/$Configuration$/*" target="lib/net45/" />
+    <file src="mpt-core/bin/$Configuration$/mpt-core*" target="lib/net45/" />
+    <file src="mpt-csproj/bin/$Configuration$/mpt-csproj*" target="lib/net45/" />
+    <file src="mpt-gitmodules/bin/$Configuration$/mpt-gitmodules*" target="lib/net45/" />
+    <file src="mpt-machine/bin/$Configuration$/mpt-machine*" target="lib/net45/" />
+    <file src="mpt-nuget/bin/$Configuration$/mpt-nuget*" target="lib/net45/" />
+    <file src="mpt-sln/bin/$Configuration$/mpt-sln*" target="lib/net45/" />
   </files>
 </package>
