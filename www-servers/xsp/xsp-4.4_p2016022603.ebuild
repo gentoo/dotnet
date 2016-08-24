@@ -4,7 +4,7 @@
 
 EAPI="6"
 
-USE_DOTNET="net35 net40 net45"
+USE_DOTNET="net45 net40 net35"
 PATCHDIR="${FILESDIR}/2.2/"
 
 inherit eutils systemd dotnet user autotools
@@ -14,14 +14,13 @@ HOMEPAGE="http://www.mono-project.com/ASP.NET"
 
 EGIT_COMMIT="c98e068f5647fb06ff2fbef7cd5f1b35417362b1"
 SRC_URI="http://github.com/mono/xsp/archive/${EGIT_COMMIT}.tar.gz -> ${PN}-${PV}.tar.gz"
-
 RESTRICT="mirror"
 S="${WORKDIR}/xsp-${EGIT_COMMIT}"
 
 LICENSE="MIT"
 SLOT="0"
 KEYWORDS="~amd64 ~ppc ~x86"
-IUSE="doc test developer debug"
+IUSE="+${USE_DOTNET} doc test +developer +debug"
 
 COMMON_DEPEND="dev-db/sqlite:3
 	!dev-dotnet/xsp
@@ -48,12 +47,12 @@ src_prepare() {
 }
 
 src_configure() {
+	eautomake --gnu --add-missing --force --copy #nowarn
+
 	myeconfargs=("--enable-maintainer-mode")
 	use test && myeconfargs+=("--with_unit_tests")
 	use doc || myeconfargs+=("--disable-docs")
-	eautomake --gnu --add-missing --force --copy #nowarn
-	autotools-utils_src_configure
-	./configure || die
+	econf ${myeconfargs}
 }
 
 src_compile() {
@@ -69,7 +68,8 @@ pkg_preinst() {
 }
 
 src_install() {
-	mv_command="cp -ar" autotools-utils_src_install
+	emake DESTDIR="${D}" install
+
 	newinitd "${PATCHDIR}"/xsp.initd xsp
 	newinitd "${PATCHDIR}"/mod-mono-server-r1.initd mod-mono-server
 	newconfd "${PATCHDIR}"/xsp.confd xsp
