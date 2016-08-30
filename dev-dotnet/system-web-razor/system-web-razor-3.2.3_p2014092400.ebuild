@@ -52,20 +52,20 @@ src_prepare() {
 
 patch_nuspec_file()
 {
-    if use nupkg; then
-	if use debug; then
-	    DIR="Debug"
-	else
-	    DIR="Release"
+	if use nupkg; then
+		if use debug; then
+			DIR="Debug"
+		else
+			DIR="Release"
+		fi
+		FILES_STRING=`sed 's/[\/&]/\\\\&/g' <<-EOF || die "escaping replacement string characters"
+		  <files> <!-- https://docs.nuget.org/create/nuspec-reference -->
+		    <file src="${DLL_PATH}/${DIR}/${DLL_NAME}.dll*" target="lib/net45/" />
+		  </files>
+		EOF
+		`
+		sed -i 's/<\/package>/'"${FILES_STRING//$'\n'/\\$'\n'}"'\n&/g' $1 || die "escaping line endings"
 	fi
-	FILES_STRING=`sed 's/[\/&]/\\\\&/g' <<-EOF || die "escaping replacement string characters"
-	  <files> <!-- https://docs.nuget.org/create/nuspec-reference -->
-	    <file src="${DLL_PATH}/${DIR}/${DLL_NAME}.dll*" target="lib/net45/" />
-	  </files>
-	EOF
-	`
-	sed -i 's/<\/package>/'"${FILES_STRING//$'\n'/\\$'\n'}"'\n&/g' $1 || die "escaping line endings"
-    fi
 }
 
 src_compile() {
