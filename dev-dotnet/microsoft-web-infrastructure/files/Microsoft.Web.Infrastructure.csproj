@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <ProjectGuid>{905FFE53-8540-47FD-BA6C-7334993F9EFF}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <RootNamespace>Microsoft.Web.Infrastructure</RootNamespace>
+    <AssemblyName>Microsoft.Web.Infrastructure</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug</OutputPath>
+    <DefineConstants>DEBUG;NET_4_5</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+    <PlatformTarget>anycpu</PlatformTarget>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release</OutputPath>
+    <DefineConstants>NET_4_5</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+    <PlatformTarget>anycpu</PlatformTarget>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="Microsoft.Web.Infrastructure\InfrastructureHelper.cs" />
+    <Compile Include="Microsoft.Web.Infrastructure\HttpContextHelper.cs" />
+    <Compile Include="Assembly\AssemblyInfo.cs" />
+    <Compile Include="Microsoft.Web.Infrastructure.DynamicValidationHelper\ValidationUtility.cs" />
+    <Compile Include="Microsoft.Web.Infrastructure.DynamicValidationHelper\LazyWebROCollection.cs" />
+    <Compile Include="Microsoft.Web.Infrastructure.DynamicModuleHelper\DynamicModuleUtility.cs" />
+    <Compile Include="..\..\build\common\Consts.cs">
+      <Link>Consts.cs</Link>
+    </Compile>
+    <Compile Include="..\..\build\common\Locale.cs">
+      <Link>Locale.cs</Link>
+    </Compile>
+    <Compile Include="..\..\build\common\MonoTODOAttribute.cs">
+      <Link>MonoTODOAttribute.cs</Link>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+</Project>
