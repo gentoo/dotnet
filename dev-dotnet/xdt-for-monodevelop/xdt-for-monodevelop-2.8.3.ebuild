@@ -15,7 +15,7 @@ SLOT="0"
 SRC_URI="https://github.com/mrward/xdt/archive/Release-NuGet-${PV}-Mono.tar.gz -> xdt-for-monodevelop-${PV}.tar.gz"
 S=${WORKDIR}/xdt-Release-NuGet-${PV}-Mono
 
-KEYWORDS="x86 amd64 ~ppc"
+KEYWORDS="~x86 ~amd64 ~ppc"
 IUSE=""
 
 DEPEND="|| ( dev-lang/mono )"
