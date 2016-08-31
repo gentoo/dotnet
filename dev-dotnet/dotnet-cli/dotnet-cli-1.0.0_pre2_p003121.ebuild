@@ -39,7 +39,12 @@ RDEPEND="
 	>=dev-util/lttng-ust-2.8.1
 	>=dev-libs/openssl-1.0.2h-r2
 	>=net-misc/curl-7.49.0
-	>=app-crypt/mit-krb5-1.14.2"
+	>=app-crypt/mit-krb5-1.14.2
+	!bindist? (
+		net-misc/openssh
+		dev-libs/openssl
+		dev-qt/qtnetwork
+	)"
 DEPEND="${RDEPEND}
 	>=dev-util/cmake-3.3.1-r1
 	>=sys-devel/make-4.1-r1
