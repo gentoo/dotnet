@@ -48,6 +48,7 @@ src_prepare() {
 	cp "${FILESDIR}/${NUSPEC_ID}.nuspec" "${S}" || die
 	chmod -R +rw "${S}" || die
 	patch_nuspec_file "${S}/${NUSPEC_ID}.nuspec"
+	eapply "${FILESDIR}/remove-DataVisualiztion.patch"
 	eapply "${FILESDIR}/disable-warning-as-error.patch"
 	eapply_user
 }
@@ -64,6 +65,7 @@ patch_nuspec_file()
 		  <files> <!-- https://docs.nuget.org/create/nuspec-reference -->
 		    <file src="${DLL_PATH}/${DIR}/${DLL_NAME}.*" target="lib/net45/" />
 		    <file src="${DLL_PATH}/${DIR}/System.Web.WebPages.Deployment.*" target="lib/net45/" />
+		    <file src="${DLL_PATH}/${DIR}/System.Web.Helpers.*" target="lib/net45/" />
 		  </files>
 		EOF
 		`
@@ -73,8 +75,11 @@ patch_nuspec_file()
 
 src_compile() {
 	exbuild "${METAFILETOBUILD}"
-	sn -R "${DLL_PATH}/${DIR}/${DLL_NAME}.dll" /var/lib/layman/dotnet/eclass/mono.snk || die
+	exbuild "${S}/src/System.Web.Helpers/System.Web.Helpers.csproj"
+
+	sn -R "${DLL_PATH}/${DIR}/System.Web.WebPages.dll" /var/lib/layman/dotnet/eclass/mono.snk || die
 	sn -R "${DLL_PATH}/${DIR}/System.Web.WebPages.Deployment.dll" /var/lib/layman/dotnet/eclass/mono.snk || die
+	sn -R "${DLL_PATH}/${DIR}/System.Web.Helpers.dll" /var/lib/layman/dotnet/eclass/mono.snk || die
 
 	einfo nuspec: "${S}/${NUSPEC_ID}.nuspec"
 	einfo nupkg: "${WORKDIR}/${NUSPEC_ID}.${NUSPEC_VERSION}.nupkg"
@@ -91,6 +96,7 @@ src_install() {
 
 	egacinstall "${DLL_PATH}/${DIR}/${DLL_NAME}.dll"
 	egacinstall "${DLL_PATH}/${DIR}/System.Web.WebPages.Deployment.dll"
+	egacinstall "${DLL_PATH}/${DIR}/System.Web.Helpers.dll"
 
 	enupkg "${WORKDIR}/${NUSPEC_ID}.${NUSPEC_VERSION}.nupkg"
 }

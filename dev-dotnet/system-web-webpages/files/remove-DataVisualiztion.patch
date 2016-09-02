@@ -1,0 +1,20 @@
+diff -u a/src/System.Web.Helpers/System.Web.Helpers.csproj b/src/System.Web.Helpers/System.Web.Helpers.csproj
+--- a/src/System.Web.Helpers/System.Web.Helpers.csproj	2016-08-28 05:44:59.000000000 +0300
++++ b/src/System.Web.Helpers/System.Web.Helpers.csproj	2016-09-02 13:04:01.000000000 +0300
+@@ -19,7 +19,6 @@
+     <Reference Include="System.Drawing" />
+     <Reference Include="System.Runtime.Caching" />
+     <Reference Include="System.Web" />
+-    <Reference Include="System.Web.DataVisualization" />
+     <Reference Include="System.Web.Extensions" />
+     <Reference Include="Microsoft.CSharp" />
+     <Reference Include="System.XML" />
+@@ -31,8 +30,6 @@
+     <Compile Include="..\GlobalSuppressions.cs">
+       <Link>Common\GlobalSuppressions.cs</Link>
+     </Compile>
+-    <Compile Include="Chart\Chart.cs" />
+-    <Compile Include="Chart\ChartTheme.cs" />
+     <Compile Include="Common\VirtualPathUtil.cs" />
+     <Compile Include="ConversionUtil.cs" />
+     <Compile Include="Crypto.cs" />
