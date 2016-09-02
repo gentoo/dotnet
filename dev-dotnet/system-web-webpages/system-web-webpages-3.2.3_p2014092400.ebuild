@@ -47,6 +47,7 @@ src_prepare() {
 	cp "${FILESDIR}/${NUSPEC_ID}.nuspec" "${S}" || die
 	chmod -R +rw "${S}" || die
 	patch_nuspec_file "${S}/${NUSPEC_ID}.nuspec"
+	eapply "${FILESDIR}/disable-warning-as-error.patch"
 	eapply_user
 }
 
@@ -60,7 +61,8 @@ patch_nuspec_file()
 		fi
 		FILES_STRING=`sed 's/[\/&]/\\\\&/g' <<-EOF || die "escaping replacement string characters"
 		  <files> <!-- https://docs.nuget.org/create/nuspec-reference -->
-		    <file src="${DLL_PATH}/${DIR}/${DLL_NAME}.dll*" target="lib/net45/" />
+		    <file src="${DLL_PATH}/${DIR}/${DLL_NAME}.*" target="lib/net45/" />
+		    <file src="${DLL_PATH}/${DIR}/System.Web.WebPages.Deployment.*" target="lib/net45/" />
 		  </files>
 		EOF
 		`
