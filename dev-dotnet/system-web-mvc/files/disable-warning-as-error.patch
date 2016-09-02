@@ -1,0 +1,11 @@
+diff -u a/src/System.Web.WebPages/System.Web.WebPages.csproj b/src/System.Web.WebPages/System.Web.WebPages.csproj
+--- a/src/System.Web.WebPages/System.Web.WebPages.csproj	2016-09-02 07:36:21.000000000 +0300
++++ b/src/System.Web.WebPages/System.Web.WebPages.csproj	2016-09-02 07:39:47.965011321 +0300
+@@ -11,6 +11,7 @@
+     <RunCodeAnalysis>$(CodeAnalysis)</RunCodeAnalysis>
+     <CodeAnalysisRuleSet>..\Strict.ruleset</CodeAnalysisRuleSet>
+     <DefineConstants>$(DefineConstants);ASPNETWEBPAGES</DefineConstants>
++    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+     <NoWarn>1591</NoWarn>
+   </PropertyGroup>
+   <ItemGroup>
