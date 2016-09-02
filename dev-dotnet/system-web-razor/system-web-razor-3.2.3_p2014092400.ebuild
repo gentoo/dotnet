@@ -48,6 +48,7 @@ src_prepare() {
 	cp "${FILESDIR}/${NUSPEC_ID}.nuspec" "${S}" || die
 	chmod -R +rw "${S}" || die
 	patch_nuspec_file "${S}/${NUSPEC_ID}.nuspec"
+	eapply "${FILESDIR}/disable-warning-as-error.patch"
 	eapply_user
 }
 
@@ -61,7 +62,8 @@ patch_nuspec_file()
 		fi
 		FILES_STRING=`sed 's/[\/&]/\\\\&/g' <<-EOF || die "escaping replacement string characters"
 		  <files> <!-- https://docs.nuget.org/create/nuspec-reference -->
-		    <file src="${DLL_PATH}/${DIR}/${DLL_NAME}.dll*" target="lib/net45/" />
+		    <file src="${DLL_PATH}/${DIR}/${DLL_NAME}.*" target="lib/net45/" />
+		    <file src="${DLL_PATH}/${DIR}/System.Web.WebPages.Razor.*" target="lib/net45/" />
 		  </files>
 		EOF
 		`
@@ -72,6 +74,9 @@ patch_nuspec_file()
 src_compile() {
 	exbuild "${METAFILETOBUILD}"
 	sn -R "${DLL_PATH}/${DIR}/${DLL_NAME}.dll" /var/lib/layman/dotnet/eclass/mono.snk || die
+	
+	exbuild "${S}/src/System.Web.WebPages.Razor/System.Web.WebPages.Razor.csproj"
+	sn -R "${DLL_PATH}/${DIR}/System.Web.WebPages.Razor.dll" /var/lib/layman/dotnet/eclass/mono.snk || die
 
 	einfo nuspec: "${S}/${NUSPEC_ID}.nuspec"
 	einfo nupkg: "${WORKDIR}/${NUSPEC_ID}.${NUSPEC_VERSION}.nupkg"
@@ -87,6 +92,7 @@ src_install() {
 	fi
 
 	egacinstall "${DLL_PATH}/${DIR}/${DLL_NAME}.dll"
+	egacinstall "${DLL_PATH}/${DIR}/System.Web.WebPages.Razor.dll"
 
 	enupkg "${WORKDIR}/${NUSPEC_ID}.${NUSPEC_VERSION}.nupkg"
 }
