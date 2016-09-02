@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2013/05/nuspec.xsd">
+  <metadata>
+    <id>Microsoft.AspNet.WebPages</id>
+    <version>$BuildVersion$</version>
+    <title>Microsoft ASP.NET Web Pages</title>
+    <authors>Microsoft</authors>
+    <owners>Microsoft,aspnet</owners>
+    <licenseUrl>http://www.microsoft.com/web/webpi/eula/net_library_eula_ENU.htm</licenseUrl>
+    <projectUrl>http://www.asp.net/web-pages</projectUrl>
+    <iconUrl>http://go.microsoft.com/fwlink/?LinkID=288859</iconUrl>
+    <requireLicenseAcceptance>true</requireLicenseAcceptance>
+    <description>This package contains core runtime assemblies shared between ASP.NET MVC and ASP.NET Web Pages.</description>
+    <summary>This package contains core runtime assemblies shared between ASP.NET MVC and ASP.NET Web Pages.</summary>
+    <releaseNotes>Please visit http://go.microsoft.com/fwlink/?LinkID=403011 to view the release notes.</releaseNotes>
+    <copyright>© Microsoft Corporation. All rights reserved.</copyright>
+    <language>en-US</language>
+    <tags>Microsoft AspNet WebPages AspNetWebPages</tags>
+    <dependencies>
+      <dependency id="Microsoft.Web.Infrastructure" version="1.0.0.0" />
+      <dependency id="Microsoft.AspNet.Razor" version="[3.2.3, 3.3.0)" />
+    </dependencies>
+  </metadata>
+</package>
