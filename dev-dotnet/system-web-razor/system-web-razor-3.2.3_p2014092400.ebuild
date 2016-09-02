@@ -26,6 +26,7 @@ USE_DOTNET="net45"
 IUSE="+${USE_DOTNET} developer debug"
 
 COMMON_DEPEND=">=dev-lang/mono-4.0.2.5
+	dev-dotnet/microsoft-web-infrastructure
 "
 RDEPEND="${COMMON_DEPEND}
 "
@@ -70,6 +71,7 @@ patch_nuspec_file()
 
 src_compile() {
 	exbuild "${METAFILETOBUILD}"
+	sn -R "${DLL_PATH}/${DIR}/${DLL_NAME}.dll" /var/lib/layman/dotnet/eclass/mono.snk || die
 
 	einfo nuspec: "${S}/${NUSPEC_ID}.nuspec"
 	einfo nupkg: "${WORKDIR}/${NUSPEC_ID}.${NUSPEC_VERSION}.nupkg"
@@ -84,10 +86,7 @@ src_install() {
 		DIR="Release"
 	fi
 
-#	if use gac; then
-#		egacinstall "${S}/build/bin/${DIR}/Mono 4.x/NLog.dll"
-#		egacinstall "${S}/build/bin/${DIR}/Mono 4.x/NLog.Extended.dll"
-#	fi
+	egacinstall "${DLL_PATH}/${DIR}/${DLL_NAME}.dll"
 
 	enupkg "${WORKDIR}/${NUSPEC_ID}.${NUSPEC_VERSION}.nupkg"
 }

@@ -1,0 +1,11 @@
+diff -u a/src/System.Web.Mvc/System.Web.Mvc.csproj b/src/System.Web.Mvc/System.Web.Mvc.csproj
+--- a/src/System.Web.Mvc/System.Web.Mvc.csproj	2014-09-25 08:41:35.000000000 +0400
++++ b/src/System.Web.Mvc/System.Web.Mvc.csproj	2016-09-02 09:56:20.154191569 +0300
+@@ -11,6 +11,7 @@
+     <RunCodeAnalysis>$(CodeAnalysis)</RunCodeAnalysis>
+     <CodeAnalysisRuleSet>..\Strict.ruleset</CodeAnalysisRuleSet>
+     <DefineConstants>$(DefineConstants);ASPNETMVC</DefineConstants>
++    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+     <NoWarn>1591</NoWarn>
+     <BaseAddress>1609891840</BaseAddress>
+   </PropertyGroup>
