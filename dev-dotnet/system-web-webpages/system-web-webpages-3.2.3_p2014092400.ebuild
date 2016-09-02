@@ -26,6 +26,7 @@ USE_DOTNET="net45"
 IUSE="+${USE_DOTNET} developer debug"
 
 COMMON_DEPEND=">=dev-lang/mono-4.0.2.5
+	dev-dotnet/system-web-razor
 "
 RDEPEND="${COMMON_DEPEND}
 "

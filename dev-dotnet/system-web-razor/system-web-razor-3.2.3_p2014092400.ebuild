@@ -26,6 +26,7 @@ USE_DOTNET="net45"
 IUSE="+${USE_DOTNET} developer debug"
 
 COMMON_DEPEND=">=dev-lang/mono-4.0.2.5
+	dev-dotnet/microsoft-web-infrastructure
 "
 RDEPEND="${COMMON_DEPEND}
 "
