@@ -74,7 +74,7 @@ patch_nuspec_file()
 src_compile() {
 	exbuild "${METAFILETOBUILD}"
 	sn -R "${DLL_PATH}/${DIR}/${DLL_NAME}.dll" /var/lib/layman/dotnet/eclass/mono.snk || die
-	
+
 	exbuild "${S}/src/System.Web.WebPages.Razor/System.Web.WebPages.Razor.csproj"
 	sn -R "${DLL_PATH}/${DIR}/System.Web.WebPages.Razor.dll" /var/lib/layman/dotnet/eclass/mono.snk || die
 

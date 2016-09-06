@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
+<pkgmetadata>
+	<maintainer type="project">
+		<email>dotnet@gentoo.org</email>
+		<description>Gentoo Dotnet Project</description>
+	</maintainer>
+	<upstream>
+		<bugs-to>https://github.com/gentoo/dotnet/issues</bugs-to>
+		<remote-id type="github">mono/mono</remote-id>
+	</upstream>
+	<use>
+	</use>
+	<longdescription lang="en">
+		This package contains the Microsoft.Web.Infrastructure assembly that lets you dynamically register HTTP modules at run time.
+	</longdescription>
+	<longdescription lang="ru">
+		Сборка Microsoft.Web.Infrastructure.dll позволяет регистрировать модули HTTP динамически во время выполнения.
+	</longdescription>
+</pkgmetadata>
