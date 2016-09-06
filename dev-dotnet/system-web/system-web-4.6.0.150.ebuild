@@ -50,16 +50,25 @@ KEYFILE2=${S}/mcs/class/mono.snk
 
 src_compile()
 {
-	#exbuild "${S}/mcs/class/${NAME}/${CSPROJ}"
 	exbuild /p:SignAssembly=true /p:AssemblyOriginatorKeyFile=${KEYFILE1} /p:DelaySign=true "${S}/mcs/class/${NAME}/${CSPROJ}"
-	sn -R "${S}/mcs/class/${NAME}/${NAME}.dll" ${KEYFILE2} || die
+	if use debug; then
+		DIR="Debug"
+	else
+		DIR="Release"
+	fi
+	sn -R "${S}/mcs/class/${NAME}/obj/${DIR}/${NAME}.dll" ${KEYFILE2} || die
 	al "/link:${S}/policy.4.0.System.Web.config" "/out:${S}/policy.4.0.System.Web.dll" "/keyfile:${KEYFILE1}" /delaysign+ || die
 	sn -R "${S}/policy.4.0.System.Web.dll" ${KEYFILE2} || die
 }
 
 src_install()
 {
+	if use debug; then
+		DIR="Debug"
+	else
+		DIR="Release"
+	fi
 	# installation to GAC will cause file collision with mono package
-	egacinstall "${S}/mcs/class/${NAME}/${NAME}.dll"
+	egacinstall "${S}/mcs/class/${NAME}/obj/${DIR}/${NAME}.dll"
 	egacinstall "${S}/policy.4.0.System.Web.dll"
 }
