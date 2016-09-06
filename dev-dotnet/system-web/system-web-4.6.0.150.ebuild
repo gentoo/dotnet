@@ -5,7 +5,7 @@
 EAPI=6
 
 USE_DOTNET="net45"
-inherit gac nupkg
+inherit gac dotnet
 IUSE+=" +net45 debug"
 
 DESCRIPTION="assembly that lets you dynamically register HTTP modules at run time"
@@ -36,6 +36,7 @@ src_prepare()
 {
 	gunzip --decompress --stdout "${FILESDIR}/${CSPROJ}.gz" >"${S}/mcs/class/${NAME}/${CSPROJ}" || die
 	sed -i 's/public const string FxVersion = "4.0.0.0";/public const string FxVersion = "'${PV}'";/g' "${S}/mcs/build/common/Consts.cs" || die
+	cp "${FILESDIR}/policy.4.0.System.Web.config" "${S}/policy.4.0.System.Web.config" || die
 	eapply_user
 }
 
@@ -44,14 +45,21 @@ src_configure()
 	:;
 }
 
+KEYFILE1=${S}/mcs/class/msfinal.pub
+KEYFILE2=${S}/mcs/class/mono.snk
+
 src_compile()
 {
-	exbuild "${S}/mcs/class/${NAME}/${CSPROJ}"
-	sn -R "${S}/mcs/class/${NAME}/${NAME}.dll" "${S}/mcs/class/mono.snk" || die
+	#exbuild "${S}/mcs/class/${NAME}/${CSPROJ}"
+	exbuild /p:SignAssembly=true /p:AssemblyOriginatorKeyFile=${KEYFILE1} /p:DelaySign=true "${S}/mcs/class/${NAME}/${CSPROJ}"
+	sn -R "${S}/mcs/class/${NAME}/${NAME}.dll" ${KEYFILE2} || die
+	al "/link:${S}/policy.4.0.System.Web.config" "/out:${S}/policy.4.0.System.Web.dll" "/keyfile:${KEYFILE1}" /delaysign+ || die
+	sn -R "${S}/policy.4.0.System.Web.dll" ${KEYFILE2} || die
 }
 
 src_install()
 {
 	# installation to GAC will cause file collision with mono package
 	egacinstall "${S}/mcs/class/${NAME}/${NAME}.dll"
+	egacinstall "${S}/policy.4.0.System.Web.dll"
 }
