@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
+<pkgmetadata>
+	<maintainer type="project">
+		<email>dotnet@gentoo.org</email>
+		<description>Gentoo Dotnet Project</description>
+	</maintainer>
+	<upstream>
+		<bugs-to>https://github.com/gentoo/dotnet/issues</bugs-to>
+		<remote-id type="github">mono/mono</remote-id>
+	</upstream>
+	<use>
+		<flag name='pkg-config'>create .pc file(s) for .dll(s) installed to gac</flag>
+	</use>
+	<longdescription lang="en">
+		Framework for creating web-applications
+	</longdescription>
+	<longdescription lang="ru">
+		Фреймворк для создания Web-приложений
+	</longdescription>
+</pkgmetadata>
