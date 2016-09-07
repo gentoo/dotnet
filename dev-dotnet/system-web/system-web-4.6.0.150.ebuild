@@ -6,9 +6,9 @@ EAPI=6
 
 USE_DOTNET="net45"
 inherit gac dotnet
-IUSE+=" +net45 debug"
+IUSE+=" +net45 +pkg-config debug"
 
-DESCRIPTION="assembly that lets you dynamically register HTTP modules at run time"
+DESCRIPTION="Framework for developing web-applications"
 HOMEPAGE="https://www.asp.net/"
 SRC_URI="http://download.mono-project.com/sources/mono/mono-4.6.0.150.tar.bz2"
 
@@ -50,6 +50,7 @@ KEYFILE2=${S}/mcs/class/mono.snk
 
 src_compile()
 {
+	# System.Web.dll
 	exbuild /p:SignAssembly=true /p:AssemblyOriginatorKeyFile=${KEYFILE1} /p:DelaySign=true "${S}/mcs/class/${NAME}/${CSPROJ}"
 	if use debug; then
 		DIR="Debug"
@@ -57,6 +58,8 @@ src_compile()
 		DIR="Release"
 	fi
 	sn -R "${S}/mcs/class/${NAME}/obj/${DIR}/${NAME}.dll" ${KEYFILE2} || die
+
+	# Policy file
 	al "/link:${S}/policy.4.0.System.Web.config" "/out:${S}/policy.4.0.System.Web.dll" "/keyfile:${KEYFILE1}" /delaysign+ || die
 	sn -R "${S}/policy.4.0.System.Web.dll" ${KEYFILE2} || die
 }
@@ -68,7 +71,37 @@ src_install()
 	else
 		DIR="Release"
 	fi
-	# installation to GAC will cause file collision with mono package
 	egacinstall "${S}/mcs/class/${NAME}/obj/${DIR}/${NAME}.dll"
 	egacinstall "${S}/policy.4.0.System.Web.dll"
+	install_pc_file "${PN}" "${NAME}.dll"
+}
+
+# The file format contains predefined metadata keywords and freeform variables (like ${prefix} and ${exec_prefix})
+# $1 = ${PN}
+# $2 = myassembly.dll
+install_pc_file()
+{
+	if use pkg-config; then
+		dodir /usr/$(get_libdir)/pkgconfig
+		ebegin "Installing ${PC_FILE_NAME}.pc file"
+		sed \
+			-e "s:@LIBDIR@:$(get_libdir):" \
+			-e "s:@PACKAGENAME@:$1:" \
+			-e "s:@DESCRIPTION@:${DESCRIPTION}:" \
+			-e "s:@VERSION@:${PV}:" \
+			-e 's*@LIBS@*-r:${libdir}'"/mono/$1/$2"'*' \
+			<<-EOF >"${D}/usr/$(get_libdir)/pkgconfig/$1.pc" || die
+				prefix=${pcfiledir}/../..
+				exec_prefix=${prefix}
+				libdir=${exec_prefix}/@LIBDIR@
+				Name: @PACKAGENAME@
+				Description: @DESCRIPTION@
+				Version: @VERSION@
+				Libs: @LIBS@
+			EOF
+
+		einfo PKG_CONFIG_PATH="${D}/usr/$(get_libdir)/pkgconfig/" pkg-config --exists "$1"
+		PKG_CONFIG_PATH="${D}/usr/$(get_libdir)/pkgconfig/" pkg-config --exists "$1" || die ".pc file failed to validate."
+		eend $?
+	fi
 }
