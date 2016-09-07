@@ -90,7 +90,7 @@ install_pc_file()
 			-e "s:@DESCRIPTION@:${DESCRIPTION}:" \
 			-e "s:@VERSION@:${PV}:" \
 			-e 's*@LIBS@*-r:${libdir}'"/mono/$1/$2"'*' \
-			<<\-EOF >"${D}/usr/$(get_libdir)/pkgconfig/$1.pc" || die
+			<<-EOF >"${D}/usr/$(get_libdir)/pkgconfig/$1.pc" || die
 				prefix=\${pcfiledir}/../..
 				exec_prefix=\${prefix}
 				libdir=\${exec_prefix}/@LIBDIR@
