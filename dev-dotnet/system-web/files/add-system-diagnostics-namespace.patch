@@ -1,0 +1,9 @@
+--- a/mcs/class/referencesource/System.Web/Util/GCUtil.cs
++++ b/mcs/class/referencesource/System.Web/Util/GCUtil.cs
+@@ -6,6 +6,7 @@
+ 
+ namespace System.Web.Util {
+     using System;
++    using System.Diagnostics;
+     using System.Runtime.InteropServices;
+     using System.Security.Permissions;

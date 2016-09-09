@@ -10,7 +10,9 @@ IUSE+=" +net45 +pkg-config debug"
 
 DESCRIPTION="Framework for developing web-applications"
 HOMEPAGE="https://www.asp.net/"
-SRC_URI="http://download.mono-project.com/sources/mono/mono-4.6.0.150.tar.bz2"
+SRC_URI="https://github.com/ArsenShnurkov/shnurise-tarballs/archive/dev-dotnet/system-web/system-web-4.6.0.182.tar.gz"
+RESTRICT="mirror"
+S="${WORKDIR}/shnurise-tarballs-${CATEGORY}-${PN}-${PF}"
 
 NAME=System.Web
 
@@ -28,15 +30,13 @@ RDEPEND="${COMMONDEPEND}
 DEPEND="${COMMONDEPEND}
 "
 
-S="${WORKDIR}/mono-4.6.0"
-
 CSPROJ=${NAME}.csproj
 
 src_prepare()
 {
-	gunzip --decompress --stdout "${FILESDIR}/${CSPROJ}.gz" >"${S}/mcs/class/${NAME}/${CSPROJ}" || die
 	sed -i 's/public const string FxVersion = "4.0.0.0";/public const string FxVersion = "'${PV}'";/g' "${S}/mcs/build/common/Consts.cs" || die
-	cp "${FILESDIR}/policy.4.0.System.Web.config" "${S}/policy.4.0.System.Web.config" || die
+	sed "s/4.6.0.150/4.6.0.182/g" "${FILESDIR}/policy.4.0.System.Web.config" > "${S}/policy.4.0.System.Web.config" || die
+	eapply "${FILESDIR}/add-system-diagnostics-namespace.patch"
 	eapply_user
 }
 
