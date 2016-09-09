@@ -35,7 +35,7 @@ CSPROJ=${NAME}.csproj
 src_prepare()
 {
 	sed -i 's/public const string FxVersion = "4.0.0.0";/public const string FxVersion = "'${PV}'";/g' "${S}/mcs/build/common/Consts.cs" || die
-	cp "${FILESDIR}/policy.4.0.System.Web.config" "${S}/policy.4.0.System.Web.config" || die
+	sed "s/4.6.0.150/4.6.0.182/g" "${FILESDIR}/policy.4.0.System.Web.config" > "${S}/policy.4.0.System.Web.config" || die
 	eapply "${FILESDIR}/add-system-diagnostics-namespace.patch"
 	eapply_user
 }
