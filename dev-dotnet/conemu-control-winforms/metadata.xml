@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
+<pkgmetadata>
+	<maintainer type="project">
+		<email>dotnet@gentoo.org</email>
+		<description>Gentoo Dotnet Project</description>
+	</maintainer>
+	<upstream>
+		<bugs-to>https://github.com/gentoo/dotnet/issues</bugs-to>
+		<remote-id type="github">Maximus5/conemu-inside</remote-id>
+	</upstream>
+	<use>
+		<flag name='pkg-config'>create .pc file(s) for .dll(s) installed to gac</flag>
+	</use>
+	<longdescription lang="en">
+		This is a console emulator control that embeds a fully functional console view in a Windows Forms window.
+		It is capable of running any console application with full interactivity and advanced console functions.
+		Applications will detect it as an actual console and will not fall back
+		to the output redirection mode with reduced interactivity or formatting.
+	</longdescription>
+</pkgmetadata>
