@@ -1,0 +1,11 @@
+--- a/ConEmuWinForms/Util/CommandLineBuilder.cs	2016-09-13 13:25:17.000000000 +0300
++++ b/ConEmuWinForms/Util/CommandLineBuilder.cs	2016-09-13 13:26:40.771273058 +0300
+@@ -17,7 +17,7 @@
+ 	/// 	-- Functional double quotes (for example to handle spaces) are best put around both name and value
+ 	/// 	    in switches like /Dname=value.
+ 	/// </summary> 
+-	internal sealed class CommandLineBuilder
++	public sealed class CommandLineBuilder
+     {
+ 		public static readonly string License = 
+ @"
