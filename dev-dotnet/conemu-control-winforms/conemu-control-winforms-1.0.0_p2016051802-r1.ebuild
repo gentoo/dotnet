@@ -26,6 +26,7 @@ SLOT="0"
 
 src_prepare() {
 	eapply "${FILESDIR}/add-release-configuration.patch"
+	eapply "${FILESDIR}/make-CommandLineBuilder-class-public.patch"
 	eapply_user
 }
 
