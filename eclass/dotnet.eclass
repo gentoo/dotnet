@@ -122,8 +122,7 @@ exbuild() {
 		TOOLS_VERSION=4.0
 	fi
 
-	PARAMETERS="/v:detailed /tv:${TOOLS_VERSION} ""/p:TargetFrameworkVersion=v${FRAMEWORK}"" ""${CARGS}"" ""${SARGS}"" ""$@"""
-	exbuild_raw ${PARAMETERS}
+	exbuild_raw "/v:detailed" "/tv:${TOOLS_VERSION}" "/p:TargetFrameworkVersion=v${FRAMEWORK}" "${CARGS}" "${SARGS}" "$@"
 }
 
 # @FUNCTION: exbuild_strong
@@ -143,8 +142,7 @@ exbuild_strong() {
 		KARGS1=
 		KARGS2=
 	fi
-	PARAMETERS=" ""${KARGS1}"" ""${KARGS2}"" ""$@"""
-	exbuild "${PARAMETERS}"
+	exbuild "${KARGS1}" "${KARGS2}" "$@"
 }
 
 # @FUNCTION: dotnet_multilib_comply
