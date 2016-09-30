@@ -12,7 +12,7 @@ inherit gac dotnet
 
 SRC_URI="https://github.com/autofac/Autofac/archive/v4.1.1.tar.gz -> ${PV}.tar.gz"
 RESTRICT="mirror"
-S="${WORKDIR}/${PN}-${PV}"
+S="${WORKDIR}/Autofac-${PV}"
 
 HOMEPAGE="https://github.com/autofac/Autofac"
 DESCRIPTION="An addictive .NET IoC container"
@@ -27,15 +27,17 @@ RDEPEND="${COMMON_DEPEND}
 DEPEND="${COMMON_DEPEND}
 "
 
+src_unpack() {
+	default
+	gunzip --decompress --stdout "${FILESDIR}/Autofac.csproj-${PV}.gz" >"${S}/src/Autofac/Autofac.csproj" || die
+}
+
 src_prepare() {
-	#eapply "${FILESDIR}/references-2016052301.patch"
-	#eapply "${FILESDIR}/location.patch"
 	eapply_user
 }
 
 src_compile() {
-	:;
-	#exbuild "Source/MSBuild.Community.Tasks/MSBuild.Community.Tasks.csproj"
+	exbuild_strong /p:VersionNumber=${PV} "src/Autofac/Autofac.csproj"
 }
 
 src_install() {
@@ -44,6 +46,6 @@ src_install() {
 	else
 		DIR="Release"
 	fi
-	#egacinstall "Source/MSBuild.Community.Tasks/bin/${DIR}/MSBuild.Community.Tasks.dll"
-	#einstall_pc_file "${PN}" "${PV}" "MSBuild.Community.Tasks.dll"
+	egacinstall "src/Autofac/bin/${DIR}/Autofac.dll"
+	einstall_pc_file "${PN}" "${PV}" "Autofac.dll"
 }
