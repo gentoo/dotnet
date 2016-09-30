@@ -29,7 +29,7 @@ DEPEND="${COMMON_DEPEND}
 
 src_unpack() {
 	default
-	#gunzip --decompress --stdout "${FILESDIR}/Autofac.csproj-${PV}.gz" >"${S}/src/Autofac/Autofac.csproj" || die
+	gunzip --decompress --stdout "${FILESDIR}/Microsoft.Extensions.Primitives.csproj-${PV}.gz" >"${S}/src/Microsoft.Extensions.Primitives/Microsoft.Extensions.Primitives.csproj" || die
 }
 
 src_prepare() {
@@ -37,8 +37,7 @@ src_prepare() {
 }
 
 src_compile() {
-	#exbuild_strong /p:VersionNumber=${PV} "src/Autofac/Autofac.csproj"
-	:;
+	exbuild_strong /p:VersionNumber=${PV} "src/Microsoft.Extensions.Primitives/Microsoft.Extensions.Primitives.csproj"
 }
 
 src_install() {
@@ -47,6 +46,6 @@ src_install() {
 	else
 		DIR="Release"
 	fi
-	#egacinstall "src/Autofac/bin/${DIR}/Autofac.dll"
-	#einstall_pc_file "${PN}" "${PV}" "Autofac.dll"
+	egacinstall "src/Microsoft.Extensions.Primitives/bin/${DIR}/Microsoft.Extensions.Primitives.dll"
+	einstall_pc_file "${PN}" "${PV}" "Microsoft.Extensions.Primitives.dll"
 }
