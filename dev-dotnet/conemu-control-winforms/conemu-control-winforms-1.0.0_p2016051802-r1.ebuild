@@ -46,5 +46,5 @@ src_install() {
 		DIR=Release
 	fi
 	egacinstall "${S}/ConEmuWinForms/bin/${DIR}/ConEmu.WinForms.dll"
-	einstall_pc_file "${PN}" "ConEmu.WinForms.dll"
+	einstall_pc_file "${PN}" "${PV}" "ConEmu.WinForms.dll"
 }

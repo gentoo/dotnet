@@ -13,7 +13,7 @@ case ${EAPI:-0} in
 	6) ;;
 esac
 
-IUSE+=" +gac"
+IUSE+=" +gac +pkg-config +symlink"
 
 DEPEND+=" dev-lang/mono"
 RDEPEND+=" dev-lang/mono"
@@ -64,30 +64,57 @@ egacdel() {
 # @DESCRIPTION:  installs .pc file
 # The file format contains predefined metadata keywords and freeform variables (like ${prefix} and ${exec_prefix})
 # $1 = ${PN}
-# $2 = myassembly.dll
+# $2 = ${PV}
+# $3 = myassembly.dll # should not contain path, it is calculated magically, see DLL_FILENAME variable
 einstall_pc_file()
 {
 	if use pkg-config; then
-		dodir /usr/$(get_libdir)/pkgconfig
-		ebegin "Installing ${PC_FILE_NAME}.pc file"
+		local PC_NAME="$1"
+		local PC_VERSION="$2"
+		local DLL_NAME="$3"
+		local PC_FILENAME="${PC_NAME}-${PC_VERSION}"
+		local PC_DIRECTORY="/usr/$(get_libdir)/pkgconfig"
+		#local PC_DIRECTORY_DELTA="${CATEGORY}/${PN}"
+		local PC_DIRECTORY_VER="${PC_DIRECTORY}/${PC_DIRECTORY_DELTA}"
+		local DLL_FILENAME="\${libdir}/mono/${PC_NAME}/${DLL_NAME}"
+
+		dodir "${PC_DIRECTORY}"
+		dodir "${PC_DIRECTORY_VER}"
+
+		ebegin "Installing ${PC_DIRECTORY_VER}/${PC_FILENAME}.pc file"
+
+		# @Name@: A human-readable name for the library or package. This does not affect usage of the pkg-config tool,
+		# which uses the name of the .pc file.
+		# see https://people.freedesktop.org/~dbn/pkg-config-guide.html
+
+		# \${name} variables going directly into .pc file after unescaping $ sign
+		#
+		# other variables are not substituted to sed input directly
+		# to protect them from processing by bash
+		# (they only requires sed escaping for replacement path)
 		sed \
-			-e "s:@LIBDIR@:$(get_libdir):" \
-			-e "s:@PACKAGENAME@:$1:" \
+			-e "s:@PC_VERSION@:${PC_VERSION}:" \
+			-e "s:@Name@:${CATEGORY}/${PN}:" \
 			-e "s:@DESCRIPTION@:${DESCRIPTION}:" \
-			-e "s:@VERSION@:${PV}:" \
-			-e 's*@LIBS@*-r:${libdir}'"/mono/$1/$2"'*' \
-			<<-EOF >"${D}/usr/$(get_libdir)/pkgconfig/$1.pc" || die
+			-e "s:@LIBDIR@:$(get_libdir):" \
+			-e "s*@LIBS@*-r:${DLL_FILENAME}*" \
+			<<-EOF >"${D}/${PC_DIRECTORY_VER}/${PC_FILENAME}.pc" || die
 				prefix=\${pcfiledir}/../..
 				exec_prefix=\${prefix}
 				libdir=\${exec_prefix}/@LIBDIR@
-				Name: @PACKAGENAME@
+				Version: @PC_VERSION@
+				Name: @Name@
 				Description: @DESCRIPTION@
-				Version: @VERSION@
 				Libs: @LIBS@
 			EOF
 
-		einfo PKG_CONFIG_PATH="${D}/usr/$(get_libdir)/pkgconfig/" pkg-config --exists "$1"
-		PKG_CONFIG_PATH="${D}/usr/$(get_libdir)/pkgconfig/" pkg-config --exists "$1" || die ".pc file failed to validate."
+		einfo PKG_CONFIG_PATH="${D}/${PC_DIRECTORY_VER}" pkg-config --exists "${PC_FILENAME}"
+		PKG_CONFIG_PATH="${D}/${PC_DIRECTORY_VER}" pkg-config --exists "${PC_FILENAME}" || die ".pc file failed to validate."
 		eend $?
+
+		if use symlink; then
+			einfo "SymLinking ${PC_DIRECTORY_VER}/${PC_FILENAME}.pc file as ${PC_DIRECTORY}/${PC_NAME}.pc"
+			dosym "./${PC_DIRECTORY_DELTA}/${PC_FILENAME}.pc" "${PC_DIRECTORY}/${PC_NAME}.pc"
+		fi
 	fi
 }
