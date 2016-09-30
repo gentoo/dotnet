@@ -1,0 +1,200 @@
+--- a/src/Castle.Core.Tests/Castle.Core.Tests.csproj
++++ b/src/Castle.Core.Tests/Castle.Core.Tests.csproj
+@@ -29,7 +29,6 @@
+     <Optimize>false</Optimize>
+     <DefineConstants>TRACE;DEBUG;DOTNET40</DefineConstants>
+     <ErrorReport>prompt</ErrorReport>
+-    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+     <Prefer32Bit>false</Prefer32Bit>
+   </PropertyGroup>
+@@ -45,7 +44,6 @@
+     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+     <DocumentationFile>
+     </DocumentationFile>
+-    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+     <Prefer32Bit>false</Prefer32Bit>
+   </PropertyGroup>
+   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'NET35-Debug|AnyCPU'">
+@@ -57,7 +55,6 @@
+     <PlatformTarget>AnyCPU</PlatformTarget>
+     <ErrorReport>prompt</ErrorReport>
+     <DebugSymbols>true</DebugSymbols>
+-    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+     <Prefer32Bit>false</Prefer32Bit>
+   </PropertyGroup>
+   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'NET35-Release|AnyCPU'">
+@@ -70,7 +67,6 @@
+     <ErrorReport>prompt</ErrorReport>
+     <DocumentationFile>
+     </DocumentationFile>
+-    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+     <Prefer32Bit>false</Prefer32Bit>
+   </PropertyGroup>
+   <PropertyGroup>
+@@ -81,7 +77,6 @@
+     <OutputPath>bin\NET45-Debug\</OutputPath>
+     <DefineConstants>TRACE;DEBUG;DOTNET40 DOTNET45</DefineConstants>
+     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+-    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+     <DebugType>full</DebugType>
+     <PlatformTarget>AnyCPU</PlatformTarget>
+     <ErrorReport>prompt</ErrorReport>
+@@ -91,7 +86,6 @@
+     <OutputPath>bin\NET45-Release\</OutputPath>
+     <DefineConstants>TRACE;DOTNET40 DOTNET45</DefineConstants>
+     <Optimize>true</Optimize>
+-    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+     <DebugType>pdbonly</DebugType>
+     <PlatformTarget>AnyCPU</PlatformTarget>
+     <ErrorReport>prompt</ErrorReport>
+--- a/src/Castle.Core/Castle.Core.csproj
++++ b/src/Castle.Core/Castle.Core.csproj
+@@ -27,7 +27,6 @@
+     <Optimize>false</Optimize>
+     <DefineConstants>TRACE;DEBUG;DOTNET40</DefineConstants>
+     <ErrorReport>prompt</ErrorReport>
+-    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+     <DocumentationFile>
+     </DocumentationFile>
+     <NoWarn>1591</NoWarn>
+@@ -44,7 +43,6 @@
+     <ErrorReport>prompt</ErrorReport>
+     <DocumentationFile>bin\NET40-Release\Castle.Core.xml</DocumentationFile>
+     <NoWarn>1591</NoWarn>
+-    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+     <Prefer32Bit>false</Prefer32Bit>
+   </PropertyGroup>
+   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'NET35-Debug|AnyCPU'">
+@@ -56,7 +54,6 @@
+     <DocumentationFile>
+     </DocumentationFile>
+     <Optimize>true</Optimize>
+-    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+     <NoWarn>1591</NoWarn>
+     <DebugType>pdbonly</DebugType>
+     <PlatformTarget>AnyCPU</PlatformTarget>
+@@ -72,7 +69,6 @@
+     <DefineConstants>TRACE;DOTNET35</DefineConstants>
+     <DocumentationFile>bin\NET35-Release\Castle.Core.xml</DocumentationFile>
+     <Optimize>true</Optimize>
+-    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+     <NoWarn>1591</NoWarn>
+     <DebugType>pdbonly</DebugType>
+     <PlatformTarget>AnyCPU</PlatformTarget>
+@@ -84,7 +80,6 @@
+     <OutputPath>bin\NET45-Debug\</OutputPath>
+     <DefineConstants>TRACE;DEBUG;DOTNET40 DOTNET45</DefineConstants>
+     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+-    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+     <NoWarn>1591</NoWarn>
+     <DebugType>full</DebugType>
+     <PlatformTarget>AnyCPU</PlatformTarget>
+@@ -96,7 +91,6 @@
+     <DefineConstants>TRACE;DOTNET40 DOTNET45</DefineConstants>
+     <DocumentationFile>bin\NET45-Release\Castle.Core.xml</DocumentationFile>
+     <Optimize>true</Optimize>
+-    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+     <NoWarn>1591</NoWarn>
+     <DebugType>pdbonly</DebugType>
+     <PlatformTarget>AnyCPU</PlatformTarget>
+--- a/src/Castle.Services.Logging.NLogIntegration/Castle.Services.Logging.NLogIntegration.csproj
++++ b/src/Castle.Services.Logging.NLogIntegration/Castle.Services.Logging.NLogIntegration.csproj
+@@ -41,7 +41,6 @@
+     <Optimize>false</Optimize>
+     <RegisterForComInterop>false</RegisterForComInterop>
+     <RemoveIntegerChecks>false</RemoveIntegerChecks>
+-    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+     <WarningLevel>4</WarningLevel>
+     <DebugType>full</DebugType>
+     <ErrorReport>prompt</ErrorReport>
+@@ -67,7 +66,6 @@
+     <Optimize>true</Optimize>
+     <RegisterForComInterop>false</RegisterForComInterop>
+     <RemoveIntegerChecks>false</RemoveIntegerChecks>
+-    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+     <WarningLevel>4</WarningLevel>
+     <DebugType>pdbonly</DebugType>
+     <ErrorReport>prompt</ErrorReport>
+@@ -93,7 +91,6 @@
+     <Optimize>false</Optimize>
+     <RegisterForComInterop>false</RegisterForComInterop>
+     <RemoveIntegerChecks>false</RemoveIntegerChecks>
+-    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+     <WarningLevel>4</WarningLevel>
+     <DebugType>full</DebugType>
+     <ErrorReport>prompt</ErrorReport>
+@@ -107,7 +104,6 @@
+     <DefineConstants>TRACE</DefineConstants>
+     <BaseAddress>285212672</BaseAddress>
+     <Optimize>true</Optimize>
+-    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+     <FileAlignment>4096</FileAlignment>
+     <DebugType>pdbonly</DebugType>
+     <PlatformTarget>AnyCPU</PlatformTarget>
+@@ -120,7 +116,6 @@
+     <DefineConstants>TRACE</DefineConstants>
+     <BaseAddress>285212672</BaseAddress>
+     <Optimize>true</Optimize>
+-    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+     <FileAlignment>4096</FileAlignment>
+     <DebugType>pdbonly</DebugType>
+     <PlatformTarget>AnyCPU</PlatformTarget>
+@@ -134,7 +129,6 @@
+     <DefineConstants>TRACE</DefineConstants>
+     <BaseAddress>285212672</BaseAddress>
+     <Optimize>true</Optimize>
+-    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+     <FileAlignment>4096</FileAlignment>
+     <DebugType>pdbonly</DebugType>
+     <PlatformTarget>AnyCPU</PlatformTarget>
+--- a/src/Castle.Services.Logging.log4netIntegration/Castle.Services.Logging.log4netIntegration.csproj
++++ b/src/Castle.Services.Logging.log4netIntegration/Castle.Services.Logging.log4netIntegration.csproj
+@@ -53,7 +53,6 @@
+     <Optimize>false</Optimize>
+     <RegisterForComInterop>false</RegisterForComInterop>
+     <RemoveIntegerChecks>false</RemoveIntegerChecks>
+-    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+     <WarningLevel>4</WarningLevel>
+     <DebugType>full</DebugType>
+     <ErrorReport>prompt</ErrorReport>
+@@ -78,7 +77,6 @@
+     <Optimize>true</Optimize>
+     <RegisterForComInterop>false</RegisterForComInterop>
+     <RemoveIntegerChecks>false</RemoveIntegerChecks>
+-    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+     <WarningLevel>4</WarningLevel>
+     <DebugType>pdbonly</DebugType>
+     <ErrorReport>prompt</ErrorReport>
+@@ -91,7 +89,6 @@
+     <DefineConstants>TRACE</DefineConstants>
+     <BaseAddress>285212672</BaseAddress>
+     <Optimize>true</Optimize>
+-    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+     <FileAlignment>4096</FileAlignment>
+     <DebugType>pdbonly</DebugType>
+     <PlatformTarget>AnyCPU</PlatformTarget>
+@@ -105,7 +102,6 @@
+     <DefineConstants>TRACE</DefineConstants>
+     <BaseAddress>285212672</BaseAddress>
+     <Optimize>true</Optimize>
+-    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+     <FileAlignment>4096</FileAlignment>
+     <DebugType>pdbonly</DebugType>
+     <PlatformTarget>AnyCPU</PlatformTarget>
+@@ -117,7 +113,6 @@
+     <OutputPath>bin\NET45-Debug\</OutputPath>
+     <DefineConstants>TRACE;DEBUG</DefineConstants>
+     <BaseAddress>285212672</BaseAddress>
+-    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+     <FileAlignment>4096</FileAlignment>
+     <DebugType>full</DebugType>
+     <PlatformTarget>AnyCPU</PlatformTarget>
+@@ -130,7 +125,6 @@
+     <DefineConstants>TRACE</DefineConstants>
+     <BaseAddress>285212672</BaseAddress>
+     <Optimize>true</Optimize>
+-    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+     <FileAlignment>4096</FileAlignment>
+     <DebugType>pdbonly</DebugType>
+     <PlatformTarget>AnyCPU</PlatformTarget>
