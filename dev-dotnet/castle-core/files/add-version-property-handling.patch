@@ -1,0 +1,36 @@
+--- a/src/Castle.Core/Castle.Core.csproj
++++ b/src/Castle.Core/Castle.Core.csproj
+@@ -552,11 +555,29 @@
+     <DefineConstants>$(DefineConstants) $(AdditionalDefineConstants)</DefineConstants>
+   </PropertyGroup>
+   <Import Project="$(BuildScriptsPath)\Castle.Common.targets" />
+-  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+-       Other similar extension points exist, see Microsoft.Common.targets.
+   <Target Name="BeforeBuild">
++ <ItemGroup>
++     <AssemblyAttributes Include="AssemblyProduct">
++        <_Parameter1>Castle Core for .NET Framework 4.5</_Parameter1>
++     </AssemblyAttributes>
++     <AssemblyAttributes Include="AssemblyCompany">
++        <_Parameter1>Castle Project</_Parameter1>
++     </AssemblyAttributes>
++     <AssemblyAttributes Include="AssemblyCopyright">
++        <_Parameter1>Copyright (c) 2004-2016 Castle Project - http://www.castleproject.org</_Parameter1>
++     </AssemblyAttributes>
++     <AssemblyAttributes Include="AssemblyVersion">
++        <_Parameter1>$(VersionNumber)</_Parameter1>
++     </AssemblyAttributes>
++     <AssemblyAttributes Include="AssemblyFileVersion">
++        <_Parameter1>$(VersionNumber)</_Parameter1>
++     </AssemblyAttributes>
++     <AssemblyAttributes Include="AssemblyInformationalVersion">
++        <_Parameter1>$(VersionNumber)</_Parameter1>
++     </AssemblyAttributes>   
++    </ItemGroup>
++  <WriteCodeFragment Language="C#" OutputFile="../../buildscripts/CommonAssemblyInfo.cs" AssemblyAttributes="@(AssemblyAttributes)" />
+   </Target>
+   <Target Name="AfterBuild">
+   </Target>
+-  -->
+ </Project>
+\ No newline at end of file

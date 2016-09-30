@@ -27,7 +27,8 @@ DEPEND="${COMMON_DEPEND}
 "
 
 src_prepare() {
-	epatch "${FILESDIR}/remove-warnings-as-errors-${PV}.patch"
+	eapply "${FILESDIR}/add-version-property-handling.patch"
+	eapply "${FILESDIR}/remove-warnings-as-errors-${PV}.patch"
 	eapply_user
 }
 
@@ -44,7 +45,7 @@ src_compile() {
 		SARGS=/p:DebugSymbols=False
 	fi
 
-	exbuild_raw /v:detailed /tv:4.0 /p:TargetFrameworkVersion=v4.5 ${CARGS} ${SARGS} "/p:RootPath=${S}" "Castle.Core.sln"
+	exbuild_raw /v:detailed /tv:4.0 /p:TargetFrameworkVersion=v4.5 ${CARGS} ${SARGS} /p:VersionNumber=4.0.0.0 "/p:RootPath=${S}" "Castle.Core.sln"
 }
 
 src_install() {
@@ -54,4 +55,5 @@ src_install() {
 		CONFIGURATION=NET45-Release
 	fi
 	egacinstall "src/Castle.Core/bin/${CONFIGURATION}/Castle.Core.dll"
+	einstall_pc_file "${PN}" "${PV}" "Castle.Core.dll"
 }

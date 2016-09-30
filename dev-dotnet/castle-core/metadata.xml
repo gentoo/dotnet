@@ -5,8 +5,4 @@
 	    <email>dotnet@gentoo.org</email>
 	    <description>Gentoo Dotnet Project</description>
 	</maintainer>
-	<use>
-		<flag name='developer'>enables debug information for any of debug and release builds</flag>
-		<flag name='nupkg'>creates local nuget package</flag>
-	</use>
 </pkgmetadata>

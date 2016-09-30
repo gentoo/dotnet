@@ -1,5 +1,5 @@
---- src/Castle.Core.Tests/Castle.Core.Tests.csproj
-+++ src/Castle.Core.Tests/Castle.Core.Tests.csproj
+--- a/src/Castle.Core.Tests/Castle.Core.Tests.csproj
++++ b/src/Castle.Core.Tests/Castle.Core.Tests.csproj
 @@ -29,7 +29,6 @@
      <Optimize>false</Optimize>
      <DefineConstants>TRACE;DEBUG;DOTNET40</DefineConstants>
@@ -48,8 +48,8 @@
      <DebugType>pdbonly</DebugType>
      <PlatformTarget>AnyCPU</PlatformTarget>
      <ErrorReport>prompt</ErrorReport>
---- src/Castle.Core/Castle.Core.csproj
-+++ src/Castle.Core/Castle.Core.csproj
+--- a/src/Castle.Core/Castle.Core.csproj
++++ b/src/Castle.Core/Castle.Core.csproj
 @@ -27,7 +27,6 @@
      <Optimize>false</Optimize>
      <DefineConstants>TRACE;DEBUG;DOTNET40</DefineConstants>
@@ -98,8 +98,8 @@
      <NoWarn>1591</NoWarn>
      <DebugType>pdbonly</DebugType>
      <PlatformTarget>AnyCPU</PlatformTarget>
---- src/Castle.Services.Logging.NLogIntegration/Castle.Services.Logging.NLogIntegration.csproj
-+++ src/Castle.Services.Logging.NLogIntegration/Castle.Services.Logging.NLogIntegration.csproj
+--- a/src/Castle.Services.Logging.NLogIntegration/Castle.Services.Logging.NLogIntegration.csproj
++++ b/src/Castle.Services.Logging.NLogIntegration/Castle.Services.Logging.NLogIntegration.csproj
 @@ -41,7 +41,6 @@
      <Optimize>false</Optimize>
      <RegisterForComInterop>false</RegisterForComInterop>
@@ -148,8 +148,8 @@
      <FileAlignment>4096</FileAlignment>
      <DebugType>pdbonly</DebugType>
      <PlatformTarget>AnyCPU</PlatformTarget>
---- src/Castle.Services.Logging.log4netIntegration/Castle.Services.Logging.log4netIntegration.csproj
-+++ src/Castle.Services.Logging.log4netIntegration/Castle.Services.Logging.log4netIntegration.csproj
+--- a/src/Castle.Services.Logging.log4netIntegration/Castle.Services.Logging.log4netIntegration.csproj
++++ b/src/Castle.Services.Logging.log4netIntegration/Castle.Services.Logging.log4netIntegration.csproj
 @@ -53,7 +53,6 @@
      <Optimize>false</Optimize>
      <RegisterForComInterop>false</RegisterForComInterop>
