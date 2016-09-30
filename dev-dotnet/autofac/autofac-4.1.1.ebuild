@@ -10,7 +10,7 @@ USE_DOTNET="net45"
 
 inherit gac dotnet
 
-SRC_URI="https://github.com/autofac/Autofac/archive/v4.1.1.tar.gz -> ${PV}.tar.gz"
+SRC_URI="https://github.com/autofac/Autofac/archive/v4.1.1.tar.gz -> ${PN}-${PV}.tar.gz"
 RESTRICT="mirror"
 S="${WORKDIR}/Autofac-${PV}"
 
