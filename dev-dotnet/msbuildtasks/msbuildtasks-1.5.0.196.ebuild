@@ -21,7 +21,7 @@ LICENSE="BSD" # https://github.com/loresoft/msbuildtasks/blob/master/LICENSE
 IUSE="+${USE_DOTNET} +debug developer doc"
 
 COMMON_DEPEND=">=dev-lang/mono-4.0.2.5
-	=dev-lang/dotnetzip-semverd-1.9.3-r1
+	=dev-dotnet/dotnetzip-semverd-1.9.3-r1
 "
 RDEPEND="${COMMON_DEPEND}
 "
