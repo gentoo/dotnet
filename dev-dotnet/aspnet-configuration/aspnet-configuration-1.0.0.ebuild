@@ -27,19 +27,21 @@ DEPEND="${COMMON_DEPEND}
 "
 
 src_prepare() {
+	tar xzvpf "${FILESDIR}/build-scripts-1.0.0.tar.gz" -C "${S}" || die
 	eapply_user
 }
 
 src_compile() {
-	:;
+	exbuild_strong /p:VersionNumber=${PV} "src/src.sln"
 }
 
 src_install() {
 	if use debug; then
-		CONFIGURATION=NET45-Debug
+		CONFIGURATION=Debug
 	else
-		CONFIGURATION=NET45-Release
+		CONFIGURATION=Release
 	fi
-	#egacinstall "src/Castle.Core/bin/${CONFIGURATION}/Castle.Core.dll"
-	#einstall_pc_file "${PN}" "${PV}" "Castle.Core.dll"
+	egacinstall "src/Microsoft.Extensions.Configuration.Abstractions/bin/${CONFIGURATION}/Microsoft.Extensions.Configuration.Abstractions.dll"
+	egacinstall "src/Microsoft.Extensions.Configuration/bin/${CONFIGURATION}/Microsoft.Extensions.Configuration.dll"
+	einstall_pc_file "${PN}" "${PV}" "Microsoft.Extensions.Configuration.Abstractions" "Microsoft.Extensions.Configuration"
 }
