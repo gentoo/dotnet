@@ -47,5 +47,5 @@ src_install() {
 		DIR="Release"
 	fi
 	egacinstall "src/Autofac/bin/${DIR}/Autofac.dll"
-	einstall_pc_file "${PN}" "${PV}" "Autofac.dll"
+	einstall_pc_file "${PN}" "${PV}" "Autofac"
 }

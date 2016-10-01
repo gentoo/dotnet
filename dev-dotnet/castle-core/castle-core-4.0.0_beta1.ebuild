@@ -55,5 +55,5 @@ src_install() {
 		CONFIGURATION=NET45-Release
 	fi
 	egacinstall "src/Castle.Core/bin/${CONFIGURATION}/Castle.Core.dll"
-	einstall_pc_file "${PN}" "${PV}" "Castle.Core.dll"
+	einstall_pc_file "${PN}" "${PV}" "Castle.Core"
 }

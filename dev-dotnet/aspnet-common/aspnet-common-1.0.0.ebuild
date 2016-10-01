@@ -47,5 +47,5 @@ src_install() {
 		DIR="Release"
 	fi
 	egacinstall "src/Microsoft.Extensions.Primitives/bin/${DIR}/Microsoft.Extensions.Primitives.dll"
-	einstall_pc_file "${PN}" "${PV}" "Microsoft.Extensions.Primitives.dll"
+	einstall_pc_file "${PN}" "${PV}" "Microsoft.Extensions.Primitives"
 }
