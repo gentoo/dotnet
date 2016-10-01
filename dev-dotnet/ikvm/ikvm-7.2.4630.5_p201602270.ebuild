@@ -75,27 +75,6 @@ src_compile() {
 	XDG_CONFIG_HOME="${T}/home/test" nant -t:mono-4.5 signed || die "ikvm build failed"
 }
 
-generate_pkgconfig() {
-	ebegin "Generating .pc file"
-	local dll LSTRING="Libs:"
-	dodir "/usr/$(get_libdir)/pkgconfig"
-	cat <<- EOF -> "${D}/usr/$(get_libdir)/pkgconfig/${PN}.pc"
-		prefix=/usr
-		exec_prefix=\${prefix}
-		libdir=\${prefix}/$(get_libdir)
-		Name: IKVM.NET
-		Description: An implementation of Java for Mono and the Microsoft .NET Framework.
-		Version: ${PV}
-	EOF
-	for dll in "${S}"/bin/IKVM.*.dll
-	do
-		LSTRING="${LSTRING} -r:"'${libdir}'"/mono/IKVM/${dll##*/}"
-	done
-	printf "${LSTRING}" >> "${D}/usr/$(get_libdir)/pkgconfig/${PN}.pc"
-	PKG_CONFIG_PATH="${D}/usr/$(get_libdir)/pkgconfig/" pkg-config --silence-errors --libs ikvm &> /dev/null
-	eend $?
-}
-
 src_install() {
 	local dll dllbase exe
 	insinto /usr/$(get_libdir)/${PN}
@@ -110,8 +89,6 @@ src_install() {
 		eend $? || die "Failed generating wrapper for ${exebase}"
 	done
 
-	generate_pkgconfig || die "generating .pc failed"
-
 	for dll in bin/IKVM.*.dll
 	do
 		dllbase=${dll##*/}
@@ -120,4 +97,6 @@ src_install() {
 			-gacdir /usr/$(get_libdir) -package IKVM &>/dev/null
 		eend $? || die "Failed installing ${dllbase}"
 	done
+
+	#einstall_pc_file "${PN}" "7.2" ...
 }

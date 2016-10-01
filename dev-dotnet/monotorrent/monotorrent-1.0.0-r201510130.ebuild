@@ -58,6 +58,7 @@ src_prepare() {
 
 	# leafpad /var/tmp/portage/dev-dotnet/monotorrent-1.0.0-r201510130/work/monotorrent-master/monotorrent.nuspec &
 	create_nuspec_file "${S}/${PN}.nuspec"
+	eapply_user
 }
 
 src_configure() {
@@ -76,7 +77,7 @@ src_install() {
 
 	enupkg "${WORKDIR}/monotorrent.${NUGET_VERSION}.nupkg"
 
-	install_pc_file
+	einstall_pc_file "${PN}" "1.0" "MonoTorrent"
 }
 
 create_nuspec_file()
@@ -88,41 +89,24 @@ create_nuspec_file()
 			DIR="Release"
 		fi
 		cat <<-EOF >$1 || die
-		  <?xml version="1.0"?>
-		  <package>
-		    <metadata>
-		      <id>${PN}</id>
-		      <version>${NUGET_VERSION}</version>
-		      <authors>unknown</authors>
-		      <owners>unknown</owners>
-		      <licenseUrl>${LICENSE_URL}</licenseUrl>
-		      <projectUrl>${HOMEPAGE}</projectUrl>
-		      <iconUrl>${ICON_URL}</iconUrl>
-		      <requireLicenseAcceptance>false</requireLicenseAcceptance>
-		      <description>${DESCRIPTION}</description>
-		    </metadata>
-		    <files> <!-- https://docs.nuget.org/create/nuspec-reference -->
-		      <file src="build/MonoTorrent/${DIR}/*.dll" target="lib\net45\" />
-		      <file src="build/MonoTorrent/${DIR}/*.mdb" target="lib\net45\" />
-		    </files>
-		  </package>
+		<?xml version="1.0"?>
+		<package>
+		  <metadata>
+		    <id>${PN}</id>
+		    <version>${NUGET_VERSION}</version>
+		    <authors>unknown</authors>
+		    <owners>unknown</owners>
+		    <licenseUrl>${LICENSE_URL}</licenseUrl>
+		    <projectUrl>${HOMEPAGE}</projectUrl>
+		    <iconUrl>${ICON_URL}</iconUrl>
+		    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+		    <description>${DESCRIPTION}</description>
+		  </metadata>
+		  <files> <!-- https://docs.nuget.org/create/nuspec-reference -->
+		    <file src="build/MonoTorrent/${DIR}/*.dll" target="lib\net45\" />
+		    <file src="build/MonoTorrent/${DIR}/*.mdb" target="lib\net45\" />
+		  </files>
+		</package>
 		EOF
-	fi
-}
-
-install_pc_file()
-{
-	if use pkg-config; then
-		dodir /usr/$(get_libdir)/pkgconfig
-		ebegin "Installing .pc file"
-		sed  \
-			-e "s:@LIBDIR@:$(get_libdir):" \
-			-e "s:@PACKAGENAME@:${PN}:" \
-			-e "s:@DESCRIPTION@:${DESCRIPTION}:" \
-			-e "s:@VERSION@:${PV}:" \
-			-e 's;@LIBS@;-r:${libdir}/mono/monotorrent/MonoTorrent.dll;' \
-			"${FILESDIR}"/${PN}.pc.in > "${D}"/usr/$(get_libdir)/pkgconfig/${PN}.pc || die
-		PKG_CONFIG_PATH="${D}/usr/$(get_libdir)/pkgconfig/" pkg-config --exists monotorrent || die ".pc file failed to validate."
-		eend $?
 	fi
 }

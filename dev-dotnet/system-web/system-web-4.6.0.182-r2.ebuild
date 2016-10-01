@@ -73,36 +73,8 @@ src_install()
 		DIR="Release"
 	fi
 	egacinstall "${S}/mcs/class/${NAME}/obj/${DIR}/${NAME}.dll"
+	einfo "rewring symlink for System.Web.dll"
+	dosym  "../gac/System.Web/${PV}__b03f5f7f11d50a3a/System.Web.dll" "/usr/lib64/mono/4.5/System.Web.dll"
 	egacinstall "${S}/policy.4.0.System.Web.dll"
-	install_pc_file "${PN}" "${NAME}.dll"
-}
-
-# The file format contains predefined metadata keywords and freeform variables (like ${prefix} and ${exec_prefix})
-# $1 = ${PN}
-# $2 = myassembly.dll
-install_pc_file()
-{
-	if use pkg-config; then
-		dodir /usr/$(get_libdir)/pkgconfig
-		ebegin "Installing ${PC_FILE_NAME}.pc file"
-		sed \
-			-e "s:@LIBDIR@:$(get_libdir):" \
-			-e "s:@PACKAGENAME@:$1:" \
-			-e "s:@DESCRIPTION@:${DESCRIPTION}:" \
-			-e "s:@VERSION@:${PV}:" \
-			-e 's*@LIBS@*-r:${libdir}'"/mono/$1/$2"'*' \
-			<<-EOF >"${D}/usr/$(get_libdir)/pkgconfig/$1.pc" || die
-				prefix=\${pcfiledir}/../..
-				exec_prefix=\${prefix}
-				libdir=\${exec_prefix}/@LIBDIR@
-				Name: @PACKAGENAME@
-				Description: @DESCRIPTION@
-				Version: @VERSION@
-				Libs: @LIBS@
-			EOF
-
-		einfo PKG_CONFIG_PATH="${D}/usr/$(get_libdir)/pkgconfig/" pkg-config --exists "$1"
-		PKG_CONFIG_PATH="${D}/usr/$(get_libdir)/pkgconfig/" pkg-config --exists "$1" || die ".pc file failed to validate."
-		eend $?
-	fi
+	einstall_pc_file "${PN}" "${PV}" "${NAME}"
 }

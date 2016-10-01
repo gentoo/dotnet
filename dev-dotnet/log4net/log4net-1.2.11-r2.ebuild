@@ -4,7 +4,7 @@
 
 EAPI=6
 
-inherit eutils mono-env multilib versionator gac
+inherit eutils mono-env dotnet multilib versionator gac
 
 PV_MAJOR=$(get_version_component_range 1-2)
 
@@ -18,11 +18,11 @@ SLOT="0"
 KEYWORDS="~amd64 ~x86"
 IUSE=""
 
-RDEPEND=">=dev-lang/mono-2.0"
+RDEPEND=">=dev-lang/mono-4.0.2.5"
 DEPEND="${RDEPEND}"
 
 src_compile() {
-	/usr/bin/gmcs \
+	/usr/bin/mcs \
 		-t:library \
 		-out:log4net.dll \
 		-keyfile:"${DISTDIR}"/log4net.snk \
@@ -33,13 +33,7 @@ src_compile() {
 
 src_install() {
 	egacinstall log4net.dll
-	dodir /usr/$(get_libdir)/pkgconfig
-	sed -e "s:@VERSION@:${PV}:" \
-		-e "s:@LIBDIR@:$(get_libdir):" \
-		-e "s:@NET_VERSION@:2.0:" \
-		"${FILESDIR}"/${PN}.pc.in-r1 > "${D}"/usr/$(get_libdir)/pkgconfig/${PN}-${PV}.pc
-	dosym ${PN}-${PV}.pc /usr/$(get_libdir)/pkgconfig/${PN}-${PV_MAJOR}.pc
-	dosym ${PN}-${PV}.pc /usr/$(get_libdir)/pkgconfig/${PN}.pc
+	einstall_pc_file "${PN}" "${PV}" "log4net"
 
 	dodoc README.txt STATUS.txt
 }
