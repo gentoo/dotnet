@@ -21,6 +21,7 @@ LICENSE="MIT" # https://github.com/autofac/Autofac.Configuration/blob/develop/LI
 IUSE="+${USE_DOTNET} +debug developer doc"
 
 COMMON_DEPEND=">=dev-lang/mono-4.0.2.5
+	dev-dotnet/aspnet-configuration
 "
 RDEPEND="${COMMON_DEPEND}
 "
@@ -29,7 +30,7 @@ DEPEND="${COMMON_DEPEND}
 
 src_unpack() {
 	default
-	gunzip --decompress --stdout "${FILESDIR}/Autofac.Configuration.csproj-${PV}.gz" >"${S}/src/Autofac.Configuration/Autofac.Configuration.csproj" || die
+	tar xzvpf "${FILESDIR}/Autofac.Configuration.csproj-${PV}.tar.gz" -C "${S}" || die
 }
 
 src_prepare() {
