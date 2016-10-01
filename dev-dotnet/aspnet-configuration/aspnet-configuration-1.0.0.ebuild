@@ -20,6 +20,7 @@ LICENSE="Apache-2.0" # https://github.com/aspnet/Configuration/blob/dev/LICENSE.
 KEYWORDS="~amd64 ~ppc ~x86"
 
 COMMON_DEPEND=">=dev-lang/mono-4.0.2.5
+	dev-dotnet/aspnet-common
 "
 RDEPEND="${COMMON_DEPEND}
 "
