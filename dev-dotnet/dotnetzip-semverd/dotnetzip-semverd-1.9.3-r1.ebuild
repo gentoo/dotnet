@@ -44,5 +44,5 @@ src_install() {
 		DIR="Release"
 	fi
 	egacinstall "src/Zip Reduced/bin/${DIR}/Ionic.Zip.Reduced.dll"
-	einstall_pc_file "${PN}" "${PV}" "Ionic.Zip.Reduced.dll"
+	einstall_pc_file "${PN}" "${PV}" "Ionic.Zip.Reduced"
 }

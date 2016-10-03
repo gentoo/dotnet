@@ -19,7 +19,6 @@ MY_BASE_PV=${BASE_PV/_pre/-preview}
 MY_PV=${MY_BASE_PV}-${P_BUILD}
 MY_P=${PN}-${MY_PV}
 
-
 CORECLR=coreclr-${CORECLR_V}
 COREFX=corefx-${COREFX_V}
 

@@ -60,23 +60,42 @@ egacdel() {
 	fi
 }
 
+# http://www.gossamer-threads.com/lists/gentoo/dev/263462
+# pkg config files should always come from upstream
+# but what if they are not?
+# you can fork, or you can use a configuration system that upstream actually supports.
+# both are more difficult than creating .pc in ebuilds. Forks requires maintenance, and 
+# second one requires rewriting the IDE (disrespecting the decision of IDE's authors who decide to use .pc-files)
+# So, "keep fighting the good fight, don't stop believing, and let the haters hate" (q) desultory from #gentoo-dev-help @ freenode
+
 # @FUNCTION: einstall_pc_file
 # @DESCRIPTION:  installs .pc file
 # The file format contains predefined metadata keywords and freeform variables (like ${prefix} and ${exec_prefix})
 # $1 = ${PN}
 # $2 = ${PV}
-# $3 = myassembly.dll # should not contain path, it is calculated magically, see DLL_FILENAME variable
+# $3 = myassembly1 # should not contain path, shouldn't contain .dll extension
+# $4 = myassembly2
+# $N = myassemblyN-2 # see DLL_REFERENCES
 einstall_pc_file()
 {
 	if use pkg-config; then
 		local PC_NAME="$1"
 		local PC_VERSION="$2"
-		local DLL_NAME="$3"
+
+		shift 2
+		if [ "$#" == "0" ]; then
+			die "no assembly names given"
+		fi
+		local DLL_REFERENCES=""
+		while (( "$#" )); do
+			DLL_REFERENCES+=" -r:\${libdir}/mono/${PC_NAME}/${1}.dll"
+			shift
+		done
+
 		local PC_FILENAME="${PC_NAME}-${PC_VERSION}"
 		local PC_DIRECTORY="/usr/$(get_libdir)/pkgconfig"
 		#local PC_DIRECTORY_DELTA="${CATEGORY}/${PN}"
 		local PC_DIRECTORY_VER="${PC_DIRECTORY}/${PC_DIRECTORY_DELTA}"
-		local DLL_FILENAME="\${libdir}/mono/${PC_NAME}/${DLL_NAME}"
 
 		dodir "${PC_DIRECTORY}"
 		dodir "${PC_DIRECTORY_VER}"
@@ -97,7 +116,7 @@ einstall_pc_file()
 			-e "s:@Name@:${CATEGORY}/${PN}:" \
 			-e "s:@DESCRIPTION@:${DESCRIPTION}:" \
 			-e "s:@LIBDIR@:$(get_libdir):" \
-			-e "s*@LIBS@*-r:${DLL_FILENAME}*" \
+			-e "s*@LIBS@*${DLL_REFERENCES}*" \
 			<<-EOF >"${D}/${PC_DIRECTORY_VER}/${PC_FILENAME}.pc" || die
 				prefix=\${pcfiledir}/../..
 				exec_prefix=\${prefix}
