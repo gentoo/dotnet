@@ -3,7 +3,7 @@
 # $Id$
 
 EAPI=6
-SLOT="0"
+SLOT="4"
 
 KEYWORDS="~amd64 ~ppc ~x86"
 USE_DOTNET="net45"
