@@ -24,6 +24,7 @@ S=${WORKDIR}/Nini/Source
 
 src_prepare() {
 	uudecode -o Nini.snk "${FILESDIR}"/Nini.snk.uue
+	eapply_user
 }
 
 src_configure() {
@@ -42,23 +43,11 @@ src_compile() {
 		-keyfile:Nini.snk \
 		AssemblyInfo.cs Config/*.cs Ini/*.cs Util/*.cs \
 		|| die "Compilation failed"
-
-	sed 	\
-		-e 's|@prefix@|${pcfiledir}/../..|' \
-		-e 's|@exec_prefix@|${prefix}|' \
-		-e "s|@libdir@|\$\{exec_prefix\}/$(get_libdir)|" \
-		-e "s|@libs@|-r:\$\{libdir\}/mono/Nini/Nini.dll|" \
-		-e "s|@VERSION@|${PV}|" \
-		"${FILESDIR}"/nini.pc.in > "${S}"/nini.pc
 }
 
 src_install() {
 	egacinstall Nini.dll Nini
-	pkgconfigdir=/usr/$(get_libdir)/pkgconfig
-	insinto ${pkgconfigdir}
-	newins "${S}"/nini.pc ${P}.pc
-	dosym ${P}.pc ${pkgconfigdir}/${PN}-$(get_version_component_range 1-2).pc
-	dosym ${P}.pc ${pkgconfigdir}/${PN}.pc
+	einstall_pc_file "${PN}" "${PV}" "Nini"
 
 	dodoc "${S}"/../CHANGELOG.txt "${S}"/../README.txt
 }

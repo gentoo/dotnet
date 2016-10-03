@@ -50,6 +50,8 @@ src_prepare() {
 	enuget_restore "${METAFILETOBUILD}"
 
 	patch_nuspec_file ${NUSPEC_FILE}
+
+	eapply_user
 }
 
 src_configure() {
@@ -68,7 +70,7 @@ src_install() {
 
 	egacinstall "${OUTPUT_DIR}/${DIR}/${GAC_DLL_NAME}.dll"
 
-	install_pc_file
+	einstall_pc_file "${PN}" "1.0" "${GAC_DLL_NAME}"
 }
 
 patch_nuspec_file()
@@ -87,37 +89,5 @@ patch_nuspec_file()
 		EOF
 		`
 		sed -i 's/<\/package>/'"${FILES_STRING//$'\n'/\\$'\n'}"'\n&/g' $1 || die "escaping line endings"
-	fi
-}
-
-PC_FILE_NAME=${PN}
-
-install_pc_file()
-{
-	if use pkg-config; then
-		dodir /usr/$(get_libdir)/pkgconfig
-		ebegin "Installing ${PC_FILE_NAME}.pc file"
-		sed \
-			-e "s:@LIBDIR@:$(get_libdir):" \
-			-e "s:@PACKAGENAME@:${PC_FILE_NAME}:" \
-			-e "s:@DESCRIPTION@:${DESCRIPTION}:" \
-			-e "s:@VERSION@:${PV}:" \
-			-e 's;@LIBS@;-r:${libdir}'"/mono/${PC_FILE_NAME}/${GAC_DLL_NAME}.dll;" \
-			<<\EOF >"${D}/usr/$(get_libdir)/pkgconfig/${PC_FILE_NAME}.pc" || die
-prefix=${pcfiledir}/../..
-exec_prefix=${prefix}
-libdir=${exec_prefix}/@LIBDIR@
-
-Name: @PACKAGENAME@
-Description: @DESCRIPTION@
-Version: @VERSION@
-Libs: @LIBS@
-EOF
-# Package exported to: /var/tmp/portage/dev-dotnet/Open-NAT-1.0.0-r201510290/image//usr/lib64/mono/Open-NAT/Open.Nat.dll -> ../gac/Open.Nat/1.0.0.0__0738eb9f132ed756/Open.Nat.dll
-# Installed Open.Nat/bin/Release/Open.Nat.dll into the gac (/var/tmp/portage/dev-dotnet/Open-NAT-1.0.0-r201510290/image//usr/lib64/mono/gac)
-
-		einfo PKG_CONFIG_PATH="${D}/usr/$(get_libdir)/pkgconfig/" pkg-config --exists "${PC_FILE_NAME}"
-		PKG_CONFIG_PATH="${D}/usr/$(get_libdir)/pkgconfig/" pkg-config --exists "${PC_FILE_NAME}" || die ".pc file failed to validate."
-		eend $?
 	fi
 }

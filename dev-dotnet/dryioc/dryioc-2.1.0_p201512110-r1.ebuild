@@ -118,7 +118,7 @@ src_install() {
 		newins "${DISTDIR}/${PF}.icon.png" "${NUSPEC_ID}.${NUSPEC_VERSION}.png"
 	fi
 
-	install_pc_file
+	einstall_pc_file "${PN}" "2.1" "DryIoc"
 }
 
 patch_nuspec_file()
@@ -143,34 +143,5 @@ patch_nuspec_file()
 			`
 		fi
 		sed -i 's/<\/package>/'"${FILES_STRING//$'\n'/\\$'\n'}"'\n&/g' $1 || die "escaping line endings"
-	fi
-}
-
-PC_FILE_NAME=${PN}
-
-install_pc_file()
-{
-	if use pkg-config; then
-		dodir /usr/$(get_libdir)/pkgconfig
-		ebegin "Installing ${PC_FILE_NAME}.pc file"
-		sed \
-			-e "s:@LIBDIR@:$(get_libdir):" \
-			-e "s:@PACKAGENAME@:${PC_FILE_NAME}:" \
-			-e "s:@DESCRIPTION@:${DESCRIPTION}:" \
-			-e "s:@VERSION@:${PV}:" \
-			-e 's*@LIBS@*-r:${libdir}'"/mono/${PC_FILE_NAME}/DryIoc.dll"'*' \
-			<<\EOF >"${D}/usr/$(get_libdir)/pkgconfig/${PC_FILE_NAME}.pc" || die
-prefix=${pcfiledir}/../..
-exec_prefix=${prefix}
-libdir=${exec_prefix}/@LIBDIR@
-Name: @PACKAGENAME@
-Description: @DESCRIPTION@
-Version: @VERSION@
-Libs: @LIBS@
-EOF
-
-		einfo PKG_CONFIG_PATH="${D}/usr/$(get_libdir)/pkgconfig/" pkg-config --exists "${PC_FILE_NAME}"
-		PKG_CONFIG_PATH="${D}/usr/$(get_libdir)/pkgconfig/" pkg-config --exists "${PC_FILE_NAME}" || die ".pc file failed to validate."
-		eend $?
 	fi
 }
