@@ -14,7 +14,7 @@ EGIT_REPO_URI="git://github.com/mono/${PN}.git"
 LICENSE="GPL-2 MIT"
 SLOT="0"
 KEYWORDS=""
-IUSE="+webkit"
+IUSE="+webkit gtkhtml"
 
 RDEPEND=">=dev-dotnet/gtk-sharp-2.99
 	webkit? ( dev-dotnet/webkit-sharp )"
