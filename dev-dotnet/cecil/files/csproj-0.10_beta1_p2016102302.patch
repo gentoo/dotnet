@@ -1,0 +1,51 @@
+diff -u a/Mono.Cecil.props b/Mono.Cecil.props
+--- a/Mono.Cecil.props	2016-10-23 21:20:28.000000000 +0300
++++ b/Mono.Cecil.props	2016-10-24 23:39:59.465030543 +0300
+@@ -1,7 +1,7 @@
+ <?xml version="1.0" encoding="utf-8"?>
+ <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+   <PropertyGroup>
+-    <Configuration Condition=" '$(Configuration)' == '' ">net_4_0_Debug</Configuration>
++    <Configuration Condition=" '$(Configuration)' == '' ">net_4_5_Debug</Configuration>
+     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+     <BuildDirectory Condition=" '$(BuildDirectory)' == '' ">$(MSBuildThisFileDirectory)</BuildDirectory>
+     <FileAlignment>512</FileAlignment>
+@@ -33,35 +33,15 @@
+     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+     <DefineConstants>$(DefineConstants);</DefineConstants>
+   </PropertyGroup>
+-  <PropertyGroup Condition=" $(Configuration.StartsWith('net_4_0')) ">
+-    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+-    <DefineConstants>$(DefineConstants);NET_4_0;</DefineConstants>
+-  </PropertyGroup>
+-  <PropertyGroup Condition=" $(Configuration.StartsWith('pcl')) ">
+-    <ProjectTypeGuids>{786C830F-07A1-408B-BD7F-6EE04809D6DB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+-    <TargetFrameworkProfile>Profile344</TargetFrameworkProfile>
+-    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+-    <DefineConstants>$(DefineConstants);NET_4_0;PCL;</DefineConstants>
+-    <MSBuildCSharpTargets>$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets</MSBuildCSharpTargets>
++  <PropertyGroup Condition=" $(Configuration.StartsWith('net_4_5')) ">
++    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
++    <DefineConstants>$(DefineConstants);NET_4_5;</DefineConstants>
+   </PropertyGroup>
+   <!-- Shared References -->
+   <ItemGroup>
+     <Reference Include="System.Core" />
+     <Reference Include="System" />
+   </ItemGroup>
+-  <!-- The following keeps Visual Studio happy; let's keep Visual Studio happy -->
+-  <PropertyGroup Condition=" '$(Configuration)' == 'net_3_5_Debug' ">
+-  </PropertyGroup>
+-  <PropertyGroup Condition=" '$(Configuration)' == 'net_4_0_Debug' ">
+-  </PropertyGroup>
+-  <PropertyGroup Condition=" '$(Configuration)' == 'pcl_Debug' ">
+-  </PropertyGroup>
+-  <PropertyGroup Condition=" '$(Configuration)' == 'net_3_5_Release' ">
+-  </PropertyGroup>
+-  <PropertyGroup Condition=" '$(Configuration)' == 'net_4_0_Release' ">
+-  </PropertyGroup>
+-  <PropertyGroup Condition=" '$(Configuration)' == 'pcl_Release' ">
+-  </PropertyGroup>
+   <!-- This optional import allows products that distribute Cecil to tweak settings that will affect its 
+        build, without having to fork the project unnecessarily. The Mono.Cecil.overrides file is a plain 
+        MSBuild file with additional properties, and can exist anywhere upwards from the current Cecil repo 
