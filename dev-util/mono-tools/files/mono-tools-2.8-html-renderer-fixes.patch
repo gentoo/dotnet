@@ -1,5 +1,5 @@
---- configure.in.old	2010-10-09 16:52:09.859675267 +0200
-+++ configure.in	2010-10-09 17:01:01.043434596 +0200
+--- a/configure.in	2010-10-09 16:52:09.859675267 +0200
++++ b/configure.in	2010-10-09 17:01:01.043434596 +0200
 @@ -62,50 +62,80 @@
  AC_SUBST(GNOME_SHARP_LIBS)
  AM_CONDITIONAL(ENABLE_GNOME, test "x$enable_gnome" = "xyes")
