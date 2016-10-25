@@ -13,7 +13,7 @@ NAME="Eto.Parse"
 HOMEPAGE="https://github.com/picoe/${NAME}"
 
 EGIT_COMMIT="7d7884fb4f481e28dd24bc273fbd6615d0ba539a" # 2015-09-07
-SRC_URI="${HOMEPAGE}/archive/${EGIT_COMMIT}.zip -> ${PF}.zip"
+SRC_URI="${HOMEPAGE}/archive/${EGIT_COMMIT}.zip -> ${PN}-${PV}.zip"
 RESTRICT="mirror"
 S="${WORKDIR}/${NAME}-${EGIT_COMMIT}"
 
@@ -112,6 +112,7 @@ src_install() {
 		DIR="Release"
 	fi
 	egacinstall "Eto.Parse/bin/${DIR}/net40/Eto.Parse.dll"
+	einstall_pc_file "${PN}" "${PV}" "Eto.Parse"
 
 	enupkg "${WORKDIR}/${NAME}.${NUSPEC_VERSION}.nupkg"
 }
