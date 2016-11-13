@@ -1,0 +1,25 @@
+diff -r -u a/libraries/Pliant/Pliant.csproj b/libraries/Pliant/Pliant.csproj
+--- a/libraries/Pliant/Pliant.csproj	2016-08-19 17:03:24.000000000 +0300
++++ b/libraries/Pliant/Pliant.csproj	2016-11-13 16:36:36.405090223 +0300
+@@ -242,11 +242,15 @@
+   </ItemGroup>
+   <ItemGroup />
+   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+-  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+-       Other similar extension points exist, see Microsoft.Common.targets.
++  <Import Project="$(MSBuildBinPath)\MSBuild.Community.Tasks.Targets" Condition="Exists('$(MSBuildBinPath)\MSBuild.Community.Tasks.Targets')" />
+   <Target Name="BeforeBuild">
++    <PropertyGroup Condition=" '$(VersionNumber)' == '' ">
++      <VersionNumber>1.0.0.0</VersionNumber>
++    </PropertyGroup>
++    <AssemblyInfo CodeLanguage="C#"
++      OutputFile="Properties/AssemblyInfo.cs" 
++      AssemblyVersion="$(VersionNumber)" 
++      AssemblyFileVersion="$(VersionNumber)"
++      />
+   </Target>
+-  <Target Name="AfterBuild">
+-  </Target>
+-  -->
+ </Project>
+\ No newline at end of file
