@@ -3,6 +3,14 @@
 # $Id$
 
 EAPI=6
+
+KEYWORDS="~amd64 ~x86"
+RESTRICT="mirror"
+USE_DOTNET="net45"
+IUSE="+${USE_DOTNET} +gac +nupkg developer debug doc"
+
+SLOT="0"
+
 inherit mono-env gac nupkg
 
 NAME="NLog"
@@ -10,19 +18,11 @@ HOMEPAGE="https://github.com/ArsenShnurkov/${NAME}"
 
 EGIT_BRANCH="MONO_4_0"
 EGIT_COMMIT="c3eb07ff89523154dc2385c7db0ba9437bff3362"
-SRC_URI="${HOMEPAGE}/archive/${EGIT_BRANCH}/${EGIT_COMMIT}.zip -> ${PF}.zip"
+SRC_URI="${HOMEPAGE}/archive/${EGIT_BRANCH}/${EGIT_COMMIT}.tar.gz -> ${PF}.tar.gz"
 S="${WORKDIR}/${NAME}-${EGIT_COMMIT}"
 
-SLOT="0"
-
 DESCRIPTION=" NLog - Advanced .NET and Silverlight Logging http://nlog-project.org"
-LICENSE="BSD" # https://github.com/ArsenShnurkov/NLog/blob/master/LICENSE.txt
-KEYWORDS="~amd64 ~ppc ~x86"
-#USE_DOTNET="net20 net40 net45"
-USE_DOTNET="net45"
-
-# USE Flag 'net45' not in IUSE for dev-dotnet/NLog-4.1.3_pre-r201510280
-IUSE="net45 +gac +nupkg developer debug doc"
+LICENSE="BSD"
 
 COMMON_DEPEND=">=dev-lang/mono-4.0.2.5
 "
@@ -35,7 +35,9 @@ S="${WORKDIR}/${NAME}-${EGIT_BRANCH}"
 FILE_TO_BUILD=./src/NLog.mono4.sln
 METAFILETOBUILD="${S}/${FILE_TO_BUILD}"
 
-NUGET_VERSION=${PV//_pre/.0}
+COMMIT_DATE_INDEX="$(get_version_component_count ${PV} )"
+COMMIT_DATEANDSEQ="$(get_version_component_range $COMMIT_DATE_INDEX ${PV} )"
+NUSPEC_VERSION=$(get_version_component_range 1-3)"${COMMIT_DATEANDSEQ//p/.}"
 
 src_prepare() {
 	chmod -R +rw "${S}" || die
@@ -48,6 +50,8 @@ src_prepare() {
 	epatch "${FILESDIR}/NLog.mono4.sln.patch"
 	epatch "${FILESDIR}/NoStdLib-NoConfig.patch"
 	epatch "${FILESDIR}/NLog.nuspec.patch"
+
+	eapply_user
 }
 
 # cd /var/lib/layman/dotnet
@@ -57,7 +61,7 @@ src_compile() {
 
 	einfo Package name ${PN}
 
-	enuspec -Prop BuildVersion=${NUGET_VERSION} ./src/NuGet/NLog/NLog.nuspec
+	enuspec -Prop BuildVersion=${NUSPEC_VERSION} ./src/NuGet/NLog/NLog.nuspec
 	# Successfully created package '/var/tmp/portage/dev-dotnet/NLog-4.1.3_pre-r201510280/work/NLog.4.1.3.0.nupkg'.
 }
 
@@ -78,5 +82,5 @@ src_install() {
 		doins LICENSE.txt
 	fi
 
-	enupkg "${WORKDIR}/NLog.${NUGET_VERSION}.nupkg"
+	enupkg "${WORKDIR}/NLog.${NUSPEC_VERSION}.nupkg"
 }

@@ -7,8 +7,8 @@ index 273ed21..305451b 100644
      <tags>logging, log, tracing, logfiles, NLog</tags>
    </metadata>
 +  <files>
-+    <file src="build/bin/$configuration$/Mono 4.x/NLog.dll" target="lib\net45\" />
-+    <file src="build/bin/$configuration$/Mono 4.x/NLog.Extended.dll" target="lib\net45\" />
++    <file src="build/bin/$configuration$/Mono 4.x/NLog.dll" target="lib/net45" />
++    <file src="build/bin/$configuration$/Mono 4.x/NLog.Extended.dll" target="lib/net45" />
 +  </files>
  </package>
 \ No newline at end of file
