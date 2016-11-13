@@ -79,14 +79,17 @@ enuget_restore() {
 # accepts path to .nuspec file as parameter
 enuspec() {
 	if use nupkg; then
+		if [ -n "${NUSPEC_PROPERTIES}" ]; then
+			NUSPEC_PROPERTIES+=';'
+		fi
 		# see http://docs.nuget.org/create/nuspec-reference#specifying-files-to-include-in-the-package
 		# for the explaination why $configuration$ property is passed
 		if use debug; then
-			PROPS=configuration=Debug
+			NUSPEC_PROPERTIES+="configuration=Debug"
 		else
-			PROPS=configuration=Release
+			NUSPEC_PROPERTIES+="configuration=Release"
 		fi
-		nuget pack -Properties "${PROPS}" -BasePath "${S}" -OutputDirectory "${WORKDIR}" -NonInteractive -Verbosity detailed "$@" || die
+		nuget pack -Properties "${NUSPEC_PROPERTIES}" -BasePath "${S}" -OutputDirectory "${WORKDIR}" -NonInteractive -Verbosity detailed "$@" || die
 	fi
 }
 
