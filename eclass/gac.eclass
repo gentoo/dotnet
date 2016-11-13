@@ -92,7 +92,8 @@ einstall_pc_file()
 			shift
 		done
 
-		local PC_FILENAME="${PC_NAME}-${PC_VERSION}"
+#		local PC_FILENAME="${PC_NAME}-${PC_VERSION}"
+		local PC_FILENAME="${PN}-${PV}"
 		local PC_DIRECTORY="/usr/$(get_libdir)/pkgconfig"
 		#local PC_DIRECTORY_DELTA="${CATEGORY}/${PN}"
 		local PC_DIRECTORY_VER="${PC_DIRECTORY}/${PC_DIRECTORY_DELTA}"

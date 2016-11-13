@@ -1,0 +1,11 @@
+--- a/src/NuGet/NLog/NLog.nuspec
++++ b/src/NuGet/NLog/NLog.nuspec
+@@ -17,4 +17,8 @@
+     <licenseUrl>http://raw.github.com/NLog/NLog/master/LICENSE.txt</licenseUrl>
+     <tags>logging log tracing logfiles NLog database eventlog email wcf</tags>
+   </metadata>
++  <files>
++    <file src="build/bin/$configuration$/$platform$/NLog.dll" target="lib/net45" />
++    <file src="build/bin/$configuration$/$platform$/NLog.Extended.dll" target="lib/net45" />
++  </files>
+ </package>
