@@ -4,15 +4,18 @@
 
 EAPI=6
 
-inherit nupkg gac
+KEYWORDS="~amd64 ~x86"
+RESTRICT="mirror"
+USE_DOTNET="net45"
+IUSE="+${USE_DOTNET} +gac +nupkg +pkg-config debug developer"
+
+inherit dotnet gac nupkg
+
+SLOT="0"
 
 HOMEPAGE="http://projects.qnetp.net/projects/show/monotorrent"
 DESCRIPTION="Monotorrent is an open source C# bittorrent library"
 LICENSE="MIT"
-SLOT="0"
-KEYWORDS="~amd64 ~x86"
-IUSE="net45 +gac +nupkg +pkg-config debug developer"
-USE_DOTNET="net45"
 
 COMMON_DEPEND=">=dev-lang/mono-4.0.2.5
 "
@@ -38,13 +41,15 @@ S="${WORKDIR}/${NAME}-${EGIT_BRANCH}"
 
 # The hack we do to get the dll installed in the GAC makes the unit-tests
 # defunct.
-RESTRICT="test"
+#RESTRICT+="test"
 
 FILE_TO_BUILD=./src/MonoTorrent.sln
 
 METAFILETOBUILD="src/MonoTorrent/MonoTorrent.csproj"
 
-NUGET_VERSION="${PVR//-r/.}"
+COMMIT_DATE_INDEX="$(get_version_component_count ${PV} )"
+COMMIT_DATEANDSEQ="$(get_version_component_range $COMMIT_DATE_INDEX ${PV} )"
+NUSPEC_VERSION=$(get_version_component_range 1-3)"${COMMIT_DATEANDSEQ//p/.}"
 
 src_prepare() {
 	sed -i	\
@@ -56,7 +61,7 @@ src_prepare() {
 
 	enuget_restore "${METAFILETOBUILD}"
 
-	# leafpad /var/tmp/portage/dev-dotnet/monotorrent-1.0.0-r201510130/work/monotorrent-master/monotorrent.nuspec &
+	# leafpad /var/tmp/portage/dev-dotnet/monotorrent-1.0.0_p2015101302/work/MonoTorrent-master/monotorrent.nuspec &
 	create_nuspec_file "${S}/${PN}.nuspec"
 	eapply_user
 }
@@ -69,13 +74,14 @@ src_compile() {
 	exbuild /p:SignAssembly=true "/p:AssemblyOriginatorKeyFile=${WORKDIR}/mono.snk" "${METAFILETOBUILD}"
 
 	# run nuget_pack
-	enuspec -Prop version=${NUGET_VERSION} ./${PN}.nuspec
+	NUSPEC_PROPERTIES="id=${PN};version=${NUSPEC_VERSION}"
+	enuspec ./${PN}.nuspec
 }
 
 src_install() {
 	egacinstall $(find . -name "MonoTorrent.dll")
 
-	enupkg "${WORKDIR}/monotorrent.${NUGET_VERSION}.nupkg"
+	enupkg "${WORKDIR}/monotorrent.${NUSPEC_VERSION}.nupkg"
 
 	einstall_pc_file "${PN}" "1.0" "MonoTorrent"
 }
@@ -92,8 +98,8 @@ create_nuspec_file()
 		<?xml version="1.0"?>
 		<package>
 		  <metadata>
-		    <id>${PN}</id>
-		    <version>${NUGET_VERSION}</version>
+		    <id>\$id\$</id>
+		    <version>\$version\$</version>
 		    <authors>unknown</authors>
 		    <owners>unknown</owners>
 		    <licenseUrl>${LICENSE_URL}</licenseUrl>
