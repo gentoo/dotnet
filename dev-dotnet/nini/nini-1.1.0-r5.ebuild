@@ -46,7 +46,7 @@ src_compile() {
 }
 
 src_install() {
-	egacinstall Nini.dll Nini
+	egacinstall Nini.dll nini
 	einstall_pc_file "${PN}" "${PV}" "Nini"
 
 	dodoc "${S}"/../CHANGELOG.txt "${S}"/../README.txt
