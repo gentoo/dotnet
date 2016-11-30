@@ -29,14 +29,15 @@ RDEPEND="${COMMON_DEPEND}
 "
 
 NAME="cecil"
-REPOSITORY="https://github.com/jbevain/${NAME}"
+REPO_OWNER="jbevain"
+REPOSITORY="https://github.com/${REPO_OWNER}/${NAME}"
 LICENSE_URL="${REPOSITORY}/blob/master/LICENSE"
 ICONMETA="http://www.iconeasy.com/icon/ico/Movie%20%26%20TV/Looney%20Tunes/Cecil%20Turtle%20no%20shell.ico"
 ICON_URL="file://${FILESDIR}/Cecil Turtle no shell.png"
 
 EGIT_BRANCH="master"
 EGIT_COMMIT="045b0f9729905dd456d46e33436a2dadc9e2a52d"
-SRC_URI="${REPOSITORY}/archive/${EGIT_BRANCH}/${EGIT_COMMIT}.zip -> ${PF}.zip
+SRC_URI="https://api.github.com/repos/${REPO_OWNER}/${NAME}/tarball/${EGIT_COMMIT} -> ${PF}.tar.gz
 	mirror://gentoo/mono.snk.bz2"
 RESTRICT+=" test"
 S="${WORKDIR}/${NAME}-${EGIT_BRANCH}"

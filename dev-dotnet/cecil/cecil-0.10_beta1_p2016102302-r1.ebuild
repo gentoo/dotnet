@@ -4,6 +4,8 @@
 
 EAPI=6
 
+RESTRICT+="mirror"
+
 inherit gac nupkg
 
 HOMEPAGE="http://cecil.pe/"
@@ -27,16 +29,17 @@ DEPEND="${COMMON_DEPEND}
 "
 
 NAME="cecil"
-REPOSITORY="https://github.com/jbevain/${NAME}"
+REPO_OWNER="jbevain"
+REPOSITORY="https://github.com/${REPO_OWNER}/${NAME}"
 LICENSE_URL="${REPOSITORY}/blob/master/LICENSE"
 ICONMETA="http://www.iconeasy.com/icon/ico/Movie%20%26%20TV/Looney%20Tunes/Cecil%20Turtle%20no%20shell.ico"
 ICON_URL="file://${FILESDIR}/Cecil Turtle no shell.png"
 
 EGIT_BRANCH="master"
 EGIT_COMMIT="68bcb750b898f4882a5af44299bb322aaa531f93"
-SRC_URI="${REPOSITORY}/archive/${EGIT_BRANCH}/${EGIT_COMMIT}.zip -> ${PF}.zip
+SRC_URI="https://api.github.com/repos/${REPO_OWNER}/${NAME}/tarball/${EGIT_COMMIT} -> ${PF}.tar.gz
 	mirror://gentoo/mono.snk.bz2"
-RESTRICT="mirror test"
+RESTRICT+=" test"
 S="${WORKDIR}/${NAME}-${EGIT_BRANCH}"
 
 METAFILETOBUILD="./Mono.Cecil.sln"
