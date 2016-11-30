@@ -3,6 +3,11 @@
 # $Id$
 
 EAPI=6
+KEYWORDS="~amd64 ~x86"
+RESTRICT+=" mirror"
+
+USE_DOTNET="net45 net35"
+IUSE="+${USE_DOTNET} +gac +nupkg +pkg-config +debug +developer"
 
 inherit gac nupkg
 
@@ -12,47 +17,45 @@ DESCRIPTION="System.Reflection alternative to generate and inspect .NET executab
 # https://github.com/jbevain/cecil/blob/master/LICENSE.txt
 LICENSE="MIT"
 SLOT="0"
-KEYWORDS="~amd64 ~x86"
-USE_DOTNET="net45 net35"
-IUSE="+${USE_DOTNET} +gac +nupkg +pkg-config +debug +developer"
 
 COMMON_DEPEND=">=dev-lang/mono-4.0.2.5
-"
-
-RDEPEND="${COMMON_DEPEND}
 "
 
 DEPEND="${COMMON_DEPEND}
 	virtual/pkgconfig
 "
 
+RDEPEND="${COMMON_DEPEND}
+"
+
 NAME="cecil"
-REPOSITORY="https://github.com/jbevain/${NAME}"
+REPO_OWNER="jbevain"
+REPOSITORY="https://github.com/${REPO_OWNER}/${NAME}"
 LICENSE_URL="${REPOSITORY}/blob/master/LICENSE"
 ICONMETA="http://www.iconeasy.com/icon/ico/Movie%20%26%20TV/Looney%20Tunes/Cecil%20Turtle%20no%20shell.ico"
 ICON_URL="file://${FILESDIR}/Cecil Turtle no shell.png"
 
 EGIT_BRANCH="master"
-EGIT_COMMIT="68bcb750b898f4882a5af44299bb322aaa531f93"
-SRC_URI="${REPOSITORY}/archive/${EGIT_BRANCH}/${EGIT_COMMIT}.zip -> ${PF}.zip
+EGIT_COMMIT="045b0f9729905dd456d46e33436a2dadc9e2a52d"
+SRC_URI="https://api.github.com/repos/${REPO_OWNER}/${NAME}/tarball/${EGIT_COMMIT} -> ${PF}.tar.gz
 	mirror://gentoo/mono.snk.bz2"
-RESTRICT="mirror test"
+RESTRICT+=" test"
 S="${WORKDIR}/${NAME}-${EGIT_BRANCH}"
 
 METAFILETOBUILD="./Mono.Cecil.sln"
 
-GAC_DLL_NAME=Mono.Cecil
+GAC_DLL_NAMES="Mono.Cecil Mono.Cecil.Mdb Mono.Cecil.Pdb Mono.Cecil.Rocks"
 
 NUSPEC_ID="Mono.Cecil"
 NUSPEC_FILE="${S}/Mono.Cecil.nuspec"
-NUSPEC_VERSION="0.10.0.2016102302"
+NUSPEC_VERSION="0.10.0.2016111002"
 
 src_prepare() {
 	enuget_restore "${METAFILETOBUILD}"
 
 	eapply "${FILESDIR}/nuspec-${PV}.patch"
-	eapply "${FILESDIR}/csproj-${PV}.patch"
 	eapply "${FILESDIR}/sln-${PV}.patch"
+	#eapply "${FILESDIR}/csproj-${PV}.patch"
 
 	eapply_user
 }
@@ -96,19 +99,20 @@ src_compile() {
 }
 
 src_install() {
-	enupkg "${WORKDIR}/${NUSPEC_ID}.${NUSPEC_VERSION}.nupkg"
-
 	if use debug; then
 		DIR=Debug
 	else
 		DIR=Release
 	fi
 
-	for x in ${USE_DOTNET} ; do
-		FW_UPPER=${x:3:1}
-		FW_LOWER=${x:4:1}
-		egacinstall "bin/net_${FW_UPPER}_${FW_LOWER}_${DIR}/${GAC_DLL_NAME}.dll"
+	for dll_name in ${GAC_DLL_NAMES} ; do
+		for x in ${USE_DOTNET} ; do
+			FW_UPPER=${x:3:1}
+			FW_LOWER=${x:4:1}
+			egacinstall "bin/net_${FW_UPPER}_${FW_LOWER}_${DIR}/${dll_name}.dll"
+		done
 	done
+	einstall_pc_file "${PN}" "0.10" ${GAC_DLL_NAMES}
 
-	einstall_pc_file "${PN}" "0.10" "${GAC_DLL_NAME}"
+	enupkg "${WORKDIR}/${NUSPEC_ID}.${NUSPEC_VERSION}.nupkg"
 }

@@ -4,6 +4,8 @@
 
 EAPI=6
 
+RESTRICT+=" mirror"
+
 inherit nupkg gac
 
 HOMEPAGE="http://cecil.pe/"
@@ -26,15 +28,16 @@ DEPEND="${COMMON_DEPEND}
 	virtual/pkgconfig
 "
 
+REPO_OWNER="jbevain"
 NAME="cecil"
-REPOSITORY="https://github.com/jbevain/${NAME}"
+REPOSITORY="https://github.com/${REPO_OWNER}/${NAME}"
 LICENSE_URL="${REPOSITORY}/blob/master/LICENSE"
 ICONMETA="https://github.com/lontivero/Open.NAT/tree/gh-pages/images/logos"
 ICON_URL="file://${FILESDIR}/nuget_icon_64x64.png"
 
 EGIT_BRANCH="master"
 EGIT_COMMIT="0e24ced7e3e9dd8320f450b6cb1d981bf9412cf8"
-SRC_URI="${REPOSITORY}/archive/${EGIT_BRANCH}/${EGIT_COMMIT}.zip -> ${PF}.zip
+SRC_URI="https://api.github.com/repos/${REPO_OWNER}/${NAME}/tarball/${EGIT_COMMIT} -> ${PF}.tar.gz
 	mirror://gentoo/mono.snk.bz2"
 #S="${WORKDIR}/${NAME}-${EGIT_COMMIT}"
 S="${WORKDIR}/${NAME}-${EGIT_BRANCH}"
