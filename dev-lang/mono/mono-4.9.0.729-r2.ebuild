@@ -42,8 +42,27 @@ pkg_pretend() {
 	use kernel_linux && check_extra_config
 }
 
+multilib_src_install_all() {
+	insinto "/"
+	doins "${S}/mcs/class/mono.snk"
+}
+
 pkg_preinst() {
-	"${WORKDIR}/mono-4.9.0-abi_x86_32.x86/mono/mini/mono-sgen" "${WORKDIR}/mono-4.9.0-abi_x86_32.x86/mcs/tools/security/sn.exe" -i "${S}/mcs/class/mono.snk" "mono" || die
+	einfo D="${D}"
+	MONO_EXECUTABLE="${WORKDIR}/mono-4.9.0-abi_x86_32.x86/mono/mini/mono-sgen"
+	if [ ! -f "${MONO_EXECUTABLE}" ]; then
+		die "${MONO_EXECUTABLE}, MONO_EXECUTABLE is missing"
+	fi
+	SN_ASSEMBLY="${WORKDIR}/mono-4.9.0-abi_x86_32.x86/mcs/tools/security/sn.exe"
+	if [ ! -f "${SN_ASSEMBLY}" ]; then
+		die "${SN_ASSEMBLY}, SN_ASSEMBLY is missing"
+	fi
+	SNK_FILE="${D}/mono.snk"
+	if [ ! -f "${SNK_FILE}" ]; then
+		die "${SNK_FILE}, SNK_FILE is missing"
+	fi
+	"${MONO_EXECUTABLE}" "${SN_ASSEMBLY}" -i "${SNK_FILE}" "mono" || die
+	rm "${SNK_FILE}" || die
 }
 
 pkg_setup() {
