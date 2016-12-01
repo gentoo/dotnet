@@ -5,27 +5,27 @@
 EAPI=6
 
 KEYWORDS="~x86 ~amd64"
+RESTRICT+=" mirror"
 
 USE_DOTNET="net45"
+IUSE="+${USE_DOTNET}"
 EBUILD_FRAMEWORK="4.5"
-IUSE="${USE_DOTNET} +gac +nupkg"
 
-inherit nupkg
+inherit gac nupkg
 
 DESCRIPTION="A C# PInvoke wrapper library for LibGit2 C library"
 
+REPO_OWNER=libgit2
+NAME=libgit2sharp
 EGIT_COMMIT="8daef23223e1374141bf496e4b310ded9ae4639e"
-HOMEPAGE="https://github.com/libgit2/libgit2sharp"
-SRC_URI="${HOMEPAGE}/archive/${EGIT_COMMIT}.tar.gz -> ${P}.tar.gz
-	mirror://gentoo/mono.snk.bz2"
-#RESTRICT="mirror"
-
-S="${WORKDIR}/${PN}-${EGIT_COMMIT}"
+HOMEPAGE="https://github.com/${REPO_OWNER}/${NAME}"
+SRC_URI="https://api.github.com/repos/${REPO_OWNER}/${NAME}/tarball/${EGIT_COMMIT} -> ${PN}-${PV}.tar.gz"
+S="${WORKDIR}/${REPO_OWNER}-${NAME}-8daef23"
 
 LICENSE="MIT"
 SLOT="0"
 
-CDEPEND="
+CDEPEND=">=dev-lang/mono-4.9.0.729-r2
 	dev-libs/libgit2
 "
 
