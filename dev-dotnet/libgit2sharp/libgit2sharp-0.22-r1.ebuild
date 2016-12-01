@@ -17,15 +17,15 @@ DESCRIPTION="A C# PInvoke wrapper library for LibGit2 C library"
 
 REPO_OWNER=libgit2
 NAME=libgit2sharp
-EGIT_COMMIT="38f046d83da3fb98b2d57fca1d428363dc31a960"
+EGIT_COMMIT="8daef23223e1374141bf496e4b310ded9ae4639e"
 HOMEPAGE="https://github.com/${REPO_OWNER}/${NAME}"
 SRC_URI="https://api.github.com/repos/${REPO_OWNER}/${NAME}/tarball/${EGIT_COMMIT} -> ${PN}-${PV}.tar.gz"
-S="${WORKDIR}/${PN}-${EGIT_COMMIT}"
+S="${WORKDIR}/${REPO_OWNER}-${NAME}-8daef23"
 
 LICENSE="MIT"
 SLOT="0"
 
-CDEPEND=">=dev-lang/mono-mono-4.9.0.729-r2
+CDEPEND=">=dev-lang/mono-4.9.0.729-r2
 	dev-libs/libgit2
 "
 

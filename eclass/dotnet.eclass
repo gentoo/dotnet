@@ -135,10 +135,22 @@ exbuild_strong() {
 			SNK_FILENAME=/var/lib/layman/dotnet/eclass/mono.snk
 			# sn - Digitally sign/verify/compare strongnames on CLR assemblies. 
 			# man sn = http://linux.die.net/man/1/sn
+			if [ -f ${SNK_FILENAME} ]; then
+				einfo "build through snk = ${SNK_FILENAME}"
+				KARGS1=/p:SignAssembly=true 
+				KARGS2=/p:AssemblyOriginatorKeyFile=${SNK_FILENAME}
+			else
+				einfo "build through container"
+				KARGS1=/p:SignAssembly=true 
+				KARGS2=/p:AssemblyKeyContainerName=mono
+			fi
+		else
+			einfo "build through given snk"
+			KARGS1=/p:SignAssembly=true 
+			KARGS2=/p:AssemblyOriginatorKeyFile=${SNK_FILENAME}
 		fi
-		KARGS1=/p:SignAssembly=true 
-		KARGS2=/p:AssemblyOriginatorKeyFile=${SNK_FILENAME}
 	else
+		einfo "no strong signing"
 		KARGS1=
 		KARGS2=
 	fi
