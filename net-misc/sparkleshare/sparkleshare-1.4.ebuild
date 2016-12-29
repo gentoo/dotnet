@@ -25,6 +25,7 @@ COMMON_DEPEND=">=dev-lang/mono-2.8
 	>=dev-dotnet/gtk-sharp-2.99.1
 	>=dev-dotnet/notify-sharp-3.0
 	dev-dotnet/webkitgtk-sharp
+	>=dev-dotnet/referenceassemblies-pcl-4.6
 "
 RDEPEND="${COMMON_DEPEND}
 	>=dev-vcs/git-1.8
@@ -37,6 +38,7 @@ DEPEND="${COMMON_DEPEND}
 
 src_prepare() {
 	sed -i "/^SHAVE_INIT/d" configure.ac
+	epatch "${FILESDIR}/${P}-mono-path.patch"
 	eautoreconf
 }
 
