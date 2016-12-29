@@ -19,8 +19,8 @@ IUSE="doc"
 
 RDEPEND=">=dev-lang/mono-4.0.2.5
 	>=dev-dotnet/gtk-sharp-2.12.21:2
-	>=dev-dotnet/dbus-sharp-0.7:*
-	>=dev-dotnet/dbus-sharp-glib-0.5:*
+	>=dev-dotnet/dbus-sharp-0.7:2.0
+	>=dev-dotnet/dbus-sharp-glib-0.5:2.0
 	>=x11-libs/libnotify-0.4.5"
 DEPEND="${RDEPEND}"
 
