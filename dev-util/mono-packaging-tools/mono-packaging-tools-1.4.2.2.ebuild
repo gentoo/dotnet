@@ -1,9 +1,10 @@
-# Copyright 1999-2017 Gentoo Foundation
+# Copyright 1999-2016 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Id$
 
 EAPI=6 # >=portage-2.2.25
 KEYWORDS="~x86 ~amd64"
+RESTRICT="mirror"
 
 USE_DOTNET="net45"
 # debug = debug configuration (symbols and defines for debugging)
@@ -13,23 +14,33 @@ USE_DOTNET="net45"
 # nupkg = create .nupkg file from .nuspec
 # gac = install into gac
 # pkg-config = register in pkg-config database
-IUSE="${USE_DOTNET} debug test +developer +aot +nupkg +gac +pkg-config doc"
+IUSE="+${USE_DOTNET} debug +developer test +aot doc"
 
-inherit nupkg
+TOOLS_VERSION=14.0
+
+inherit gac nupkg
+
+get_revision()
+{
+	git rev-list --count $2..$1
+}
+
+get_dlldir() {
+	echo /usr/lib64/mono/${PN}
+}
 
 NAME="mono-packaging-tools"
 HOMEPAGE="http://arsenshnurkov.github.io/mono-packaging-tools"
 
 REPOSITORY_URL="https://github.com/ArsenShnurkov/${NAME}"
 
-EGIT_COMMIT="cd5d9c335989ec9c50a5d20790281385d7b14cae"
-SRC_URI="${REPOSITORY_URL}/archive/${EGIT_COMMIT}.tar.gz -> ${PF}.tar.gz"
-RESTRICT="mirror"
+EGIT_COMMIT="92b9ac4cb83e52a5b679f139ff536da29c321456"
+SRC_URI="${REPOSITORY_URL}/archive/${EGIT_COMMIT}.tar.gz -> ${PN}-${PV}.tar.gz"
 S="${WORKDIR}/${NAME}-${EGIT_COMMIT}"
 
 SLOT="0"
 
-DESCRIPTION="mono packaging helpers"
+DESCRIPTION="Command line utilities for packaging mono assemblies with portage"
 LICENSE="GPL-3"
 LICENSE_URL="https://raw.githubusercontent.com/ArsenShnurkov/mono-packaging-tools/master/LICENSE"
 
@@ -39,16 +50,19 @@ COMMON_DEPENDENCIES="|| ( >=dev-lang/mono-4.2 <dev-lang/mono-9999 )
 	>=dev-dotnet/eto-parse-1.4.0[gac]
 	"
 DEPEND="${COMMON_DEPENDENCIES}
+	dev-dotnet/msbuildtasks
 	sys-apps/sed"
 RDEPEND="${COMMON_DEPENDENCIES}
 	"
+
+NUSPEC_VERSION=${PV}
+ASSEMBLY_VERSION=${PV}
 
 SLN_FILE="mono-packaging-tools.sln"
 METAFILETOBUILD="${S}/${SLN_FILE}"
 NUSPEC_ID="${NAME}"
 COMMIT_DATE_INDEX="$(get_version_component_count ${PV} )"
 COMMIT_DATE="$(get_version_component_range $COMMIT_DATE_INDEX ${PV} )"
-NUSPEC_VERSION="$(get_version_component_range 1-3)${COMMIT_DATE//p/.}"
 NUSPEC_FILENAME="${PN}.nuspec"
 #ICON_FILENAME="${PN}.png"
 #ICON_FINALNAME="${NUSPEC_ID}.${NUSPEC_VERSION}.png"
@@ -66,30 +80,23 @@ src_prepare() {
 }
 
 src_compile() {
-	exbuild "${METAFILETOBUILD}"
+	exbuild_strong /p:VersionNumber="${ASSEMBLY_VERSION}" "${METAFILETOBUILD}"
 	enuspec "${NUSPEC_ID}.nuspec"
 }
 
-install_tool() {
+src_install() {
+	# install dlls
+	insinto "$(get_dlldir)/slot-${SLOT}"
 	if use debug; then
 		DIR="Debug"
 	else
 		DIR="Release"
 	fi
+	doins mpt-core/bin/${DIR}/mpt-core.dll
+	dosym slot-${SLOT}/mpt-core.dll $(get_dlldir)/mpt-core.dll
+	einstall_pc_file ${PN} ${ASSEMBLY_VERSION} mpt-core
 
-	MONO=/usr/bin/mono
-
-	# installs .exe, .dll, .mdb (if exists), .exe.config (if any)
-	doins "$1"/bin/${DIR}/*
-	if use developer; then
-		make_wrapper "$1" "${MONO} --debug /usr/share/${PN}-${SLOT}/$1.exe"
-	else
-		make_wrapper "$1" "${MONO} /usr/share/${PN}-${SLOT}/$1.exe"
-	fi;
-}
-
-src_install() {
-	insinto "/usr/share/${PN}-${SLOT}/"
+	insinto "/usr/share/${PN}/slot-${SLOT}"
 	install_tool mpt-gitmodules
 	install_tool mpt-sln
 	install_tool mpt-csproj
@@ -101,4 +108,45 @@ src_install() {
 	if use doc; then
 		dodoc README.md
 	fi
+}
+
+pkg_prerm() {
+	if use gac; then
+		# TODO determine version for uninstall from slot-N dir
+		einfo "removing from GAC"
+		gacutil -u mpt-core
+		# don't die, it there is no such assembly in GAC
+	fi
+}
+
+pkg_postinst() {
+	if use gac; then
+		einfo "adding to GAC"
+		gacutil -i "$(get_dlldir)/slot-${SLOT}/mpt-core.dll" || die
+	fi
+}
+
+install_tool() {
+	if use debug; then
+		DIR="Debug"
+	else
+		DIR="Release"
+	fi
+
+	# installs .exe, .exe.config (if any), .mdb (if exists)
+	doins "$1"/bin/${DIR}/*.exe
+	if [ -f "$1"/bin/${DIR}/*.exe.config ]; then
+		doins "$1"/bin/${DIR}/*.exe.config
+	fi
+	if use developer; then
+		doins "$1"/bin/${DIR}/*.mdb
+	fi
+
+	MONO=/usr/bin/mono
+
+	if use debug; then
+		make_wrapper "$1" "${MONO} --debug /usr/share/${PN}/slot-${SLOT}/$1.exe"
+	else
+		make_wrapper "$1" "${MONO} /usr/share/${PN}/slot-${SLOT}/$1.exe"
+	fi;
 }

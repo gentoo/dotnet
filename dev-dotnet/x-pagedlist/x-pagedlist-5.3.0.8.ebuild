@@ -53,9 +53,9 @@ NUSPEC_VERSION="${PV}"
 src_prepare() {
 	einfo "patching project files"
 
-	find ${S} -iname "AssemblyInfo.cs" -exec sed -i '/Assembly.*Version/d' {} \; || die
-	mpt-csproj --inject-import='$(MSBuildToolsPath)\MSBuild.Community.Tasks.Targets' ${S} || die
-	mpt-csproj --inject-versioning=BuildVersion ${S} || die
+	find "${S}" -iname "AssemblyInfo.cs" -exec sed -i '/Assembly.*Version/d' {} \; || die
+	mpt-csproj --inject-import='$(MSBuildToolsPath)\MSBuild.Community.Tasks.Targets' "${S}" || die
+	mpt-csproj --inject-versioning=BuildVersion "${S}" || die
 
 	einfo "preparing nuspec"
 	cp "${FILESDIR}/${NUSPEC_FILE_NAME}" "${S}/${NUSPEC_FILE_NAME}" || die
