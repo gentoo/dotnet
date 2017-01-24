@@ -3,6 +3,11 @@
 # $Id$
 
 EAPI=6
+KEYWORDS="~amd64 ~x86"
+RESTRICT="mirror"
+
+USE_DOTNET="net45"
+IUSE="net45 +gac +nupkg +pkg-config debug developer"
 
 inherit versionator gac nupkg
 
@@ -10,18 +15,16 @@ HOMEPAGE="https://github.com/kpi-ua/X.PagedList/"
 DESCRIPTION="Nugget for easily paging through any IEnumerable/IQueryable in Asp.Net MVC"
 LICENSE="MIT"
 SLOT="0"
-KEYWORDS="~amd64 ~x86"
-IUSE="net45 +gac +nupkg +pkg-config debug developer"
-USE_DOTNET="net45"
 
 COMMON_DEPEND=">=dev-lang/mono-4.0.2.5
 "
 
-RDEPEND="${COMMON_DEPEND}
-"
-
 DEPEND="${COMMON_DEPEND}
 	virtual/pkgconfig
+	>=dev-util/mono-packaging-tools-1.4.2.2
+"
+
+RDEPEND="${COMMON_DEPEND}
 "
 
 NAME="X.PagedList"
@@ -31,13 +34,12 @@ LICENSE_URL="${REPOSITORY}/blob/${EGIT_BRANCH}/LICENSE"
 ICONMETA="http://uxrepo.com/static/icon-sets/iconic/svg/list.svg"
 ICON_URL="https://github.com/ArsenShnurkov/X.PagedList/blob/switching-from-pcl/misc/list.svg"
 
-EGIT_COMMIT="48bc7da1bc3b6b294c69796bd9573e670edd3c64"
-SRC_URI="${REPOSITORY}/archive/${EGIT_BRANCH}/${EGIT_COMMIT}.zip -> ${PF}.zip
-	mirror://gentoo/mono.snk.bz2"
+EGIT_COMMIT="c0521a4099c65efd3e964ea57129d5a61261f784"
+SRC_URI="${REPOSITORY}/archive/${EGIT_BRANCH}/${EGIT_COMMIT}.tar.gz -> ${PF}.tar.gz"
 #S="${WORKDIR}/${NAME}-${EGIT_COMMIT}"
 S="${WORKDIR}/${NAME}-${EGIT_BRANCH}"
 
-METAFILETOBUILD=./src/X.PagedList.sln
+METAFILETOBUILD=./X.PagedList.sln
 #OUTPUT_DIR=
 
 # there is an original file exists: ./src/X.PagedList.Mvc/PagedList.Mvc.nuspec
@@ -45,29 +47,12 @@ NUSPEC_FILE_NAME=X.PagedList.nuspec
 #NUSPEC_VERSION="${PVR//-r/.}"
 NUSPEC_VERSION=$(get_version_component_range 1-3)"${PR//r/.}"
 
-# rm -rf /var/tmp/portage/dev-dotnet/X-PagedList-1.24.0.23549-r201512120
-# emerge =X-PagedList-1.24.0.23549-r201512120
-# leafpad /var/tmp/portage/dev-dotnet/X-PagedList-1.24.0.23549-r201512120/temp/build.log &
-
-src_unpack()
-{
-	default
-	enuget_download_rogue_binary "Microsoft.Web.Infrastructure" "1.0.0.0"
-	enuget_download_rogue_binary "Microsoft.AspNet.WebPages" "3.2.3"
-	enuget_download_rogue_binary "Microsoft.AspNet.Razor" "3.2.3"
-	enuget_download_rogue_binary "Microsoft.AspNet.Mvc" "5.2.3"
-}
+# rm -rf /var/tmp/portage/dev-dotnet/X-PagedList-*
+# emerge =X-PagedList-5.3.0.8
+# leafpad /var/tmp/portage/dev-dotnet/X-PagedList-5.3.0.8/temp/build.log &
 
 src_prepare() {
 	einfo "patching project files"
-	epatch "${FILESDIR}/X.PagedList.csproj.patch"
-	epatch "${FILESDIR}/X.PagedList.Mvc.csproj.patch"
-
-	# no restoring for this particular project for now, see src_unpack() above instead
-	# einfo "restoring packages"
-	# enuget_restore -Verbosity detailed -SolutionDirectory "${S}" "./src/X.PagedList/packages.config"
-	# enuget_restore "./src/X.PagedList.Mvc/X.PagedList.Mvc.csproj"
-	# enuget_restore -Verbosity detailed -SolutionDirectory "${S}" "./src/X.PagedList.Mvc/packages.config"
 
 	einfo "preparing nuspec"
 	cp "${FILESDIR}/${NUSPEC_FILE_NAME}" "${S}/${NUSPEC_FILE_NAME}" || die
@@ -80,9 +65,11 @@ src_configure() {
 	:;
 }
 
+SNK_FILENAME="${S}/X.PagedList/PublicPrivateKeyFile.snk"
+
 src_compile() {
-	exbuild /p:SignAssembly=true "/p:AssemblyOriginatorKeyFile=${WORKDIR}/mono.snk" "./src/X.PagedList/X.PagedList.csproj"
-	exbuild /p:SignAssembly=true "/p:AssemblyOriginatorKeyFile=${WORKDIR}/mono.snk" "./src/X.PagedList.Mvc/X.PagedList.Mvc.csproj"
+	exbuild_strong "./X.PagedList/X.PagedList.csproj"
+	exbuild_strong "./X.PagedList.Mvc/X.PagedList.Mvc.csproj"
 
 	# run nuget_pack
 	einfo "setting .nupkg version to ${NUSPEC_VERSION}"
@@ -92,8 +79,8 @@ src_compile() {
 src_install() {
 	enupkg "${WORKDIR}/${NAME}.${NUSPEC_VERSION}.nupkg"
 
-	egacinstall "src/X.PagedList/bin/${DIR}/X.PagedList.dll"
-	egacinstall "src/X.PagedList.Mvc/bin/${DIR}/X.PagedList.Mvc.dll"
+	egacinstall "X.PagedList/bin/${DIR}/X.PagedList.dll"
+	egacinstall "X.PagedList.Mvc/bin/${DIR}/X.PagedList.Mvc.dll"
 
 	einstall_pc_file "${PN}" "${PV}" "X.PagedList.Mvc"
 }
@@ -105,10 +92,10 @@ patch_nuspec_file()
 			DIR="Debug"
 			FILES_STRING=`sed 's/[\/&]/\\\\&/g' <<-EOF || die "escaping replacement string characters"
 			  <files> <!-- https://docs.nuget.org/create/nuspec-reference -->
-			    <file src="src/X.PagedList/bin/${DIR}/X.PagedList.dll" target="lib\net45\" />
-			    <file src="src/X.PagedList.Mvc/bin/${DIR}/X.PagedList.Mvc.dll" target="lib\net45\" />
-			    <file src="src/X.PagedList/bin/${DIR}/X.PagedList.dll.mdb" target="lib\net45\" />
-			    <file src="src/X.PagedList.Mvc/bin/${DIR}/X.PagedList.Mvc.dll.mdb" target="lib\net45\" />
+			    <file src="X.PagedList/bin/${DIR}/X.PagedList.dll" target="lib\net45\" />
+			    <file src="X.PagedList.Mvc/bin/${DIR}/X.PagedList.Mvc.dll" target="lib\net45\" />
+			    <file src="X.PagedList/bin/${DIR}/X.PagedList.dll.mdb" target="lib\net45\" />
+			    <file src="X.PagedList.Mvc/bin/${DIR}/X.PagedList.Mvc.dll.mdb" target="lib\net45\" />
 			  </files>
 			EOF
 			`
@@ -116,8 +103,8 @@ patch_nuspec_file()
 			DIR="Release"
 			FILES_STRING=`sed 's/[\/&]/\\\\&/g' <<-EOF || die "escaping replacement string characters"
 			  <files> <!-- https://docs.nuget.org/create/nuspec-reference -->
-			    <file src="src/X.PagedList/bin/${DIR}/X.PagedList.dll" target="lib\net45\" />
-			    <file src="src/X.PagedList.Mvc/bin/${DIR}/X.PagedList.Mvc.dll" target="lib\net45\" />
+			    <file src="X.PagedList/bin/${DIR}/X.PagedList.dll" target="lib\net45\" />
+			    <file src="X.PagedList.Mvc/bin/${DIR}/X.PagedList.Mvc.dll" target="lib\net45\" />
 			  </files>
 			EOF
 			`
