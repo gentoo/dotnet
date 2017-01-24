@@ -44,8 +44,7 @@ METAFILETOBUILD=./X.PagedList.sln
 
 # there is an original file exists: ./src/X.PagedList.Mvc/PagedList.Mvc.nuspec
 NUSPEC_FILE_NAME=X.PagedList.nuspec
-#NUSPEC_VERSION="${PVR//-r/.}"
-NUSPEC_VERSION=$(get_version_component_range 1-3)"${PR//r/.}"
+NUSPEC_VERSION="${PV}"
 
 # rm -rf /var/tmp/portage/dev-dotnet/X-PagedList-*
 # emerge =X-PagedList-5.3.0.8
@@ -53,6 +52,10 @@ NUSPEC_VERSION=$(get_version_component_range 1-3)"${PR//r/.}"
 
 src_prepare() {
 	einfo "patching project files"
+
+	find ${S} -iname "AssemblyInfo.cs" -exec sed -i '/Assembly.*Version/d' {} \; || die
+	mpt-csproj --inject-import='$(MSBuildToolsPath)\MSBuild.Community.Tasks.Targets' ${S} || die
+	mpt-csproj --inject-versioning=BuildVersion ${S} || die
 
 	einfo "preparing nuspec"
 	cp "${FILESDIR}/${NUSPEC_FILE_NAME}" "${S}/${NUSPEC_FILE_NAME}" || die
@@ -68,8 +71,8 @@ src_configure() {
 SNK_FILENAME="${S}/X.PagedList/PublicPrivateKeyFile.snk"
 
 src_compile() {
-	exbuild_strong "./X.PagedList/X.PagedList.csproj"
-	exbuild_strong "./X.PagedList.Mvc/X.PagedList.Mvc.csproj"
+	exbuild_strong /p:BuildVersion=${PV} "./X.PagedList/X.PagedList.csproj"
+	exbuild_strong /p:BuildVersion=${PV} "./X.PagedList.Mvc/X.PagedList.Mvc.csproj"
 
 	# run nuget_pack
 	einfo "setting .nupkg version to ${NUSPEC_VERSION}"
@@ -92,10 +95,10 @@ patch_nuspec_file()
 			DIR="Debug"
 			FILES_STRING=`sed 's/[\/&]/\\\\&/g' <<-EOF || die "escaping replacement string characters"
 			  <files> <!-- https://docs.nuget.org/create/nuspec-reference -->
-			    <file src="X.PagedList/bin/${DIR}/X.PagedList.dll" target="lib\net45\" />
-			    <file src="X.PagedList.Mvc/bin/${DIR}/X.PagedList.Mvc.dll" target="lib\net45\" />
-			    <file src="X.PagedList/bin/${DIR}/X.PagedList.dll.mdb" target="lib\net45\" />
-			    <file src="X.PagedList.Mvc/bin/${DIR}/X.PagedList.Mvc.dll.mdb" target="lib\net45\" />
+			    <file src="X.PagedList/bin/${DIR}/X.PagedList.dll" target="lib/net45" />
+			    <file src="X.PagedList.Mvc/bin/${DIR}/X.PagedList.Mvc.dll" target="lib/net45" />
+			    <file src="X.PagedList/bin/${DIR}/X.PagedList.dll.mdb" target="lib/net45" />
+			    <file src="X.PagedList.Mvc/bin/${DIR}/X.PagedList.Mvc.dll.mdb" target="lib/net45" />
 			  </files>
 			EOF
 			`
@@ -103,8 +106,8 @@ patch_nuspec_file()
 			DIR="Release"
 			FILES_STRING=`sed 's/[\/&]/\\\\&/g' <<-EOF || die "escaping replacement string characters"
 			  <files> <!-- https://docs.nuget.org/create/nuspec-reference -->
-			    <file src="X.PagedList/bin/${DIR}/X.PagedList.dll" target="lib\net45\" />
-			    <file src="X.PagedList.Mvc/bin/${DIR}/X.PagedList.Mvc.dll" target="lib\net45\" />
+			    <file src="X.PagedList/bin/${DIR}/X.PagedList.dll" target="lib\net45" />
+			    <file src="X.PagedList.Mvc/bin/${DIR}/X.PagedList.Mvc.dll" target="lib\net45" />
 			  </files>
 			EOF
 			`
