@@ -4,7 +4,7 @@
 
 EAPI=6
 
-inherit eutils dotnet
+inherit eutils
 
 DESCRIPTION="Library for using System.Drawing with mono"
 HOMEPAGE="http://www.mono-project.com"
