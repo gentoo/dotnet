@@ -1,0 +1,13 @@
+--- packages/Microsoft.DotNet.BuildTools/1.0.26-prerelease-01121-01/lib/init-tools.sh.orig	2017-03-11 18:38:23.022702000 -0600
++++ packages/Microsoft.DotNet.BuildTools/1.0.26-prerelease-01121-01/lib/init-tools.sh	2017-03-11 18:43:47.093702000 -0600
+@@ -47,7 +47,9 @@
+                 if [[ "$ID" == "ubuntu" && "$VERSION_ID" != "14.04" && "$VERSION_ID" != "16.04" ]]; then
+                 echo "Unsupported Ubuntu version, falling back to Ubuntu 14.04"
+                 __PUBLISH_RID=ubuntu.14.04-x64
+-                else
++		elif [[ "$ID" == "gentoo" ]]; then
++		__PUBLISH_RID=debian.8-x64
++		else
+                 __PUBLISH_RID=$ID.$VERSION_ID-x64
+                 fi
+             fi
