@@ -31,6 +31,8 @@ src_prepare() {
 	# Allow compilation against system libbfd, bnc#662581
 	epatch "${FILESDIR}/${PN}-2.8-system-bfd.patch"
 	eautoreconf
+
+	default
 }
 
 src_configure() {
