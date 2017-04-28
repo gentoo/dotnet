@@ -10,7 +10,7 @@ USE_DOTNET="net45"
 
 inherit gac dotnet
 
-SRC_URI="https://github.com/loresoft/msbuildtasks/archive/1.5.0.196.tar.gz -> ${PV}.tar.gz"
+SRC_URI="https://github.com/loresoft/msbuildtasks/archive/1.5.0.235.tar.gz -> ${PN}-${PV}.tar.gz"
 RESTRICT="mirror"
 S="${WORKDIR}/${PN}-${PV}"
 
@@ -29,7 +29,7 @@ DEPEND="${COMMON_DEPEND}
 "
 
 src_prepare() {
-	eapply "${FILESDIR}/references-2016052301.patch"
+	eapply "${FILESDIR}/csproj.patch"
 	eapply "${FILESDIR}/location.patch"
 	eapply_user
 }
@@ -44,8 +44,19 @@ src_install() {
 	else
 		DIR="Release"
 	fi
-	egacinstall "Source/MSBuild.Community.Tasks/bin/${DIR}/MSBuild.Community.Tasks.dll"
+	insinto "/usr/lib/mono/${EBUILD_FRAMEWORK}"
+	doins "Source/MSBuild.Community.Tasks/bin/${DIR}/MSBuild.Community.Tasks.dll"
 	einstall_pc_file "${PN}" "${PV}" "MSBuild.Community.Tasks"
-	insinto "/usr/lib/mono/4.5"
+	insinto "/usr/lib/mono/xbuild"
 	doins "Source/MSBuild.Community.Tasks/MSBuild.Community.Tasks.Targets"
+}
+
+pkg_postinst()
+{
+	egacadd "usr/lib/mono/${EBUILD_FRAMEWORK}/MSBuild.Community.Tasks.dll"
+}
+
+pkg_prerm()
+{
+	egacdel "MSBuild.Community.Tasks"
 }
