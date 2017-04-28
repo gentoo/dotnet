@@ -14,7 +14,8 @@ HOMEPAGE="https://github.com/loresoft/msbuildtasks"
 EGIT_COMMIT="014ed0f7a69f4936d7b3b438a5ceca78f902e0ef"
 SRC_URI="${HOMEPAGE}/archive/${EGIT_COMMIT}.tar.gz -> ${PN}-${PV}.tar.gz"
 RESTRICT="mirror"
-S="${WORKDIR}/${PN}-${PV}"
+NAME="msbuildtasks"
+S="${WORKDIR}/${NAME}-${EGIT_COMMIT}"
 
 DESCRIPTION="The MSBuild Community Tasks Project is an open source project for MSBuild tasks."
 LICENSE="BSD" # https://github.com/loresoft/msbuildtasks/blob/master/LICENSE
@@ -30,7 +31,7 @@ DEPEND="${COMMON_DEPEND}
 "
 
 src_prepare() {
-	eapply "${FILESDIR}/references-2016052301.patch"
+	eapply "${FILESDIR}/csproj.patch"
 	eapply "${FILESDIR}/location.patch"
 	eapply_user
 }
@@ -45,8 +46,19 @@ src_install() {
 	else
 		DIR="Release"
 	fi
-	egacinstall "Source/MSBuild.Community.Tasks/bin/${DIR}/MSBuild.Community.Tasks.dll"
+	insinto "/usr/lib/mono/${EBUILD_FRAMEWORK}"
+	doins "Source/MSBuild.Community.Tasks/bin/${DIR}/MSBuild.Community.Tasks.dll"
 	einstall_pc_file "${PN}" "${PV}" "MSBuild.Community.Tasks"
-	insinto "/usr/lib/mono/4.5"
+	insinto "/usr/lib/mono/xbuild"
 	doins "Source/MSBuild.Community.Tasks/MSBuild.Community.Tasks.Targets"
+}
+
+pkg_postinst()
+{
+	egacadd "${PREFIX}/usr/lib/mono/${EBUILD_FRAMEWORK}/MSBuild.Community.Tasks.dll"
+}
+
+pkg_prerm()
+{
+	egacdel "MSBuild.Community.Tasks"
 }

@@ -1,0 +1,35 @@
+--- a/Source/MSBuild.Community.Tasks/MSBuild.Community.Tasks.csproj
++++ b/Source/MSBuild.Community.Tasks/MSBuild.Community.Tasks.csproj
+@@ -31,21 +31,18 @@
+   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+     <DebugType>pdbonly</DebugType>
+     <Optimize>true</Optimize>
+-    <OutputPath>..\..\Build\</OutputPath>
++    <OutputPath>bin\Release\</OutputPath>
+     <DefineConstants>
+     </DefineConstants>
+     <ErrorReport>prompt</ErrorReport>
+     <WarningLevel>4</WarningLevel>
+-    <DocumentationFile>..\..\Build\MSBuild.Community.Tasks.xml</DocumentationFile>
++    <DocumentationFile>bin\Release\MSBuild.Community.Tasks.xml</DocumentationFile>
+     <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+     <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+     <Prefer32Bit>false</Prefer32Bit>
+   </PropertyGroup>
+   <ItemGroup>
+-    <Reference Include="DotNetZip, Version=1.10.1.0, Culture=neutral, PublicKeyToken=6583c7c814667745, processorArchitecture=MSIL">
+-      <HintPath>..\packages\DotNetZip.1.10.1\lib\net20\DotNetZip.dll</HintPath>
+-      <Private>True</Private>
+-    </Reference>
++    <Reference Include="Ionic.Zip.Reduced" />
+     <Reference Include="Microsoft.Build.Framework" />
+     <Reference Include="Microsoft.Build.Utilities.v4.0" />
+     <Reference Include="System" />
+@@ -270,7 +267,6 @@
+     <Content Include="NUnitReport.xsl">
+       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+     </Content>
+-    <None Include="packages.config" />
+   </ItemGroup>
+   <ItemGroup>
+     <EmbeddedResource Include="Properties\Resources.resx">
