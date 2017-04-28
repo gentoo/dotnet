@@ -10,7 +10,7 @@ USE_DOTNET="net45"
 
 inherit gac dotnet
 
-SRC_URI="https://github.com/loresoft/msbuildtasks/archive/1.5.0.196.tar.gz -> ${PV}.tar.gz"
+SRC_URI="https://github.com/loresoft/msbuildtasks/archive/1.5.0.235.tar.gz -> ${PN}-${PV}.tar.gz"
 RESTRICT="mirror"
 S="${WORKDIR}/${PN}-${PV}"
 
