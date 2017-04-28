@@ -42,8 +42,8 @@ egacadd() {
 	if use gac; then
 		GACROOT="${PREFIX}/usr/$(get_libdir)"
 		GACDIR="/usr/$(get_libdir)/mono/gac"
-		einfo egacadd: GACROOT="${GACROOT}", GACDIR="${GACDIR}"
-		gacutil -i "${1}" \
+		einfo gacutil -i "${PREFIX}/${1}" -root "${GACROOT}" -gacdir "${GACDIR}"
+		gacutil -i "${PREFIX}/${1}" \
 			-root ${GACROOT} \
 			-gacdir "${GACDIR}" \
 			-package ${2:-${GACPN:-${PN}}} \

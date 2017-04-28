@@ -53,7 +53,7 @@ src_install() {
 
 pkg_postinst()
 {
-	egacadd "${PREFIX}/usr/lib/mono/${EBUILD_FRAMEWORK}/MSBuild.Community.Tasks.dll"
+	egacadd "usr/lib/mono/${EBUILD_FRAMEWORK}/MSBuild.Community.Tasks.dll"
 }
 
 pkg_prerm()
