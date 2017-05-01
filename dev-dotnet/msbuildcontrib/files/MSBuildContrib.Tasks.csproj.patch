@@ -1,0 +1,28 @@
+--- a/Source/MSBuildContrib.Tasks/MSBuildContrib.Tasks.csproj
++++ b/Source/MSBuildContrib.Tasks/MSBuildContrib.Tasks.csproj
+@@ -10,7 +10,6 @@
+     <AppDesignerFolder>Properties</AppDesignerFolder>
+     <RootNamespace>MSBuildContrib.Tasks</RootNamespace>
+     <AssemblyName>MSBuildContrib.Tasks</AssemblyName>
+-    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+     <FileAlignment>512</FileAlignment>
+     <SccProjectName>
+     </SccProjectName>
+@@ -47,16 +46,13 @@
+   </PropertyGroup>
+   <ItemGroup>
+     <Reference Include="Microsoft.Build.Framework" />
+-    <Reference Include="Microsoft.Build.Utilities.v3.5">
+-      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+-    </Reference>
+     <Reference Include="System" />
+     <Reference Include="System.Core">
+-      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+     </Reference>
+     <Reference Include="System.Data" />
+     <Reference Include="System.Security" />
+     <Reference Include="System.Xml" />
++    <Reference Include="Microsoft.Build.Utilities.v4.0" />
+   </ItemGroup>
+   <ItemGroup>
+     <Compile Include="..\SolutionInfo.cs">
