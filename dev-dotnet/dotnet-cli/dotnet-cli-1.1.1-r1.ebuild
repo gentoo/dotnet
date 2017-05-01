@@ -46,7 +46,11 @@ DEPEND="${RDEPEND}
 	>=sys-devel/gettext-0.19.7"
 
 PATCHES=(
+	"${FILESDIR}/coreclr-${CORECLR_V1_0}-gcc6-clang39.patch"
+	"${FILESDIR}/coreclr-${CORECLR_V1_0}-clang39-commit-9db7fb1.patch"
 	"${FILESDIR}/coreclr-${CORECLR_V1_0}-icu57-commit-352df35.patch"
+	"${FILESDIR}/coreclr-${PV}-clang39-commit-9db7fb1.patch"
+	"${FILESDIR}/coreclr-${PV}-exceptionhandling.patch"
 	"${FILESDIR}/corefx-${PV}-init-tools-script.patch"
 	"${FILESDIR}/corefx-${PV}-run-script.patch"
 )
