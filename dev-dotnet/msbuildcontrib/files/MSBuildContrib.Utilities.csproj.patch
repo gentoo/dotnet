@@ -1,0 +1,33 @@
+--- a/Source/MSBuildContrib.Utilities/MSBuildContrib.Utilities.csproj
++++ b/Source/MSBuildContrib.Utilities/MSBuildContrib.Utilities.csproj
+@@ -10,7 +10,6 @@
+     <AppDesignerFolder>Properties</AppDesignerFolder>
+     <RootNamespace>MSBuildContrib.Utilities</RootNamespace>
+     <AssemblyName>MSBuildContrib.Utilities</AssemblyName>
+-    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+     <FileAlignment>512</FileAlignment>
+     <SccProjectName>
+     </SccProjectName>
+@@ -47,21 +46,16 @@
+   </PropertyGroup>
+   <ItemGroup>
+     <Reference Include="Microsoft.Build.Framework" />
+-    <Reference Include="Microsoft.Build.Utilities.v3.5">
+-      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+-    </Reference>
+     <Reference Include="System" />
+     <Reference Include="System.Core">
+-      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+     </Reference>
+     <Reference Include="System.Xml.Linq">
+-      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+     </Reference>
+     <Reference Include="System.Data.DataSetExtensions">
+-      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+     </Reference>
+     <Reference Include="System.Data" />
+     <Reference Include="System.Xml" />
++    <Reference Include="Microsoft.Build.Utilities.v4.0" />
+   </ItemGroup>
+   <ItemGroup>
+     <Compile Include="..\SolutionInfo.cs">

@@ -1,0 +1,11 @@
+--- a/Source/MSBuildContrib.Tasks/MSBuildContrib.Tasks
++++ b/Source/MSBuildContrib.Tasks/MSBuildContrib.Tasks
+@@ -4,7 +4,7 @@
+               is encountered, it will cause the task to be rediscovered next time the task is used. -->
+    <!-- NOTE: Using the fully qualified class name in a <UsingTask> tag is faster than using a partially qualified name. -->
+    <PropertyGroup>
+-      <MSBuildContribCommonTasksAssembly>$(MSBuildExtensionsPath)\MSBuildContrib\MSBuildContrib.Tasks.dll</MSBuildContribCommonTasksAssembly>
++      <MSBuildContribCommonTasksAssembly>/usr/lib/mono/4.5/MSBuildContrib.Tasks.dll</MSBuildContribCommonTasksAssembly>
+    </PropertyGroup>
+ 
+    <UsingTask TaskName="MSBuildContrib.Tasks.Attrib" AssemblyFile="$(MSBuildContribCommonTasksAssembly)" Condition="Exists('$(MSBuildContribCommonTasksAssembly)')" />
