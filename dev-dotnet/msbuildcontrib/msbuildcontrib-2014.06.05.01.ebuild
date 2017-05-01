@@ -38,7 +38,7 @@ src_prepare() {
 }
 
 src_compile() {
-	exbuild "Source/MSBuildContrib.sln"
+	exbuild_strong "Source/MSBuildContrib.sln"
 }
 
 src_install() {
@@ -49,17 +49,20 @@ src_install() {
 	fi
 	insinto "/usr/lib/mono/${EBUILD_FRAMEWORK}"
 	doins "Source/MSBuildContrib.Tasks/bin/${DIR}/MSBuildContrib.Tasks.dll"
-#	einstall_pc_file "${PN}" "${PV}" "MSBuildContrib.Tasks"
+	doins "Source/MSBuildContrib.Utilities/bin/${DIR}/MSBuildContrib.Utilities.dll"
+	einstall_pc_file "${PN}" "${PV}" "MSBuildContrib.Tasks" "MSBuildContrib.Utilities"
 	insinto "/usr/lib/mono/xbuild"
 	doins "Source/MSBuildContrib.Tasks/bin/${DIR}/MSBuildContrib.Tasks"
 }
 
-#pkg_postinst()
-#{
-#	egacadd "usr/lib/mono/${EBUILD_FRAMEWORK}/MSBuildContrib.Tasks.dll"
-#}
-#
-#pkg_prerm()
-#{
-#	egacdel "MSBuildContrib.Tasks"
-#}
+pkg_postinst()
+{
+	egacadd "usr/lib/mono/${EBUILD_FRAMEWORK}/MSBuildContrib.Utilities.dll"
+	egacadd "usr/lib/mono/${EBUILD_FRAMEWORK}/MSBuildContrib.Tasks.dll"
+}
+
+pkg_prerm()
+{
+	egacdel "MSBuildContrib.Tasks"
+	egacdel "MSBuildContrib.Utilities"
+}
