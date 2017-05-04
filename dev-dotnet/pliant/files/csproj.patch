@@ -7,7 +7,7 @@ diff -r -u a/libraries/Pliant/Pliant.csproj b/libraries/Pliant/Pliant.csproj
    <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 -  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
 -       Other similar extension points exist, see Microsoft.Common.targets.
-+  <Import Project="$(MSBuildBinPath)\MSBuild.Community.Tasks.Targets" Condition="Exists('$(MSBuildBinPath)\MSBuild.Community.Tasks.Targets')" />
++  <Import Project="$(MSBuildExtensionsPath)\MSBuild.Community.Tasks.Targets" Condition="Exists('$(MSBuildExtensionsPath)\MSBuild.Community.Tasks.Targets')" />
    <Target Name="BeforeBuild">
 +    <PropertyGroup Condition=" '$(VersionNumber)' == '' ">
 +      <VersionNumber>1.0.0.0</VersionNumber>
