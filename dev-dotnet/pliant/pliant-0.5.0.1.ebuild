@@ -16,7 +16,7 @@ inherit gac dotnet nupkg
 
 NAME="Pliant"
 HOMEPAGE="https://github.com/patrickhuber/${NAME}"
-EGIT_COMMIT="dd03ca2942d999a8eb2e30a51b3ccf8d3c70602d"
+EGIT_COMMIT="19ecea89bf35cd2ba9426cdd862773dab3b0af6d"
 SRC_URI="${HOMEPAGE}/archive/${EGIT_COMMIT}.tar.gz -> ${PN}-${PV}.tar.gz"
 S="${WORKDIR}/${NAME}-${EGIT_COMMIT}"
 
@@ -87,8 +87,22 @@ src_compile() {
 }
 
 src_install() {
-	egacinstall "$(get_output_filepath)"
 	einfo ${ASSEMBLY_VERSION}
-	einstall_pc_file "${PN}" ${ASSEMBLY_VERSION} "Pliant"
+
 	enupkg "${WORKDIR}/${NAME}.${NUSPEC_VERSION}.nupkg"
+
+#	egacinstall "$(get_output_filepath)"
+	insinto "/usr/lib/mono/${EBUILD_FRAMEWORK}"
+	doins "$(get_output_filepath)"
+	einstall_pc_file "${PN}" ${ASSEMBLY_VERSION} "Pliant"
+}
+
+pkg_postinst()
+{
+	egacadd "/usr/lib/mono/${EBUILD_FRAMEWORK}/${DLL_NAME}.dll"
+}
+
+pkg_prerm()
+{
+	egacdel "${DLL_NAME}"
 }
