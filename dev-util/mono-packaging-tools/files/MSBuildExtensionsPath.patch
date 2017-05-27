@@ -1,0 +1,85 @@
+diff -r -u a/mpt-core/mpt-core.csproj b/mpt-core/mpt-core.csproj
+--- a/mpt-core/mpt-core.csproj	2017-01-21 22:02:23.000000000 +0300
++++ b/mpt-core/mpt-core.csproj	2017-05-27 19:40:00.326902285 +0300
+@@ -80,7 +80,7 @@
+     <Folder Include="02_EditableXml\" />
+   </ItemGroup>
+   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+-  <Import Project="$(MSBuildToolsPath)\MSBuild.Community.Tasks.Targets" />
++  <Import Project="$(MSBuildExtensionsPath)\MSBuild.Community.Tasks.Targets" />
+    <Target Name="BeforeBuild">
+      <PropertyGroup Condition=" '$(VersionNumber)' == '' ">
+        <VersionNumber>1.0.0.0</VersionNumber>
+diff -r -u a/mpt-csproj/mpt-csproj.csproj b/mpt-csproj/mpt-csproj.csproj
+--- a/mpt-csproj/mpt-csproj.csproj	2017-01-21 22:02:23.000000000 +0300
++++ b/mpt-csproj/mpt-csproj.csproj	2017-05-27 19:38:33.885585408 +0300
+@@ -66,7 +66,7 @@
+     </ProjectReference>
+   </ItemGroup>
+   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+-  <Import Project="$(MSBuildToolsPath)\MSBuild.Community.Tasks.Targets" />
++  <Import Project="$(MSBuildExtensionsPath)\MSBuild.Community.Tasks.Targets" />
+    <Target Name="BeforeBuild">
+      <PropertyGroup Condition=" '$(VersionNumber)' == '' ">
+        <VersionNumber>1.0.0.0</VersionNumber>
+diff -r -u a/mpt-csproj.tests/test.csproj b/mpt-csproj.tests/test.csproj
+--- a/mpt-csproj.tests/test.csproj	2017-01-21 22:02:23.000000000 +0300
++++ b/mpt-csproj.tests/test.csproj	2017-05-27 19:44:42.642210182 +0300
+@@ -56,7 +56,7 @@
+     </ProjectReference>
+   </ItemGroup>
+   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+-  <Import Project="/usr/lib64/mono/4.5/MSBuild.Community.Tasks.Targets" Condition="Exists('/usr/lib64/mono/4.5/MSBuild.Community.Tasks.Targets')" />
++  <Import Project="$(MSBuildExtensionsPath)\MSBuild.Community.Tasks.Targets" Condition="Exists('$(MSBuildExtensionsPath)\MSBuild.Community.Tasks.Targets')" />
+   <Target Name="BeforeBuild">
+     <PropertyGroup Condition=" '$(VersionNumber)' == '' ">
+       <VersionNumber>1.0.0.0</VersionNumber>
+Only in a/mpt-csproj.tests: test.csproj.orig
+diff -r -u a/mpt-gitmodules/mpt-gitmodules.csproj b/mpt-gitmodules/mpt-gitmodules.csproj
+--- a/mpt-gitmodules/mpt-gitmodules.csproj	2017-01-21 22:02:23.000000000 +0300
++++ b/mpt-gitmodules/mpt-gitmodules.csproj	2017-05-27 19:40:16.270145168 +0300
+@@ -57,7 +57,7 @@
+     <EmbeddedResource Include="Resources\syntax4.ebnf" />
+   </ItemGroup>
+   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+-  <Import Project="$(MSBuildToolsPath)\MSBuild.Community.Tasks.Targets" />
++  <Import Project="$(MSBuildExtensionsPath)\MSBuild.Community.Tasks.Targets" />
+    <Target Name="BeforeBuild">
+      <PropertyGroup Condition=" '$(VersionNumber)' == '' ">
+        <VersionNumber>1.0.0.0</VersionNumber>
+diff -r -u a/mpt-machine/mpt-machine.csproj b/mpt-machine/mpt-machine.csproj
+--- a/mpt-machine/mpt-machine.csproj	2017-01-21 22:02:23.000000000 +0300
++++ b/mpt-machine/mpt-machine.csproj	2017-05-27 19:40:30.302358943 +0300
+@@ -53,7 +53,7 @@
+     <Folder Include="Properties\" />
+   </ItemGroup>
+   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+-  <Import Project="$(MSBuildToolsPath)\MSBuild.Community.Tasks.Targets" />
++  <Import Project="$(MSBuildExtensionsPath)\MSBuild.Community.Tasks.Targets" />
+    <Target Name="BeforeBuild">
+      <PropertyGroup Condition=" '$(VersionNumber)' == '' ">
+        <VersionNumber>1.0.0.0</VersionNumber>
+diff -r -u a/mpt-nuget/mpt-nuget.csproj b/mpt-nuget/mpt-nuget.csproj
+--- a/mpt-nuget/mpt-nuget.csproj	2017-01-21 22:02:23.000000000 +0300
++++ b/mpt-nuget/mpt-nuget.csproj	2017-05-27 19:40:46.967612830 +0300
+@@ -52,7 +52,7 @@
+     </ProjectReference>
+   </ItemGroup>
+   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+-  <Import Project="$(MSBuildToolsPath)\MSBuild.Community.Tasks.Targets" />
++  <Import Project="$(MSBuildExtensionsPath)\MSBuild.Community.Tasks.Targets" />
+    <Target Name="BeforeBuild">
+      <PropertyGroup Condition=" '$(VersionNumber)' == '' ">
+        <VersionNumber>1.0.0.0</VersionNumber>
+diff -r -u a/mpt-sln/mpt-sln.csproj b/mpt-sln/mpt-sln.csproj
+--- a/mpt-sln/mpt-sln.csproj	2017-01-21 22:02:23.000000000 +0300
++++ b/mpt-sln/mpt-sln.csproj	2017-05-27 19:41:00.287815753 +0300
+@@ -55,7 +55,7 @@
+     <Folder Include="Properties\" />
+   </ItemGroup>
+   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+-  <Import Project="$(MSBuildToolsPath)\MSBuild.Community.Tasks.Targets" />
++  <Import Project="$(MSBuildExtensionsPath)\MSBuild.Community.Tasks.Targets" />
+   <Target Name="BeforeBuild">
+     <PropertyGroup Condition=" '$(VersionNumber)' == '' ">
+       <VersionNumber>1.0.0.0</VersionNumber>

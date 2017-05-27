@@ -69,6 +69,8 @@ NUSPEC_FILENAME="${PN}.nuspec"
 #ICON_PATH="$(get_nuget_trusted_icons_location)/${ICON_FINALNAME}"
 
 src_prepare() {
+	eapply "${FILESDIR}/MSBuildExtensionsPath.patch"
+
 	#change version in .nuspec
 	# PV = Package version (excluding revision, if any), for example 6.3.
 	# It should reflect the upstream versioning scheme
