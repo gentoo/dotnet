@@ -100,7 +100,7 @@ src_install() {
 		doins bin/${DIR}/*.mdb
 	fi
 
-	make_wrapper nunit "mono ${SLOTTEDDIR}/nunit-console.exe"
+	make_wrapper nunit "mono ${SLOTTEDDIR}/nunit3-console.exe"
 
 	# https://stackoverflow.com/questions/36430417/is-there-a-nunit-console-runner-dll-for-nunit-3-0
 	# egacinstall "${S}/bin/${DIR}/nunit-console-runner.dll"
