@@ -68,17 +68,12 @@ src_prepare() {
 	if use debug; then
 		DIR="Debug"
 	else
-		DIR=""
+		DIR="Release"
 	fi
 
 	sed -i "s=\\\$version\\\$=${NUGET_PACKAGE_VERSION}=g" "${S}/nuget/"*.nuspec || die
-	#sed -i "s=\\\${package.version}=${NUGET_PACKAGE_VERSION}=g" "${S}/nuget/"*.nuspec || die
-	#sed -i '/test/d' "${S}/nuget/"*.nuspec || die
-	#sed -i '/x86/d' "${S}/nuget/"*.nuspec || die
-	#sed -i '/log4net/d' "${S}/nuget/"*.nuspec || die
 	sed -i 's#\\#/#g' "${S}/nuget/"*.nuspec || die
-	#sed -i "s#\\${project.base.dir}##g" "${S}/nuget/"*.nuspec || die
-	sed -i "s#bin/#bin/${DIR}/#g" "${S}/nuget/"*.nuspec || die
+	sed -i "s=\\\$dir\\\$=${DIR}=g" "${S}/nuget/"*.nuspec || die
 	default
 }
 
@@ -105,19 +100,10 @@ src_install() {
 		doins bin/${DIR}/*.mdb
 	fi
 
-#	into /usr
-#	dobin ${FILESDIR}/nunit-console
 	make_wrapper nunit "mono ${SLOTTEDDIR}/nunit-console.exe"
 
-	if use gac; then
-		if use debug; then
-			DIR="Debug"
-		else
-			DIR="Release"
-		fi
-
-		egacinstall "${S}/bin/${DIR}/lib/nunit-console-runner.dll"
-	fi
+	# https://stackoverflow.com/questions/36430417/is-there-a-nunit-console-runner-dll-for-nunit-3-0
+	# egacinstall "${S}/bin/${DIR}/nunit-console-runner.dll"
 
 	if use doc; then
 #		dodoc ${WORKDIR}/doc/*.txt
