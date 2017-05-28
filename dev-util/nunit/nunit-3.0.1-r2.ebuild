@@ -10,7 +10,7 @@ HOMEPAGE="https://github.com/nunit/${NAME}"
 
 EGIT_COMMIT="dd39deaa2c805783cb069878b58b0447d0849849"
 SRC_URI="${HOMEPAGE}/archive/${EGIT_COMMIT}.tar.gz -> ${PN}-${PV}.tar.gz"
-#RESTRICT="mirror"
+RESTRICT="mirror"
 S="${WORKDIR}/${NAME}-${EGIT_COMMIT}"
 
 SLOT="3"
