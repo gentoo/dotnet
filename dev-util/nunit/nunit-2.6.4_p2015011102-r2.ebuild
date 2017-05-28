@@ -9,7 +9,8 @@ NAME="nunitv2"
 HOMEPAGE="https://github.com/nunit/${NAME}"
 
 EGIT_COMMIT="1b549f4f8b067518c7b54a5b263679adb83ccda4"
-SRC_URI="${HOMEPAGE}/archive/${EGIT_COMMIT}.zip -> ${PF}.zip"
+SRC_URI="${HOMEPAGE}/archive/${EGIT_COMMIT}.zip -> ${PN}-${PV}.zip"
+RESTRICT="mirror"
 S="${WORKDIR}/${NAME}-${EGIT_COMMIT}"
 
 SLOT="2" # NUnit V2 IS NO LONGER MAINTAINED OR UPDATED.
