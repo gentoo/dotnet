@@ -12,8 +12,8 @@ SRC_URI="http://download.mono-project.com/sources/${PN}/${P}.tar.bz2"
 LICENSE="MIT LGPL-2.1 GPL-2 BSD-4 NPL-1.1 Ms-PL GPL-2-with-linking-exception IDPL"
 SLOT="0"
 
-#broken
-#KEYWORDS="~amd64 ~ppc ~ppc64 ~x86 ~amd64-linux"
+#TODO: update patch: https://gitweb.gentoo.org/repo/gentoo.git/commit/?id=7a0e31adf6af28adf3c8709e542ecf7039cb5942
+KEYWORDS="~amd64 ~ppc ~ppc64 ~x86 ~amd64-linux"
 
 IUSE="nls minimal pax_kernel xen doc"
 
