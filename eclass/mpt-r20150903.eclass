@@ -12,7 +12,7 @@
 
 TOOLS_PATH=/usr/bin
 
-DEPEND+=" dev-util/mono-packaging-tools"
+DEPEND+=" >=dev-util/mono-packaging-tools-1.4.3"
 
 # @FUNCTION: empt-gitmodules
 # @DESCRIPTION:  wraps mpt-gitmodules
@@ -23,23 +23,23 @@ empt-gitmodules() {
 # @FUNCTION: empt-sln
 # @DESCRIPTION:  wraps mpt-sln
 empt-sln() {
-	"${TOOLS_PATH}/empt-sln" $@ || die
+	"${TOOLS_PATH}/mpt-sln" $@ || die
 }
 
 # @FUNCTION: empt-csproj
 # @DESCRIPTION:  wraps mpt-csproj
 empt-csproj() {
-	"${TOOLS_PATH}/empt-csproj" $@ || die
+	"${TOOLS_PATH}/mpt-csproj" $@ || die
 }
 
 # @FUNCTION: empt-machine
-# @DESCRIPTION:  wraps empt-machine
+# @DESCRIPTION:  wraps mpt-machine
 empt-machine() {
-	"${TOOLS_PATH}/empt-machine" $@ || die
+	"${TOOLS_PATH}/mpt-machine" $@ || die
 }
 
 # @FUNCTION: empt-nuget
 # @DESCRIPTION:  wraps empt-nuget
 empt-nuget() {
-	"${TOOLS_PATH}/empt-nuget" $@ || die
+	"${TOOLS_PATH}/mpt-nuget" $@ || die
 }
