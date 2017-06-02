@@ -68,6 +68,7 @@ src_prepare() {
 	empt-csproj --replace-reference="Mono.Cecil" --dir="${S}"
 	empt-csproj --remove-reference="NUnit.System.Linq" --dir="${S}"
 	sed -i '/<CopyToOutputDirectory>PreserveNewest<\/CopyToOutputDirectory>/d' "${S}/src/nunit-gui/nunit-gui.csproj" || die
+	sed -i 's/"nunit.framework/"nunit.framework, Version=3.7.0.0/g' "${S}/src/mock-assembly/mock-assembly.csproj" || die
 	eapply_user
 }
 
