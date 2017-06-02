@@ -91,7 +91,7 @@ src_install() {
 		doins bin/${DIR}/*.mdb
 	fi
 
-	#make_wrapper nunit "mono ${SLOTTEDDIR}/nunit3-console.exe"
+	make_wrapper nunit-gui "mono ${SLOTTEDDIR}/nunit-gui.exe"
 
 	if use doc; then
 		doins LICENSE.txt NOTICES.txt CHANGES.txt
