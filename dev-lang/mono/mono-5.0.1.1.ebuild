@@ -12,7 +12,6 @@ SRC_URI="http://download.mono-project.com/sources/${PN}/${P}.tar.bz2"
 LICENSE="MIT LGPL-2.1 GPL-2 BSD-4 NPL-1.1 Ms-PL GPL-2-with-linking-exception IDPL"
 SLOT="0"
 
-#TODO: update patch: https://gitweb.gentoo.org/repo/gentoo.git/commit/?id=7a0e31adf6af28adf3c8709e542ecf7039cb5942
 KEYWORDS="~amd64 ~ppc ~ppc64 ~x86 ~amd64-linux"
 
 IUSE="nls minimal pax_kernel xen doc"
@@ -33,10 +32,9 @@ DEPEND="${COMMONDEPEND}
 	!dev-lang/mono-basic
 "
 
-#PATCHES=(
-#	"${FILESDIR}"/${PN}-4.8.0.371-makedev.patch
-#	"${FILESDIR}"/${PN}-4.8.0.371-x86_32.patch
-#)
+PATCHES=(
+	"${FILESDIR}"/${PN}-5.0.1.1-x86_32.patch
+)
 
 #S="${WORKDIR}/${PN}-$(get_version_component_range 1-3)"
 
