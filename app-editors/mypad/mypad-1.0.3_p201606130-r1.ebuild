@@ -4,6 +4,13 @@
 
 EAPI="6"
 
+KEYWORDS="~amd64 ~x86"
+RESTRICT="mirror"
+
+SLOT="1"
+IUSE="net45 debug developer"
+USE_DOTNET="net45"
+
 inherit eutils gnome2-utils dotnet
 
 DESCRIPTION="mypad text editor"
@@ -12,31 +19,25 @@ LICENSE="MIT"
 PROJECTNAME="mypad-winforms-texteditor"
 HOMEPAGE="https://github.com/ArsenShnurkov/${PROJECTNAME}"
 EGIT_COMMIT="c1c79094eb5339309e3767f64d4e87f6214e7faa"
-SRC_URI="${HOMEPAGE}/archive/${EGIT_COMMIT}.zip -> ${P}-${PR}.zip"
+SRC_URI="${HOMEPAGE}/archive/${EGIT_COMMIT}.tar.gz -> ${PN}-${PV}.tar.gz"
+S="${WORKDIR}/${PROJECTNAME}-${EGIT_COMMIT}"
 
-SLOT="1"
-IUSE="net45 debug developer"
-USE_DOTNET="net45"
-
-KEYWORDS="~amd64 ~x86"
-
-ALLPEND="|| ( >=dev-lang/mono-4 <dev-lang/mono-9999 )
-	|| ( dev-dotnet/icsharpcodetexteditor[nupkg] dev-dotnet/icsharpcodetexteditor[gac] )
+CDEPEND="|| ( >=dev-lang/mono-4 <dev-lang/mono-9999 )
+	|| ( dev-dotnet/icsharpcodetexteditor[gac] )
+	|| ( dev-dotnet/ndepend-path[gac] )
 	"
 
 # The DEPEND ebuild variable should specify any dependencies which are 
 # required to unpack, patch, compile or install the package
-DEPEND="${ALLPEND}
+DEPEND="${CDEPEND}
 	dev-dotnet/nuget
 	"
 
 # The RDEPEND ebuild variable should specify any dependencies which are 
 # required at runtime. 
 # when installing from a binary package, only RDEPEND will be checked.
-RDEPEND="${ALLPEND}
+RDEPEND="${CDEPEND}
 	"
-
-S="${WORKDIR}/${PROJECTNAME}-${EGIT_COMMIT}"
 
 # METAFILETOBUILD=${PROJECTNAME}.sln
 METAFILETOBUILD=MyPad.sln
@@ -46,11 +47,12 @@ pkg_preinst() {
 }
 
 src_prepare() {
-#	elog "Patching"
 	eapply "${FILESDIR}/0001-.csproj-dependency-.nupkg-dependency.patch"
 	eapply "${FILESDIR}/0001-remove-project-from-solution.patch"
-	elog "NuGet restore"
-	/usr/bin/nuget restore ${METAFILETOBUILD} || die
+	find "${S}" -iname "*.cs" -exec sed -i "s/using NDepend.Path.Interface.Core;//g" {} \; || die
+	#elog "NuGet restore"
+	#addwrite "/usr/share/.mono/keypairs"
+	#/usr/bin/nuget restore ${METAFILETOBUILD} || die
 	eapply_user
 }
 
@@ -71,9 +73,6 @@ src_install() {
 	insinto /usr/lib/mypad-${PV}/
 	newins "${BINDIR}/MyPad.exe" MyPad.exe
 	make_wrapper mypad "mono /usr/lib/mypad-${PV}/MyPad.exe"
-	# Don't dlls should be in GAC ?
-	doins "${BINDIR}/NDepend.Path.dll"
-	doins "${BINDIR}/NDepend.Path.Interfaces.dll"
 
 	elog "Installing syntax coloring schemes for editor"
 	dodir /usr/lib/mypad-${PV}/Modes
