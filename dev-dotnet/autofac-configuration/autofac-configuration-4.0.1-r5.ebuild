@@ -52,5 +52,10 @@ src_compile() {
 
 src_install() {
 	egacinstall "src/Autofac.Configuration/bin/${DIR}/Autofac.Configuration.dll"
+	if use debug; then
+		DIR="Debug"
+	else
+		DIR="Release"
+	fi
 	einstall_pc_file "${PN}" "${PV}" "Autofac.Configuration.dll"
 }
