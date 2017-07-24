@@ -36,8 +36,16 @@ src_prepare() {
 	eapply_user
 }
 
+SNK_FILENAME="${S}/tools/Key.snk"
+
 src_compile() {
 	exbuild_strong /p:VersionNumber=${PV} "src/Microsoft.Extensions.Primitives/Microsoft.Extensions.Primitives.csproj"
+	if use debug; then
+		DIR="Debug"
+	else
+		DIR="Release"
+	fi
+	sn -R "src/Microsoft.Extensions.Primitives/bin/${DIR}/Microsoft.Extensions.Primitives.dll" "tools/Key.snk" || die
 }
 
 src_install() {
