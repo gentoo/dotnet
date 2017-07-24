@@ -32,17 +32,26 @@ src_prepare() {
 	eapply_user
 }
 
+SNK_FILENAME="${S}/tools/Key.snk"
+
 src_compile() {
-	exbuild_strong /p:VersionNumber=${PV} "src/src.sln"
+	exbuild_strong /p:TargetFrameworkVersion=v4.5 /p:VersionNumber=${PV} "src/src.sln"
+	if use debug; then
+		DIR="Debug"
+	else
+		DIR="Release"
+	fi
+	sn -R "src/Microsoft.Extensions.Configuration.Abstractions/bin/${DIR}/Microsoft.Extensions.Configuration.Abstractions.dll" "${SNK_FILENAME}" || die
+	sn -R "src/Microsoft.Extensions.Configuration/bin/${DIR}/Microsoft.Extensions.Configuration.dll" "${SNK_FILENAME}" || die
 }
 
 src_install() {
 	if use debug; then
-		CONFIGURATION=Debug
+		DIR=Debug
 	else
-		CONFIGURATION=Release
+		DIR=Release
 	fi
-	egacinstall "src/Microsoft.Extensions.Configuration.Abstractions/bin/${CONFIGURATION}/Microsoft.Extensions.Configuration.Abstractions.dll"
-	egacinstall "src/Microsoft.Extensions.Configuration/bin/${CONFIGURATION}/Microsoft.Extensions.Configuration.dll"
+	egacinstall "src/Microsoft.Extensions.Configuration.Abstractions/bin/${DIR}/Microsoft.Extensions.Configuration.Abstractions.dll"
+	egacinstall "src/Microsoft.Extensions.Configuration/bin/${DIR}/Microsoft.Extensions.Configuration.dll"
 	einstall_pc_file "${PN}" "${PV}" "Microsoft.Extensions.Configuration.Abstractions" "Microsoft.Extensions.Configuration"
 }
