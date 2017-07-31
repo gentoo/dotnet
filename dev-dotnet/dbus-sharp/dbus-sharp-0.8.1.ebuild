@@ -33,3 +33,9 @@ src_prepare() {
 	eautoreconf
 	default
 }
+
+src_compile() {
+    default
+    # https://github.com/gentoo/dotnet/issues/305
+    sn -R src/dbus-sharp.dll dbus-sharp.snk
+}
