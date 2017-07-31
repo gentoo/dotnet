@@ -8,10 +8,10 @@ DESCRIPTION="A flexible, irssi-like and user-friendly IRC client for the Gnome D
 HOMEPAGE="http://www.smuxi.org/main/"
 EGIT_REPO_URI="https://github.com/meebey/smuxi"
 # https://github.com/meebey/smuxi/releases/tag/1.0.7
-#EGIT_COMMIT="a63e6236bb241c018633c380c99554c38a83f6ad"
-#EGIT_BRANCH="release/1.0"
+EGIT_COMMIT="a63e6236bb241c018633c380c99554c38a83f6ad"
+EGIT_BRANCH="release/1.0"
 
-SRC_URI=""
+SRC_URI="https://github.com/meebey/smuxi/archive/${PV}.tar.gz -> ${P}.tar.gz"
 SLOT="0"
 KEYWORDS="~amd64 ~x86"
 IUSE="dbus debug gtk libnotify spell nls"
@@ -22,7 +22,7 @@ CDEPEND=">=dev-lang/mono-4.0.2.5
 	dev-libs/stfl
 	>=dev-dotnet/log4net-1.2.10
 	>=dev-dotnet/nini-1.1.0-r2
-	gtk? ( >=dev-dotnet/gtk-sharp-2.12.39:2 )
+	gtk? ( >=dev-dotnet/gtk-sharp-2.12.21:2 )
 	libnotify? ( >=dev-dotnet/notify-sharp-0.4 )
 	libnotify? ( <dev-dotnet/notify-sharp-3 )
 	dbus? ( >=dev-dotnet/dbus-sharp-glib-0.6:* )
@@ -34,9 +34,6 @@ DEPEND="${CDEPEND}
 	virtual/pkgconfig
 "
 RDEPEND="${CDEPEND}"
-
-# Build failed on debug issue with --jobs > 1 (2017-07-31)
-MAKEOPTS="-j1"
 
 pkg_preinst() {
 	gnome2_icon_savelist
@@ -53,19 +50,18 @@ src_prepare() {
 src_configure() {
 	# Our dev-dotnet/db4o is completely unmaintained
 	# We don't have ubuntu stuff
-	econf                   \
-	CSC=/usr/bin/mcs        \
-	--enable-engine-irc     \
-	--without-indicate      \
+	econf \
+	--enable-engine-irc		\
+	--without-indicate		\
 	--with-vendor-package-version="Gentoo ${PV}" \
 	--with-db4o=included \
 	--with-messaging-menu=no \
 	--with-indicate=no \
-	$(use_enable debug)     \
+	$(use_enable debug)		\
 	$(use_enable gtk frontend-gnome) \
-	$(use_enable nls)       \
+	$(use_enable nls)		\
 	$(use_with libnotify notify) \
-	$(use_with spell gtkspell) \
+	$(use_with spell gtkspell)
 
 	touch README
 }
