@@ -1,66 +1,88 @@
 # Copyright 1999-2017 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Id$
 
-EAPI=5
-inherit eutils mono-env git-2 autotools-utils
+EAPI=6
+inherit eutils gnome2-utils mono-env dotnet versionator autotools git-r3
 
 DESCRIPTION="A flexible, irssi-like and user-friendly IRC client for the Gnome Desktop"
 HOMEPAGE="http://www.smuxi.org/main/"
+EGIT_REPO_URI="https://github.com/meebey/smuxi"
+# https://github.com/meebey/smuxi/releases/tag/1.0.7
+#EGIT_COMMIT="a63e6236bb241c018633c380c99554c38a83f6ad"
+#EGIT_BRANCH="release/1.0"
 
+SRC_URI=""
 SLOT="0"
-KEYWORDS=""
-IUSE="dbus debug gtk libnotify spell" #-gtk3 ( gtk3 branch just broken )
+KEYWORDS="~amd64 ~x86"
+IUSE="dbus debug gtk libnotify spell nls"
 LICENSE="|| ( GPL-2 GPL-3 )"
 
-RDEPEND="
-	>=dev-lang/mono-3.0
-	>=dev-dotnet/smartirc4net-0.4.5.1
-	>=dev-dotnet/nini-1.1.0-r2
+CDEPEND=">=dev-lang/mono-4.0.2.5
+	>=dev-dotnet/smartirc4net-1.0
+	dev-libs/stfl
 	>=dev-dotnet/log4net-1.2.10
-	dbus? (	dev-dotnet/ndesk-dbus
-		dev-dotnet/ndesk-dbus-glib )
-	gtk? ( >=dev-dotnet/gtk-sharp-2.12:2 )
-	libnotify? ( dev-dotnet/notify-sharp )
+	>=dev-dotnet/nini-1.1.0-r2
+	gtk? ( >=dev-dotnet/gtk-sharp-2.12.39:2 )
+	libnotify? ( >=dev-dotnet/notify-sharp-0.4 )
+	libnotify? ( <dev-dotnet/notify-sharp-3 )
+	dbus? ( >=dev-dotnet/dbus-sharp-glib-0.6:* )
 	spell? ( >=app-text/gtkspell-2.0.9:2 )
 "
-DEPEND="${RDEPEND}
+DEPEND="${CDEPEND}
 	>=dev-util/intltool-0.25
 	>=sys-devel/gettext-0.17
 	virtual/pkgconfig
 "
+RDEPEND="${CDEPEND}"
 
-EGIT_REPO_URI="git://github.com/meebey/smuxi.git"
-EGIT_MASTER="master"
-EGIT_HAS_SUBMODULES=1
+# Build failed on debug issue with --jobs > 1 (2017-07-31)
+MAKEOPTS="-j1"
 
-DOCS=( FEATURES README.md )
-AUTOTOOLS_IN_SOURCE_BUILD=1
+pkg_preinst() {
+	gnome2_icon_savelist
+}
 
 src_prepare() {
-	./autogen.sh MCS=$(which dmcs) || die
+	default
+
+	# https://github.com/meebey/smuxi/issues/86
+	# eautoreconf
+	./autogen.sh | die "Could not run autogen.sh"
 }
 
 src_configure() {
-	local myeconfargs=(
-		--enable-engine-irc
-		--without-indicate
-		--with-vendor-package-version="Gentoo"
-		--with-db4o=included
-		--with-messaging-menu=no
-		--with-indicate=no
-		--disable-engine-jabbr
-		$(use_enable debug)
-		$(use_enable gtk frontend-gnome)
-		$(use_with libnotify notify)
-		$(use_with spell gtkspell)
-	)
-	autotools-utils_src_configure
+	# Our dev-dotnet/db4o is completely unmaintained
+	# We don't have ubuntu stuff
+	econf                   \
+	CSC=/usr/bin/mcs        \
+	--enable-engine-irc     \
+	--without-indicate      \
+	--with-vendor-package-version="Gentoo ${PV}" \
+	--with-db4o=included \
+	--with-messaging-menu=no \
+	--with-indicate=no \
+	$(use_enable debug)     \
+	$(use_enable gtk frontend-gnome) \
+	$(use_enable nls)       \
+	$(use_with libnotify notify) \
+	$(use_with spell gtkspell) \
+
+	touch README
+}
+
+src_compile() {
+	default
 }
 
 src_install() {
 	default
-	#runner scripts fix
-	sed -i -e 's@mono --debug@mono --runtime=v4.0@g' "${ED}"/usr/bin/smuxi-frontend-gnome || die
-	sed -i -e 's@mono --debug@mono --runtime=v4.0@g' "${ED}"/usr/bin/smuxi-server || die
+	# desktop icon is installed with /usr/share/applications/smuxi-frontend-gnome.desktop
+}
+
+pkg_postinst() {
+	gnome2_icon_cache_update
+}
+
+pkg_postrm() {
+	gnome2_icon_cache_update
 }
