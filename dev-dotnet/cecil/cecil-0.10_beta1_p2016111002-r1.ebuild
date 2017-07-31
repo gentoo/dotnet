@@ -33,14 +33,15 @@ REPO_OWNER="jbevain"
 REPOSITORY="https://github.com/${REPO_OWNER}/${NAME}"
 LICENSE_URL="${REPOSITORY}/blob/master/LICENSE"
 ICONMETA="http://www.iconeasy.com/icon/ico/Movie%20%26%20TV/Looney%20Tunes/Cecil%20Turtle%20no%20shell.ico"
-ICON_URL="file://${FILESDIR}/Cecil Turtle no shell.png"
+ICON_URL="file://${FILESDIR}/cecil_turtle_no_shell.png"
 
 EGIT_BRANCH="master"
 EGIT_COMMIT="045b0f9729905dd456d46e33436a2dadc9e2a52d"
-SRC_URI="https://api.github.com/repos/${REPO_OWNER}/${NAME}/tarball/${EGIT_COMMIT} -> ${PF}.tar.gz
-	mirror://gentoo/mono.snk.bz2"
+EGIT_SHORT_COMMIT=${EGIT_COMMIT:0:7}
+SRC_URI="https://api.github.com/repos/${REPO_OWNER}/${NAME}/tarball/${EGIT_COMMIT} -> ${PF}.tar.gz"
 RESTRICT+=" test"
-S="${WORKDIR}/${NAME}-${EGIT_BRANCH}"
+# jbevain-cecil-045b0f9
+S="${WORKDIR}/${REPO_OWNER}-${NAME}-${EGIT_SHORT_COMMIT}"
 
 METAFILETOBUILD="./Mono.Cecil.sln"
 
@@ -76,7 +77,7 @@ src_compile() {
 	fi
 	PARAMETERS+=" ${SARGS}"
 	PARAMETERS+=" /p:SignAssembly=true"
-	PARAMETERS+=" /p:AssemblyOriginatorKeyFile=${WORKDIR}/mono.snk"
+	PARAMETERS+=" /p:AssemblyOriginatorKeyFile=${S}/mono.snk"
 	PARAMETERS+=" /v:detailed"
 
 	for x in ${USE_DOTNET} ; do
@@ -92,6 +93,15 @@ src_compile() {
 		einfo "Building configuration '${CONFIGURATION}'"
 		P_CONFIGURATION="/p:Configuration=${CONFIGURATION}"
 		exbuild_raw ${PARAMETERS} ${P_FW_VERSION} ${P_CONFIGURATION} "${METAFILETOBUILD}"
+
+		# https://github.com/gentoo/dotnet/issues/305
+		sn -R ${S}/bin/${CONFIGURATION}/Mono.Cecil.dll mono.snk
+		sn -R ${S}/bin/${CONFIGURATION}/Mono.Cecil.Mdb.dll mono.snk
+		sn -R ${S}/bin/${CONFIGURATION}/Mono.Cecil.Pdb.dll mono.snk
+
+		sn -R ${S}/bin/${CONFIGURATION}/Mono.Cecil.Rocks.dll mono.snk
+		sn -R ${S}/bin/${CONFIGURATION}/Mono.Cecil.Rocks.Mdb.dll mono.snk
+		sn -R ${S}/bin/${CONFIGURATION}/Mono.Cecil.Rocks.Pdb.dll mono.snk
 	done
 
 	# run nuget_pack
