@@ -1,0 +1,32 @@
+diff --git a/src/Tasks/Microsoft.Build.Tasks.csproj b/src/Tasks/Microsoft.Build.Tasks.csproj
+index 876a403..d9196e6 100644
+--- a/src/Tasks/Microsoft.Build.Tasks.csproj
++++ b/src/Tasks/Microsoft.Build.Tasks.csproj
+@@ -967,6 +967,10 @@
+   <!-- For perf, do not add more references (that will be loaded in common scenarios) without good reason -->
+   <!-- ==========================================================================================-->
+   <ItemGroup Condition="'$(NetCoreBuild)' != 'true'">
++    <Reference Include="System.Reflection.Metadata" />
++    <Reference Include="System.Collections.Immutable" />
++    <Reference Include="Microsoft.Build.Framework, Version=15.3.0.0, Culture=neutral, PublicKeyToken=0738eb9f132ed756" />
++    <Reference Include="Microsoft.Build.Utilities.Core, Version=15.3.0.0, Culture=neutral, PublicKeyToken=0738eb9f132ed756" />
+     <Reference Include="Microsoft.Build.Tasks.CodeAnalysis">
+       <HintPath>$(CompilerToolsDir)\Microsoft.Build.Tasks.CodeAnalysis.dll</HintPath>
+     </Reference>
+@@ -983,16 +987,6 @@
+     <Reference Include="System.Xaml" />
+   </ItemGroup>
+   <!-- ==========================================================================================-->
+-  <ItemGroup>
+-    <ProjectReference Include="..\Utilities\Microsoft.Build.Utilities.csproj">
+-      <Project>{828566EE-6F6A-4EF4-98B0-513F7DF9C628}</Project>
+-      <Name>Microsoft.Build.Utilities</Name>
+-    </ProjectReference>
+-    <ProjectReference Include="..\Framework\Microsoft.Build.Framework.csproj">
+-      <Project>{571F09DB-A81A-4444-945C-6F7B530054CD}</Project>
+-      <Name>Microsoft.Build.Framework</Name>
+-    </ProjectReference>
+-  </ItemGroup>
+   <ItemGroup>
+     <None Include="project.json" />
+   </ItemGroup>

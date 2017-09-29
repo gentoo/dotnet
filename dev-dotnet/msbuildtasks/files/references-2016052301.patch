@@ -1,0 +1,21 @@
+--- a/Source/MSBuild.Community.Tasks/MSBuild.Community.Tasks.csproj
++++ b/Source/MSBuild.Community.Tasks/MSBuild.Community.Tasks.csproj
+@@ -42,9 +42,7 @@
+     <Prefer32Bit>false</Prefer32Bit>
+   </PropertyGroup>
+   <ItemGroup>
+-    <Reference Include="Ionic.Zip.Reduced, Version=1.9.1.8, Culture=neutral, PublicKeyToken=edbe51ad942a3f5c, processorArchitecture=MSIL">
+-      <HintPath>..\packages\DotNetZip.Reduced.1.9.1.8\lib\net20\Ionic.Zip.Reduced.dll</HintPath>
+-    </Reference>
++    <Reference Include="Ionic.Zip.Reduced" />
+     <Reference Include="Microsoft.Build.Framework" />
+     <Reference Include="Microsoft.Build.Utilities.v4.0" />
+     <Reference Include="System" />
+@@ -269,7 +266,6 @@
+     <Content Include="NUnitReport.xsl">
+       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+     </Content>
+-    <None Include="packages.config" />
+   </ItemGroup>
+   <ItemGroup>
+     <EmbeddedResource Include="Properties\Resources.resx">

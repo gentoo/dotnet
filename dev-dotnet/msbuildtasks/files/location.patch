@@ -10,8 +10,8 @@
 -    <MSBuildCommunityTasksLib Condition="'$(OS)' == 'Windows_NT'">$([MSBUILD]::Unescape($(MSBuildCommunityTasksPath)\MSBuild.Community.Tasks.dll))</MSBuildCommunityTasksLib>
 -    <MSBuildCommunityTasksLib Condition="'$(OS)' != 'Windows_NT'">$(MSBuildCommunityTasksPath)\MSBuild.Community.Tasks.dll</MSBuildCommunityTasksLib>
 -    <MSBuildCommunityTasksLib Condition="!Exists('$(MSBuildCommunityTasksLib)')">MSBuild.Community.Tasks.dll</MSBuildCommunityTasksLib>
-+  <PropertyGroup Condition="Exists('/usr/lib64/mono/msbuildtasks/MSBuild.Community.Tasks.dll')">
-+    <MSBuildCommunityTasksPath>/usr/lib64/mono/msbuildtasks</MSBuildCommunityTasksPath>
++  <PropertyGroup Condition="Exists('/usr/lib/mono/4.5/MSBuild.Community.Tasks.dll')">
++    <MSBuildCommunityTasksPath>/usr/lib/mono/4.5</MSBuildCommunityTasksPath>
 +    <MSBuildCommunityTasksLib>$(MSBuildCommunityTasksPath)/MSBuild.Community.Tasks.dll</MSBuildCommunityTasksLib>
    </PropertyGroup>
  

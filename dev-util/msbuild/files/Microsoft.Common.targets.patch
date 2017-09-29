@@ -1,0 +1,15 @@
+diff --git a/src/Tasks/Microsoft.Common.targets b/src/Tasks/Microsoft.Common.targets
+index e1b5445..3e35645 100644
+--- a/src/Tasks/Microsoft.Common.targets
++++ b/src/Tasks/Microsoft.Common.targets
+@@ -29,6 +29,10 @@ Copyright (C) Microsoft Corporation. All rights reserved.
+        targets. 
+    -->
+ 
++  <PropertyGroup>
++    <BaseIntermediateOutputPath Condition="'$(BaseIntermediateOutputPath)' == ''">obj\</BaseIntermediateOutputPath>
++  </PropertyGroup>
++
+   <Choose>
+     <When Condition="'$(MSBuildAssemblyVersion)' == ''">
+       <PropertyGroup>

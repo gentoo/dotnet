@@ -1,0 +1,123 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <CommonPath Condition=" '$(CommonPath)' == '' ">../../Common/src</CommonPath>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{1DD0FF15-6234-4BD6-850A-317F05479554}</ProjectGuid>
+    <RootNamespace>System.Collections.Immutable</RootNamespace>
+    <FileAlignment>512</FileAlignment>
+    <OutputPath>bin\$(Configuration)</OutputPath>
+    <DocumentationFile>$(OutputPath)$(MSBuildProjectName).xml</DocumentationFile>
+    <OutputType>Library</OutputType>
+    <AssemblyName>System.Collections.Immutable</AssemblyName>
+    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <DefineConstants>DEBUG;</DefineConstants>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>full</DebugType>
+    <Optimize>true</Optimize>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="Properties\InternalsVisibleTo.cs" />
+    <Compile Include="GlobalSuppressions.cs" />
+    <Compile Include="Properties\SecurityTransparent.cs" />
+    <Compile Include="System\Collections\Generic\IHashKeyCollection.cs" />
+    <Compile Include="System\Collections\Generic\ISortKeyCollection.cs" />
+    <Compile Include="System\Collections\Immutable\AllocFreeConcurrentStack.cs" />
+    <Compile Include="System\Collections\Immutable\DictionaryEnumerator.cs" />
+    <Compile Include="System\Collections\Immutable\DisposableEnumeratorAdapter_2.cs" />
+    <Compile Include="System\Collections\Immutable\IBinaryTree.cs" />
+    <Compile Include="System\Collections\Immutable\IImmutableArray.cs" />
+    <Compile Include="System\Collections\Immutable\IImmutableDictionary.cs" />
+    <Compile Include="System\Collections\Immutable\IImmutableDictionaryInternal.cs" />
+    <Compile Include="System\Collections\Immutable\IImmutableList.cs" />
+    <Compile Include="System\Collections\Immutable\IImmutableListQueries.cs" />
+    <Compile Include="System\Collections\Immutable\IImmutableQueue.cs" />
+    <Compile Include="System\Collections\Immutable\IImmutableSet.cs" />
+    <Compile Include="System\Collections\Immutable\IImmutableStack.cs" />
+    <Compile Include="System\Collections\Immutable\ImmutableHashSet_1.HashBucketByValueEqualityComparer.cs" />
+    <Compile Include="System\Collections\Immutable\ImmutableHashSet_1.HashBucketByRefEqualityComparer.cs" />
+    <Compile Include="System\Collections\Immutable\IStrongEnumerable_2.cs" />
+    <Compile Include="System\Collections\Immutable\IStrongEnumerator_1.cs" />
+    <Compile Include="System\Collections\Immutable\IOrderedCollection.cs" />
+    <Compile Include="System\Collections\Immutable\ImmutableArray.cs" />
+    <Compile Include="System\Collections\Immutable\ImmutableArray_1.Builder.cs" />
+    <Compile Include="System\Collections\Immutable\ImmutableArray_1.Builder.DebuggerProxy.cs" />
+    <Compile Include="System\Collections\Immutable\ImmutableArray_1.Enumerator.cs" />
+    <Compile Include="System\Collections\Immutable\ImmutableArray_1.cs" />
+    <Compile Include="System\Collections\Immutable\ImmutableArray_1.Minimal.cs" />
+    <Compile Include="System\Collections\Immutable\ImmutableDictionary.cs" />
+    <Compile Include="System\Collections\Immutable\ImmutableDictionary_2.Builder.cs" />
+    <Compile Include="System\Collections\Immutable\ImmutableDictionary_2.Comparers.cs" />
+    <Compile Include="System\Collections\Immutable\ImmutableDictionary_2.Enumerator.cs" />
+    <Compile Include="System\Collections\Immutable\ImmutableDictionary_2.HashBucket.cs" />
+    <Compile Include="System\Collections\Immutable\ImmutableDictionary_2.MutationInput.cs" />
+    <Compile Include="System\Collections\Immutable\ImmutableDictionary_2.MutationResult.cs" />
+    <Compile Include="System\Collections\Immutable\ImmutableDictionary_2.cs" />
+    <Compile Include="System\Collections\Immutable\ImmutableEnumerableDebuggerProxy.cs" />
+    <Compile Include="System\Collections\Immutable\ImmutableExtensions.cs" />
+    <Compile Include="System\Collections\Immutable\ImmutableExtensions.Minimal.cs" />
+    <Compile Include="System\Collections\Immutable\ImmutableHashSet.cs" />
+    <Compile Include="System\Collections\Immutable\ImmutableHashSet_1.Builder.cs" />
+    <Compile Include="System\Collections\Immutable\ImmutableHashSet_1.Enumerator.cs" />
+    <Compile Include="System\Collections\Immutable\ImmutableHashSet_1.HashBucket.cs" />
+    <Compile Include="System\Collections\Immutable\ImmutableHashSet_1.MutationInput.cs" />
+    <Compile Include="System\Collections\Immutable\ImmutableHashSet_1.MutationResult.cs" />
+    <Compile Include="System\Collections\Immutable\ImmutableHashSet_1.NodeEnumerable.cs" />
+    <Compile Include="System\Collections\Immutable\ImmutableHashSet_1.cs" />
+    <Compile Include="System\Collections\Immutable\ImmutableInterlocked.cs" />
+    <Compile Include="System\Collections\Immutable\ImmutableList.cs" />
+    <Compile Include="System\Collections\Immutable\ImmutableList_1.Builder.cs" />
+    <Compile Include="System\Collections\Immutable\ImmutableList_1.cs" />
+    <Compile Include="System\Collections\Immutable\ImmutableList_1.Enumerator.cs" />
+    <Compile Include="System\Collections\Immutable\ImmutableList_1.Node.cs" />
+    <Compile Include="System\Collections\Immutable\ImmutableQueue.cs" />
+    <Compile Include="System\Collections\Immutable\ImmutableQueue_1.cs" />
+    <Compile Include="System\Collections\Immutable\ImmutableQueue_1.Enumerator.cs" />
+    <Compile Include="System\Collections\Immutable\ImmutableSortedDictionary.cs" />
+    <Compile Include="System\Collections\Immutable\ImmutableSortedDictionary_2.Builder.cs" />
+    <Compile Include="System\Collections\Immutable\ImmutableSortedDictionary_2.cs" />
+    <Compile Include="System\Collections\Immutable\ImmutableSortedDictionary_2.Enumerator.cs" />
+    <Compile Include="System\Collections\Immutable\ImmutableSortedDictionary_2.Node.cs" />
+    <Compile Include="System\Collections\Immutable\ImmutableSortedSet.cs" />
+    <Compile Include="System\Collections\Immutable\ImmutableSortedSet_1.Builder.cs" />
+    <Compile Include="System\Collections\Immutable\ImmutableSortedSet_1.Builder.DebuggerProxy.cs" />
+    <Compile Include="System\Collections\Immutable\ImmutableSortedSet_1.cs" />
+    <Compile Include="System\Collections\Immutable\ImmutableSortedSet_1.Enumerator.cs" />
+    <Compile Include="System\Collections\Immutable\ImmutableSortedSet_1.Node.cs" />
+    <Compile Include="System\Collections\Immutable\ImmutableStack.cs" />
+    <Compile Include="System\Collections\Immutable\ImmutableStack_1.cs" />
+    <Compile Include="System\Collections\Immutable\ImmutableStack_1.Enumerator.cs" />
+    <Compile Include="System\Collections\Immutable\KeysOrValuesCollectionAccessor.cs" />
+    <Compile Include="System\Collections\Immutable\RefAsValueType.cs" />
+    <Compile Include="System\Collections\Immutable\SecureObjectPool.cs" />
+    <Compile Include="System\Collections\Immutable\SortedInt32KeyNode.cs" />
+    <Compile Include="System\Collections\Immutable\SortedInt32KeyNode.Enumerator.cs" />
+    <Compile Include="System\Linq\ImmutableArrayExtensions.cs" />
+    <Compile Include="Validation\Requires.cs" />
+    <Compile Include="Validation\ValidatedNotNullAttribute.cs" />
+    <Compile Include="AV.cs" />
+    <Compile Include="$(CommonPath)/System/Runtime/Versioning/NonVersionableAttribute.cs" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(MSBuildExtensionsPath)\MSBuild.Community.Tasks.Targets" />
+  <Import Project="$(MSBuildExtensionsPath)\resources.targets" />
+  <Target Name="BeforeBuild">
+    <PropertyGroup Condition=" '$(VersionNumber)' == '' ">
+      <VersionNumber>2.0.0.0</VersionNumber>
+    </PropertyGroup>
+    <AssemblyInfo CodeLanguage="C#" OutputFile="AV.cs" AssemblyVersion="$(VersionNumber)" AssemblyFileVersion="$(VersionNumber)" />
+  </Target>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+  </ItemGroup>
+</Project>

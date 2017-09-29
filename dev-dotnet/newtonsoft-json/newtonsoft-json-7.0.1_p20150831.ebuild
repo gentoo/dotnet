@@ -21,7 +21,7 @@ HOMEPAGE="https://github.com/JamesNK/${NAME}"
 
 EGIT_COMMIT="05710874cd61adabfb635085b1b45cf31882df3d"
 SRC_URI="${HOMEPAGE}/archive/${EGIT_COMMIT}.zip -> ${P}.zip
-	mirror://gentoo/mono.snk.bz2"
+	https://github.com/mono/mono/raw/master/mcs/class/mono.snk"
 S="${WORKDIR}/${NAME}-${EGIT_COMMIT}"
 
 SLOT="0"
