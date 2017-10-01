@@ -21,7 +21,7 @@ SRC_URI="${HOMEPAGE}/archive/${EGIT_COMMIT}.tar.gz -> ${NAME}-${PV}.tar.gz
 S="${WORKDIR}/${NAME}-${EGIT_COMMIT}"
 
 DESCRIPTION="C# compiler with rich code analysis APIs"
-LICENSE="Apache2.0" # https://github.com/dotnet/roslyn/blob/master/License.txt
+LICENSE="Apache-2.0" # https://github.com/dotnet/roslyn/blob/master/License.txt
 
 IUSE="+${USE_DOTNET} +debug developer doc"
 

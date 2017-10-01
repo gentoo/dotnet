@@ -2,6 +2,8 @@
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=6
+KEYWORDS="~amd64 ~x86"
+
 USE_DOTNET="net45"
 
 inherit dotnet eutils gac
@@ -18,7 +20,6 @@ S=${WORKDIR}/nuget-Release-${PV}-MonoDevelop
 LICENSE="Apache-2.0"
 SLOT="0"
 
-KEYWORDS="~amd64 ~x86 ~ppc"
 IUSE=""
 
 # Mask 3.2.0 because of mcs compiler bug : http://stackoverflow.com/a/17926731/238232

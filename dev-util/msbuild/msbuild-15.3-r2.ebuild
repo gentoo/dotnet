@@ -20,7 +20,7 @@ SRC_URI="https://github.com/${GITHUB_ACCOUNT}/${GITHUB_PROJECTNAME}/archive/${EG
 S="${WORKDIR}/${GITHUB_PROJECTNAME}-${EGIT_COMMIT}"
 
 HOMEPAGE="https://docs.microsoft.com/visualstudio/msbuild/msbuild"
-DESCRIPTION="Microsoft Build Engine (MSBuild) is an XML-based platform for building applications"
+DESCRIPTION="Microsoft Build Engine (MSBuild), XML-based platform for building applications"
 LICENSE="MIT" # https://github.com/mono/linux-packaging-msbuild/blob/master/LICENSE
 
 COMMON_DEPEND=">=dev-lang/mono-5.2.0.196

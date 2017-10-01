@@ -5,7 +5,7 @@
 EAPI=5
 inherit dotnet eutils
 
-DESCRIPTION="A simple, zero-config DLNA media server, that you can just fire up and be done with it."
+DESCRIPTION="A simple, zero-config DLNA media server, just fire up and be done with it."
 HOMEPAGE="https://github.com/nmaier/${PN}"
 SRC_URI="https://github.com/nmaier/${PN}/archive/v${PV}.tar.gz -> ${P}.tar.gz"
 

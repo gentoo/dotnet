@@ -16,7 +16,11 @@ net20 - .NET 2.0 Framework
 net35 - .NET 3.5 Framework
 net40 - .NET 4.0 Framework
 net45 - .NET 4.5 Framework
+net46 - .NET 4.6 Framework
 fake - F# Make build system
+
+#used by dotnet-cli
+heimdal - library for kerberos protocol
 
 nuget - Indicates that this .ebuild downloads binary from nuget website
 # IUSE=" +nuget" is it's usual form

@@ -14,7 +14,7 @@ USE_DOTNET="net40"
 
 inherit dotnet gac mpt-r20150903
 
-DESCRIPTION="C# framework for paths operations: Absolute, Drive Letter, UNC, Relative, prefixed"
+DESCRIPTION="C# framework for paths operations: Absolute, Drive Letter, UNC, Relative, prefix"
 LICENSE="MIT"
 NAME="NDepend.Path"
 HOMEPAGE="https://github.com/psmacchia/${NAME}"
