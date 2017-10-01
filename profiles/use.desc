@@ -1,17 +1,38 @@
 # Copyright 1999-2017 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
+# .Tasks-files are used to describe build tasks which implements ITask interface
+# these tasks files should be installed into different locations depending from choosen build system
+# either msbuild or xbuild. For some period of time there should be 2 use flags:
+msbuild - for .Tasks which should be used from msbuild
+xbuild - for .Tasks which should be used from msbuild
+# monodevelop and mono packages may also contain support for these USE-flags (but doesn't have yet)
+
+fake - F# Make build system
+roslyn - modern C# to CIL compiler
+
+# platforms are set of .dll files (assemblies)
 net20 - .NET 2.0 Framework
 net35 - .NET 3.5 Framework
 net40 - .NET 4.0 Framework
 net45 - .NET 4.5 Framework
+net46 - .NET 4.6 Framework
 fake - F# Make build system
 
-nuget - Grab binary from nuget
-# is nuget use necessary now, when we have source-compiled version of nuget from ebuild?
+#used by dotnet-cli
+heimdal - library for kerberos protocol
+
+nuget - Indicates that this .ebuild downloads binary from nuget website
+# IUSE=" +nuget" is it's usual form
+# the command
+#     equery hasuse debug
+# should show all .ebuilds which should be rewritten according to gentoo philosophy
 
 gac - register library assemblies in the gac (where ebuild requests that)
+machine - register ADO .NET data provider in the machine.config (where ebuild requests that)
 pkg-config - install .pc file
+debug - build Debug configuration instead of Release default
+developer - create .pdb files or .mdb files (depending on build toolchain used)
 nupkg - build binary package for local repository
 machine - register ADO .NET data provider in the machine.config (where ebuild requests that)
 developer - create .mdb files

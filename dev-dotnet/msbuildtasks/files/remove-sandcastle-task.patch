@@ -1,0 +1,31 @@
+diff --git a/Source/MSBuild.Community.Tasks/MSBuild.Community.Tasks.csproj b/Source/MSBuild.Community.Tasks/MSBuild.Community.Tasks.csproj
+index dc2af9e..7461007 100644
+--- a/Source/MSBuild.Community.Tasks/MSBuild.Community.Tasks.csproj
++++ b/Source/MSBuild.Community.Tasks/MSBuild.Community.Tasks.csproj
+@@ -137,26 +137,6 @@
+     <Compile Include="NUnit3.cs" />
+     <Compile Include="PathUtil.cs" />
+     <Compile Include="Regex\RegexCompiler.cs" />
+-    <Compile Include="Sandcastle\BuildAssembler.cs">
+-      <SubType>Code</SubType>
+-    </Compile>
+-    <Compile Include="Sandcastle\ChmBuilder.cs">
+-      <SubType>Code</SubType>
+-    </Compile>
+-    <Compile Include="Sandcastle\DBCSFix.cs" />
+-    <Compile Include="Sandcastle\MRefBuilder.cs">
+-      <SubType>Code</SubType>
+-    </Compile>
+-    <Compile Include="Sandcastle\Sandcastle.cs">
+-      <SubType>Code</SubType>
+-    </Compile>
+-    <Compile Include="Sandcastle\SandcastleEnviroment.cs" />
+-    <Compile Include="Sandcastle\SandcastleToolBase.cs">
+-      <SubType>Code</SubType>
+-    </Compile>
+-    <Compile Include="Sandcastle\XslTransform.cs">
+-      <SubType>Code</SubType>
+-    </Compile>
+     <Compile Include="Services\FileSystem.cs" />
+     <Compile Include="GacUtil.cs" />
+     <Compile Include="JavaScript\JavaScriptCompressor.cs">

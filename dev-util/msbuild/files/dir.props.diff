@@ -1,0 +1,13 @@
+diff --git a/dir.props b/dir.props
+index 9f9e816..022a9ca 100644
+--- a/dir.props
++++ b/dir.props
+@@ -407,7 +407,7 @@
+     <TestWorkingDir>$(TestDeploymentDir)</TestWorkingDir>
+ 
+     <!-- Output path for helper tasks that we build for our own build process (e.g. localization tasks). Tasks should be imported from this property -->
+-    <BuildBinDir>$([System.IO.Path]::Combine($(ProjectDir), "build", "bin", $(RelativeOutputPathWithConfig), "Output"))$([System.IO.Path]::DirectorySeparatorChar)</BuildBinDir>
++    <BuildBinDir>$([System.IO.Path]::Combine($([System.IO.Path]::Combine($(ProjectDir), "build")), "bin", $(RelativeOutputPathWithConfig), "Output"))$([System.IO.Path]::DirectorySeparatorChar)</BuildBinDir>
+   </PropertyGroup>
+ 
+   <PropertyGroup>

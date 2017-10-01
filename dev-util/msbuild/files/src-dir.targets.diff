@@ -1,0 +1,20 @@
+diff --git a/src/dir.targets b/src/dir.targets
+index c65518b..dc9ce44 100644
+--- a/src/dir.targets
++++ b/src/dir.targets
+@@ -112,6 +112,7 @@
+ 
+   <!-- Taken from Microsoft.VisualStudio.SDK.EmbedInteropTypes NuGet package which tries to fix this issue
+        (but doesn't include this assembly in their list).  -->
++<!--
+   <Target Name="LinkVSEmbeddableAssemblies" DependsOnTargets="ResolveReferences" AfterTargets="ResolveReferences">
+     <ItemGroup>
+       <ReferencePath Condition="'%(FileName)' == 'Microsoft.VisualStudio.Setup.Configuration.Interop'">
+@@ -119,6 +120,7 @@
+       </ReferencePath>
+     </ItemGroup>
+   </Target>
++-->
+ 
+   <!-- copied from Microsoft.Common.CurrentVersion.targets and modified to force anycpu -->
+   <!-- remove when https://github.com/Microsoft/msbuild/issues/1588 is done-->

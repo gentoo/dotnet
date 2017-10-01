@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
+    <ProjectGuid>{23C9FD0E-70C5-4F1F-B08A-D2774240FB51}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <AssemblyName>MSBuild</AssemblyName>
+    <OutputPath>bin\$(Configuration)</OutputPath>
+    <AppConfig>app.config</AppConfig>
+    <ApplicationManifest>MSBuild.exe.manifest</ApplicationManifest>
+    <ApplicationIcon>MSBuild.ico</ApplicationIcon>
+    <RootNamespace>Microsoft.Build.CommandLine</RootNamespace>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <LargeAddressAware>true</LargeAddressAware>
+    <WarningLevel>4</WarningLevel>
+    <DefineConstants>FEATURE_ASSEMBLY_LOADFROM;STANDALONEBUILD;FEATURE_APPDOMAIN;FEATURE_OSVERSION;FEATURE_APPDOMAIN;FEATURE_APPDOMAIN_UNHANDLED_EXCEPTION</DefineConstants>
+  </PropertyGroup>
+  <!-- Default configurations to help VS understand the configurations -->
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <Optimize>false</Optimize>
+    <DefineConstants>$(DefineConstants);DEBUG</DefineConstants>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <Optimize>true</Optimize>
+  </PropertyGroup>
+  <ItemGroup>
+    <None Include="app.config">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="app.amd64.config">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="MSBuild.exe.manifest" />
+    <!-- This is to enable CodeMarkers in MSBuild.exe -->
+    <!-- Win32 RC Files -->
+    <RCResourceFile Include="native.rc" />
+    <!-- Resource Files -->
+    <EmbeddedResource Include="Resources\Strings.resx">
+      <LogicalName>$(AssemblyName).Strings.resources</LogicalName>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\Shared\Resources\Strings.shared.resx">
+      <Link>Resources\Strings.shared.resx</Link>
+      <LogicalName>$(AssemblyName).Strings.shared.resources</LogicalName>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <!-- Content Files -->
+    <Content Include="MSBuild.ico" />
+    <Content Include="MSBuild.rsp">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="MSBuild.runtimeconfig.json" Condition="'$(NetCoreBuild)' == 'true'">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <None Include="Microsoft.Build.CommonTypes.xsd">
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Microsoft.Build.Core.xsd">
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Condition="'$(NetCoreBuild)' == 'true'" Include="..\Shared\Compat\SafeHandleZeroOrMinusOneIsInvalid.cs">
+      <Link>Compat\SafeHandleZeroOrMinusOneIsInvalid.cs</Link>
+    </Compile>
+    <Compile Include="..\Shared\BuildEnvironmentHelper.cs">
+      <Link>BuildEnvironmentHelper.cs</Link>
+    </Compile>
+    <Compile Include="..\Shared\FxCopExclusions\Microsoft.Build.Shared.Suppressions.cs" />
+    <Compile Include="..\Shared\AssemblyNameComparer.cs">
+      <Link>AssemblyNameComparer.cs</Link>
+    </Compile>
+    <Compile Include="..\Shared\CollectionHelpers.cs" />
+    <Compile Include="..\Shared\Constants.cs">
+    </Compile>
+    <Compile Include="..\Shared\FileDelegates.cs">
+      <Link>FileDelegates.cs</Link>
+    </Compile>
+    <Compile Include="..\Shared\FileUtilities.cs">
+      <Link>FileUtilities.cs</Link>
+    </Compile>
+    <Compile Include="..\Shared\FileUtilities.GetFolderPath.cs">
+      <Link>FileUtilities.GetFolderPath.cs</Link>
+    </Compile>
+    <Compile Include="..\Shared\FileUtilitiesRegex.cs">
+      <Link>FileUtilitiesRegex.cs</Link>
+    </Compile>
+    <Compile Include="..\Shared\QuotingUtilities.cs" />
+    <Compile Include="..\Shared\RegisteredTaskObjectCacheBase.cs">
+      <Link>RegisteredTaskObjectCacheBase.cs</Link>
+    </Compile>
+    <Compile Include="..\Shared\ResourceUtilities.cs" />
+    <Compile Include="..\Shared\EscapingUtilities.cs" />
+    <Compile Include="..\Shared\ErrorUtilities.cs" />
+    <Compile Include="..\Shared\Modifiers.cs" />
+    <Compile Include="..\Shared\BufferedReadStream.cs" />
+    <Compile Include="..\Shared\CopyOnWriteDictionary.cs" />
+    <Compile Include="..\Shared\HybridDictionary.cs" />
+    <Compile Include="..\Shared\IKeyed.cs" />
+    <Compile Include="..\Shared\MSBuildNameIgnoreCaseComparer.cs" />
+    <Compile Include="..\Shared\ReadOnlyEmptyCollection.cs" />
+    <Compile Include="..\Shared\ReadOnlyEmptyDictionary.cs" />
+    <!--Compile Include="..\Shared\ReadOnlyEmptyList.cs" /-->
+    <Compile Include="..\Shared\NativeMethodsShared.cs" />
+    <Compile Include="..\Shared\AssemblyUtilities.cs" />
+    <Compile Include="..\Shared\ExceptionHandling.cs" />
+    <Compile Include="..\Shared\InternalErrorException.cs" />
+    <Compile Include="..\Shared\EventArgsFormatting.cs" />
+    <Compile Include="..\Shared\TempFileUtilities.cs" />
+    <Compile Include="..\Shared\VisualStudioLocationHelper.cs" />
+    <Compile Include="..\Shared\XMakeAttributes.cs" />
+    <Compile Include="..\Shared\INodeEndpoint.cs" />
+    <Compile Include="..\Shared\NodeEndpointOutOfProcBase.cs" />
+    <Compile Include="..\Shared\INodePacket.cs" />
+    <Compile Include="..\Shared\LogMessagePacketBase.cs" />
+    <Compile Include="..\Shared\INodePacketFactory.cs" />
+    <Compile Include="..\Shared\NodePacketFactory.cs" />
+    <Compile Include="..\Shared\INodePacketHandler.cs" />
+    <Compile Include="..\Shared\INodePacketTranslatable.cs" />
+    <Compile Include="..\Shared\INodePacketTranslator.cs" />
+    <Compile Include="..\Shared\NodePacketTranslator.cs" />
+    <Compile Include="..\Shared\CommunicationsUtilities.cs" />
+    <Compile Include="..\Shared\InterningBinaryReader.cs" />
+    <Compile Include="..\Shared\OpportunisticIntern.cs" />
+    <Compile Include="..\Shared\TaskHostConfiguration.cs" />
+    <Compile Include="..\Shared\TaskHostTaskComplete.cs" />
+    <Compile Include="..\Shared\OutOfProcTaskHostTaskResult.cs" />
+    <Compile Include="..\Shared\TaskHostTaskCancelled.cs" />
+    <Compile Include="..\Shared\TaskLoader.cs" />
+    <Compile Include="..\Shared\TypeLoader.cs" />
+    <Compile Include="..\Shared\LoadedType.cs" />
+    <Compile Include="..\Shared\AssemblyLoadInfo.cs" />
+    <Compile Include="..\Shared\NodeBuildComplete.cs" />
+    <Compile Include="..\Shared\NodeShutdown.cs" />
+    <Compile Include="..\Shared\TaskParameter.cs" />
+    <Compile Include="..\Shared\TaskParameterTypeVerifier.cs" />
+    <Compile Include="..\Shared\TaskEngineAssemblyResolver.cs" />
+    <Compile Include="..\Shared\Traits.cs">
+      <Link>SharedTraits.cs</Link>
+    </Compile>
+    <Compile Include="..\Shared\AssemblyNameExtension.cs" />
+    <Compile Include="..\Shared\ThreadPoolExtensions.cs" />
+    <Compile Include="..\Shared\StringBuilderCache.cs" />
+    <Compile Include="AssemblyInfo.cs" />
+    <Compile Include="AssemblyResources.cs" />
+    <Compile Include="CommandLineSwitches.cs" />
+    <Compile Include="CommandLineSwitchException.cs" />
+    <Compile Include="..\Shared\CoreCLRAssemblyLoader.cs" Condition="'$(NetCoreBuild)'=='true'" />
+    <Compile Include="DistributedLoggerRecord.cs" />
+    <Compile Include="FxCopExclusions\MsBuild.Suppressions.cs" />
+    <Compile Include="InitializationException.cs" />
+    <Compile Include="NodeEndpointOutOfProcTaskHost.cs" />
+    <Compile Include="LogMessagePacket.cs" />
+    <Compile Include="ProjectSchemaValidationHandler.cs" />
+    <Compile Include="OutOfProcTaskHostNode.cs" />
+    <Compile Include="OutOfProcTaskAppDomainWrapperBase.cs" />
+    <Compile Include="OutOfProcTaskAppDomainWrapper.cs" />
+    <Compile Include="XMake.cs" />
+    <Compile Include="AV.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Build\mono-Microsoft.Build.csproj">
+      <Project>{16CD7635-7CF4-4C62-A77B-CF87D0F09A58}</Project>
+      <Name>Microsoft.Build</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.Build.Framework, Version=15.3.0.0, Culture=neutral, PublicKeyToken=0738eb9f132ed756">
+      <Package>msbuild-tasks-api-15.3</Package>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Reflection.Metadata, Version=2.0.0.0, Culture=neutral, PublicKeyToken=0738eb9f132ed756">
+      <Package>system-reflection-metadata-2.0.0_pre</Package>
+    </Reference>
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(MSBuildExtensionsPath)\MSBuild.Community.Tasks.Targets" />
+  <Target Name="BeforeBuild">
+    <PropertyGroup Condition=" '$(VersionNumber)' == '' ">
+      <VersionNumber>15.3</VersionNumber>
+    </PropertyGroup>
+    <AssemblyInfo CodeLanguage="C#" OutputFile="AV.cs" AssemblyVersion="$(VersionNumber)" AssemblyFileVersion="$(VersionNumber)" />
+  </Target>
+</Project>

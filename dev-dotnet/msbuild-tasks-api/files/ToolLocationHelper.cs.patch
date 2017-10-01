@@ -1,0 +1,38 @@
+diff --git a/src/Utilities/ToolLocationHelper.cs b/src/Utilities/ToolLocationHelper.cs
+index 608d0e8..57a1071 100644
+--- a/src/Utilities/ToolLocationHelper.cs
++++ b/src/Utilities/ToolLocationHelper.cs
+@@ -177,6 +177,33 @@ namespace Microsoft.Build.Utilities
+     /// </summary>
+     public static class ToolLocationHelper
+     {
++	static string lib_mono_dir;
++
++	static ToolLocationHelper ()
++	{
++		string assemblyLocation;
++		DirectoryInfo t1, t2;
++
++		// /usr/local/lib/mono/1.0
++		assemblyLocation = Path.GetDirectoryName (typeof (object).Assembly.Location);
++		t1 = new DirectoryInfo (assemblyLocation);
++
++		// usr/local/lib/mono
++		t2 = t1.Parent;
++
++		lib_mono_dir = t2.FullName;
++	}
++
++	public static string GetPathToDotNetFrameworkBinFile (string fileName)
++	{
++		string dir = Path.Combine(Directory.GetParent(Directory.GetParent(lib_mono_dir).FullName).FullName, "bin");
++		string file = Path.Combine (dir, fileName);
++		if (File.Exists (file))
++			return file;
++
++            return null;
++        }
++
+         /// <summary>
+         /// Cache the results of reading the redist list so that we do not have to read the redist list over and over again to get the chains.
+         /// </summary>

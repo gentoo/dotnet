@@ -1,0 +1,17 @@
+diff --git a/dir.targets b/dir.targets
+index 599348e..c17d89d 100644
+--- a/dir.targets
++++ b/dir.targets
+@@ -18,10 +18,10 @@
+   <Target Name="EnsureDependenciesDeployed"
+           Condition="'$(DeployDependencies)' != 'false'"
+           AfterTargets="Build">
+-    <MSBuild Projects="$(RepoRoot)\targets\DeployDependencies.proj"
++    <!--MSBuild Projects="$(RepoRoot)\targets\DeployDependencies.proj"
+              Targets="DeployDependencies"
+              BuildInParallel="true"
+-    />
++    /-->
+   </Target>
+ 
+   <Target Name="EnsurePrerequisitesCopied"

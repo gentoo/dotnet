@@ -4,6 +4,8 @@
 
 EAPI=6
 
+KEYWORDS="~amd64 ~x86"
+
 # debug = debug configuration (symbols and defines for debugging)
 # developer = generate symbols information (to view line numbers in stack traces, either in debug or release configuration)
 # test = allow NUnit tests to run
@@ -30,7 +32,6 @@ DESCRIPTION="Json.NET is a popular high-performance JSON framework for .NET"
 LICENSE="MIT"
 LICENSE_URL="https://raw.github.com/JamesNK/Newtonsoft.Json/master/LICENSE.md"
 
-KEYWORDS="~amd64 ~x86"
 COMMON_DEPENDENCIES="|| ( >=dev-lang/mono-4.2 <dev-lang/mono-9999 )"
 RDEPEND="${COMMON_DEPENDENCIES}
 "
