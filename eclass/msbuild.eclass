@@ -19,10 +19,6 @@ esac
 IUSE+=" debug developer"
 DEPEND+=" dev-util/msbuild"
 
-# >=mono-0.92 versions using mcs -pkg:foo-sharp require shared memory, so we set the
-# shared dir to ${T} so that ${T}/.wapi can be used during the install process.
-export MONO_SHARED_DIR="${T}"
-
 # Monodevelop-using applications need this to be set or they will try to create config
 # files in the user's ~ dir.
 export XDG_CONFIG_HOME="${T}"
@@ -36,7 +32,7 @@ export LC_ALL=C
 # @DESCRIPTION: run msbuild with given parameters
 emsbuild_raw() {
 	elog """$@"""
-	msbuild /p:MSBuildToolsPath=/usr/lib/mono/xbuild "$@" || die
+	msbuild "$@" || die
 }
 
 # @FUNCTION: emsbuild
