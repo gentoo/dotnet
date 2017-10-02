@@ -45,11 +45,12 @@ egacinstall() {
 # @DESCRIPTION:  install package to GAC
 egacadd() {
 	if use gac; then
-		use !prefix && has "${EAPI:-0}" 0 1 2 && ED="${D}"
-		gacutil -i "${1}" \
-			-root "${ED}"/usr/$(get_libdir) \
-			-gacdir /usr/$(get_libdir) \
-			-package ${2:-${GACPN:-${PN}}} \
+		GACROOT="${PREFIX}/usr/$(get_libdir)"
+		GACDIR="/usr/$(get_libdir)/mono/gac"
+		einfo gacutil -i "${PREFIX}/${1}" -root "${GACROOT}" -gacdir "${GACDIR}"
+		gacutil -i "${PREFIX}/${1}" \
+			-root ${GACROOT} \
+			-gacdir ${GACDIR} \
 			|| die "installing ${1} into the Global Assembly Cache failed"
 	fi
 }
@@ -58,11 +59,12 @@ egacadd() {
 # @DESCRIPTION:  remove package from GAC
 egacdel() {
 	if use gac; then
-		use !prefix && has "${EAPI:-0}" 0 1 2 && ED="${D}"
+		GACROOT="${PREFIX}/usr/$(get_libdir)"
+		GACDIR="/usr/$(get_libdir)/mono/gac"
+		einfo gacutil -u "${PREFIX}/${1}" -root "${GACROOT}" -gacdir "${GACDIR}"
 		gacutil -u "${1}" \
-			-root "${ED}"/usr/$(get_libdir) \
-			-gacdir /usr/$(get_libdir) \
-			-package ${2:-${GACPN:-${PN}}}
+			-root ${GACROOT} \
+			-gacdir ${GACDIR}
 		# don't die
 	fi
 }
