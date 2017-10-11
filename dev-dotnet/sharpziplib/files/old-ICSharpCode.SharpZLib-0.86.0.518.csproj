@@ -26,6 +26,18 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="**/*.cs" />
+    <Compile Include="AssemblyVersion.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(MSBuildExtensionsPath)\MSBuild.Community.Tasks.Targets" />
+  <Target Name="BeforeBuild">
+		<PropertyGroup Condition=" '$(VersionNumber)' == '' ">
+		    <VersionNumber>1.0.0.0</VersionNumber>
+		</PropertyGroup>
+		<AssemblyInfo CodeLanguage="C#"
+			OutputFile="AssemblyVersion.cs" 
+            AssemblyVersion="$(VersionNumber)" 
+            AssemblyFileVersion="$(VersionNumber)"
+		/>
+  </Target>
 </Project>

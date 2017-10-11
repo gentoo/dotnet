@@ -49,6 +49,7 @@ function output_filename ( ) {
 
 src_prepare() {
 	cp "${FILESDIR}/${METAFILE_TO_BUILD}-${PV}.csproj" "${S}/${PATH_TO_PROJ}/${METAFILE_TO_BUILD}.csproj" || die
+	sed -i "/Version/d" "${S}/${PATH_TO_PROJ}/AssemblyInfo.cs" || die
 	eapply_user
 }
 

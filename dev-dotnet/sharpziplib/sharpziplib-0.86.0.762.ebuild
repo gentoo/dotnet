@@ -23,7 +23,9 @@ S="${WORKDIR}/${NAME}-${EGIT_COMMIT}"
 DESCRIPTION="Zip, GZip, Tar and BZip2 library written entirely in C# for the .NET platform"
 LICENSE="MIT" # Actually not, it is GPL with exception - http://icsharpcode.github.io/SharpZipLib/
 
-COMMON_DEPENDENCIES="|| ( >=dev-lang/mono-5.4.0.167 <dev-lang/mono-9999 )"
+#	dev-dotnet/system-security-cryptography-algorithms
+COMMON_DEPENDENCIES="|| ( >=dev-lang/mono-5.4.0.167 <dev-lang/mono-9999 )
+	"
 RDEPEND="${COMMON_DEPENDENCIES}
 "
 DEPEND="${COMMON_DEPENDENCIES}
