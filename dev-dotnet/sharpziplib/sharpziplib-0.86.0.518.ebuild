@@ -3,29 +3,30 @@
 # $Id$
 
 EAPI=6
-inherit mono-env gac nupkg
+KEYWORDS="~amd64 ~ppc ~x86"
+RESTRICT="mirror"
+
+SLOT="0"
+
+USE_DOTNET="net45"
+inherit msbuild gac
+IUSE="+${USE_DOTNET}"
 
 NAME="SharpZipLib"
 HOMEPAGE="https://github.com/icsharpcode/${NAME}"
 
-EGIT_COMMIT="e01215507cf25a5978a0bd850c9e67dbabf515b7"
-SRC_URI="${HOMEPAGE}/archive/${EGIT_COMMIT}.zip -> ${PF}.zip"
+EGIT_COMMIT="cfc69a68fefbc5858fe70b35f7b69fc505b8c2d6"
+SRC_URI="${HOMEPAGE}/archive/${EGIT_COMMIT}.tar.gz -> ${PF}.tar.gz"
 S="${WORKDIR}/${NAME}-${EGIT_COMMIT}"
-
-SLOT="0"
 
 DESCRIPTION="Zip, GZip, Tar and BZip2 library written entirely in C# for the .NET platform"
 LICENSE="MIT" # Actually not, it is GPL with exception - http://icsharpcode.github.io/SharpZipLib/
 
-KEYWORDS="~amd64 ~ppc ~x86"
 COMMON_DEPENDENCIES="|| ( >=dev-lang/mono-4.2 <dev-lang/mono-9999 )"
 RDEPEND="${COMMON_DEPENDENCIES}
 "
 DEPEND="${COMMON_DEPENDENCIES}
 "
-
-USE_DOTNET="net45"
-IUSE="${USE_DOTNET} gac nupkg"
 
 #METAFILETOBUILD=SharpZipAll.sln
 METAFILETOBUILD=ICSharpCode.SharpZLib.sln
