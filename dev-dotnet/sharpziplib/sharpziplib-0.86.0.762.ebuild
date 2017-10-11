@@ -28,19 +28,23 @@ RDEPEND="${COMMON_DEPENDENCIES}
 DEPEND="${COMMON_DEPENDENCIES}
 "
 
-#METAFILETOBUILD=SharpZipAll.sln
-METAFILETOBUILD=ICSharpCode.SharpZLib.sln
+METAFILETOBUILD=old-ICSharpCode.SharpZLib
+PROJECT_DIRECTORY="src"
+ASSEMBLY_NAME="ICSharpCode.SharpZLib"
 
-NUGET_PACKAGE_ID="SharpZipLib"
+function output_file ( ) {
+	local DIR=""
+	if use debug; then
+		DIR="Debug"
+	else
+		DIR="Release"
+	fi
+	echo "${PROJECT_DIRECTORY}/bin/${DIR}/${ASSEMBLY_NAME}.dll"
+}
 
 src_prepare() {
-	elog "${S}/${NUGET_PACKAGE_ID}"
-	sed "s/@Version@/${PV}/g" "${FILESDIR}/${NUGET_PACKAGE_ID}.nuspec" >"${S}/${NUGET_PACKAGE_ID}.nuspec" || die
-
-	epatch "${FILESDIR}/ICSharpCode.SharpZLib.csproj.patch"
-	epatch "${FILESDIR}/SharpZipLibTests.csproj.patch"
-
-	enuget_restore "${METAFILETOBUILD}"
+	cp "${FILESDIR}/${METAFILETOBUILD}-${PV}.csproj" "${S}/${PROJECT_DIRECTORY}/${METAFILETOBUILD}.csproj" || die
+	eapply_user
 }
 
 # SNK_FILENAME=ICSharpCode.SharpZipLib.key
@@ -48,20 +52,10 @@ src_prepare() {
 TOOLS_VERSION=4.0
 
 src_compile() {
-	exbuild_strong "${METAFILETOBUILD}"
-	enuspec "${NUGET_PACKAGE_ID}.nuspec"
+	emsbuild "${S}/${PROJECT_DIRECTORY}/${METAFILETOBUILD}.csproj"
 }
-
-# /usr/lib/mono/xbuild/12.0/bin/Microsoft.CSharp.targets
-# /usr/lib/mono/xbuild/14.0/bin/Microsoft.CSharp.targets
-# /usr/lib/mono/4.5/Microsoft.CSharp.targets
 
 src_install() {
-	FINAL_DLL=bin/ICSharpCode.SharpZipLib.dll
-
-	if use gac; then
-		egacinstall "${FINAL_DLL}"
-	fi
-
-	enupkg "${WORKDIR}/${NUGET_PACKAGE_ID}.${PV}.nupkg"
+	:;
 }
+
