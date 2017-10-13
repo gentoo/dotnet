@@ -16,102 +16,76 @@ SLOT="0"
 # gac = install into gac
 # pkg-config = register in pkg-config database
 USE_DOTNET="net45"
-IUSE="+{USE_DOTNET} debug developer test +nupkg +gac +pkg-config"
+inherit msbuild gac
+IUSE="+{USE_DOTNET}"
 
+NAME="irony"
+HOMEPAGE="https://github.com/daxnet/${NAME}"
 
-inherit versionator vcs-snapshot gac nupkg
+EGIT_COMMIT="ed2aa3ed74b53b1655a2b196d34a1bc20d4e6ce1"
+SRC_URI="${HOMEPAGE}/archive/${EGIT_COMMIT}.tar.gz -> ${PF}.tar.gz
+	https://github.com/mono/mono/raw/master/mcs/class/mono.snk"
+S="${WORKDIR}/${NAME}-${EGIT_COMMIT}"
 
-NAME=irony
-EHG_REVISION=09918247d378a0e3deedae2af563fa5f402530f9
-SRC_URI="http://download-codeplex.sec.s-msft.com/Download/SourceControlFileDownload.ashx?ProjectName=${NAME}&changeSetId=${EHG_REVISION}  -> ${PN}-${PV}.zip
-	mirror://gentoo/mono.snk.bz2"
+DESCRIPTION="parsing framework for C# on LALR(1)"
+LICENSE="MIT"
 
-# /var/tmp/portage/dev-dotnet/irony-framework-1.0.0_p20131212-r1/work/irony_09918247d378a0e3deedae2af563fa5f402530f9
-S="${WORKDIR}/${NAME}_${EHG_REVISION}"
+CDEPEND="|| ( >=dev-lang/mono-5.4.0.167 <dev-lang/mono-9999 )
+	"
 
-METAFILETOBUILD="Irony/010.Irony.2012.csproj"
+RDEPEND="${CDEPEND}
+	"
 
-src_unpack()
-{
-	default
-	# delete untrusted binaries
-	find "${S}" -iname "*.exe" -print -delete || die
-	find "${S}" -iname "*.dll" -print -delete || die
-	# Libraries/FastColoredTextBox/FastColoredTextBox.dll
+DEPEND="${CDEPEND}
+	"
+
+PROJECT_PATH="src/Irony"
+PROJECT_FILE=Irony
+PROJECT_OUT=Irony
+
+KEY2="${DISTDIR}/mono.snk"
+ASSEMBLY_VERSION="1.0.2017.0831"
+
+function output_filename ( ) {
+	local DIR=""
+	if use debug; then
+		DIR="Debug"
+	else
+		DIR="Release"
+	fi
+	echo "${PROJECT_PATH}/bin/${DIR}/${PROJECT_OUT}.dll"
 }
 
 src_prepare() {
-	default
-	einfo "patching project files"
-	eapply "${FILESDIR}/csproj.patch"
-	if ! use test ; then
-		einfo "removing unit tests from solution"
-	fi
-
-	cp "${FILESDIR}/${NUSPEC_FILE_NAME}" "${S}/${NUSPEC_FILE_NAME}" || die
-	epatch_nuspec_file "${S}/${NUSPEC_FILE_NAME}"
+	cp "${FILESDIR}/template.csproj" "${S}/${PROJECT_PATH}/${PROJECT_FILE}.csproj" || die
+	eapply_user
 }
-
-# PR 	Package revision, or r0 if no revision exists.
-NUSPEC_VERSION=$(get_version_component_range 1-3)"${PR//r/.}"
-ICON_URL=https://raw.githubusercontent.com/ArsenShnurkov/dotnet/irony-framework/dev-dotnet/irony-framework/files/irony.png
-NUSPEC_FILE_NAME="Irony.nuspec"
-NUSPEC_ID="Irony"
 
 src_compile() {
-	exbuild /p:SignAssembly=true "/p:AssemblyOriginatorKeyFile=${WORKDIR}/mono.snk" "${METAFILETOBUILD}"
-
-	# run nuget_pack
-	einfo ".nuspec version is ${NUSPEC_VERSION}"
-	enuspec -Prop "version=${NUSPEC_VERSION};package_iconUrl=${ICON_URL}" "${S}/${NUSPEC_FILE_NAME}"
-	# /var/tmp/portage/dev-dotnet/irony-framework-1.0.0_p20131212-r1/work/Irony.1.0.0.1.nupkg
-}
-
-epatch_nuspec_file()
-{
-	if use nupkg; then
-		if use debug; then
-			DIR="Debug"
-			FILES_STRING=`sed 's/[\/&]/\\\\&/g' <<-EOF || die "escaping replacement string characters"
-			  <files> <!-- https://docs.nuget.org/create/nuspec-reference -->
-			    <file src="Irony/bin/${DIR}/Irony.dll" target="lib\net45\" />
-			    <file src="Irony/bin/${DIR}/Irony.dll.mdb" target="lib\net45\" />
-			  </files>
-			EOF
-			`
-		else
-			DIR="Release"
-			FILES_STRING=`sed 's/[\/&]/\\\\&/g' <<-EOF || die "escaping replacement string characters"
-			  <files> <!-- https://docs.nuget.org/create/nuspec-reference -->
-			    <file src="Irony/bin/${DIR}/Irony.dll" target="lib\net45\" />
-			  </files>
-			EOF
-			`
-		fi
-		sed -i 's/<\/package>/'"${FILES_STRING//$'\n'/\\$'\n'}"'\n&/g' $1 || die "escaping line endings"
-	fi
+	emsbuild /p:SignAssembly=true /p:PublicSign=true "/p:AssemblyOriginatorKeyFile=${KEY2}" "/p:AssemblyName=${PROJECT_OUT}" "/p:ProjectType=Library" "/p:AssemblyVersion=${ASSEMBLY_VERSION}""${S}/${PROJECT_PATH}/${PROJECT_FILE}.csproj"
 }
 
 src_install() {
-	enupkg "${WORKDIR}/${NUSPEC_ID}.${NUSPEC_VERSION}.nupkg"
-
-	egacinstall "Irony/bin/${DIR}/Irony.dll"
-
-	einstall_pc_file "${PN}" "1.0" "Irony"
+	insinto "/gac"
+	doins "$(output_filename)"
 }
 
-LICENSE="MIT"
+pkg_preinst()
+{
+	echo mv "${D}/gac/${PROJECT_OUT}.dll" "${T}/${PROJECT_OUT}.dll"
+	mv "${D}/gac/${PROJECT_OUT}.dll" "${T}/${PROJECT_OUT}.dll" || die
+	echo rm -rf "${D}/gac"
+	rm -rf "${D}/gac" || die
+}
 
-COMMON_DEPEND=">=dev-lang/mono-4.0.2.5
-"
+pkg_postinst()
+{
+	egacadd "${T}/${PROJECT_OUT}.dll"
+	rm "${T}/${PROJECT_OUT}.dll" || die
+}
 
-RDEPEND="${COMMON_DEPEND}
-"
+pkg_prerm()
+{
+	egacdel "${PROJECT_OUT}, Version=${ASSEMBLY_VERSION}, Culture=neutral, PublicKeyToken=0738eb9f132ed756"
+}
 
-DEPEND="${COMMON_DEPEND}
-	test? ( dev-util/nunit:2[nupkg] )
-	virtual/pkgconfig
-"
-
-HOMEPAGE="https://irony.codeplex.com"
-DESCRIPTION="parsing framework for C# on LALR(1)"
