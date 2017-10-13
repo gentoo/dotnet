@@ -61,7 +61,7 @@ egacdel() {
 	if use gac; then
 		GACROOT="${PREFIX}/usr/$(get_libdir)"
 		GACDIR="/usr/$(get_libdir)/mono/gac"
-		einfo gacutil -u "${PREFIX}/${1}" -root "${GACROOT}" -gacdir "${GACDIR}"
+		einfo gacutil -u "${1}" -root "${GACROOT}" -gacdir "${GACDIR}"
 		gacutil -u "${1}" \
 			-root ${GACROOT} \
 			-gacdir ${GACDIR}

@@ -33,7 +33,7 @@ DEPEND="${CDEPEND}
 
 PROJECT1_PATH=Source/System.Management
 PROJECT1_NAME=System.Management
-PROJECT1_OUT=System.Management
+PROJECT1_OUT=System.Management.Automation
 
 PROJECT2_PATH=Source/Microsoft.PowerShell.Security
 PROJECT2_NAME=Microsoft.PowerShell.Security
@@ -52,6 +52,7 @@ PROJECT5_NAME=PashConsole
 PROJECT5_OUT=Pash
 
 src_prepare() {
+	sed -i "s/new Version(1, 0, 0, 0)/System.Reflection.Assembly.GetExecutingAssembly().GetName().Version/" Source/System.Management/Pash/Implementation/LocalHost.cs || die
 	sed -i "/Version/d" "${S}/${PROJECT1_PATH}/Properties/AssemblyInfo.cs" || die
 	sed -i "/Version/d" "${S}/${PROJECT2_PATH}/Properties/AssemblyInfo.cs" || die
 	sed -i "/Version/d" "${S}/${PROJECT3_PATH}/Properties/AssemblyInfo.cs" || die
@@ -84,10 +85,6 @@ src_prepare() {
 }
 
 src_compile() {
-	#emsbuild "/p:AssemblyName=${PROJECT1_OUT}" "${S}/${PROJECT1_PATH}/${PROJECT1_NAME}.csproj"
-	#emsbuild "/p:AssemblyName=${PROJECT2_OUT}" "${S}/${PROJECT2_PATH}/${PROJECT2_NAME}.csproj"
-	#emsbuild "/p:AssemblyName=${PROJECT3_OUT}" "${S}/${PROJECT3_PATH}/${PROJECT3_NAME}.csproj"
-	#emsbuild "/p:AssemblyName=${PROJECT4_OUT}" "${S}/${PROJECT4_PATH}/${PROJECT4_NAME}.csproj"
 	emsbuild "/p:VersionNumber=1.0.2016.606" "${S}/${PROJECT5_PATH}/${PROJECT5_NAME}.csproj"
 }
 

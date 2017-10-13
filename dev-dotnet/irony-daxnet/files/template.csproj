@@ -6,6 +6,7 @@
     <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
     <AssemblyName>$(AssemblyName)</AssemblyName>
     <OutputType>$(OutputType)</OutputType>
+    <RootNamespace>$(RootNamespace)</RootNamespace>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <OutputPath>bin\Debug</OutputPath>
@@ -26,8 +27,10 @@
     <!-- Reference -->
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="**/*.cs" />
-    <Compile Include="AssemblyVersion.cs" />
+    <Compile Include="**/*.cs" Exclude="AssemblyVersion.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="**/*.resx" />
   </ItemGroup>
   <ItemGroup>
     <!-- ProjectReference -->
@@ -39,9 +42,12 @@
       <VersionNumber>1.0.0.0</VersionNumber>
     </PropertyGroup>
     <AssemblyInfo CodeLanguage="C#"
-      OutputFile="AssemblyVersion.cs" 
+      OutputFile="$(MSBuildThisFileDirectory)/AssemblyVersion.cs" 
       AssemblyVersion="$(VersionNumber)" 
       AssemblyFileVersion="$(VersionNumber)"
     />
+    <CreateItem Include="$(MSBuildThisFileDirectory)/AssemblyVersion.cs">
+      <Output TaskParameter="Include" ItemName="Compile"/>
+    </CreateItem>
   </Target>
 </Project>
