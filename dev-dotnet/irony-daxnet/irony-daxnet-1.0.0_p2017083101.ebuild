@@ -40,7 +40,7 @@ DEPEND="${CDEPEND}
 	"
 
 PROJECT_PATH="src/Irony"
-PROJECT_FILE=Irony
+PROJECT_NAME=Irony
 PROJECT_OUT=Irony
 
 KEY2="${DISTDIR}/mono.snk"
@@ -57,12 +57,17 @@ function output_filename ( ) {
 }
 
 src_prepare() {
-	cp "${FILESDIR}/template.csproj" "${S}/${PROJECT_PATH}/${PROJECT_FILE}.csproj" || die
+	sed -i "/Version/d" "${S}/${PROJECT_PATH}/Properties/AssemblyInfo.cs" || die
+	cp "${FILESDIR}/template.csproj" "${S}/${PROJECT_PATH}/${PROJECT_NAME}.csproj" || die
+	sed -i 's#^.*-- Reference --.*$#&\n<Reference Include="System.Xml" />#' "${S}/${PROJECT_PATH}/${PROJECT_NAME}.csproj" || die
+	sed -i 's#^.*-- Reference --.*$#&\n<Reference Include="System.Numerics" />#' "${S}/${PROJECT_PATH}/${PROJECT_NAME}.csproj" || die
+	sed -i 's#^.*-- Reference --.*$#&\n<Reference Include="Microsoft.CSharp" />#' "${S}/${PROJECT_PATH}/${PROJECT_NAME}.csproj" || die
 	eapply_user
 }
 
 src_compile() {
-	emsbuild /p:SignAssembly=true /p:PublicSign=true "/p:AssemblyOriginatorKeyFile=${KEY2}" "/p:AssemblyName=${PROJECT_OUT}" "/p:ProjectType=Library" "/p:AssemblyVersion=${ASSEMBLY_VERSION}""${S}/${PROJECT_PATH}/${PROJECT_FILE}.csproj"
+	emsbuild /p:SignAssembly=true /p:PublicSign=true "/p:AssemblyOriginatorKeyFile=${KEY2}" "/p:OutputName=${PROJECT_OUT}" "/p:OutputType=Library" "/p:VersionNumber=${ASSEMBLY_VERSION}" "${S}/${PROJECT_PATH}/${PROJECT_NAME}.csproj"
+	sn -R "$(output_filename)" "${KEY2}" || die
 }
 
 src_install() {

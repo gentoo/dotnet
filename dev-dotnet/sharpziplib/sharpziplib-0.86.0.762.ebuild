@@ -24,11 +24,11 @@ DESCRIPTION="Zip, GZip, Tar and BZip2 library written entirely in C# for the .NE
 LICENSE="MIT" # Actually not, it is GPL with exception - http://icsharpcode.github.io/SharpZipLib/
 
 #	dev-dotnet/system-security-cryptography-algorithms
-COMMON_DEPENDENCIES="|| ( >=dev-lang/mono-5.4.0.167 <dev-lang/mono-9999 )
+CDEPEND="|| ( >=dev-lang/mono-5.4.0.167 <dev-lang/mono-9999 )
 	"
-RDEPEND="${COMMON_DEPENDENCIES}
+RDEPEND="${CDEPEND}
 "
-DEPEND="${COMMON_DEPENDENCIES}
+DEPEND="${CDEPEND}
 	>=dev-dotnet/msbuildtasks-1.5.0.240
 "
 
