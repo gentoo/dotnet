@@ -3,7 +3,11 @@
 # $Id$
 
 EAPI=6
-# >=portage-2.2.25
+KEYWORDS="~amd64 ~x86"
+
+RESTRICT="mirror"
+
+SLOT="0"
 
 # debug = debug configuration (symbols and defines for debugging)
 # developer = generate symbols information (to view line numbers in stack traces, either in debug or release configuration)
@@ -11,10 +15,9 @@ EAPI=6
 # nupkg = create .nupkg file from .nuspec
 # gac = install into gac
 # pkg-config = register in pkg-config database
-IUSE="net45 debug developer test +nupkg +gac +pkg-config"
 USE_DOTNET="net45"
+IUSE="+{USE_DOTNET} debug developer test +nupkg +gac +pkg-config"
 
-KEYWORDS="~amd64 ~x86"
 
 inherit versionator vcs-snapshot gac nupkg
 
@@ -22,8 +25,6 @@ NAME=irony
 EHG_REVISION=09918247d378a0e3deedae2af563fa5f402530f9
 SRC_URI="http://download-codeplex.sec.s-msft.com/Download/SourceControlFileDownload.ashx?ProjectName=${NAME}&changeSetId=${EHG_REVISION}  -> ${PN}-${PV}.zip
 	mirror://gentoo/mono.snk.bz2"
-
-SLOT="0"
 
 # /var/tmp/portage/dev-dotnet/irony-framework-1.0.0_p20131212-r1/work/irony_09918247d378a0e3deedae2af563fa5f402530f9
 S="${WORKDIR}/${NAME}_${EHG_REVISION}"
