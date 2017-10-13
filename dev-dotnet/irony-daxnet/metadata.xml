@@ -14,12 +14,11 @@
 		<!-- remote-id type="codeplex">irony</remote-id -->
 	</upstream>
 	<use>
-		<flag name='pkg-config'>create .pc file(s) for .dll(s) installed to gac</flag>
 	</use>
 	<longdescription lang="en">
-		parsing framework for C# on LALR(1)
+		parsing framework for C#
 	</longdescription>
 	<longdescription lang="ru">
-		фреймворк для написания LALR(1) парсеров на C#
+		фреймворк для написания парсеров на C#
 	</longdescription>
 </pkgmetadata>
