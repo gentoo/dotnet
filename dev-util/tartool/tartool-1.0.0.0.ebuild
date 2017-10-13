@@ -81,5 +81,5 @@ src_install() {
 		doins "${PATH_TO_PROJ}/bin/${DIR}/${ASSEMBLY_NAME}.pdb"
 	fi
 
-	make_wrapper nunit "mono ${SLOTTEDDIR}/${ASSEMBLY_NAME}.exe"
+	make_wrapper tartool "mono ${SLOTTEDDIR}/${ASSEMBLY_NAME}.exe"
 }
