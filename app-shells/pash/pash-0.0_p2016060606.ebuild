@@ -23,7 +23,7 @@ SRC_URI="${HOMEPAGE}/archive/${EGIT_COMMIT}.tar.gz -> ${P}-${PR}.tar.gz"
 S="${WORKDIR}/${PROJECTNAME}-${EGIT_COMMIT}"
 
 CDEPEND="|| ( >=dev-lang/mono-5.4.0.167 <dev-lang/mono-9999 )
-	dev-dotnet/irony-framework
+	dev-dotnet/irony-daxnet
 	"
 
 RDEPEND="${CDEPEND}
@@ -52,6 +52,11 @@ PROJECT5_NAME=PashConsole
 PROJECT5_OUT=PashConsole
 
 src_prepare() {
+	sed -i "/Version/d" "${S}/${PROJECT1_PATH}/Properties/AssemblyInfo.cs" || die
+	sed -i "/Version/d" "${S}/${PROJECT2_PATH}/Properties/AssemblyInfo.cs" || die
+	sed -i "/Version/d" "${S}/${PROJECT3_PATH}/Properties/AssemblyInfo.cs" || die
+	sed -i "/Version/d" "${S}/${PROJECT4_PATH}/Properties/AssemblyInfo.cs" || die
+	sed -i "/Version/d" "${S}/${PROJECT5_PATH}/Properties/AssemblyInfo.cs" || die
 	cp "${FILESDIR}/template.csproj" "${S}/${PROJECT1_PATH}/${PROJECT1_NAME}.csproj" || die
 	cp "${FILESDIR}/template.csproj" "${S}/${PROJECT2_PATH}/${PROJECT2_NAME}.csproj" || die
 	sed -i 's#^.*-- Reference --.*$#&\n<Reference Include="Irony" />#' "${S}/${PROJECT2_PATH}/${PROJECT2_NAME}.csproj" || die
