@@ -62,7 +62,7 @@ src_compile() {
 }
 
 src_install() {
-	if [ "${SLOT}" == "0" ] ;
+	if [ "${SLOT}"="0" ] ;
 	then
 		SLOTTEDDIR="/usr/share/${PN}/"
 	else
