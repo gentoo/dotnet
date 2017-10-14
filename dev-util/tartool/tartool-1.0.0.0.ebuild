@@ -25,6 +25,7 @@ DESCRIPTION="command line tool to uncompress and untar .tar.gz (.tgz) files"
 LICENSE="MIT" # https://github.com/senthilrajasek/tartool/blob/master/LICENSE
 
 CDEPEND=">=dev-lang/mono-5.4.0.167 <dev-lang/mono-9999
+	dev-dotnet/sharpziplib
 "
 
 RDEPEND="${CDEPEND}
@@ -61,7 +62,7 @@ src_compile() {
 }
 
 src_install() {
-	if [ "${SLOT}" == "0" ] ;
+	if [ "${SLOT}"="0" ] ;
 	then
 		SLOTTEDDIR="/usr/share/${PN}/"
 	else

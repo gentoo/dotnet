@@ -6,7 +6,6 @@
     <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
     <AssemblyName>$(AssemblyName)</AssemblyName>
     <OutputType>$(OutputType)</OutputType>
-    <RootNamespace>$(RootNamespace)</RootNamespace>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <OutputPath>bin\Debug</OutputPath>
@@ -28,9 +27,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="**/*.cs" Exclude="AssemblyVersion.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="**/*.resx" />
   </ItemGroup>
   <ItemGroup>
     <!-- ProjectReference -->

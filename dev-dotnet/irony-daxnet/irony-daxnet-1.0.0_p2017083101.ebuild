@@ -66,7 +66,7 @@ src_prepare() {
 }
 
 src_compile() {
-	emsbuild /p:SignAssembly=true /p:PublicSign=true "/p:AssemblyOriginatorKeyFile=${KEY2}" "/p:OutputName=${PROJECT_OUT}" "/p:OutputType=Library" "/p:VersionNumber=${ASSEMBLY_VERSION}" "${S}/${PROJECT_PATH}/${PROJECT_NAME}.csproj"
+	emsbuild /p:RootNamespace=Irony /p:SignAssembly=true /p:PublicSign=true "/p:AssemblyOriginatorKeyFile=${KEY2}" "/p:OutputName=${PROJECT_OUT}" "/p:OutputType=Library" "/p:VersionNumber=${ASSEMBLY_VERSION}" "${S}/${PROJECT_PATH}/${PROJECT_NAME}.csproj"
 	sn -R "$(output_filename)" "${KEY2}" || die
 }
 
