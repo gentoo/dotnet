@@ -51,7 +51,7 @@ function output_filename ( ) {
 
 src_prepare() {
 	cp "${FILESDIR}/${METAFILE_TO_BUILD}-${PV}.csproj" "${S}/${PATH_TO_PROJ}/${METAFILE_TO_BUILD}.csproj" || die
-	cp "${FILESDIR}/SharedAssemblyInfo-${PV}.cs" "${S}/${PATH_TO_PROJ}/.." || die
+	cp "${FILESDIR}/SharedAssemblyInfo-${PV}.cs" "${S}/${PATH_TO_PROJ}/../SharedAssemblyInfo.cs" || die
 	eapply_user
 }
 
