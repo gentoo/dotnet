@@ -28,6 +28,7 @@ CDEPEND="|| ( >=dev-lang/mono-5.4.0.167 <dev-lang/mono-9999 )
 RDEPEND="${CDEPEND}
 "
 DEPEND="${CDEPEND}
+	dev-util/antlrcs
 	>=dev-dotnet/msbuildtasks-1.5.0.240
 "
 
@@ -50,6 +51,7 @@ function output_filename ( ) {
 
 src_prepare() {
 	cp "${FILESDIR}/${METAFILE_TO_BUILD}-${PV}.csproj" "${S}/${PATH_TO_PROJ}/${METAFILE_TO_BUILD}.csproj" || die
+	cp "${FILESDIR}/SharedAssemblyInfo-${PV}.cs" "${S}/${PATH_TO_PROJ}/.." || die
 	eapply_user
 }
 
