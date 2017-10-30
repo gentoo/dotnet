@@ -21,7 +21,7 @@ SRC_URI="${HOMEPAGE}/archive/${EGIT_COMMIT}.tar.gz -> ${NAME}-${PV}.tar.gz
 S="${WORKDIR}/${NAME}-${EGIT_COMMIT}"
 
 DESCRIPTION="Library to create full-featured LINQ providers."
-LICENSE="Apache2.0" # https://github.com/re-motion/Relinq/blob/develop/license/Apache-2.0.txt
+LICENSE="Apache-2.0" # https://github.com/re-motion/Relinq/blob/develop/license/Apache-2.0.txt
 
 IUSE="+${USE_DOTNET} +debug developer doc"
 
