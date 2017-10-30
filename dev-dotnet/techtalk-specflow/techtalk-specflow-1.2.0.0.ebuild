@@ -30,7 +30,7 @@ RDEPEND="${CDEPEND}
 DEPEND="${CDEPEND}
 "
 
-PATH_TO_PROJ="TechTalk.SpecFlow"
+PATH_TO_PROJ="Runtime"
 METAFILE_TO_BUILD="TechTalk.SpecFlow"
 ASSEMBLY_NAME="TechTalk.SpecFlow"
 
@@ -48,7 +48,7 @@ function output_filename ( ) {
 }
 
 src_prepare() {
-	#cp "${FILESDIR}/${METAFILE_TO_BUILD}-${PV}.csproj" "${S}/${PATH_TO_PROJ}/${METAFILE_TO_BUILD}.csproj" || die
+	cp "${FILESDIR}/${METAFILE_TO_BUILD}-${PV}.csproj" "${S}/${PATH_TO_PROJ}/${METAFILE_TO_BUILD}.csproj" || die
 	#cp "${FILESDIR}/CommonAssemblyInfo-${PV}.cs" "${S}/${PATH_TO_PROJ}/../CommonAssemblyInfo.cs" || die
 	eapply_user
 }
