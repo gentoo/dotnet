@@ -24,6 +24,7 @@ DESCRIPTION="XML-less, compile safe, automated, convention-based mappings for NH
 LICENSE="BSD" # https://github.com/jagregory/fluent-nhibernate/blob/master/LICENSE.txt
 
 CDEPEND="|| ( >=dev-lang/mono-5.4.0.167 <dev-lang/mono-9999 )
+	dev-dotnet/nhibernate-core
 	"
 RDEPEND="${CDEPEND}
 "
@@ -32,9 +33,9 @@ DEPEND="${CDEPEND}
 	>=dev-dotnet/msbuildtasks-1.5.0.240
 "
 
-PATH_TO_PROJ="src/NHibernate"
-METAFILE_TO_BUILD=NHibernate
-ASSEMBLY_NAME="NHibernate"
+PATH_TO_PROJ="src/FluentNHibernate"
+METAFILE_TO_BUILD=FluentNHibernate
+ASSEMBLY_NAME="FluentNHibernate"
 
 KEY2="${DISTDIR}/mono.snk"
 ASSEMBLY_VERSION="${PV}"
@@ -51,7 +52,7 @@ function output_filename ( ) {
 
 src_prepare() {
 	cp "${FILESDIR}/${METAFILE_TO_BUILD}-${PV}.csproj" "${S}/${PATH_TO_PROJ}/${METAFILE_TO_BUILD}.csproj" || die
-	cp "${FILESDIR}/SharedAssemblyInfo-${PV}.cs" "${S}/${PATH_TO_PROJ}/../SharedAssemblyInfo.cs" || die
+	cp "${FILESDIR}/CommonAssemblyInfo-${PV}.cs" "${S}/${PATH_TO_PROJ}/../CommonAssemblyInfo.cs" || die
 	eapply_user
 }
 
