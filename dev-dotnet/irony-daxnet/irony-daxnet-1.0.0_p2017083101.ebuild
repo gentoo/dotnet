@@ -17,7 +17,7 @@ SLOT="0"
 # pkg-config = register in pkg-config database
 USE_DOTNET="net45"
 inherit msbuild gac
-IUSE="+{USE_DOTNET}"
+IUSE="+${USE_DOTNET}"
 
 NAME="irony"
 HOMEPAGE="https://github.com/daxnet/${NAME}"
@@ -37,6 +37,7 @@ RDEPEND="${CDEPEND}
 	"
 
 DEPEND="${CDEPEND}
+	dev-dotnet/msbuildtasks
 	"
 
 PROJECT_PATH="src/Irony"
