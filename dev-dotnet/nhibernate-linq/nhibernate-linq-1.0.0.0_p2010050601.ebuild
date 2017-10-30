@@ -52,6 +52,9 @@ function output_filename ( ) {
 src_prepare() {
 	#cp "${FILESDIR}/${METAFILE_TO_BUILD}-${PV}.csproj" "${S}/${PATH_TO_PROJ}/${METAFILE_TO_BUILD}.csproj" || die
 	#cp "${FILESDIR}/CommonAssemblyInfo-${PV}.cs" "${S}/${PATH_TO_PROJ}/../CommonAssemblyInfo.cs" || die
+	cat <<-METADATA >"${S}/src/NHibernate.Linq/src/NHibernate.Linq/AssemblyInfo.cs" || die
+	    [assembly: System.Reflection.AssemblyVersion("1.0.0.0")]
+	METADATA
 	eapply_user
 }
 
