@@ -37,7 +37,7 @@ RDEPEND="${CDEPEND}
 	"
 
 DEPEND="${CDEPEND}
-	dev-dotnet/msbuildtasks
+	>=dev-dotnet/msbuildtasks-1.5.0.240-r3
 	"
 
 PROJECT_PATH="src/Irony"
