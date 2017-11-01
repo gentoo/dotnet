@@ -33,56 +33,83 @@ RDEPEND="${CDEPEND}
 DEPEND="${CDEPEND}
 	"
 
-PROJECT_PATH="Tools/Castle.DynamicProxy2/Castle.DynamicProxy"
-PROJECT_NAME="Castle.DynamicProxy-vs2008"
-PROJECT_OUT="CastleCore.DynamicProxy2"
+PROJECT_PATH1="Core/Castle.Core"
+PROJECT_PATH2="Tools/Castle.DynamicProxy2/Castle.DynamicProxy"
+PROJECT_NAME1="Castle.Core-vs2008"
+PROJECT_NAME2="Castle.DynamicProxy-vs2008"
+PROJECT_OUT1="Castle.Core"
+PROJECT_OUT2="Castle.DynamicProxy2"
 
 KEY2="${DISTDIR}/mono.snk"
-ASSEMBLY_VERSION="1.0.2017.0831"
+ASSEMBLY_VERSION="2.1.0.0"
 
-function output_filename ( ) {
+function output_filename1 ( ) {
 	local DIR=""
 	if use debug; then
 		DIR="Debug"
 	else
 		DIR="Release"
 	fi
-	echo "${PROJECT_PATH}/bin/${DIR}/${PROJECT_OUT}.dll"
+	echo "${PROJECT_PATH1}/bin/${DIR}/${PROJECT_OUT1}.dll"
+}
+
+function output_filename2 ( ) {
+	local DIR=""
+	if use debug; then
+		DIR="Debug"
+	else
+		DIR="Release"
+	fi
+	echo "${PROJECT_PATH2}/bin/${DIR}/${PROJECT_OUT2}.dll"
 }
 
 src_prepare() {
-	#cp "${FILESDIR}/${PROJECT_NAME}-${PV}.csproj" "${S}/${PROJECT_PATH}/${PROJECT_NAME}.csproj" || die
+	# copy (replace) project files
+	cp "${FILESDIR}/${PROJECT_NAME1}-${PV}.csproj" "${S}/${PROJECT_PATH1}/${PROJECT_NAME1}.csproj" || die
+	cp "${FILESDIR}/${PROJECT_NAME2}-${PV}.csproj" "${S}/${PROJECT_PATH2}/${PROJECT_NAME2}.csproj" || die
+	# create version info files
 	cat <<-METADATA >"${S}/Core/Castle.Core/AssemblyInfo.cs" || die
 	    [assembly: System.Reflection.AssemblyVersion("2.1.0.0")]
 	METADATA
+	cat <<-METADATA >"${S}/Tools/Castle.DynamicProxy2/Castle.DynamicProxy/AssemblyInfo.cs" || die
+	    [assembly: System.Reflection.AssemblyVersion("2.1.0.0")]
+	METADATA
+	# other initialization
 	eapply_user
 }
 
 src_compile() {
-	emsbuild /p:RootNamespace=Irony /p:SignAssembly=true /p:PublicSign=true "/p:AssemblyOriginatorKeyFile=${KEY2}" "/p:OutputName=${PROJECT_OUT}" "/p:OutputType=Library" "/p:VersionNumber=${ASSEMBLY_VERSION}" "${S}/${PROJECT_PATH}/${PROJECT_NAME}.csproj"
-	sn -R "$(output_filename)" "${KEY2}" || die
+	emsbuild /p:SignAssembly=true /p:PublicSign=true "/p:AssemblyOriginatorKeyFile=${KEY2}" "${S}/${PROJECT_PATH2}/${PROJECT_NAME2}.csproj"
+	sn -R "$(output_filename1)" "${KEY2}" || die
+	sn -R "$(output_filename2)" "${KEY2}" || die
 }
 
 src_install() {
 	insinto "/gac"
-	doins "$(output_filename)"
+	doins "$(output_filename1)"
+	doins "$(output_filename2)"
 }
 
 pkg_preinst()
 {
-	echo mv "${D}/gac/${PROJECT_OUT}.dll" "${T}/${PROJECT_OUT}.dll"
-	mv "${D}/gac/${PROJECT_OUT}.dll" "${T}/${PROJECT_OUT}.dll" || die
+	echo mv "${D}/gac/${PROJECT_OUT1}.dll" "${T}/${PROJECT_OUT1}.dll"
+	echo mv "${D}/gac/${PROJECT_OUT2}.dll" "${T}/${PROJECT_OUT2}.dll"
+	mv "${D}/gac/${PROJECT_OUT1}.dll" "${T}/${PROJECT_OUT1}.dll" || die
+	mv "${D}/gac/${PROJECT_OUT2}.dll" "${T}/${PROJECT_OUT2}.dll" || die
 	echo rm -rf "${D}/gac"
 	rm -rf "${D}/gac" || die
 }
 
 pkg_postinst()
 {
-	egacadd "${T}/${PROJECT_OUT}.dll"
-	rm "${T}/${PROJECT_OUT}.dll" || die
+	egacadd "${T}/${PROJECT_OUT1}.dll"
+	egacadd "${T}/${PROJECT_OUT2}.dll"
+	rm "${T}/${PROJECT_OUT1}.dll" || die
+	rm "${T}/${PROJECT_OUT2}.dll" || die
 }
 
 pkg_prerm()
 {
-	egacdel "${PROJECT_OUT}, Version=${ASSEMBLY_VERSION}, Culture=neutral, PublicKeyToken=0738eb9f132ed756"
+	egacdel "${PROJECT_OUT1}, Version=${ASSEMBLY_VERSION}, Culture=neutral, PublicKeyToken=0738eb9f132ed756"
+	egacdel "${PROJECT_OUT2}, Version=${ASSEMBLY_VERSION}, Culture=neutral, PublicKeyToken=0738eb9f132ed756"
 }
