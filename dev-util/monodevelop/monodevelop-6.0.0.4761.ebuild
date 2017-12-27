@@ -18,7 +18,6 @@ KEYWORDS="~amd64 ~x86"
 IUSE="+subversion +git doc +gnome qtcurve"
 
 COMMON_DEPEND="
-	>=dev-lang/mono-3.2.8
 	>=dev-dotnet/gtk-sharp-2.12.21:2
 	>=dev-dotnet/nuget-2.8.7
 	dev-dotnet/referenceassemblies-pcl
