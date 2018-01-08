@@ -19,6 +19,14 @@ The reason for including both is that the SDK is available under x64 platforms b
 So for the Rpi or other arm32 platforms you'll need to use just the runtime packages unless the application your running already has the runtime build in.
 
 
+## ASP .Net Core
+
+Note currently the required ASP .Net core prebuilt runtimes seem to be unavailable for arm32 / rpi
+
+  * https://github.com/aspnet/Universe/issues/554
+  * https://www.devtrends.co.uk/blog/installing-the-asp.net-core-2.0-runtime-store-on-linux
+
+
 ## SDK vs Runtime
 
 The SDK packages allow you to use the dotnet cli tool to compile / build C# Code into Managed Applications.

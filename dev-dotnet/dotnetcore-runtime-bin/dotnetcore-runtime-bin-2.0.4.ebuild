@@ -10,10 +10,13 @@ DESCRIPTION=".NET Core Runtime - binary precompiled for glibc"
 HOMEPAGE="https://www.microsoft.com/net/core"
 LICENSE="MIT"
 
-SRC_URI="https://download.microsoft.com/download/2/B/2/2B2854E7-7EAE-4FE9-85D2-19ACCD716F18/dotnet-runtime-${PV}-linux-x64.tar.gz -> dotnet-runtime-${PV}-linux-x64.tar.gz"
+SRC_URI="
+amd64? ( https://dotnetcli.blob.core.windows.net/dotnet/Runtime/${PV}/dotnet-runtime-${PV}-linux-x64.tar.gz -> dotnet-runtime-${PV}-linux-x64.tar.gz )
+arm? ( https://dotnetcli.blob.core.windows.net/dotnet/Runtime/${PV}/dotnet-runtime-${PV}-linux-arm.tar.gz -> dotnet-runtime-${PV}-linux-arm.tar.gz )
+"
 
 SLOT="0"
-KEYWORDS="~amd64"
+KEYWORDS="~amd64 ~arm"
 
 # The sdk includes the runtime-bin and aspnet-bin so prevent from installing at the same time
 
