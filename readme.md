@@ -35,4 +35,5 @@ Dotnet Core
 For using dotnet core see
 
  - [Dotnet Core Binary packages](Documentation/DotnetCore-Bin.md)
+ - [Dotnet Core Source Build Notes](Documentation/DotnetCore-Src.md)
 
