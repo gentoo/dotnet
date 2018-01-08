@@ -49,7 +49,10 @@ DEPEND="${RDEPEND}
 	>=dev-util/cmake-3.3.1-r1
 	>=sys-devel/make-4.1-r1
 	>=sys-devel/clang-3.7.1-r100
-	>=sys-devel/gettext-0.19.7"
+	>=sys-devel/gettext-0.19.7
+	!dev-dotnet/dotnetcore-runtime-bin
+	!dev-dotnet/dotnetcore-sdk-bin
+	!dev-dotnet/dotnetcore-aspnet-bin"
 
 PATCHES=(
 	"${FILESDIR}/coreclr-${CORECLR_V1_0}-gcc6-clang39.patch"
@@ -104,12 +107,16 @@ CRYPTO_FILES=(
 	'System.Security.Cryptography.Native.OpenSsl.so'
 )
 
-pkg_pretend() {
-	# If FEATURES="-sandbox -usersandbox" are not set dotnet will hang while compiling.
-	if has sandbox $FEATURES || has usersandbox $FEATURES ; then
-		die ".NET core command-line (CLI) tools require sandbox and usersandbox to be disabled in FEATURES."
-	fi
-}
+# This currently isn't required but may be needed in later ebuilds
+# running the dotnet cli inside a sandbox causes the dotnet cli command to hang.
+# but this ebuild doesn't currently use that.
+
+#pkg_pretend() {
+#	# If FEATURES="-sandbox -usersandbox" are not set dotnet will hang while compiling.
+#	if has sandbox $FEATURES || has usersandbox $FEATURES ; then
+#		die ".NET core command-line (CLI) tools require sandbox and usersandbox to be disabled in FEATURES."
+#	fi
+#}
 
 src_unpack() {
 	unpack "coreclr-${CORECLR_V1_0}.tar.gz" "corefx-${COREFX_V1_0}.tar.gz" "coreclr-${PV}.tar.gz" "corefx-${PV}.tar.gz"

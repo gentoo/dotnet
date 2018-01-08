@@ -47,7 +47,10 @@ DEPEND="${RDEPEND}
 	>=dev-util/cmake-3.3.1-r1
 	>=sys-devel/make-4.1-r1
 	>=sys-devel/clang-3.7.1-r100
-	>=sys-devel/gettext-0.19.7"
+	>=sys-devel/gettext-0.19.7
+	!dev-dotnet/dotnetcore-runtime-bin
+    !dev-dotnet/dotnetcore-sdk-bin
+    !dev-dotnet/dotnetcore-aspnet-bin"
 
 PATCHES=(
 	"${FILESDIR}/${CORECLR}-icu57-commit-352df35.patch"
