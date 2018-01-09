@@ -1,6 +1,5 @@
-# Copyright 1999-2017 Gentoo Foundation
+# Copyright 1999-2018 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Id$
 
 #BASED ON https://aur.archlinux.org/cgit/aur.git/tree/PKGBUILD?h=dotnet-cli
 
@@ -43,14 +42,13 @@ DEPEND="${RDEPEND}
 	>=dev-util/cmake-3.3.1-r1
 	>=sys-devel/make-4.1-r1
 	>=sys-devel/clang-3.7.1-r100
-	>=sys-devel/gettext-0.19.7"
+	>=sys-devel/gettext-0.19.7
+	!dev-dotnet/dotnetcore-runtime-bin
+	!dev-dotnet/dotnetcore-sdk-bin
+	!dev-dotnet/dotnetcore-aspnet-bin"
 
 PATCHES=(
-	"${FILESDIR}/coreclr-${CORECLR_V1_0}-gcc6-clang39.patch"
-	"${FILESDIR}/coreclr-${CORECLR_V1_0}-clang39-commit-9db7fb1.patch"
 	"${FILESDIR}/coreclr-${CORECLR_V1_0}-icu57-commit-352df35.patch"
-	"${FILESDIR}/coreclr-${PV}-clang39-commit-9db7fb1.patch"
-	"${FILESDIR}/coreclr-${PV}-exceptionhandling.patch"
 	"${FILESDIR}/corefx-${PV}-init-tools-script.patch"
 	"${FILESDIR}/corefx-${PV}-run-script.patch"
 )
@@ -91,13 +89,6 @@ CRYPTO_FILES=(
 	'System.Security.Cryptography.Native.OpenSsl.so'
 )
 
-pkg_pretend() {
-	# If FEATURES="-sandbox -usersandbox" are not set dotnet will hang while compiling.
-	if has sandbox $FEATURES || has usersandbox $FEATURES ; then
-		die ".NET core command-line (CLI) tools require sandbox and usersandbox to be disabled in FEATURES."
-	fi
-}
-
 src_unpack() {
 	unpack "coreclr-${CORECLR_V1_0}.tar.gz" "corefx-${COREFX_V1_0}.tar.gz" "coreclr-${PV}.tar.gz" "corefx-${PV}.tar.gz"
 	mkdir "${CLI_1_0_S}" "${CLI_S}" || die
@@ -125,7 +116,7 @@ src_prepare() {
 	for file in "${CRYPTO_FILES[@]}"; do
 		rm "${CLI_S}/shared/Microsoft.NETCore.App/${PV}/${file}"
 	done
-	
+
 	for file in "${CRYPTO_V1_0_FILES[@]}"; do
 		rm "${CLI_S}/shared/Microsoft.NETCore.App/1.0.4/${file}"
 		rm "${CLI_1_0_S}/shared/Microsoft.NETCore.App/${CORE_V1_0}/${file}"

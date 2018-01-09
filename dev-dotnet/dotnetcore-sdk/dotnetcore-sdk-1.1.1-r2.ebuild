@@ -1,6 +1,5 @@
-# Copyright 1999-2017 Gentoo Foundation
+# Copyright 1999-2018 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Id$
 
 #BASED ON https://aur.archlinux.org/cgit/aur.git/tree/PKGBUILD?h=dotnet-cli
 
@@ -19,7 +18,7 @@ DESCRIPTION=".NET Core cli utility for building, testing, packaging and running 
 HOMEPAGE="https://www.microsoft.com/net/core"
 LICENSE="MIT"
 
-IUSE=""
+IUSE="heimdal"
 SRC_URI="https://github.com/dotnet/coreclr/archive/v${CORECLR_V1_0}.tar.gz -> coreclr-${CORECLR_V1_0}.tar.gz
 	https://github.com/dotnet/corefx/archive/v${COREFX_V1_0}.tar.gz -> corefx-${COREFX_V1_0}.tar.gz
 	https://download.microsoft.com/download/0/3/0/030449F5-F093-44A6-9889-E19B50A59777/sdk/dotnet-dev-${DIST}.${CLI_V1_0}.tar.gz
@@ -31,24 +30,44 @@ SLOT="0"
 KEYWORDS="~amd64"
 
 RDEPEND="
-	>=sys-devel/llvm-3.7.1-r3[lldb]
+	>=sys-devel/llvm-4.0:*
+	>=dev-util/lldb-4.0
 	>=sys-libs/libunwind-1.1-r1
 	>=dev-libs/icu-57.1
 	>=dev-util/lttng-ust-2.8.1
 	>=dev-libs/openssl-1.0.2h-r2
 	>=net-misc/curl-7.49.0
-	>=app-crypt/mit-krb5-1.14.2
+	heimdal? (
+		>=app-crypt/heimdal-1.5.3-r2
+	)
+	!heimdal? (
+		>=app-crypt/mit-krb5-1.14.2
+	)
 	>=sys-libs/zlib-1.2.8-r1 "
 DEPEND="${RDEPEND}
 	>=dev-util/cmake-3.3.1-r1
 	>=sys-devel/make-4.1-r1
 	>=sys-devel/clang-3.7.1-r100
-	>=sys-devel/gettext-0.19.7"
+	>=sys-devel/gettext-0.19.7
+	!dev-dotnet/dotnetcore-runtime-bin
+	!dev-dotnet/dotnetcore-sdk-bin
+	!dev-dotnet/dotnetcore-aspnet-bin"
 
 PATCHES=(
+	"${FILESDIR}/coreclr-${CORECLR_V1_0}-gcc6-clang39.patch"
+	"${FILESDIR}/coreclr-${CORECLR_V1_0}-clang39-commit-9db7fb1.patch"
 	"${FILESDIR}/coreclr-${CORECLR_V1_0}-icu57-commit-352df35.patch"
+	"${FILESDIR}/coreclr-${CORECLR_V1_0}-llvm4.patch"
+	"${FILESDIR}/coreclr-${CORECLR_V1_0}-llvm4-intsafe.patch"
+	"${FILESDIR}/coreclr-${PV}-clang39-commit-9db7fb1.patch"
+	"${FILESDIR}/coreclr-${PV}-exceptionhandling.patch"
+	"${FILESDIR}/coreclr-${PV}-builtin-redefinition.patch"
 	"${FILESDIR}/corefx-${PV}-init-tools-script.patch"
+	"${FILESDIR}/coreclr-${PV}-llvm4.patch"
+	"${FILESDIR}/coreclr-${PV}-llvm4-intsafe.patch"
+	"${FILESDIR}/corefx-${COREFX_V1_0}-werror.patch"
 	"${FILESDIR}/corefx-${PV}-run-script.patch"
+	"${FILESDIR}/corefx-${PV}-werror.patch"
 )
 
 S=${WORKDIR}
@@ -87,6 +106,17 @@ CRYPTO_FILES=(
 	'System.Security.Cryptography.Native.OpenSsl.so'
 )
 
+# This currently isn't required but may be needed in later ebuilds
+# running the dotnet cli inside a sandbox causes the dotnet cli command to hang.
+# but this ebuild doesn't currently use that.
+
+#pkg_pretend() {
+#	# If FEATURES="-sandbox -usersandbox" are not set dotnet will hang while compiling.
+#	if has sandbox $FEATURES || has usersandbox $FEATURES ; then
+#		die ".NET core command-line (CLI) tools require sandbox and usersandbox to be disabled in FEATURES."
+#	fi
+#}
+
 src_unpack() {
 	unpack "coreclr-${CORECLR_V1_0}.tar.gz" "corefx-${COREFX_V1_0}.tar.gz" "coreclr-${PV}.tar.gz" "corefx-${PV}.tar.gz"
 	mkdir "${CLI_1_0_S}" "${CLI_S}" || die
@@ -114,7 +144,7 @@ src_prepare() {
 	for file in "${CRYPTO_FILES[@]}"; do
 		rm "${CLI_S}/shared/Microsoft.NETCore.App/${PV}/${file}"
 	done
-	
+
 	for file in "${CRYPTO_V1_0_FILES[@]}"; do
 		rm "${CLI_S}/shared/Microsoft.NETCore.App/1.0.4/${file}"
 		rm "${CLI_1_0_S}/shared/Microsoft.NETCore.App/${CORE_V1_0}/${file}"
@@ -124,10 +154,17 @@ src_prepare() {
 }
 
 src_compile() {
+	local buildargs=""
+
+	if use heimdal; then
+		# build uses mit-krb5 by default but lets override to heimdal
+		buildargs="${buildargs} cmakeargs -DHeimdalGssApi=ON"
+	fi
+
 	local dest="${CLI_1_0_S}/shared/Microsoft.NETCore.App/${CORE_V1_0}/"
 
 	cd "${COREFX_1_0_S}" || die
-	./build.sh native x64 release || die
+	./build.sh native x64 release ${buildargs} || die
 
 	for file in "${COREFX_FILES[@]}"; do
 		cp -pP "${COREFX_1_0_S}/bin/Linux.x64.Release/Native/${file}" "${dest}" || die
@@ -151,7 +188,7 @@ src_compile() {
 	rm -rf "${CORECLR_1_0_S}" || die
 
 	cd "${COREFX_S}" || die
-	./build-native.sh -release || die
+	./src/Native/build-native.sh x64 release ${buildargs} || die
 
 	cd "${CORECLR_S}" || die
 	./build.sh x64 release || die

@@ -27,3 +27,13 @@ Overlay Installation
  - Open requests on https://bugs.gentoo.org with solutions from this overlay
 
 ![logo](http://i.imgur.com/4OmyG5d.jpg)
+
+
+Dotnet Core
+-----------
+
+For using dotnet core see
+
+ - [Dotnet Core Binary packages](Documentation/DotnetCore-Bin.md)
+ - [Dotnet Core Source Build Notes](Documentation/DotnetCore-Src.md)
+
