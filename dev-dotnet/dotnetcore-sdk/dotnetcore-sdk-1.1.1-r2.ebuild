@@ -1,6 +1,5 @@
-# Copyright 1999-2017 Gentoo Foundation
+# Copyright 1999-2018 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Id$
 
 #BASED ON https://aur.archlinux.org/cgit/aur.git/tree/PKGBUILD?h=dotnet-cli
 
@@ -31,7 +30,7 @@ SLOT="0"
 KEYWORDS="~amd64"
 
 RDEPEND="
-	>=sys-devel/llvm-4.0
+	>=sys-devel/llvm-4.0:*
 	>=dev-util/lldb-4.0
 	>=sys-libs/libunwind-1.1-r1
 	>=dev-libs/icu-57.1

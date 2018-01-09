@@ -1,6 +1,5 @@
-# Copyright 1999-2017 Gentoo Foundation
+# Copyright 1999-2018 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Id$
 
 #BASED ON https://aur.archlinux.org/cgit/aur.git/tree/PKGBUILD?h=dotnet-cli
 
@@ -46,8 +45,8 @@ DEPEND="${RDEPEND}
 	>=sys-devel/clang-3.7.1-r100
 	>=sys-devel/gettext-0.19.7
 	!dev-dotnet/dotnetcore-runtime-bin
-    !dev-dotnet/dotnetcore-sdk-bin
-    !dev-dotnet/dotnetcore-aspnet-bin"
+	!dev-dotnet/dotnetcore-sdk-bin
+	!dev-dotnet/dotnetcore-aspnet-bin"
 
 PATCHES=(
 	"${FILESDIR}/${CORECLR_N}-icu57-commit-352df35.patch"
