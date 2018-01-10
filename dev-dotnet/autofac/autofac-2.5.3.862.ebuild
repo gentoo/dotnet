@@ -3,27 +3,31 @@
 # $Id$
 
 EAPI=6
-SLOT="3"
 
 KEYWORDS="~amd64 ~ppc ~x86"
+RESTRICT="mirror"
 
-DOTNET_FRAMEWORK="net45"
+SLOT="2"
+if [ "${SLOT}" != "0" ]; then
+    APPENDIX="-${SLOT}"
+fi
+
 USE_DOTNET="net45"
 
 inherit msbuild gac mono-pkg-config
 
-NAME="Autofac"
-HOMEPAGE="https://github.com/Autofac/${NAME}"
-
-EGIT_COMMIT="c985cda5483dcd4d2fbc395a4001be12cc07ee84"
-SRC_URI="${HOMEPAGE}/archive/${EGIT_COMMIT}.tar.gz -> ${PN}-${PV}.tar.gz
-	https://github.com/mono/mono/raw/master/mcs/class/mono.snk"
-RESTRICT="mirror"
-S="${WORKDIR}/${NAME}-${EGIT_COMMIT}"
-
+GITHUB_REPONAME="Autofac"
 HOMEPAGE="https://github.com/autofac/Autofac"
 DESCRIPTION="An addictive .NET IoC container"
 LICENSE="MIT" # https://github.com/autofac/Autofac/blob/develop/LICENSE
+
+EGIT_COMMIT="5ad2d85df4e99d3588589d89874672856ba7b60e"
+PV4="$(get_version_component_range 1-4)"
+TARBALL_EXT=".tar.gz"
+SRC_URI="https://github.com/autofac/${GITHUB_REPONAME}/archive/${EGIT_COMMIT}${TARBALL_EXT} -> ${GITHUB_REPONAME}-${PV4}${TARBALL_EXT}
+	https://github.com/mono/mono/raw/master/mcs/class/mono.snk"
+S="${WORKDIR}/${GITHUB_REPONAME}-${EGIT_COMMIT}"
+
 
 IUSE="+${USE_DOTNET} +debug developer doc"
 
@@ -37,18 +41,13 @@ DEPEND="${COMMON_DEPEND}
 KEY2="${DISTDIR}/mono.snk"
 
 function output_filename() {
-	local DIR=""
-	if use debug; then
-		DIR="Debug"
-	else
-		DIR="Release"
-	fi
-	echo "Core/Source/Autofac/bin/${DIR}/Autofac.dll"
+	echo "Core/Source/Autofac/$(output_relpath)/Autofac.dll"
 }
 
 src_prepare() {
-	eapply "${FILESDIR}/Autofac.csproj-3.5.2.patch"
-	#eapply "${FILESDIR}/reflection-extension-3.5.2.patch"
+	dotnet_pkg_setup
+	sed -i '/MSBuildCommunityTasksPath/d' "${S}/default.proj" || die
+	emsbuild /p:AssemblyVersion=${PV} /t:UpdateVersion "${S}/default.proj"
 	eapply_user
 }
 

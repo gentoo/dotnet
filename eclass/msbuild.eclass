@@ -8,6 +8,8 @@
 # @DESCRIPTION:
 # This is the new replacement for dotnet eclass
 
+inherit dotnet
+
 case ${EAPI:-0} in
 	0) die "this eclass doesn't support EAPI 0" ;;
 	1|2|3) ;;
