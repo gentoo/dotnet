@@ -41,3 +41,5 @@ mono-env_pkg_setup() {
 
 _MONO_ENV=1
 fi
+
+SANDBOX_WRITE="${SANDBOX_WRITE}:/etc/mono/registry/:/etc/mono/registry/last-btime"
