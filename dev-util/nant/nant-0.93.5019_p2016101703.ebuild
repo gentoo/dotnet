@@ -3,13 +3,16 @@
 # $Id$
 
 EAPI=6
+
+RESTRICT="mirror"
+
 inherit mono-env nupkg
 
 HOMEPAGE="https://github.com/nant/${NAME}"
 DESCRIPTION=".NET build tool"
 LICENSE="GPL-2"
 
-EGIT_COMMIT="19bec6eca205af145e3c176669bbd57e1712be2a"
+EGIT_COMMIT="e3644541bf083d8e33f450bfbd1a4147e494769c"
 EGIT_BRANCH="master"
 GITHUBNAME="nant/nant"
 GITHUBACC=${GITHUBNAME%/*}
