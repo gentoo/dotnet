@@ -15,7 +15,7 @@ fi
 USE_DOTNET="net45"
 IUSE="+${USE_DOTNET} developer nupkg debug"
 
-inherit versionator msbuild nupkg
+inherit versionator xbuild nupkg
 
 HOMEPAGE="https://github.com/nant/${NAME}"
 DESCRIPTION=".NET build tool"
@@ -56,7 +56,7 @@ src_prepare() {
 }
 
 src_compile() {
-	emsbuild /p:ResgenToolPath=/usr/bin/resgen "${METAFILETOBUILD}"
+	exbuild "${METAFILETOBUILD}"
 	enuspec "${FILESDIR}/${SLN_FILE}.nuspec"
 }
 
