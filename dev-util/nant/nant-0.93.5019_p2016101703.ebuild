@@ -2,14 +2,26 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Id$
 
-EAPI=6
-inherit mono-env nupkg
+EAPI="6"
+KEYWORDS="~amd64 ~x86"
+
+RESTRICT="mirror"
+
+SLOT="0"
+if [ "${SLOT}" != "0" ]; then
+	APPENDIX="-${SLOT}"
+fi
+
+USE_DOTNET="net45"
+IUSE="+${USE_DOTNET} developer nupkg debug"
+
+inherit versionator xbuild nupkg
 
 HOMEPAGE="https://github.com/nant/${NAME}"
 DESCRIPTION=".NET build tool"
 LICENSE="GPL-2"
 
-EGIT_COMMIT="19bec6eca205af145e3c176669bbd57e1712be2a"
+EGIT_COMMIT="e3644541bf083d8e33f450bfbd1a4147e494769c"
 EGIT_BRANCH="master"
 GITHUBNAME="nant/nant"
 GITHUBACC=${GITHUBNAME%/*}
@@ -18,12 +30,6 @@ GITFILENAME=${GITHUBREPO}-${GITHUBACC}-${PV}-${EGIT_COMMIT}
 GITHUB_ZIP="https://api.github.com/repos/${GITHUBACC}/${GITHUBREPO}/zipball/${EGIT_COMMIT} -> ${GITFILENAME}.zip"
 SRC_URI="${GITHUB_ZIP}"
 S="${WORKDIR}/${GITFILENAME}"
-
-SLOT="0"
-
-KEYWORDS="~amd64 ~x86"
-IUSE="+net45 developer nupkg debug"
-USE_DOTNET="net45"
 
 RDEPEND=">=dev-lang/mono-4.4.0.40
 	!dev-dotnet/nant
@@ -41,6 +47,12 @@ METAFILETOBUILD="${S}/${SLN_FILE}"
 src_unpack() {
 	default_src_unpack
 	mv "${WORKDIR}/${GITHUBACC}-${GITHUBREPO}-"* "${WORKDIR}/${GITFILENAME}" || die
+}
+
+src_prepare() {
+	dotnet_pkg_setup
+	find ${S} -type f -iname "*.csproj" -exec sed -i "s/Microsoft.CSharp.Targets/Microsoft.CSharp.targets/g" {} \; || die
+	eapply_user
 }
 
 src_compile() {
