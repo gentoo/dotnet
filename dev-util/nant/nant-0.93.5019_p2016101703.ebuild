@@ -56,7 +56,7 @@ src_prepare() {
 }
 
 src_compile() {
-	emsbuild "${METAFILETOBUILD}"
+	emsbuild /p:ResgenToolPath=/usr/bin/resgen "${METAFILETOBUILD}"
 	enuspec "${FILESDIR}/${SLN_FILE}.nuspec"
 }
 
