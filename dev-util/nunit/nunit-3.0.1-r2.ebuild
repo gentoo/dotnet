@@ -2,25 +2,27 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Id$
 
-EAPI=6
-inherit mono-env gac nupkg
+EAPI="6"
+KEYWORDS="~amd64 ~x86"
+RESTRICT="mirror"
+
+SLOT="3"
+
+USE_DOTNET="net45"
+IUSE="+net45 developer debug nupkg gac doc"
+
+inherit mono-env xbuild gac nupkg
 
 NAME="nunit"
 HOMEPAGE="https://github.com/nunit/${NAME}"
 
 EGIT_COMMIT="dd39deaa2c805783cb069878b58b0447d0849849"
 SRC_URI="${HOMEPAGE}/archive/${EGIT_COMMIT}.tar.gz -> ${PN}-${PV}.tar.gz"
-RESTRICT="mirror"
+#	https://github.com/mono/mono/raw/master/mcs/class/mono.snk"
 S="${WORKDIR}/${NAME}-${EGIT_COMMIT}"
-
-SLOT="3"
 
 DESCRIPTION="NUnit test suite for mono applications"
 LICENSE="MIT" # https://github.com/nunit/nunit/blob/master/LICENSE.txt
-KEYWORDS="~amd64 ~x86"
-#USE_DOTNET="net20 net40 net45"
-USE_DOTNET="net45"
-IUSE="+net45 developer debug nupkg gac doc"
 
 CDEPEND=">=dev-lang/mono-4.0.2.5
 	net45? (
@@ -58,6 +60,7 @@ METAFILETOBUILD="${S}/${FILE_TO_BUILD}"
 NUGET_PACKAGE_VERSION="$(get_version_component_range 1-3)"
 
 src_prepare() {
+	# cp "${DISTDIR}/mono.snk" "${S}/src/nunit.snk" || die
 	chmod -R +rw "${S}" || die
 	eapply "${FILESDIR}/nunit-3.0.1-removing-tests-from-nproj.patch"
 	eapply "${FILESDIR}/nunit-3.0.1-nuget.nuspec.patch"
@@ -104,6 +107,8 @@ src_install() {
 
 	# https://stackoverflow.com/questions/36430417/is-there-a-nunit-console-runner-dll-for-nunit-3-0
 	# egacinstall "${S}/bin/${DIR}/nunit-console-runner.dll"
+	sn -R "bin/${DIR}/net-4.5/nunit.framework.dll" src/nunit.snk || die
+	egacinstall "bin/${DIR}/net-4.5/nunit.framework.dll"
 
 	if use doc; then
 #		dodoc ${WORKDIR}/doc/*.txt

@@ -6,17 +6,18 @@ EAPI=6
 KEYWORDS="~amd64 ~x86"
 RESTRICT+=" mirror"
 
+SLOT="0"
+
 USE_DOTNET="net45 net35"
 IUSE="+${USE_DOTNET} +gac +nupkg +pkg-config +debug +developer"
 
-inherit gac nupkg
+inherit xbuild gac mono-pkg-config nupkg
 
 HOMEPAGE="http://cecil.pe/"
 DESCRIPTION="System.Reflection alternative to generate and inspect .NET executables/libraries"
 # https://github.com/jbevain/cecil/wiki/License
 # https://github.com/jbevain/cecil/blob/master/LICENSE.txt
 LICENSE="MIT"
-SLOT="0"
 
 COMMON_DEPEND=">=dev-lang/mono-4.0.2.5
 "
