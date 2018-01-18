@@ -2,24 +2,26 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Id$
 
-EAPI=6
-inherit mono-env gac nupkg
+EAPI="6"
+KEYWORDS="~amd64 ~x86"
+RESTRICT="mirror"
+
+SLOT="2" # NUnit V2 IS NO LONGER MAINTAINED OR UPDATED.
+
+USE_DOTNET="net45"
+IUSE="+${USE_DOTNET} developer debug +gac nupkg doc"
+
+inherit mono-env xbuild gac nupkg
 
 NAME="nunitv2"
 HOMEPAGE="https://github.com/nunit/${NAME}"
 
 EGIT_COMMIT="1b549f4f8b067518c7b54a5b263679adb83ccda4"
 SRC_URI="${HOMEPAGE}/archive/${EGIT_COMMIT}.zip -> ${PN}-${PV}.zip"
-RESTRICT="mirror"
 S="${WORKDIR}/${NAME}-${EGIT_COMMIT}"
-
-SLOT="2" # NUnit V2 IS NO LONGER MAINTAINED OR UPDATED.
 
 DESCRIPTION="NUnit test suite for mono applications"
 LICENSE="NUnit-License" # http://nunit.org/nuget/license.html
-KEYWORDS="~amd64 ~x86"
-USE_DOTNET="net45"
-IUSE="net45 developer debug gac nupkg doc"
 
 RDEPEND=">=dev-lang/mono-4.0.2.5
 	dev-util/nant[nupkg]
@@ -53,7 +55,10 @@ src_prepare() {
 }
 
 src_compile() {
-	exbuild "${METAFILETOBUILD}"
+	# /p:PublicSign=true
+	exbuild /p:SignAssembly=true /p:DelaySign=true "/p:AssemblyOriginatorKeyFile=${S}/src/nunit.snk" "${METAFILETOBUILD}"
+	sn -R "${S}/bin/${DIR}/lib/nunit-console-runner.dll" "${S}/src/nunit.snk" || die
+	sn -R "${S}/bin/${DIR}/framework/nunit.framework.dll" "${S}/src/nunit.snk" || die
 	enuspec "${S}/nuget/nunit.nuspec"
 	enuspec "${S}/nuget/nunit.runners.nuspec"
 }
@@ -85,6 +90,7 @@ src_install() {
 		fi
 
 		egacinstall "${S}/bin/${DIR}/lib/nunit-console-runner.dll"
+		egacinstall "${S}/bin/${DIR}/framework/nunit.framework.dll"
 	fi
 
 	if use doc; then
