@@ -2,12 +2,12 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Id$
 
-EAPI="6"
+EAPI="5"
 
 USE_DOTNET="net35 net40 net45"
 PATCHDIR="${FILESDIR}/2.2/"
 
-inherit eutils dotnet user git-r3 autotools
+inherit eutils dotnet user git-r3 autotools-utils
 
 DESCRIPTION="XSP is a small web server that can host ASP.NET pages"
 HOMEPAGE="http://www.mono-project.com/ASP.NET"
@@ -23,7 +23,7 @@ RDEPEND="dev-db/sqlite:3"
 DEPEND="${RDEPEND}"
 
 src_prepare() {
-	epatch "${FILESDIR}/aclocal-fix.patch"
+	# epatch "${FILESDIR}/aclocal-fix.patch"
 
 	if [ -z "$LIBTOOL" ]; then
 		LIBTOOL=`which glibtool 2>/dev/null`
