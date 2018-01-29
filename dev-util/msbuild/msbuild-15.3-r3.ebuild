@@ -10,7 +10,7 @@ SLOT="0"
 USE_DOTNET="net46"
 IUSE="+${USE_DOTNET} +gac developer debug doc +roslyn"
 
-inherit dotnet gac
+inherit dotnet xbuild gac
 
 GITHUB_ACCOUNT="mono"
 GITHUB_PROJECTNAME="linux-packaging-msbuild"
@@ -32,7 +32,6 @@ RDEPEND="${COMMON_DEPEND}
 "
 DEPEND="${COMMON_DEPEND}
 	dev-dotnet/buildtools
-	>=dev-dotnet/msbuildtasks-1.5.0.240-r1
 "
 
 KEY2="${DISTDIR}/mono.snk"
@@ -41,6 +40,8 @@ PROJ1=Microsoft.Build
 PROJ1_DIR=src/Build
 PROJ2=MSBuild
 PROJ2_DIR=src/MSBuild
+
+VER=15.3.0.0
 
 src_prepare() {
 	eapply "${FILESDIR}/dir.props.diff"
@@ -76,7 +77,6 @@ src_compile() {
 		fi
 	fi
 
-	VER=1.0.27.0
 
 	exbuild_raw /v:detailed /p:TargetFrameworkVersion=v4.6 "/p:Configuration=${CONFIGURATION}" ${SARGS} "/p:VersionNumber=${VER}" "/p:RootPath=${S}" "/p:SignAssembly=true" "/p:AssemblyOriginatorKeyFile=${KEY2}" "${S}/${PROJ2_DIR}/mono-${PROJ2}.csproj"
 	sn -R "${PROJ1_DIR}/bin/${CONFIGURATION}/${PROJ1}.dll" "${KEY2}" || die
