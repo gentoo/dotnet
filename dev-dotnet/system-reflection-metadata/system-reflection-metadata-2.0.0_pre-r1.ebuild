@@ -1,8 +1,9 @@
-# Copyright 1999-2017 Gentoo Foundation
+# Copyright 1999-2018 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Id$
 
-EAPI=6
+EAPI="6"
+
 RESTRICT="mirror"
 KEYWORDS="~amd64"
 SLOT="0"
@@ -10,7 +11,7 @@ SLOT="0"
 USE_DOTNET="net45"
 IUSE="+${USE_DOTNET} +gac developer debug doc"
 
-inherit gac dotnet
+inherit dotnet xbuild gac
 
 GITHUB_ACCOUNT="dotnet"
 GITHUB_PROJECTNAME="corefx"
@@ -29,7 +30,6 @@ RDEPEND="${COMMON_DEPEND}
 "
 DEPEND="${COMMON_DEPEND}
 	dev-dotnet/buildtools
-	>=dev-dotnet/msbuildtasks-1.5.0.240
 "
 
 PROJ1=System.Reflection.Metadata
