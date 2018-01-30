@@ -1,8 +1,9 @@
-# Copyright 1999-2017 Gentoo Foundation
+# Copyright 1999-2018 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Id$
 
-EAPI=6
+EAPI="6"
+
 RESTRICT="mirror"
 KEYWORDS="~amd64"
 SLOT="0"
@@ -10,7 +11,7 @@ SLOT="0"
 USE_DOTNET="net46"
 IUSE="+${USE_DOTNET} gac developer debug doc"
 
-inherit dotnet gac
+inherit dotnet xbuild gac
 
 GITHUB_ACCOUNT="mono"
 GITHUB_PROJECTNAME="linux-packaging-msbuild"
@@ -27,11 +28,12 @@ COMMON_DEPEND=">=dev-lang/mono-5.2.0.196
 	dev-dotnet/system-reflection-metadata developer? ( dev-dotnet/system-reflection-metadata[developer] )
 	dev-dotnet/system-collections-immutable developer? ( dev-dotnet/system-collections-immutable[developer] )
 "
+
 RDEPEND="${COMMON_DEPEND}
 "
+
 DEPEND="${COMMON_DEPEND}
 	dev-dotnet/buildtools
-	>=dev-dotnet/msbuildtasks-1.5.0.240-r1
 "
 
 KEY2="${FILESDIR}/mono.snk"
