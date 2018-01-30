@@ -12,7 +12,7 @@ SLOT="0"
 USE_DOTNET="net45"
 IUSE="+${USE_DOTNET} +gac developer debug doc +symlink"
 
-inherit dotnet gac mono-pkg-config
+inherit dotnet xbuild gac mono-pkg-config
 
 GITHUB_ACCOUNT="dotnet"
 GITHUB_PROJECTNAME="buildtools"
