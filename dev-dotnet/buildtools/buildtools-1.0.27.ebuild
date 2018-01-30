@@ -2,9 +2,11 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Id$
 
-EAPI=6
+EAPI="6"
+
 RESTRICT="mirror"
 KEYWORDS="~amd64"
+
 SLOT="0"
 
 USE_DOTNET="net45"
@@ -30,7 +32,6 @@ COMMON_DEPEND=">=dev-lang/mono-5.2.0.196
 RDEPEND="${COMMON_DEPEND}
 "
 DEPEND="${COMMON_DEPEND}
-	>=dev-dotnet/msbuildtasks-1.5.0.240
 "
 
 PROJ1=Microsoft.DotNet.Build.Tasks
