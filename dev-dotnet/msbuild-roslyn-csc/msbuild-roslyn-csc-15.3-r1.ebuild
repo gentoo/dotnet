@@ -1,8 +1,8 @@
-# Copyright 1999-2017 Gentoo Foundation
+# Copyright 1999-2018 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Id$
 
-EAPI=6
+EAPI="6"
 
 KEYWORDS="~amd64 ~ppc ~x86"
 RESTRICT="mirror"
@@ -11,7 +11,7 @@ SLOT="0"
 
 USE_DOTNET="net45"
 
-inherit dotnet
+inherit dotnet xbuild
 
 NAME="roslyn"
 HOMEPAGE="https://github.com/dotnet/${NAME}"
@@ -32,7 +32,6 @@ COMMON_DEPEND=">=dev-lang/mono-5.4.0.167 <dev-lang/mono-9999
 RDEPEND="${COMMON_DEPEND}
 "
 DEPEND="${COMMON_DEPEND}
-	dev-dotnet/msbuildtasks
 "
 
 KEY2="${DISTDIR}/mono.snk"
