@@ -18,7 +18,7 @@ USE_DOTNET="net45"
 # pkg-config = register in pkg-config database
 IUSE="${USE_DOTNET} debug developer +gac pkg-config nupkg test"
 
-inherit dotnet gac
+inherit dotnet gac xbuild
 
 NAME="Newtonsoft.Json"
 HOMEPAGE="https://github.com/JamesNK/${NAME}"
