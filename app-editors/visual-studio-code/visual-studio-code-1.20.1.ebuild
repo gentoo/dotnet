@@ -16,39 +16,35 @@ SLOT="0"
 KEYWORDS="~amd64"
 IUSE=""
 
-DEPEND="
->=gnome-base/gconf-3.2.6-r4:2
+DEPEND=">=gnome-base/gconf-3.2.6-r4:2
 >=media-libs/libpng-1.2.46:0
 >=x11-libs/cairo-1.14.12:0
 >=x11-libs/gtk+-2.24.31-r1:2
->=x11-libs/libXtst-1.2.3:0
-"
+>=x11-libs/libXtst-1.2.3:0"
 
-RDEPEND="
-${DEPEND}
+RDEPEND="${DEPEND}
 >=app-crypt/libsecret-0.18.5:0[crypt]
 >=net-print/cups-2.1.4:0
 >=x11-libs/libnotify-0.7.7:0
->=x11-libs/libXScrnSaver-1.2.2-r1:0
-"
+>=x11-libs/libXScrnSaver-1.2.2-r1:0"
 
 QA_PRESTRIPPED="opt/${PN}/code"
 QA_PREBUILT="opt/${PN}/code"
 
-pkg_setup(){
-S="${WORKDIR}/VSCode-linux-x64"
+pkg_setup() {
+	S="${WORKDIR}/VSCode-linux-x64"
 }
 
-src_install(){
-insinto "/opt/${PN}"
-doins -r *
-dosym "${EPREFIX}/opt/${PN}/bin/code" "/usr/bin/${PN}"
-make_desktop_entry "${PN}" "Visual Studio Code" "${PN}" "Development;IDE"
-doicon "${FILESDIR}/${PN}.png"
-fperms +x "/opt/${PN}/code"
-fperms +x "/opt/${PN}/bin/code"
-fperms +x "/opt/${PN}/libnode.so"
-fperms +x "/opt/${PN}/resources/app/node_modules/vscode-ripgrep/bin/rg"
-insinto "/usr/share/licenses/${PN}"
-newins "resources/app/LICENSE.txt" "LICENSE"
+src_install() {
+	insinto "/opt/${PN}"
+	doins -r *
+	dosym "${EPREFIX}/opt/${PN}/bin/code" "/usr/bin/${PN}"
+	make_desktop_entry "${PN}" "Visual Studio Code" "${PN}" "Development;IDE"
+	doicon "${FILESDIR}/${PN}.png"
+	fperms +x "/opt/${PN}/code"
+	fperms +x "/opt/${PN}/bin/code"
+	fperms +x "/opt/${PN}/libnode.so"
+	fperms +x "/opt/${PN}/resources/app/node_modules/vscode-ripgrep/bin/rg"
+	insinto "/usr/share/licenses/${PN}"
+	newins "resources/app/LICENSE.txt" "LICENSE"
 }
