@@ -8,12 +8,13 @@ inherit eutils
 DESCRIPTION="Multiplatform Visual Studio Code from Microsoft"
 HOMEPAGE="https://code.visualstudio.com"
 BASE_URI="https://vscode-update.azurewebsites.net/${PV}"
-SRC_URI="${BASE_URI}/linux-x64/stable -> ${P}-amd64.tar.gz"
+SRC_URI="amd64? ( ${BASE_URI}/linux-x64/stable -> ${P}-amd64.tar.gz )
+	x86? ( ${BASE_URI}/linux-ia32/stable -> ${P}-x86.tar.gz )"
 RESTRICT="mirror strip bindist"
 
 LICENSE="MIT"
 SLOT="0"
-KEYWORDS="~amd64"
+KEYWORDS="~x86 ~amd64"
 IUSE=""
 
 DEPEND=">=gnome-base/gconf-3.2.6-r4:2
@@ -32,7 +33,14 @@ QA_PRESTRIPPED="opt/${PN}/code"
 QA_PREBUILT="opt/${PN}/code"
 
 pkg_setup() {
-	S="${WORKDIR}/VSCode-linux-x64"
+	if use amd64; then
+		S="${WORKDIR}/VSCode-linux-x64"
+	elif use x86; then
+		S="${WORKDIR}/VSCode-linux-ia32"
+	else
+		# shouldn't be possible with -* special keyword
+		die
+	fi
 }
 
 src_install() {
