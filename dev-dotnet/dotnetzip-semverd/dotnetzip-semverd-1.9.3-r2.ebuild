@@ -11,7 +11,7 @@ SLOT="0"
 
 USE_DOTNET="net45"
 
-inherit dotnet gac mono-pkg-config
+inherit dotnet gac mono-pkg-config xbuild
 
 SRC_URI="https://github.com/haf/DotNetZip.Semverd/archive/v1.9.3.tar.gz -> ${PV}.tar.gz
 	https://github.com/mono/mono/raw/master/mcs/class/mono.snk"

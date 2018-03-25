@@ -52,10 +52,11 @@ exbuild() {
 # @DESCRIPTION: run xbuild with default key signing
 exbuild_strong() {
 	# http://stackoverflow.com/questions/7903321/only-sign-assemblies-with-strong-name-during-release-build
+	DOTNET_ECLASSDIR="`dirname "${EBUILD}"`/../../eclass"
 	if use gac; then
 		if [[ -z ${SNK_FILENAME} ]]; then
 			# elog ${BASH_SOURCE}
-			SNK_FILENAME=/var/lib/layman/dotnet/eclass/mono.snk
+			SNK_FILENAME="${DOTNET_ECLASSDIR}/mono.snk"
 			# sn - Digitally sign/verify/compare strongnames on CLR assemblies. 
 			# man sn = http://linux.die.net/man/1/sn
 			if [ -f ${SNK_FILENAME} ]; then
