@@ -32,8 +32,12 @@ DEPEND="${COMMONDEPEND}
 	!dev-lang/mono-basic
 "
 
+# Patch added for ncurses 6.1
+# https://github.com/mono/mono/issues/6752
+
 PATCHES=(
 	"${FILESDIR}"/${PN}-5.0.1.1-x86_32.patch
+	"${FILESDIR}"/${PN}-5.10.0.179-ncurses61.patch
 )
 
 #S="${WORKDIR}/${PN}-$(get_version_component_range 1-3)"
