@@ -14,7 +14,7 @@ DESCRIPTION="Mono runtime and class libraries, a C# compiler/interpreter"
 HOMEPAGE="http://www.mono-project.com/Main_Page"
 LICENSE="MIT LGPL-2.1 GPL-2 BSD-4 NPL-1.1 Ms-PL GPL-2-with-linking-exception IDPL"
 
-SRC_URI="http://download.mono-project.com/sources/mono/preview/${P}.tar.bz2"
+SRC_URI="http://download.mono-project.com/sources/mono/${P}.tar.bz2"
 
 COMMONDEPEND="
 	!minimal? ( >=dev-dotnet/libgdiplus-2.10 )
