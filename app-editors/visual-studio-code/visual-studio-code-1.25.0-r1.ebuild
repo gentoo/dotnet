@@ -44,14 +44,12 @@ pkg_setup() {
 }
 
 src_install() {
-	insinto "/opt/${PN}"
-	doins -r *
+	dodir "/opt"
+	# Using doins -r would strip executable bits from all binaries
+	cp -pPR "${S}" "${D}/opt/${PN}" || die "Failed to copy files"
 	dosym "${EPREFIX}/opt/${PN}/bin/code" "/usr/bin/code"
 	make_desktop_entry "code" "Visual Studio Code" "${PN}" "Development;IDE"
 	doicon "${S}/resources/app/resources/linux/code.png"
-	fperms +x "/opt/${PN}/code"
-	fperms +x "/opt/${PN}/bin/code"
-	fperms +x "/opt/${PN}/libnode.so"
 	insinto "/usr/share/licenses/${PN}"
 	newins "resources/app/LICENSE.txt" "LICENSE"
 }
