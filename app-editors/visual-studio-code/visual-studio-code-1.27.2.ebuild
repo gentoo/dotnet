@@ -5,6 +5,7 @@ EAPI=6
 
 inherit eutils
 
+EXEC_NAME=vscode
 DESCRIPTION="Multiplatform Visual Studio Code from Microsoft"
 HOMEPAGE="https://code.visualstudio.com"
 BASE_URI="https://vscode-update.azurewebsites.net/${PV}"
@@ -47,8 +48,8 @@ src_install() {
 	dodir "/opt"
 	# Using doins -r would strip executable bits from all binaries
 	cp -pPR "${S}" "${D}/opt/${PN}" || die "Failed to copy files"
-	dosym "${EPREFIX}/opt/${PN}/bin/code" "/usr/bin/code"
-	make_desktop_entry "code" "Visual Studio Code" "${PN}" "Development;IDE"
+	dosym "${EPREFIX}/opt/${PN}/bin/code" "/usr/bin/${EXEC_NAME}"
+	make_desktop_entry "${EXEC_NAME}" "Visual Studio Code" "${PN}" "Development;IDE"
 	newicon "${S}/resources/app/resources/linux/code.png" "${PN}.png"
 	insinto "/usr/share/licenses/${PN}"
 	newins "resources/app/LICENSE.txt" "LICENSE"
