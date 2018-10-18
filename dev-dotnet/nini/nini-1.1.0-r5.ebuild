@@ -4,7 +4,7 @@
 
 EAPI=6
 
-inherit mono-env dotnet multilib versionator gac
+inherit mono-env dotnet multilib versionator gac mono-pkg-config
 
 DESCRIPTION="Nini - A configuration library for .NET"
 HOMEPAGE="http://nini.sourceforge.net"
