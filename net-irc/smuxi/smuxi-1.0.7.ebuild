@@ -44,7 +44,7 @@ src_prepare() {
 
 	# https://github.com/meebey/smuxi/issues/86
 	# eautoreconf
-	./autogen.sh | die "Could not run autogen.sh"
+	./autogen.sh || die "Could not run autogen.sh"
 }
 
 src_configure() {

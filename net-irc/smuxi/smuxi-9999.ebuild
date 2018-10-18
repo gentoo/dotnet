@@ -31,6 +31,7 @@ CDEPEND=">=dev-lang/mono-4.0.2.5
 DEPEND="${CDEPEND}
 	>=dev-util/intltool-0.25
 	>=sys-devel/gettext-0.17
+	>=net-misc/x11-ssh-askpass-1.2.4.1-r1
 	virtual/pkgconfig
 "
 RDEPEND="${CDEPEND}"
@@ -47,7 +48,7 @@ src_prepare() {
 
 	# https://github.com/meebey/smuxi/issues/86
 	# eautoreconf
-	./autogen.sh | die "Could not run autogen.sh"
+	./autogen.sh || die "Could not run autogen.sh"
 }
 
 src_configure() {
