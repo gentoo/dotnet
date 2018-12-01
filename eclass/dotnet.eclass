@@ -31,6 +31,7 @@ IUSE+=" debug developer"
 
 # SET default use flags according on DOTNET_TARGETS
 for x in ${USE_DOTNET}; do
+	mono-env_pkg_setup
 	case ${x} in
 		net45) if [[ ${DOTNET_TARGETS} == *net45* ]]; then IUSE+=" +net45"; else IUSE+=" net45"; fi;;
 		net40) if [[ ${DOTNET_TARGETS} == *net40* ]]; then IUSE+=" +net40"; else IUSE+=" net40"; fi;;
