@@ -43,6 +43,7 @@ done
 # @DESCRIPTION:  This function set FRAMEWORK
 dotnet_pkg_setup() {
 	EBUILD_FRAMEWORK=""
+	mono-env_pkg_setup
 	for x in ${USE_DOTNET} ; do
 		case ${x} in
 			net45) EBF="4.5"; if use net45; then F="${EBF}";fi;;
