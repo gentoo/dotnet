@@ -4,7 +4,7 @@ gentoo-dotnet official overlay
 note that this overlay is community driven, any help is very welcome, since so it could be unstable
 
 [![Build Status](https://travis-ci.org/gentoo/dotnet.png?branch=master)](https://travis-ci.org/gentoo/dotnet)
-[![Join the chat at https://gitter.im/gentoo/dotnet](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/gentoo/dotnet?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+[![Gentoo discord server](https://img.shields.io/discord/249111029668249601.svg?style=flat-square&label=Gentoo%20Linux)](https://discord.gg/Gentoo)
 
 Overlay Installation
 --------------------
