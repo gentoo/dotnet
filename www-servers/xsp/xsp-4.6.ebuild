@@ -1,6 +1,5 @@
 # Copyright 1999-2018 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Id$
 
 EAPI="6"
 
@@ -10,7 +9,7 @@ PATCHDIR="${FILESDIR}/2.2/"
 inherit eutils systemd dotnet user autotools msbuild
 
 DESCRIPTION="XSP is a small web server that can host ASP.NET pages"
-HOMEPAGE="http://www.mono-project.com/ASP.NET"
+HOMEPAGE="https://www.mono-project.com/docs/web/aspnet/"
 
 EGIT_COMMIT="e1494fcb8c12e329631f8f335732bcaf318a4ec7"
 SRC_URI="https://codeload.github.com/mono/xsp/tar.gz/${EGIT_COMMIT} -> ${PN}-${PV}.tar.gz"
@@ -20,7 +19,14 @@ S="${WORKDIR}/xsp-${EGIT_COMMIT}"
 LICENSE="MIT"
 SLOT="0"
 KEYWORDS="~amd64 ~ppc ~x86"
-IUSE="+${USE_DOTNET} doc test examples developer debug"
+IUSE="+${USE_DOTNET} systemd openrc +modmono fastcgi examples doc test"
+# systemd = install .service files
+# openrc = install init.d scripts
+# modmono = install mod-mono-server
+# fastcgi = Add support for the FastCGI interface (install fastcgi-mono-server)
+# man = Build the manpages
+# examples = install test applications
+# test ~= ??? unit tests ???
 
 COMMON_DEPEND="dev-db/sqlite:3
 	!dev-dotnet/xsp
@@ -51,7 +57,7 @@ src_configure() {
 
 	myeconfargs=("--enable-maintainer-mode")
 	use test && myeconfargs+=("--with_unit_tests")
-	use doc || myeconfargs+=("--disable-docs")
+	( ! use doc ) || myeconfargs+=("--disable-docs")
 	econf ${myeconfargs}
 }
 
@@ -69,41 +75,43 @@ pkg_preinst() {
 
 src_install() {
 	emake DESTDIR="${ED}" install
-
-	newinitd "${PATCHDIR}/xsp.initd" xsp
-	newconfd "${PATCHDIR}/xsp.confd" xsp
-
-	newinitd "${PATCHDIR}/mod-mono-server-r1.initd" mod-mono-server
-	newconfd "${PATCHDIR}/mod-mono-server.confd" mod-mono-server
-
-	insinto "/etc/xsp4"
-	doins "${FILESDIR}/systemd/mono.webapp"
-
-	keepdir "/etc/xsp4/conf.d/systemd"
-
-	if use doc; then
-		insinto /etc/xsp4/conf.d
-		doins "${FILESDIR}/systemd/readme.txt"
+	if test -z "$NO_LIBTOOLIZE"; then
+		${LIBTOOL}ize --force --copy
 	fi
 
 	if ! use examples; then
 		/bin/rm -rf "${ED}/usr/lib64/xsp/test" || die
 	fi
 
-	if test -z "$NO_LIBTOOLIZE"; then
-		${LIBTOOL}ize --force --copy
+	if use openrc; then
+		newinitd "${PATCHDIR}/xsp.initd" xsp
+		newconfd "${PATCHDIR}/xsp.confd" xsp
+
+		if use modmono; then
+			newinitd "${PATCHDIR}/mod-mono-server-r1.initd" mod-mono-server
+			newconfd "${PATCHDIR}/mod-mono-server.confd" mod-mono-server
+		fi
+
+		keepdir /var/run/aspnet
 	fi
 
-	# mono-xsp4.service was original name from 
-	# https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=770458;filename=mono-xsp4.service;att=1;msg=5
-	# I think that using the same commands as in debian 
-	#     systemctl start mono-xsp4.service
-	#     systemctl start mono-xsp4
-	# is better than to have shorter command
-	#     systemctl start xsp
-	#
-	# insinto /usr/lib/systemd/system
-	systemd_dounit "${FILESDIR}"/systemd/mono-xsp4.service
+	if use systemd; then
+		keepdir "/etc/xsp4/conf.d"
+		insinto "/etc/xsp4"
+		doins "${FILESDIR}/systemd/mono.webapp"
+		systemd_dounit "${FILESDIR}"/systemd/mono-xsp4.service
+		if use doc; then
+			insinto /etc/xsp4/conf.d
+			doins "${FILESDIR}/systemd/readme.txt"
+		fi
 
-	keepdir /var/run/aspnet
+		if use modmono; then
+			keepdir "/etc/mod-mono-server/conf.d"
+			insinto "/etc/mod-mono-server"
+			doins "${FILESDIR}/systemd/mono.webapp"
+			systemd_dounit "${FILESDIR}"/systemd/mod-mono-server.service
+			insinto "/etc/mod-mono-server"
+			doins "${FILESDIR}/systemd/mono.webapp"
+		fi
+	fi
 }
