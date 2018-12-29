@@ -35,6 +35,8 @@ COMMON_DEPEND="dev-db/sqlite:3
 RDEPEND="${COMMON_DEPEND}"
 DEPEND="${COMMON_DEPEND}"
 
+SANDBOX_WRITE="${SANDBOX_WRITE}:/etc/mono/registry/:/etc/mono/registry/last-btime"
+
 src_prepare() {
 	epatch "${FILESDIR}/aclocal-fix.patch"
 
