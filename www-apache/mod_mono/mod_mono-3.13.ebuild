@@ -1,8 +1,7 @@
-# Copyright 1999-2017 Gentoo Foundation
+# Copyright 1999-2019 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Id$
 
-EAPI=6
+EAPI="6"
 
 # Watch the order of these!
 inherit autotools apache-module eutils go-mono mono-env
@@ -14,7 +13,7 @@ HOMEPAGE="http://www.mono-project.com/Mod_mono"
 LICENSE="Apache-2.0"
 SLOT="0"
 IUSE="debug"
-EGIT_COMMIT="f21ce5a86a610aba053042324970706a9c424681"
+EGIT_COMMIT="33498058e334349a9483f51c9d571d05af2760ed"
 SRC_URI="https://github.com/mono/mod_mono/archive/${EGIT_COMMIT}.tar.gz -> ${PN}-${PV}.tar.gz"
 RESTRICT="mirror"
 S="${WORKDIR}/mod_mono-${EGIT_COMMIT}"
