@@ -6,7 +6,9 @@
 		<description>Gentoo Dotnet Project</description>
 	</maintainer>
 	<use>
-		<flag name='developer'>creates .mdb files for either Release and Debug</flag>
+		<flag name='openrc'>install init.d scripts</flag>
+		<flag name='modmono'>install mod-mono-server</flag>
+		<flag name='xsp'>install standalone XSP web server</flag>
 	</use>
 	<longdescription lang="en">
 		XSP is a standalone web server written in C# that can be used to run
