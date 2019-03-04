@@ -9,9 +9,15 @@ note that this overlay is community driven, any help is very welcome, since so i
 Overlay Installation
 --------------------
 
- - emerge -av layman
- - layman -a dotnet
- - add `DOTNET_TARGETS="net45 net40"` to `make.conf`
+Use the [eselect repository module](https://wiki.gentoo.org/wiki/Eselect/Repository) 
+to enable this overlay (or repository):
+
+ - `eselect repository enable dotnet`
+
+Then sync either everything using `emerge --sync` or just this overlay using `emaint -r dotnet sync`. 
+Finally add the following USE flags if relevant.
+
+- add `DOTNET_TARGETS="net45 net40"` to `make.conf`
 
 <hr/>
 
