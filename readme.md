@@ -32,9 +32,6 @@ Finally add the following USE flags if relevant.
  - Fork & Contribute & Pull Request
  - Open requests on https://bugs.gentoo.org with solutions from this overlay
 
-![logo](http://i.imgur.com/4OmyG5d.jpg)
-
-
 Dotnet Core
 -----------
 
