@@ -7,12 +7,12 @@ The quickest and easiet way to install dotnet core for gentoo is to use one of t
 
 Runtime:
 
-  * =dotnet/dotnetcore-runtime-bin-2.0.4
-  * =dotnet/dotnetcore-aspnet-bin-2.0.3
+  * =dev-dotnet/dotnetcore-runtime-bin-2.0.4
+  * =dev-dotnet/dotnetcore-aspnet-bin-2.0.3
 
 SDK:
 
-  * =dotnet/dotnetcore-sdk-bin-2.1.3
+  * =dev-dotnet/dotnetcore-sdk-bin-2.1.3
 
 The SDK package (2.1.3) already includes the runtime packages (2.0.4) for dotnet core.
 The reason for including both is that the SDK is available under x64 platforms but not currently arm32 platforms (such as the Rpi)
