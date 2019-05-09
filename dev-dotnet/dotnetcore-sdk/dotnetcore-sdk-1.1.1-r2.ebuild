@@ -35,7 +35,8 @@ RDEPEND="
 	>=sys-libs/libunwind-1.1-r1
 	>=dev-libs/icu-57.1
 	>=dev-util/lttng-ust-2.8.1
-	>=dev-libs/openssl-1.0.2h-r2
+	!libressl? ( dev-libs/openssl:0 )
+	libressl? ( dev-libs/libressl )
 	>=net-misc/curl-7.49.0
 	heimdal? (
 		>=app-crypt/heimdal-1.5.3-r2
