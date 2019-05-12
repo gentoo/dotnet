@@ -36,8 +36,7 @@ RDEPEND="
 	>=sys-libs/libunwind-1.1-r1
 	>=dev-libs/icu-57.1
 	>=dev-util/lttng-ust-2.8.1
-	!libressl? ( dev-libs/openssl:0 )
-	libressl? ( dev-libs/libressl )
+	>=dev-libs/openssl-1.0.2h-r2
 	>=net-misc/curl-7.49.0
 	>=app-crypt/mit-krb5-1.14.2"
 DEPEND="${RDEPEND}
