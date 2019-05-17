@@ -1,9 +1,9 @@
 # Copyright 1999-2019 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=6
+EAPI=7
 
-inherit eutils
+inherit eutils desktop
 
 EXEC_NAME=vscode
 DESCRIPTION="Multiplatform Visual Studio Code from Microsoft"
@@ -51,6 +51,4 @@ src_install() {
 	dosym "${EPREFIX}/opt/${PN}/bin/code" "/usr/bin/${EXEC_NAME}"
 	make_desktop_entry "${EXEC_NAME}" "Visual Studio Code" "${PN}" "Development;IDE"
 	newicon "${S}/resources/app/resources/linux/code.png" "${PN}.png"
-	insinto "/usr/share/licenses/${PN}"
-	newins "resources/app/LICENSE.txt" "LICENSE"
 }
