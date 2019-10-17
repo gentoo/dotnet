@@ -41,6 +41,8 @@ src_configure() {
 
 src_compile() {
 	default
+	cd bin
+	for all in `ls *.dll`; do sn -q -R $all ../mono-addins.snk; done
 }
 
 src_install() {
