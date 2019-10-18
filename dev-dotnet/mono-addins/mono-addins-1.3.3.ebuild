@@ -14,7 +14,7 @@ SLOT="0"
 KEYWORDS="amd64 ~ppc ~x86"
 IUSE="+gtk"
 
-RDEPEND=">=dev-lang/mono-3
+RDEPEND=">=dev-lang/mono-6.0.0.334
 	gtk? ( >=dev-dotnet/gtk-sharp-2.12.21:2 )"
 DEPEND="${RDEPEND}
 	virtual/pkgconfig"

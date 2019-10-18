@@ -13,9 +13,9 @@
 		<flag name='pkg-config'>create .pc file(s) for .dll(s) installed to gac</flag>
 	</use>
 	<longdescription lang="en">
-                Nugget for easily paging through any IEnumerable/IQueryable in Asp.Net MVC
-        </longdescription>
+				Nugget for easily paging through any IEnumerable/IQueryable in Asp.Net MVC
+		</longdescription>
 	<longdescription lang="ru">
-                Набор функций для вывода списков в движке Razor (из ASP .NET)
-        </longdescription>
+				Набор функций для вывода списков в движке Razor (из ASP .NET)
+		</longdescription>
 </pkgmetadata>

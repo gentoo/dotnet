@@ -3,7 +3,7 @@
 
 EAPI="6"
 
-KEYWORDS="~x86 ~amd64 ~ppc"
+KEYWORDS="~amd64 ~ppc ~x86"
 RESTRICT="mirror"
 
 SLOT="0"
@@ -20,7 +20,6 @@ HOMEPAGE="https://github.com/psmacchia/${NAME}"
 EGIT_COMMIT="96008fcfbc137eac6fd327387b80b14909a581a1"
 SRC_URI="${HOMEPAGE}/archive/${EGIT_COMMIT}.tar.gz -> ${PN}-${PV}.tar.gz"
 S="${WORKDIR}/${NAME}-${EGIT_COMMIT}"
-
 
 CDEPEND="|| ( >=dev-lang/mono-4 <dev-lang/mono-9999 )"
 DEPEND="${CDEPEND}"

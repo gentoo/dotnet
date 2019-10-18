@@ -71,4 +71,3 @@ src_install() {
 	egacinstall "bin/${DIR}/net-4.5/nunit.framework.dll"
 	einstall_pc_file "${PN}" "${PV}" "nunit.framework"
 }
-

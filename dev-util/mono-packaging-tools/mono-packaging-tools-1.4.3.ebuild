@@ -2,7 +2,7 @@
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=6 # >=portage-2.2.25
-KEYWORDS="~x86 ~amd64"
+KEYWORDS="~amd64 ~x86"
 RESTRICT="mirror"
 
 USE_DOTNET="net45"

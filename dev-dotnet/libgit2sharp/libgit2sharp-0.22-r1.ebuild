@@ -3,7 +3,7 @@
 
 EAPI=6
 
-KEYWORDS="~x86 ~amd64"
+KEYWORDS="~amd64 ~x86"
 RESTRICT+=" mirror"
 
 USE_DOTNET="net45"

@@ -46,7 +46,6 @@ src_prepare() {
 	eapply_user
 }
 
-
 src_compile() {
 	if use debug; then
 		CONFIGURATION=Debug

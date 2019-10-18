@@ -3,7 +3,7 @@
 
 EAPI=6
 
-KEYWORDS="~amd64 ~ppc ~x86"
+KEYWORDS="~amd64"
 RESTRICT="mirror"
 
 SLOT="2"
@@ -26,7 +26,6 @@ TARBALL_EXT=".tar.gz"
 SRC_URI="https://github.com/autofac/${GITHUB_REPONAME}/archive/${EGIT_COMMIT}${TARBALL_EXT} -> ${GITHUB_REPONAME}-${PV4}${TARBALL_EXT}
 	https://github.com/mono/mono/raw/master/mcs/class/mono.snk"
 S="${WORKDIR}/${GITHUB_REPONAME}-${EGIT_COMMIT}"
-
 
 IUSE="+${USE_DOTNET} +debug developer doc"
 

@@ -4,7 +4,7 @@
 EAPI=6
 SLOT="3"
 
-KEYWORDS="~amd64 ~ppc ~x86"
+KEYWORDS="~amd64"
 
 DOTNET_FRAMEWORK="net45"
 USE_DOTNET="net45"

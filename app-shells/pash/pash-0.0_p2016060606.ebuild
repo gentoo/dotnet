@@ -2,7 +2,7 @@
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI="6"
-KEYWORDS="~x86 ~amd64 ~ppc"
+KEYWORDS="~amd64"
 RESTRICT="mirror"
 SLOT="0"
 
@@ -112,4 +112,3 @@ src_install() {
 		make_wrapper pash "mono ${SLOTTEDDIR}/Pash.exe"
 	fi
 }
-

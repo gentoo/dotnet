@@ -16,6 +16,6 @@
 		Json.NET is a popular high-performance JSON framework for .NET
 	</longdescription>
 	<longdescription lang="ru">
-        C# библиотека для парсинга Json-формата
-    </longdescription>
+		C# библиотека для парсинга Json-формата
+	</longdescription>
 </pkgmetadata>
