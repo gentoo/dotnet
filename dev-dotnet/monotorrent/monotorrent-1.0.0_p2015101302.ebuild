@@ -55,7 +55,6 @@ src_prepare() {
 		-e "/InternalsVisibleTo/d" \
 		./src/MonoTorrent/AssemblyInfo.cs* || die
 
-	epatch "${FILESDIR}/NoStdLib-NoConfig.patch"
 	epatch "${FILESDIR}/downgrade-from-4.6-to-4.5.patch"
 
 	enuget_restore "${METAFILETOBUILD}"
