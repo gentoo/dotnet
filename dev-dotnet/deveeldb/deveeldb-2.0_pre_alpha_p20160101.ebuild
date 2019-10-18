@@ -1,6 +1,5 @@
-# Copyright 1999-2017 Gentoo Foundation
+# Copyright 1999-2019 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
-# $Id$
 
 EAPI=6
 # !!! Unable to do any operations on 'dev-dotnet/DeveelDB-2.0_prealpha-r201601010',
