@@ -7,7 +7,7 @@ inherit autotools fdo-mime gnome2-utils mono-env
 
 DESCRIPTION="Simple Painting for Gtk"
 HOMEPAGE="https://pinta-project.com"
-SRC_URI="https:://github.com/PintaProject/Pinta/archive/${PV}.tar.gz"
+SRC_URI="https://github.com/PintaProject/Pinta/archive/${PV}.tar.gz"
 
 LICENSE="MIT CC-BY-3.0"
 SLOT="0"

@@ -5,11 +5,11 @@ EAPI=6
 inherit mono-env dotnet autotools git-r3
 
 HOMEPAGE="https://www.smuxi.org/page/Download"
-EGIT_REPO_URI="https:://github.com/meebey/SmartIrc4net"
-# https:://github.com/meebey/SmartIrc4net/releases/tag/1.1
+EGIT_REPO_URI="https://github.com/meebey/SmartIrc4net"
+# https://github.com/meebey/SmartIrc4net/releases/tag/1.1
 EGIT_COMMIT="c00ddb2c5116c95015180150121e2f169b5a8a62"
 
-SRC_URI="https:://github.com/meebey/SmartIrc4net/archive/${PV}.tar.gz -> ${P}.tar.gz"
+SRC_URI="https://github.com/meebey/SmartIrc4net/archive/${PV}.tar.gz -> ${P}.tar.gz"
 DESCRIPTION="Multi-threaded and thread-safe IRC library written in C#"
 SLOT="0"
 KEYWORDS="~amd64 ~x86"

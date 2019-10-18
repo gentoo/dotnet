@@ -7,8 +7,8 @@ inherit eutils desktop
 
 EXEC_NAME=vscode
 DESCRIPTION="Multiplatform Visual Studio Code from Microsoft"
-HOMEPAGE="https:://code.visualstudio.com"
-BASE_URI="https:://vscode-update.azurewebsites.net/${PV}"
+HOMEPAGE="https://code.visualstudio.com"
+BASE_URI="https://vscode-update.azurewebsites.net/${PV}"
 SRC_URI="${BASE_URI}/linux-x64/stable -> ${P}-amd64.tar.gz"
 RESTRICT="mirror strip bindist"
 

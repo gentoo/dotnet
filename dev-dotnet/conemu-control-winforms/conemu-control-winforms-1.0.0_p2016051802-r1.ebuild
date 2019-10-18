@@ -12,7 +12,7 @@ KEYWORDS="~amd64 ~x86"
 DESCRIPTION="console emulator control, embeds a console view in a Windows Forms window"
 
 NAME="conemu-inside"
-#HOMEPAGE="https:://github.com/Maximus5/${NAME}"
+#HOMEPAGE="https://github.com/Maximus5/${NAME}"
 HOMEPAGE="https://conemu.github.io/"
 
 EGIT_COMMIT="b4800195f09b86eca14c4b96141a78136ee1d872"
@@ -20,7 +20,7 @@ SRC_URI="${HOMEPAGE}/archive/${EGIT_COMMIT}.tar.gz -> ${P}.tar.gz"
 RESTRICT="mirror"
 S="${WORKDIR}/${NAME}-${EGIT_COMMIT}"
 
-LICENSE="BSD" # https:://github.com/Maximus5/ConEmu/blob/master/Release/ConEmu/License.txt
+LICENSE="BSD" # https://github.com/Maximus5/ConEmu/blob/master/Release/ConEmu/License.txt
 SLOT="0"
 
 src_prepare() {

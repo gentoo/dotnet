@@ -14,15 +14,15 @@ SLOT="3"
 inherit mono-env gac nupkg
 
 NAME="nunit-console"
-HOMEPAGE="https:://github.com/nunit/${NAME}"
+HOMEPAGE="https://github.com/nunit/${NAME}"
 
 EGIT_BRANCH="mono4"
 EGIT_COMMIT="ce1cd856258dac867da4044eed5864de225c148d"
-SRC_URI="https:://github.com/ArsenShnurkov/nunit-console/archive/3.7.0.tar.gz -> ${PN}-${PV}.tar.gz"
+SRC_URI="https://github.com/ArsenShnurkov/nunit-console/archive/3.7.0.tar.gz -> ${PN}-${PV}.tar.gz"
 S="${WORKDIR}/${NAME}-${PV}"
 
 DESCRIPTION="NUnit Console runner and test engine"
-LICENSE="MIT" # https:://github.com/nunit/nunit/blob/master/LICENSE.txt
+LICENSE="MIT" # https://github.com/nunit/nunit/blob/master/LICENSE.txt
 #USE_DOTNET="net20 net40 net45"
 
 CDEPEND=">=dev-lang/mono-5.0.1.1

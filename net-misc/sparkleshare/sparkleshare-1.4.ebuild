@@ -13,7 +13,7 @@ S="${WORKDIR}/${MY_P}"
 
 DESCRIPTION="Git-based collaboration and file sharing tool"
 HOMEPAGE="https://www.sparkleshare.org"
-SRC_URI="https:://github.com/hbons/${MY_PN}/archive/${PV}.tar.gz -> ${MY_P}.tar.gz"
+SRC_URI="https://github.com/hbons/${MY_PN}/archive/${PV}.tar.gz -> ${MY_P}.tar.gz"
 
 LICENSE="GPL-3"
 KEYWORDS="~amd64 ~x86"

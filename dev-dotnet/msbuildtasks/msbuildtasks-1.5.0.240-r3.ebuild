@@ -11,16 +11,16 @@ inherit dotnet gac mono-pkg-config
 
 IUSE="+${USE_DOTNET} +debug developer doc xbuild"
 
-HOMEPAGE="https:://github.com/loresoft/msbuildtasks"
+HOMEPAGE="https://github.com/loresoft/msbuildtasks"
 EGIT_COMMIT="014ed0f7a69f4936d7b3b438a5ceca78f902e0ef"
 SRC_URI="${HOMEPAGE}/archive/${EGIT_COMMIT}.tar.gz -> ${PN}-${PV}.tar.gz
-	https:://github.com/mono/mono/raw/master/mcs/class/mono.snk"
+	https://github.com/mono/mono/raw/master/mcs/class/mono.snk"
 RESTRICT="mirror"
 NAME="msbuildtasks"
 S="${WORKDIR}/${NAME}-${EGIT_COMMIT}"
 
 DESCRIPTION="The MSBuild Community Tasks Project is an open source project for MSBuild tasks."
-LICENSE="BSD" # https:://github.com/loresoft/msbuildtasks/blob/master/LICENSE
+LICENSE="BSD" # https://github.com/loresoft/msbuildtasks/blob/master/LICENSE
 
 COMMON_DEPEND=">=dev-lang/mono-4.0.2.5
 	>=dev-dotnet/dotnetzip-semverd-1.9.3-r2

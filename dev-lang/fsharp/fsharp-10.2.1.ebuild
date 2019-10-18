@@ -6,8 +6,8 @@ EAPI=6
 inherit mono-env
 
 DESCRIPTION="The F# Compiler"
-HOMEPAGE="https:://github.com/fsharp/fsharp"
-SRC_URI="https:://github.com/fsharp/fsharp/archive/${PV}.tar.gz -> ${P}.tar.gz"
+HOMEPAGE="https://github.com/fsharp/fsharp"
+SRC_URI="https://github.com/fsharp/fsharp/archive/${PV}.tar.gz -> ${P}.tar.gz"
 
 LICENSE="Apache-2.0"
 SLOT="0"

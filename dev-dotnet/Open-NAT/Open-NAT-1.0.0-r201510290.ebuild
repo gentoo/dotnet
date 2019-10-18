@@ -5,7 +5,7 @@ EAPI=6
 
 inherit gac nupkg
 
-HOMEPAGE="https:://lontivero.github.io/Open.NAT"
+HOMEPAGE="https://lontivero.github.io/Open.NAT"
 DESCRIPTION="Class library to use port forwarding in NAT devices with UPNP and/or PMP"
 LICENSE="MIT"
 SLOT="0"
@@ -24,10 +24,10 @@ DEPEND="${COMMON_DEPEND}
 "
 
 NAME="Open.NAT"
-REPOSITORY="https:://github.com/ArsenShnurkov/${NAME}"
+REPOSITORY="https://github.com/ArsenShnurkov/${NAME}"
 LICENSE_URL="${REPOSITORY}/blob/master/LICENSE"
-ICONMETA="https:://github.com/lontivero/Open.NAT/tree/gh-pages/images/logos"
-ICON_URL="https:://raw.githubusercontent.com/lontivero/Open.NAT/gh-pages/images/logos/256.jpg"
+ICONMETA="https://github.com/lontivero/Open.NAT/tree/gh-pages/images/logos"
+ICON_URL="https://raw.githubusercontent.com/lontivero/Open.NAT/gh-pages/images/logos/256.jpg"
 
 EGIT_BRANCH="gentoo-mono4"
 EGIT_COMMIT="8b1120fa0f2d457fa2c703718bbf3ce079ac5aae"
@@ -81,7 +81,7 @@ patch_nuspec_file()
 			DIR="Release"
 		fi
 		FILES_STRING=`sed 's/[\/&]/\\\\&/g' <<-EOF || die "escaping replacement string characters"
-		  <files> <!-- https:://docs.nuget.org/create/nuspec-reference -->
+		  <files> <!-- https://docs.nuget.org/create/nuspec-reference -->
 		    <file src="${OUTPUT_DIR}/${DIR}/*.dll" target="lib\net45\" />
 		    <file src="${OUTPUT_DIR}/${DIR}/*.mdb" target="lib\net45\" />
 		  </files>

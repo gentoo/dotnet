@@ -24,11 +24,11 @@ VERSIONCFLAGS="-DGTK_SHARP_2_6 -DGTK_SHARP_2_8 -DGNOME_SHARP_2_16 -DGNOME_SHARP_
 GNOME_API_TAG=2.20
 
 if [[ ${PV} == "9999" ]] ; then
-	EGIT_REPO_URI="https:://github.com/mono/gnome-sharp.git"
+	EGIT_REPO_URI="https://github.com/mono/gnome-sharp.git"
 	inherit git-r3
 else
 	KEYWORDS="~amd64 ~x86 ~ppc"
-	SRC_URI="https:://github.com/mono/${PN}/archive/${PV}.tar.gz"
+	SRC_URI="https://github.com/mono/${PN}/archive/${PV}.tar.gz"
 fi
 
 IUSE="debug"

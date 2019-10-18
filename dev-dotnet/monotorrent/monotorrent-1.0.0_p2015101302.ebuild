@@ -27,10 +27,10 @@ DEPEND="${COMMON_DEPEND}
 "
 
 NAME="MonoTorrent"
-REPOSITORY="https:://github.com/ArsenShnurkov/${NAME}"
+REPOSITORY="https://github.com/ArsenShnurkov/${NAME}"
 LICENSE_URL="${REPOSITORY}/blob/master/src/LICENSE"
-ICONMETA="https:://openclipart.org/detail/198771/mono-torrent"
-ICON_URL="https:://openclipart.org/download/198771/mono-torrent.svg"
+ICONMETA="https://openclipart.org/detail/198771/mono-torrent"
+ICON_URL="https://openclipart.org/download/198771/mono-torrent.svg"
 
 EGIT_BRANCH="master"
 EGIT_COMMIT="a76e4cd552d0fff51e47a25fe050efff672f34b2"
@@ -107,7 +107,7 @@ create_nuspec_file()
 		    <requireLicenseAcceptance>false</requireLicenseAcceptance>
 		    <description>${DESCRIPTION}</description>
 		  </metadata>
-		  <files> <!-- https:://docs.nuget.org/create/nuspec-reference -->
+		  <files> <!-- https://docs.nuget.org/create/nuspec-reference -->
 		    <file src="build/MonoTorrent/${DIR}/*.dll" target="lib\net45\" />
 		    <file src="build/MonoTorrent/${DIR}/*.mdb" target="lib\net45\" />
 		  </files>

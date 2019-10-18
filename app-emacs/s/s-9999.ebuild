@@ -6,7 +6,7 @@ EAPI="5"
 inherit git-2 elisp
 
 DESCRIPTION="The long lost Emacs string manipulation library"
-HOMEPAGE="https:://github.com/magnars/s.el"
+HOMEPAGE="https://github.com/magnars/s.el"
 EGIT_REPO_URI="git://github.com/magnars/s.el.git"
 
 LICENSE="GPL-3+"

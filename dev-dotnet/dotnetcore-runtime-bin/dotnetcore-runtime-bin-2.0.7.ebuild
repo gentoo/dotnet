@@ -6,12 +6,12 @@ EAPI="6"
 inherit eutils
 
 DESCRIPTION=".NET Core Runtime - binary precompiled for glibc"
-HOMEPAGE="https:://www.microsoft.com/net/core"
+HOMEPAGE="https://www.microsoft.com/net/core"
 LICENSE="MIT"
 
 SRC_URI="
-amd64? ( https:://dotnetcli.blob.core.windows.net/dotnet/Runtime/${PV}/dotnet-runtime-${PV}-linux-x64.tar.gz -> dotnet-runtime-${PV}-linux-x64.tar.gz )
-arm? ( https:://dotnetcli.blob.core.windows.net/dotnet/Runtime/${PV}/dotnet-runtime-${PV}-linux-arm.tar.gz -> dotnet-runtime-${PV}-linux-arm.tar.gz )
+amd64? ( https://dotnetcli.blob.core.windows.net/dotnet/Runtime/${PV}/dotnet-runtime-${PV}-linux-x64.tar.gz -> dotnet-runtime-${PV}-linux-x64.tar.gz )
+arm? ( https://dotnetcli.blob.core.windows.net/dotnet/Runtime/${PV}/dotnet-runtime-${PV}-linux-arm.tar.gz -> dotnet-runtime-${PV}-linux-arm.tar.gz )
 "
 
 SLOT="0"

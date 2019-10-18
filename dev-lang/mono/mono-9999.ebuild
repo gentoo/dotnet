@@ -68,7 +68,7 @@ src_configure() {
 	# See https://bugs.gentoo.org/show_bug.cgi?id=256264 for details
 	#
 	# --without-moonlight since www-plugins/moonlight is not the only one
-	# using mono: https:://bugzilla.novell.com/show_bug.cgi?id=641005#c3
+	# using mono: https://bugzilla.novell.com/show_bug.cgi?id=641005#c3
 	#
 	# --with-profile4 needs to be always enabled since it's used by default
 	# and, otherwise, problems like bug #340641 appear.

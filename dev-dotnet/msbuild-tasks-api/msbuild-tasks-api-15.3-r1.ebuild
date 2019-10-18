@@ -11,16 +11,16 @@ IUSE="+${USE_DOTNET} +gac developer debug doc"
 
 inherit gac dotnet xbuild
 
-#https:://github.com/mono/linux-packaging-msbuild/commit/0d8cee3f87b92cff425306d9c588fc6433fb6bf0
+#https://github.com/mono/linux-packaging-msbuild/commit/0d8cee3f87b92cff425306d9c588fc6433fb6bf0
 GITHUB_ACCOUNT="mono"
 GITHUB_PROJECTNAME="linux-packaging-msbuild"
 EGIT_COMMIT="e08c20fd277b9de1e3a97c5bd9a5dcf95fcff926"
-SRC_URI="https:://github.com/${GITHUB_ACCOUNT}/${GITHUB_PROJECTNAME}/archive/${EGIT_COMMIT}.tar.gz -> msbuild-${PV}.tar.gz"
+SRC_URI="https://github.com/${GITHUB_ACCOUNT}/${GITHUB_PROJECTNAME}/archive/${EGIT_COMMIT}.tar.gz -> msbuild-${PV}.tar.gz"
 S="${WORKDIR}/${GITHUB_PROJECTNAME}-${EGIT_COMMIT}"
 
-HOMEPAGE="https:://github.com/mono/linux-packaging-msbuild"
+HOMEPAGE="https://github.com/mono/linux-packaging-msbuild"
 DESCRIPTION="msbuild libraries for writing Task-derived classes"
-LICENSE="MIT" # https:://github.com/mono/linux-packaging-msbuild/blob/master/LICENSE
+LICENSE="MIT" # https://github.com/mono/linux-packaging-msbuild/blob/master/LICENSE
 
 COMMON_DEPEND=">=dev-lang/mono-5.2.0.196
 "

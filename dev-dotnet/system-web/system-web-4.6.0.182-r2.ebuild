@@ -8,8 +8,8 @@ inherit gac dotnet
 IUSE+=" +net45 +pkg-config debug"
 
 DESCRIPTION="Framework for developing web-applications"
-HOMEPAGE="https:://www.asp.net/"
-SRC_URI="https:://github.com/ArsenShnurkov/shnurise-tarballs/archive/dev-dotnet/system-web/system-web-4.6.0.182.tar.gz"
+HOMEPAGE="https://www.asp.net/"
+SRC_URI="https://github.com/ArsenShnurkov/shnurise-tarballs/archive/dev-dotnet/system-web/system-web-4.6.0.182.tar.gz"
 RESTRICT="mirror"
 S="${WORKDIR}/shnurise-tarballs-${CATEGORY}-${PN}-${PN}-${PV}"
 

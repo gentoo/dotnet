@@ -7,7 +7,7 @@ USE_DOTNET="net40"
 inherit git-2 eutils dotnet
 
 DESCRIPTION="FAKE - F# Make"
-HOMEPAGE="https:://github.com/fsharp/FAKE"
+HOMEPAGE="https://github.com/fsharp/FAKE"
 SRC_URI=""
 
 LICENSE="MS-PL"

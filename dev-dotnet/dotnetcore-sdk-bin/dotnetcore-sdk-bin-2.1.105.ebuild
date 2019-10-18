@@ -6,11 +6,11 @@ EAPI="6"
 inherit eutils
 
 DESCRIPTION=".NET Core SDK - binary precompiled for glibc"
-HOMEPAGE="https:://www.microsoft.com/net/core"
+HOMEPAGE="https://www.microsoft.com/net/core"
 LICENSE="MIT"
 
 SRC_URI="
-amd64? ( https:://download.microsoft.com/download/2/E/C/2EC018A0-A0FC-40A2-849D-AA692F68349E/dotnet-sdk-${PV}-linux-x64.tar.gz -> dotnet-sdk-${PV}-linux-x64.tar.gz )
+amd64? ( https://download.microsoft.com/download/2/E/C/2EC018A0-A0FC-40A2-849D-AA692F68349E/dotnet-sdk-${PV}-linux-x64.tar.gz -> dotnet-sdk-${PV}-linux-x64.tar.gz )
 "
 
 SLOT="0"

@@ -9,8 +9,8 @@ inherit gac nupkg
 
 HOMEPAGE="https://cecil.pe/"
 DESCRIPTION="System.Reflection alternative to generate and inspect .NET executables/libraries"
-# https:://github.com/jbevain/cecil/wiki/License
-# https:://github.com/jbevain/cecil/blob/master/LICENSE.txt
+# https://github.com/jbevain/cecil/wiki/License
+# https://github.com/jbevain/cecil/blob/master/LICENSE.txt
 LICENSE="MIT"
 SLOT="0"
 KEYWORDS="~amd64 ~x86"
@@ -29,14 +29,14 @@ DEPEND="${COMMON_DEPEND}
 
 NAME="cecil"
 REPO_OWNER="jbevain"
-REPOSITORY="https:://github.com/${REPO_OWNER}/${NAME}"
+REPOSITORY="https://github.com/${REPO_OWNER}/${NAME}"
 LICENSE_URL="${REPOSITORY}/blob/master/LICENSE"
 ICONMETA="https://www.iconeasy.com/icon/ico/Movie%20%26%20TV/Looney%20Tunes/Cecil%20Turtle%20no%20shell.ico"
 ICON_URL="file://${FILESDIR}/cecil_turtle_no_shell.png"
 
 EGIT_BRANCH="master"
 EGIT_COMMIT="68bcb750b898f4882a5af44299bb322aaa531f93"
-SRC_URI="https:://api.github.com/repos/${REPO_OWNER}/${NAME}/tarball/${EGIT_COMMIT} -> ${PF}.tar.gz"
+SRC_URI="https://api.github.com/repos/${REPO_OWNER}/${NAME}/tarball/${EGIT_COMMIT} -> ${PF}.tar.gz"
 RESTRICT+=" test"
 S="${WORKDIR}/${NAME}-${EGIT_BRANCH}"
 

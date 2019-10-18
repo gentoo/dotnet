@@ -12,16 +12,16 @@ inherit msbuild gac
 IUSE="+${USE_DOTNET}"
 
 NAME="nhibernate-contrib-old"
-# https:://sourceforge.net/projects/nhcontrib/
-HOMEPAGE="https:://github.com/pruiz/nhibernate-contrib-old"
+# https://sourceforge.net/projects/nhcontrib/
+HOMEPAGE="https://github.com/pruiz/nhibernate-contrib-old"
 
 EGIT_COMMIT="eada73cce086a6457e5e64b0413b97a8f53863ac"
-SRC_URI="https:://github.com/pruiz/${NAME}/archive/${EGIT_COMMIT}.tar.gz -> ${PF}.tar.gz
-	https:://github.com/mono/mono/raw/master/mcs/class/mono.snk"
+SRC_URI="https://github.com/pruiz/${NAME}/archive/${EGIT_COMMIT}.tar.gz -> ${PF}.tar.gz
+	https://github.com/mono/mono/raw/master/mcs/class/mono.snk"
 S="${WORKDIR}/${NAME}-${EGIT_COMMIT}"
 
 DESCRIPTION="Contributions to NHibernate"
-LICENSE="LGPL-2.0" # https:://sourceforge.net/directory/license:lgpl/
+LICENSE="LGPL-2.0" # https://sourceforge.net/directory/license:lgpl/
 
 CDEPEND="|| ( >=dev-lang/mono-5.4.0.167 <dev-lang/mono-9999 )
 	dev-dotnet/nhibernate-core

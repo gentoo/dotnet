@@ -7,7 +7,7 @@ USE_DOTNET="net40"
 IUSE="${USE_DOTNET}"
 inherit git-r3 dotnet gac
 
-HOMEPAGE="https:://github.com/mono/${PN}"
+HOMEPAGE="https://github.com/mono/${PN}"
 
 EGIT_REPO_URI="${HOMEPAGE}.git"
 

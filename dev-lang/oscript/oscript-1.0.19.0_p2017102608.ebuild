@@ -20,7 +20,7 @@ if [ "${SLOT}" != "0" ]; then
 fi
 
 HOMEPAGE="https://oscript.io"
-SRC_URI="https:://github.com/ArsenShnurkov/shnurise-tarballs/raw/${CATEGORY}/${PN}${APPENDIX}/${PN}-${PV}.tar.gz"
+SRC_URI="https://github.com/ArsenShnurkov/shnurise-tarballs/raw/${CATEGORY}/${PN}${APPENDIX}/${PN}-${PV}.tar.gz"
 
 DESCRIPTION="1C script language interpreter"
 LICENSE="MPL-2.0"

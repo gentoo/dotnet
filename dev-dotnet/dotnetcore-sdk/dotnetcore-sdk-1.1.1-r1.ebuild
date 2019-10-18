@@ -1,7 +1,7 @@
 # Copyright 1999-2019 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
-#BASED ON https:://aur.archlinux.org/cgit/aur.git/tree/PKGBUILD?h=dotnet-cli
+#BASED ON https://aur.archlinux.org/cgit/aur.git/tree/PKGBUILD?h=dotnet-cli
 
 EAPI="6"
 
@@ -15,16 +15,16 @@ DIST='debian-x64'
 COREFX=corefx-${COREFX_V}
 
 DESCRIPTION=".NET Core cli utility for building, testing, packaging and running projects"
-HOMEPAGE="https:://www.microsoft.com/net/core"
+HOMEPAGE="https://www.microsoft.com/net/core"
 LICENSE="MIT"
 
 IUSE=""
-SRC_URI="https:://github.com/dotnet/coreclr/archive/v${CORECLR_V1_0}.tar.gz -> coreclr-${CORECLR_V1_0}.tar.gz
-	https:://github.com/dotnet/corefx/archive/v${COREFX_V1_0}.tar.gz -> corefx-${COREFX_V1_0}.tar.gz
-	https:://download.microsoft.com/download/0/3/0/030449F5-F093-44A6-9889-E19B50A59777/sdk/dotnet-dev-${DIST}.${CLI_V1_0}.tar.gz
-	https:://github.com/dotnet/coreclr/archive/v${PV}.tar.gz -> coreclr-${PV}.tar.gz
-	https:://github.com/dotnet/corefx/archive/v${PV}.tar.gz -> corefx-${PV}.tar.gz
-	https:://download.microsoft.com/download/F/D/5/FD52A2F7-65B6-4912-AEDD-4015DF6D8D22/dotnet-${PV}-sdk-${DIST}.tar.gz"
+SRC_URI="https://github.com/dotnet/coreclr/archive/v${CORECLR_V1_0}.tar.gz -> coreclr-${CORECLR_V1_0}.tar.gz
+	https://github.com/dotnet/corefx/archive/v${COREFX_V1_0}.tar.gz -> corefx-${COREFX_V1_0}.tar.gz
+	https://download.microsoft.com/download/0/3/0/030449F5-F093-44A6-9889-E19B50A59777/sdk/dotnet-dev-${DIST}.${CLI_V1_0}.tar.gz
+	https://github.com/dotnet/coreclr/archive/v${PV}.tar.gz -> coreclr-${PV}.tar.gz
+	https://github.com/dotnet/corefx/archive/v${PV}.tar.gz -> corefx-${PV}.tar.gz
+	https://download.microsoft.com/download/F/D/5/FD52A2F7-65B6-4912-AEDD-4015DF6D8D22/dotnet-${PV}-sdk-${DIST}.tar.gz"
 
 SLOT="0"
 KEYWORDS="~amd64"
