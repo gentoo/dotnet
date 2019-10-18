@@ -1,6 +1,5 @@
 # Copyright 1999-2019 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
-# $Header: $
 
 EAPI="6"
 
@@ -17,7 +16,7 @@ inherit dotnet gac mpt-r20150903
 DESCRIPTION="C# framework for paths operations: Absolute, Drive Letter, UNC, Relative, prefix"
 LICENSE="MIT"
 NAME="NDepend.Path"
-HOMEPAGE="https://github.com/psmacchia/${NAME}"
+HOMEPAGE="https:://github.com/psmacchia/${NAME}"
 EGIT_COMMIT="96008fcfbc137eac6fd327387b80b14909a581a1"
 SRC_URI="${HOMEPAGE}/archive/${EGIT_COMMIT}.tar.gz -> ${PN}-${PV}.tar.gz"
 S="${WORKDIR}/${NAME}-${EGIT_COMMIT}"
