@@ -13,9 +13,9 @@
 		<flag name='pkg-config'>create .pc file(s) for .dll(s) installed to gac</flag>
 	</use>
 	<longdescription lang="en">
-        A library for working with torrent protocol
-    </longdescription>
+		A library for working with torrent protocol
+	</longdescription>
 	<longdescription lang="ru">
-        Библиотека для работы по torrent-протоколу
-    </longdescription>
+		Библиотека для работы по torrent-протоколу
+	</longdescription>
 </pkgmetadata>
