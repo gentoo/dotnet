@@ -1,6 +1,5 @@
-# Copyright 1999-2017 Gentoo Foundation
+# Copyright 1999-2019 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
-# $Id$
 
 EAPI=6 # >=portage-2.2.25
 KEYWORDS="~x86 ~amd64"
@@ -70,7 +69,7 @@ src_unpack()
 
 src_prepare() {
 	# TODO: disable package restore in .csproj file
-	# see http://bartwullems.blogspot.ru/2012/08/disable-nuget-package-restore.html
+	# see https://bartwullems.blogspot.ru/2012/08/disable-nuget-package-restore.html
 
 	# replace package versions in projects
 	# for example 2.6.2 -> 2.6.4 (for NUnit)

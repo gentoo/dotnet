@@ -1,4 +1,4 @@
-# Copyright 1999-2018 Gentoo Foundation
+# Copyright 1999-2019 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI="6"
@@ -7,7 +7,7 @@ inherit dotnet autotools
 
 SLOT="2"
 DESCRIPTION="gnome bindings for mono"
-HOMEPAGE="http://www.mono-project.com/GtkSharp"
+HOMEPAGE="https://www.mono-project.com/GtkSharp"
 LICENSE="GPL-2"
 
 # Taken from the bootstrap configure script to allow using portage

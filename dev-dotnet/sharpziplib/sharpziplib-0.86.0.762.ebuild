@@ -1,6 +1,5 @@
-# Copyright 1999-2017 Gentoo Foundation
+# Copyright 1999-2019 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
-# $Id$
 
 EAPI=6
 KEYWORDS="~amd64 ~ppc ~x86"
@@ -21,7 +20,7 @@ SRC_URI="${HOMEPAGE}/archive/${EGIT_COMMIT}.tar.gz -> ${PF}.tar.gz
 S="${WORKDIR}/${NAME}-${EGIT_COMMIT}"
 
 DESCRIPTION="Zip, GZip, Tar and BZip2 library written entirely in C# for the .NET platform"
-LICENSE="MIT" # Actually not, it is GPL with exception - http://icsharpcode.github.io/SharpZipLib/
+LICENSE="MIT" # Actually not, it is GPL with exception - https://icsharpcode.github.io/SharpZipLib/
 
 #	dev-dotnet/system-security-cryptography-algorithms
 CDEPEND="|| ( >=dev-lang/mono-5.4.0.167 <dev-lang/mono-9999 )

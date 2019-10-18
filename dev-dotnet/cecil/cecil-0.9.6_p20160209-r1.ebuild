@@ -1,6 +1,5 @@
-# Copyright 1999-2017 Gentoo Foundation
+# Copyright 1999-2019 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
-# $Id$
 
 EAPI=6
 
@@ -8,7 +7,7 @@ RESTRICT+=" mirror"
 
 inherit nupkg gac
 
-HOMEPAGE="http://cecil.pe/"
+HOMEPAGE="https://cecil.pe/"
 DESCRIPTION="System.Reflection alternative to generate and inspect .NET executables/libraries"
 # https://github.com/jbevain/cecil/wiki/License
 # https://github.com/jbevain/cecil/blob/master/LICENSE.txt

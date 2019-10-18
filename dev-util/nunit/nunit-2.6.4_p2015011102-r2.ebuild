@@ -1,6 +1,5 @@
-# Copyright 1999-2017 Gentoo Foundation
+# Copyright 1999-2019 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
-# $Id$
 
 EAPI="6"
 KEYWORDS="~amd64 ~x86"
@@ -21,7 +20,7 @@ SRC_URI="${HOMEPAGE}/archive/${EGIT_COMMIT}.zip -> ${PN}-${PV}.zip"
 S="${WORKDIR}/${NAME}-${EGIT_COMMIT}"
 
 DESCRIPTION="NUnit test suite for mono applications"
-LICENSE="NUnit-License" # http://nunit.org/nuget/license.html
+LICENSE="NUnit-License" # https://nunit.org/nuget/license.html
 
 RDEPEND=">=dev-lang/mono-4.0.2.5
 	dev-util/nant[nupkg]

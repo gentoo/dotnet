@@ -1,6 +1,5 @@
-# Copyright 1999-2017 Gentoo Foundation
+# Copyright 1999-2019 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
-# $Id$
 
 EAPI=6
 KEYWORDS="~amd64 ~x86"
@@ -14,7 +13,7 @@ inherit msbuild gac
 IUSE="+${USE_DOTNET}"
 
 NAME="Core"
-HOMEPAGE="http://www.castleproject.org"
+HOMEPAGE="https://www.castleproject.org"
 
 EGIT_COMMIT="9a033d8a69535e9078a3344e1ceddf18b60f9324"
 SRC_URI="https://github.com/castleproject/${NAME}/archive/${EGIT_COMMIT}.tar.gz -> ${PF}.tar.gz

@@ -1,4 +1,4 @@
-# Copyright 1999-2017 Gentoo Foundation
+# Copyright 1999-2019 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=6
@@ -13,7 +13,7 @@ inherit dotnet eutils gac
 # dev-dotnet/nuget-codeplex provides the upstream version.
 
 DESCRIPTION="Nuget - .NET Package Manager"
-HOMEPAGE="http://nuget.codeplex.com"
+HOMEPAGE="https://nuget.codeplex.com"
 SRC_URI="https://github.com/mrward/nuget/archive/Release-${PV}-MonoDevelop.tar.gz -> ${P}.tar.gz"
 S=${WORKDIR}/nuget-Release-${PV}-MonoDevelop
 
@@ -22,7 +22,7 @@ SLOT="0"
 
 IUSE=""
 
-# Mask 3.2.0 because of mcs compiler bug : http://stackoverflow.com/a/17926731/238232
+# Mask 3.2.0 because of mcs compiler bug : https://stackoverflow.com/a/17926731/238232
 # it fixed in 3.2.3
 DEPEND=">=dev-lang/mono-3.2.3
 	<=dev-dotnet/xdt-for-monodevelop-2.8.2[gac]

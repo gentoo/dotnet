@@ -1,18 +1,17 @@
-# Copyright 1999-2017 Gentoo Foundation
+# Copyright 1999-2019 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
-# $Id$
 
 EAPI=5
 
 inherit eutils dotnet multilib autotools-utils
 
 DESCRIPTION="A generic framework for creating extensible applications"
-HOMEPAGE="http://www.mono-project.com/Mono.Addins"
-SRC_URI="http://github.com/mono/${PN}/archive/${P}.tar.gz -> ${P}.tar.gz"
+HOMEPAGE="https://www.mono-project.com/Mono.Addins"
+SRC_URI="https://github.com/mono/${PN}/archive/${P}.tar.gz -> ${P}.tar.gz"
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~amd64 ~ppc ~x86"
+KEYWORDS="amd64 ~ppc ~x86"
 IUSE="+gtk"
 
 RDEPEND=">=dev-lang/mono-3

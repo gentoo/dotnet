@@ -1,6 +1,5 @@
-# Copyright 1999-2017 Gentoo Foundation
+# Copyright 1999-2019 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
-# $Id$
 
 EAPI="5"
 
@@ -9,7 +8,7 @@ USE_DOTNET="net40"
 inherit dotnet multilib
 
 DESCRIPTION="R6RS conforming Scheme-like implementation based on the Microsoft DLR"
-HOMEPAGE="http://ironscheme.codeplex.com/"
+HOMEPAGE="https://ironscheme.codeplex.com/"
 SRC_URI=""
 
 LICENSE="Ms-PL"

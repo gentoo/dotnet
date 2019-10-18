@@ -1,6 +1,5 @@
-# Copyright 1999-2017 Gentoo Foundation
+# Copyright 1999-2019 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
-# $Id$
 
 EAPI=6
 
@@ -10,7 +9,7 @@ IUSE+=" +net45 +pkg-config debug"
 
 DESCRIPTION="Framework for developing web-applications"
 HOMEPAGE="https://www.asp.net/"
-SRC_URI="http://download.mono-project.com/sources/mono/mono-4.6.0.150.tar.bz2"
+SRC_URI="https://download.mono-project.com/sources/mono/mono-4.6.0.150.tar.bz2"
 
 NAME=System.Web
 

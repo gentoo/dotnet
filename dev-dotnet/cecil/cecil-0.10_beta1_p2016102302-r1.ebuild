@@ -1,6 +1,5 @@
-# Copyright 1999-2017 Gentoo Foundation
+# Copyright 1999-2019 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
-# $Id$
 
 EAPI=6
 
@@ -8,7 +7,7 @@ RESTRICT+="mirror"
 
 inherit gac nupkg
 
-HOMEPAGE="http://cecil.pe/"
+HOMEPAGE="https://cecil.pe/"
 DESCRIPTION="System.Reflection alternative to generate and inspect .NET executables/libraries"
 # https://github.com/jbevain/cecil/wiki/License
 # https://github.com/jbevain/cecil/blob/master/LICENSE.txt
@@ -32,7 +31,7 @@ NAME="cecil"
 REPO_OWNER="jbevain"
 REPOSITORY="https://github.com/${REPO_OWNER}/${NAME}"
 LICENSE_URL="${REPOSITORY}/blob/master/LICENSE"
-ICONMETA="http://www.iconeasy.com/icon/ico/Movie%20%26%20TV/Looney%20Tunes/Cecil%20Turtle%20no%20shell.ico"
+ICONMETA="https://www.iconeasy.com/icon/ico/Movie%20%26%20TV/Looney%20Tunes/Cecil%20Turtle%20no%20shell.ico"
 ICON_URL="file://${FILESDIR}/cecil_turtle_no_shell.png"
 
 EGIT_BRANCH="master"

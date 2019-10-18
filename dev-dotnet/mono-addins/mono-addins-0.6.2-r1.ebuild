@@ -1,14 +1,13 @@
-# Copyright 1999-2017 Gentoo Foundation
+# Copyright 1999-2019 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
-# $Id$
 
 EAPI=5
 
 inherit eutils mono-env multilib
 
 DESCRIPTION="A generic framework for creating extensible applications"
-HOMEPAGE="http://www.mono-project.com/Mono.Addins"
-SRC_URI="http://download.mono-project.com/sources/${PN}/${P}.tar.bz2"
+HOMEPAGE="https://www.mono-project.com/Mono.Addins"
+SRC_URI="https://download.mono-project.com/sources/${PN}/${P}.tar.bz2"
 
 LICENSE="GPL-2"
 SLOT="0"

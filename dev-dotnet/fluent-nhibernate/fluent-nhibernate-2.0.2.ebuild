@@ -1,6 +1,5 @@
-# Copyright 1999-2017 Gentoo Foundation
+# Copyright 1999-2019 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
-# $Id$
 
 EAPI=6
 KEYWORDS="~amd64 ~ppc ~x86"
@@ -13,7 +12,7 @@ inherit msbuild gac
 IUSE="+${USE_DOTNET}"
 
 NAME="fluent-nhibernate"
-HOMEPAGE="http://www.fluentnhibernate.org/"
+HOMEPAGE="https://www.fluentnhibernate.org/"
 
 EGIT_COMMIT="0ac6335d2068798f6b38b98aacade07bc702d68f"
 SRC_URI="https://github.com/jagregory/${NAME}/archive/${EGIT_COMMIT}.tar.gz -> ${PF}.tar.gz

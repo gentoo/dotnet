@@ -1,6 +1,5 @@
-# Copyright 1999-2017 Gentoo Foundation
+# Copyright 1999-2019 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
-# $Id$
 
 EAPI=6
 
@@ -20,7 +19,7 @@ if [ "${SLOT}" != "0" ]; then
 	APPENDIX="-${SLOT}"
 fi
 
-HOMEPAGE="http://oscript.io"
+HOMEPAGE="https://oscript.io"
 SRC_URI="https://github.com/ArsenShnurkov/shnurise-tarballs/raw/${CATEGORY}/${PN}${APPENDIX}/${PN}-${PV}.tar.gz"
 
 DESCRIPTION="1C script language interpreter"

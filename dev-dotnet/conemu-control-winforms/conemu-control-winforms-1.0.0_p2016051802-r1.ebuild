@@ -1,6 +1,5 @@
-# Copyright 1999-2017 Gentoo Foundation
+# Copyright 1999-2019 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
-# $Id$
 
 EAPI=6
 
@@ -14,7 +13,7 @@ DESCRIPTION="console emulator control, embeds a console view in a Windows Forms 
 
 NAME="conemu-inside"
 #HOMEPAGE="https://github.com/Maximus5/${NAME}"
-HOMEPAGE="http://conemu.github.io/"
+HOMEPAGE="https://conemu.github.io/"
 
 EGIT_COMMIT="b4800195f09b86eca14c4b96141a78136ee1d872"
 SRC_URI="${HOMEPAGE}/archive/${EGIT_COMMIT}.tar.gz -> ${P}.tar.gz"

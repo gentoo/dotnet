@@ -1,6 +1,5 @@
-# Copyright 1999-2017 Gentoo Foundation
+# Copyright 1999-2019 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
-# $Id$
 
 EAPI=6
 
@@ -9,7 +8,7 @@ inherit dotnet autotools
 SLOT="3"
 DESCRIPTION="gtk bindings for mono"
 LICENSE="GPL-2"
-HOMEPAGE="http://www.mono-project.com/GtkSharp"
+HOMEPAGE="https://www.mono-project.com/GtkSharp"
 KEYWORDS="~amd64 ~x86 ~ppc"
 SRC_URI="https://github.com/mono/${PN}/archive/${PV}.zip -> ${P}.zip"
 IUSE="debug"

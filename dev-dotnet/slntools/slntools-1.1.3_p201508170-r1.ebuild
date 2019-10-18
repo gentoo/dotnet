@@ -1,6 +1,5 @@
-# Copyright 1999-2017 Gentoo Foundation
+# Copyright 1999-2019 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
-# $Id$
 
 EAPI=6
 KEYWORDS="~amd64 ~x86"
@@ -38,7 +37,7 @@ src_prepare() {
 	#   at CWDev.SLNTools.CommandLine.Parser.GetConsoleWindowWidth () [0x00000] in <filename unknown>:0 
 	#   at CWDev.SLNTools.CommandLine.Parser.ArgumentsUsage (System.Type argumentType) [0x00000] in <filename unknown>:0 
 	#   at CWDev.SLNTools.Program.Main (System.String[] args) [0x00000] in <filename unknown>:0 
-	# http://stackoverflow.com/questions/23824961/c-sharp-to-mono-getconsolewindow-exception
+	# https://stackoverflow.com/questions/23824961/c-sharp-to-mono-getconsolewindow-exception
 	epatch "${FILESDIR}/console-window-width.patch"
 
 	# no need to restore if all dependencies are from GAC

@@ -1,6 +1,5 @@
-# Copyright 1999-2017 Gentoo Foundation
+# Copyright 1999-2019 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
-# $Id$
 
 EAPI=6
 
@@ -9,9 +8,9 @@ inherit eutils mono-env dotnet multilib versionator gac
 PV_MAJOR=$(get_version_component_range 1-2)
 
 DESCRIPTION="tool to help the programmer output log statements to a variety of output targets"
-HOMEPAGE="http://logging.apache.org/log4net/"
+HOMEPAGE="https://logging.apache.org/log4net/"
 SRC_URI="mirror://apache/logging/log4net/source/${P}-src.zip
-	http://dev.gentoo.org/~pacho/dotnet/log4net.snk"
+	https://dev.gentoo.org/~pacho/dotnet/log4net.snk"
 
 LICENSE="Apache-2.0"
 SLOT="0"

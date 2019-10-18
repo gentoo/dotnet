@@ -1,13 +1,12 @@
-# Copyright 1999-2017 Gentoo Foundation
+# Copyright 1999-2019 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
-# $Id$
 
 EAPI=5
 
 inherit dotnet versionator
 
 DESCRIPTION="Library used to make awesome applications."
-HOMEPAGE="http://live.gnome.org/Hyena"
+HOMEPAGE="https://live.gnome.org/Hyena"
 SRC_URI="mirror://gnome/sources/${PN}/$(get_version_component_range 1-2)/${P}.tar.gz"
 
 LICENSE="MIT"

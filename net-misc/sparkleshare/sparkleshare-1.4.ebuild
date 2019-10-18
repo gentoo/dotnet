@@ -1,6 +1,5 @@
-# Copyright 1999-2017 Gentoo Foundation
+# Copyright 1999-2019 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
-# $Id$
 
 EAPI=5
 GCONF_DEBUG="no" # --enable-debug does not do anything
@@ -13,7 +12,7 @@ MY_P="SparkleShare-${PV}"
 S="${WORKDIR}/${MY_P}"
 
 DESCRIPTION="Git-based collaboration and file sharing tool"
-HOMEPAGE="http://www.sparkleshare.org"
+HOMEPAGE="https://www.sparkleshare.org"
 SRC_URI="https://github.com/hbons/${MY_PN}/archive/${PV}.tar.gz -> ${MY_P}.tar.gz"
 
 LICENSE="GPL-3"

@@ -1,6 +1,5 @@
-# Copyright 1999-2017 Gentoo Foundation
+# Copyright 1999-2019 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
-# $Id$
 
 EAPI=5
 
@@ -8,7 +7,7 @@ inherit dotnet autotools versionator
 
 SLOT="2"
 DESCRIPTION="gnome-desktop mono bindings"
-HOMEPAGE="http://www.mono-project.com/GtkSharp"
+HOMEPAGE="https://www.mono-project.com/GtkSharp"
 LICENSE="GPL-2"
 KEYWORDS="~amd64 ~x86 ~ppc"
 MVER="$(get_version_component_range 1-2)"

@@ -1,6 +1,5 @@
-# Copyright 1999-2017 Gentoo Foundation
+# Copyright 1999-2019 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
-# $Id$
 
 EAPI="5"
 AUTOTOOLS_PRUNE_LIBTOOL_FILES="all"
@@ -8,7 +7,7 @@ AUTOTOOLS_PRUNE_LIBTOOL_FILES="all"
 inherit linux-info mono-env flag-o-matic pax-utils autotools-utils git-r3
 
 DESCRIPTION="Mono runtime and class libraries, a C# compiler/interpreter"
-HOMEPAGE="http://www.mono-project.com/Main_Page"
+HOMEPAGE="https://www.mono-project.com/Main_Page"
 
 EGIT_REPO_URI="git://github.com/mono/${PN}.git"
 
@@ -32,7 +31,7 @@ DEPEND="${COMMONDEPEND}
 
 pkg_pretend() {
 	# If CONFIG_SYSVIPC is not set in your kernel .config, mono will hang while compiling.
-	# See http://bugs.gentoo.org/261869 for more info."
+	# See https://bugs.gentoo.org/261869 for more info."
 	CONFIG_CHECK="SYSVIPC"
 	use kernel_linux && check_extra_config
 }
@@ -66,7 +65,7 @@ src_prepare() {
 
 src_configure() {
 	# NOTE: We need the static libs for now so mono-debugger works.
-	# See http://bugs.gentoo.org/show_bug.cgi?id=256264 for details
+	# See https://bugs.gentoo.org/show_bug.cgi?id=256264 for details
 	#
 	# --without-moonlight since www-plugins/moonlight is not the only one
 	# using mono: https://bugzilla.novell.com/show_bug.cgi?id=641005#c3
@@ -107,7 +106,7 @@ src_install() {
 	autotools-utils_src_install
 
 	# Remove files not respecting LDFLAGS and that we are not supposed to provide, see Fedora
-	# mono.spec and http://www.mail-archive.com/mono-devel-list@lists.ximian.com/msg24870.html
+	# mono.spec and https://www.mail-archive.com/mono-devel-list@lists.ximian.com/msg24870.html
 	# for reference.
 	rm -f "${ED}"/usr/lib/mono/{2.0,4.5}/mscorlib.dll.so || die
 	rm -f "${ED}"/usr/lib/mono/{2.0,4.5}/mcs.exe.so || die

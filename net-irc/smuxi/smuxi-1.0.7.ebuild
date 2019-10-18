@@ -1,11 +1,11 @@
-# Copyright 1999-2017 Gentoo Foundation
+# Copyright 1999-2019 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=6
 inherit eutils gnome2-utils mono-env dotnet versionator autotools git-r3
 
 DESCRIPTION="A flexible, irssi-like and user-friendly IRC client for the Gnome Desktop"
-HOMEPAGE="http://www.smuxi.org/main/"
+HOMEPAGE="https://www.smuxi.org/main/"
 EGIT_REPO_URI="https://github.com/meebey/smuxi"
 # https://github.com/meebey/smuxi/releases/tag/1.0.7
 EGIT_COMMIT="a63e6236bb241c018633c380c99554c38a83f6ad"

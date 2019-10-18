@@ -1,11 +1,10 @@
-# Copyright 1999-2017 Gentoo Foundation
+# Copyright 1999-2019 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
-# $Id$
 
 EAPI=6
 inherit mono-env dotnet autotools git-r3
 
-HOMEPAGE="http://www.smuxi.org/page/Download"
+HOMEPAGE="https://www.smuxi.org/page/Download"
 EGIT_REPO_URI="https://github.com/meebey/SmartIrc4net"
 # https://github.com/meebey/SmartIrc4net/releases/tag/1.0
 EGIT_COMMIT="921371612b7498e48857aa45d7e37ad4819dbadf"

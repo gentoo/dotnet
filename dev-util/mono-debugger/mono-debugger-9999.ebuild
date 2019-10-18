@@ -1,13 +1,12 @@
-# Copyright 1999-2017 Gentoo Foundation
+# Copyright 1999-2019 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
-# $Id$
 
 EAPI=6
 
 inherit dotnet autotools flag-o-matic eutils git-r3
 
 DESCRIPTION="Debugger for .NET managed and unmanaged applications"
-HOMEPAGE="http://www.mono-project.com/"
+HOMEPAGE="https://www.mono-project.com/"
 
 EGIT_REPO_URI="git://github.com/mono/debugger.git"
 

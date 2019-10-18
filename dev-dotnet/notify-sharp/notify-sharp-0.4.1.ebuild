@@ -1,6 +1,5 @@
-# Copyright 1999-2017 Gentoo Foundation
+# Copyright 1999-2019 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
-# $Id$
 
 EAPI=6
 inherit autotools eutils dotnet
@@ -8,7 +7,7 @@ inherit autotools eutils dotnet
 MY_P=${PN}-${PV#*_pre}
 
 DESCRIPTION="a C# client implementation for Desktop Notifications"
-HOMEPAGE="http://www.ndesk.org/NotifySharp"
+HOMEPAGE="https://www.ndesk.org/NotifySharp"
 #SRC_URI="mirror://gentoo/${MY_P}.tar.bz2"
 SRC_URI="https://github.com/meebey/notify-sharp/archive/${PV}.tar.gz"
 

@@ -1,6 +1,5 @@
-# Copyright 1999-2017 Gentoo Foundation
+# Copyright 1999-2019 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
-# $Id$
 
 EAPI=6
 
@@ -12,7 +11,7 @@ IUSE="+gac +nupkg"
 SLOT="0"
 
 DESCRIPTION="A Getopt::Long-inspired option parsing library for C#"
-HOMEPAGE="http://tirania.org/blog/archive/2008/Oct-14.html"
+HOMEPAGE="https://tirania.org/blog/archive/2008/Oct-14.html"
 LICENSE="MIT"
 
 S="${WORKDIR}/mono-4.5.2"

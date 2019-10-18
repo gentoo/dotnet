@@ -1,6 +1,5 @@
-# Copyright 1999-2017 Gentoo Foundation
+# Copyright 1999-2019 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
-# $Id$
 
 EAPI="5"
 
@@ -10,7 +9,7 @@ NUGET_NO_DEPEND="1"
 inherit nuget dotnet eutils
 
 DESCRIPTION="FAKE - F# Make"
-HOMEPAGE="http://nuget.org/packages/FAKE"
+HOMEPAGE="https://nuget.org/packages/FAKE"
 SRC_URI="https://github.com/fsharp/FAKE/archive/${NPV}.tar.gz"
 
 LICENSE="MS-PL"

@@ -1,4 +1,4 @@
-# Copyright 1999-2019 Gentoo Foundation
+# Copyright 1999-2019 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI="6"
@@ -9,7 +9,7 @@ inherit autotools apache-module eutils go-mono mono-env
 KEYWORDS="~amd64 ~x86"
 
 DESCRIPTION="Apache module for Mono"
-HOMEPAGE="http://www.mono-project.com/Mod_mono"
+HOMEPAGE="https://www.mono-project.com/Mod_mono"
 LICENSE="Apache-2.0"
 SLOT="0"
 IUSE="debug"

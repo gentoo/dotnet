@@ -1,6 +1,5 @@
-# Copyright 1999-2017 Gentoo Foundation
+# Copyright 1999-2019 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
-# $Id$
 
 EAPI=6
 SLOT="0"
@@ -14,7 +13,7 @@ SRC_URI="https://github.com/castleproject/Core/archive/v4.0.0-beta001.tar.gz -> 
 RESTRICT="mirror"
 S="${WORKDIR}/Core-4.0.0-beta001"
 
-HOMEPAGE="http://www.castleproject.org/"
+HOMEPAGE="https://www.castleproject.org/"
 DESCRIPTION="including Castle DynamicProxy, Logging Services and DictionaryAdapter "
 LICENSE="Apache-2.0" # https://github.com/castleproject/Core/blob/master/LICENSE
 KEYWORDS="~amd64 ~ppc ~x86"

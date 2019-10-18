@@ -1,6 +1,5 @@
-# Copyright 1999-2017 Gentoo Foundation
+# Copyright 1999-2019 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
-# $Id$
 
 EAPI=6
 KEYWORDS="~amd64 ~ppc ~x86"
@@ -13,7 +12,7 @@ inherit msbuild gac
 IUSE="+${USE_DOTNET}"
 
 NAME="nhibernate-core"
-HOMEPAGE="http://nhibernate.info/"
+HOMEPAGE="https://nhibernate.info/"
 
 EGIT_COMMIT="c2c93d979611463b5a3fb12c4d27bb78d86de9d4"
 SRC_URI="https://github.com/nhibernate/${NAME}/archive/${EGIT_COMMIT}.tar.gz -> ${PF}.tar.gz

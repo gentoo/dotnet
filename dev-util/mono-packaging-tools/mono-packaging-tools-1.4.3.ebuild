@@ -1,6 +1,5 @@
-# Copyright 1999-2016 Gentoo Foundation
+# Copyright 1999-2019 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
-# $Id$
 
 EAPI=6 # >=portage-2.2.25
 KEYWORDS="~x86 ~amd64"
@@ -30,7 +29,7 @@ get_dlldir() {
 }
 
 NAME="mono-packaging-tools"
-HOMEPAGE="http://arsenshnurkov.github.io/mono-packaging-tools"
+HOMEPAGE="https://arsenshnurkov.github.io/mono-packaging-tools"
 
 REPOSITORY_URL="https://github.com/ArsenShnurkov/${NAME}"
 

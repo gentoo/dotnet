@@ -1,6 +1,5 @@
-# Copyright 1999-2017 Gentoo Foundation
+# Copyright 1999-2019 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
-# $Id$
 
 EAPI=6
 KEYWORDS="~amd64 ~x86"
@@ -31,7 +30,7 @@ NAME="X.PagedList"
 REPOSITORY="https://github.com/ArsenShnurkov/${NAME}"
 EGIT_BRANCH="master"
 LICENSE_URL="${REPOSITORY}/blob/${EGIT_BRANCH}/LICENSE"
-ICONMETA="http://uxrepo.com/static/icon-sets/iconic/svg/list.svg"
+ICONMETA="https://uxrepo.com/static/icon-sets/iconic/svg/list.svg"
 ICON_URL="https://github.com/ArsenShnurkov/X.PagedList/blob/switching-from-pcl/misc/list.svg"
 
 EGIT_COMMIT="c0521a4099c65efd3e964ea57129d5a61261f784"

@@ -1,6 +1,5 @@
-# Copyright 1999-2017 Gentoo Foundation
+# Copyright 1999-2019 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
-# $Id$
 
 EAPI=5
 inherit fdo-mime gnome2-utils dotnet versionator eutils
@@ -8,8 +7,8 @@ inherit fdo-mime gnome2-utils dotnet versionator eutils
 ROSLYN_COMMIT="16e117c2400d0ab930e7d89512f9894a169a0e6e"
 
 DESCRIPTION="Integrated Development Environment for .NET"
-HOMEPAGE="http://www.monodevelop.com/"
-SRC_URI="http://download.mono-project.com/sources/monodevelop/${P}.tar.bz2
+HOMEPAGE="https://www.monodevelop.com/"
+SRC_URI="https://download.mono-project.com/sources/monodevelop/${P}.tar.bz2
 	https://github.com/mono/roslyn/archive/${ROSLYN_COMMIT}.zip -> roslyn-${ROSLYN_COMMIT}.zip
 	https://launchpadlibrarian.net/68057829/NUnit-2.5.10.11092.zip"
 LICENSE="GPL-2"

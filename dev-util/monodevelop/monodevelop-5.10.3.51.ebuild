@@ -1,12 +1,11 @@
-# Copyright 1999-2017 Gentoo Foundation
+# Copyright 1999-2019 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
-# $Id$
 
 EAPI=5
 inherit fdo-mime gnome2-utils dotnet versionator eutils git-r3
 
 DESCRIPTION="Integrated Development Environment for .NET"
-HOMEPAGE="http://www.monodevelop.com/"
+HOMEPAGE="https://www.monodevelop.com/"
 SRC_URI="https://launchpadlibrarian.net/68057829/NUnit-2.5.10.11092.zip
 	https://www.nuget.org/api/v2/package/NUnit/2.6.3 -> NUnit.2.6.3.zip
 	https://www.nuget.org/api/v2/package/NUnit.Runners/2.6.3  -> NUnit.Runners.2.6.3.zip

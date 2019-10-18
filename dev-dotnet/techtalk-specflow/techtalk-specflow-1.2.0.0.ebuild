@@ -1,6 +1,5 @@
-# Copyright 1999-2017 Gentoo Foundation
+# Copyright 1999-2019 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
-# $Id$
 
 EAPI=6
 KEYWORDS="~amd64 ~ppc ~x86"
@@ -13,7 +12,7 @@ inherit msbuild gac
 IUSE="+${USE_DOTNET}"
 
 NAME="SpecFlow"
-HOMEPAGE="http://www.specflow.org/"
+HOMEPAGE="https://www.specflow.org/"
 
 EGIT_COMMIT="d79e211e94860f0c98fb43264e4358714da1fd95"
 SRC_URI="https://github.com/techtalk/${NAME}/archive/${EGIT_COMMIT}.tar.gz -> ${PF}.tar.gz
