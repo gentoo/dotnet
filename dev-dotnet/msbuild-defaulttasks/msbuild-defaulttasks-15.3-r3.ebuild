@@ -15,12 +15,12 @@ inherit dotnet xbuild gac
 GITHUB_ACCOUNT="mono"
 GITHUB_PROJECTNAME="linux-packaging-msbuild"
 EGIT_COMMIT="e08c20fd277b9de1e3a97c5bd9a5dcf95fcff926"
-SRC_URI="https://github.com/${GITHUB_ACCOUNT}/${GITHUB_PROJECTNAME}/archive/${EGIT_COMMIT}.tar.gz -> ${GITHUB_PROJECTNAME}-${GITHUB_ACCOUNT}-${PV}.tar.gz"
+SRC_URI="https:://github.com/${GITHUB_ACCOUNT}/${GITHUB_PROJECTNAME}/archive/${EGIT_COMMIT}.tar.gz -> ${GITHUB_PROJECTNAME}-${GITHUB_ACCOUNT}-${PV}.tar.gz"
 S="${WORKDIR}/${GITHUB_PROJECTNAME}-${EGIT_COMMIT}"
 
-HOMEPAGE="https://docs.microsoft.com/visualstudio/msbuild/msbuild"
+HOMEPAGE="https:://docs.microsoft.com/visualstudio/msbuild/msbuild"
 DESCRIPTION="default tasks for Microsoft Build Engine (MSBuild)"
-LICENSE="MIT" # https://github.com/mono/linux-packaging-msbuild/blob/master/LICENSE
+LICENSE="MIT" # https:://github.com/mono/linux-packaging-msbuild/blob/master/LICENSE
 
 COMMON_DEPEND=">=dev-lang/mono-5.2.0.196
 	dev-dotnet/msbuild-tasks-api developer? ( dev-dotnet/msbuild-tasks-api[developer] )

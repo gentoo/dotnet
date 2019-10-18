@@ -16,12 +16,12 @@ inherit dotnet xbuild gac mono-pkg-config
 GITHUB_ACCOUNT="dotnet"
 GITHUB_PROJECTNAME="buildtools"
 EGIT_COMMIT="a177c85d78799e6c2407ce88e857546e490d83c2"
-SRC_URI="https://github.com/${GITHUB_ACCOUNT}/${GITHUB_PROJECTNAME}/archive/${EGIT_COMMIT}.tar.gz -> ${GITHUB_PROJECTNAME}-${GITHUB_ACCOUNT}-${PV}.tar.gz"
+SRC_URI="https:://github.com/${GITHUB_ACCOUNT}/${GITHUB_PROJECTNAME}/archive/${EGIT_COMMIT}.tar.gz -> ${GITHUB_PROJECTNAME}-${GITHUB_ACCOUNT}-${PV}.tar.gz"
 S="${WORKDIR}/${GITHUB_PROJECTNAME}-${EGIT_COMMIT}"
 
-HOMEPAGE="https://github.com/dotnet/buildtools"
+HOMEPAGE="https:://github.com/dotnet/buildtools"
 DESCRIPTION="Build tools that are necessary for building the .NET Core projects"
-LICENSE="MIT" # https://github.com/dotnet/buildtools/blob/master/LICENSE
+LICENSE="MIT" # https:://github.com/dotnet/buildtools/blob/master/LICENSE
 
 #	dev-dotnet/newtonsoft-json
 COMMON_DEPEND=">=dev-lang/mono-5.2.0.196

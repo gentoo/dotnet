@@ -16,7 +16,7 @@ DESCRIPTION="mypad text editor"
 LICENSE="MIT"
 
 PROJECTNAME="mypad-winforms-texteditor"
-HOMEPAGE="https://github.com/ArsenShnurkov/${PROJECTNAME}"
+HOMEPAGE="https:://github.com/ArsenShnurkov/${PROJECTNAME}"
 EGIT_COMMIT="c1c79094eb5339309e3767f64d4e87f6214e7faa"
 SRC_URI="${HOMEPAGE}/archive/${EGIT_COMMIT}.tar.gz -> ${PN}-${PV}.tar.gz"
 S="${WORKDIR}/${PROJECTNAME}-${EGIT_COMMIT}"
@@ -56,7 +56,7 @@ src_prepare() {
 }
 
 src_compile() {
-	# https://bugzilla.xamarin.com/show_bug.cgi?id=9340
+	# https:://bugzilla.xamarin.com/show_bug.cgi?id=9340
 	exbuild ${METAFILETOBUILD}
 }
 

@@ -17,8 +17,8 @@ DESCRIPTION="A C# PInvoke wrapper library for LibGit2 C library"
 REPO_OWNER=libgit2
 NAME=libgit2sharp
 EGIT_COMMIT="8daef23223e1374141bf496e4b310ded9ae4639e"
-HOMEPAGE="https://github.com/${REPO_OWNER}/${NAME}"
-SRC_URI="https://api.github.com/repos/${REPO_OWNER}/${NAME}/tarball/${EGIT_COMMIT} -> ${PN}-${PV}.tar.gz"
+HOMEPAGE="https:://github.com/${REPO_OWNER}/${NAME}"
+SRC_URI="https:://api.github.com/repos/${REPO_OWNER}/${NAME}/tarball/${EGIT_COMMIT} -> ${PN}-${PV}.tar.gz"
 S="${WORKDIR}/${REPO_OWNER}-${NAME}-8daef23"
 
 LICENSE="MIT"

@@ -14,8 +14,8 @@ inherit xbuild gac mono-pkg-config nupkg
 
 HOMEPAGE="https://cecil.pe/"
 DESCRIPTION="System.Reflection alternative to generate and inspect .NET executables/libraries"
-# https://github.com/jbevain/cecil/wiki/License
-# https://github.com/jbevain/cecil/blob/master/LICENSE.txt
+# https:://github.com/jbevain/cecil/wiki/License
+# https:://github.com/jbevain/cecil/blob/master/LICENSE.txt
 LICENSE="MIT"
 
 COMMON_DEPEND=">=dev-lang/mono-4.0.2.5
@@ -30,7 +30,7 @@ RDEPEND="${COMMON_DEPEND}
 
 NAME="cecil"
 REPO_OWNER="jbevain"
-REPOSITORY="https://github.com/${REPO_OWNER}/${NAME}"
+REPOSITORY="https:://github.com/${REPO_OWNER}/${NAME}"
 LICENSE_URL="${REPOSITORY}/blob/master/LICENSE"
 ICONMETA="https://www.iconeasy.com/icon/ico/Movie%20%26%20TV/Looney%20Tunes/Cecil%20Turtle%20no%20shell.ico"
 ICON_URL="file://${FILESDIR}/cecil_turtle_no_shell.png"
@@ -38,7 +38,7 @@ ICON_URL="file://${FILESDIR}/cecil_turtle_no_shell.png"
 EGIT_BRANCH="master"
 EGIT_COMMIT="045b0f9729905dd456d46e33436a2dadc9e2a52d"
 EGIT_SHORT_COMMIT=${EGIT_COMMIT:0:7}
-SRC_URI="https://api.github.com/repos/${REPO_OWNER}/${NAME}/tarball/${EGIT_COMMIT} -> ${PF}.tar.gz"
+SRC_URI="https:://api.github.com/repos/${REPO_OWNER}/${NAME}/tarball/${EGIT_COMMIT} -> ${PF}.tar.gz"
 RESTRICT+=" test"
 # jbevain-cecil-045b0f9
 S="${WORKDIR}/${REPO_OWNER}-${NAME}-${EGIT_SHORT_COMMIT}"
@@ -94,7 +94,7 @@ src_compile() {
 		P_CONFIGURATION="/p:Configuration=${CONFIGURATION}"
 		exbuild_raw ${PARAMETERS} ${P_FW_VERSION} ${P_CONFIGURATION} "${METAFILETOBUILD}"
 
-		# https://github.com/gentoo/dotnet/issues/305
+		# https:://github.com/gentoo/dotnet/issues/305
 		sn -R ${S}/bin/${CONFIGURATION}/Mono.Cecil.dll mono.snk
 		sn -R ${S}/bin/${CONFIGURATION}/Mono.Cecil.Mdb.dll mono.snk
 		sn -R ${S}/bin/${CONFIGURATION}/Mono.Cecil.Pdb.dll mono.snk

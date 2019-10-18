@@ -6,8 +6,8 @@ EAPI=5
 inherit mono-env autotools eutils
 
 DESCRIPTION="C# Bindings for libsoup2.4"
-HOMEPAGE="https://github.com/stsundermann/soup-sharp"
-SRC_URI="https://github.com/stsundermann/${PN}/archive/${PV}.tar.gz -> ${P}.tar.gz"
+HOMEPAGE="https:://github.com/stsundermann/soup-sharp"
+SRC_URI="https:://github.com/stsundermann/${PN}/archive/${PV}.tar.gz -> ${P}.tar.gz"
 
 LICENSE="LGPL-3"
 SLOT="0"

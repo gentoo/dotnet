@@ -9,7 +9,7 @@ inherit mono-env gac nupkg
 IUSE="${USE_DOTNET} developer nupkg debug"
 
 NAME="Eto.Parse"
-HOMEPAGE="https://github.com/picoe/${NAME}"
+HOMEPAGE="https:://github.com/picoe/${NAME}"
 
 EGIT_COMMIT="7d7884fb4f481e28dd24bc273fbd6615d0ba539a" # 2015-09-07
 SRC_URI="${HOMEPAGE}/archive/${EGIT_COMMIT}.zip -> ${PN}-${PV}.zip"
@@ -19,17 +19,17 @@ S="${WORKDIR}/${NAME}-${EGIT_COMMIT}"
 SLOT="0"
 
 DESCRIPTION="CLI parser with API, recursive descent, LL(k), for BNF, EBNF and Gold Grammars"
-LICENSE="MIT" # https://raw.githubusercontent.com/picoe/Eto.Parse/master/LICENSE
+LICENSE="MIT" # https:://raw.githubusercontent.com/picoe/Eto.Parse/master/LICENSE
 KEYWORDS="~amd64 ~x86"
 
-# notes on testing, from https://devmanual.gentoo.org/ebuild-writing/functions/src_test/index.html
+# notes on testing, from https:://devmanual.gentoo.org/ebuild-writing/functions/src_test/index.html
 # FEATURES+="test"
 
 # there is no "test" in IUSE, because test project and solution are not build
 # there is no "gac" in IUSE, because utilities for patching are not ready
 # "Failure adding assembly Eto.Parse/bin/Release/net40/Eto.Parse.dll to the cache: Attempt to install an assembly without a strong name"
 
-# notes from https://devmanual.gentoo.org/general-concepts/dependencies/
+# notes from https:://devmanual.gentoo.org/general-concepts/dependencies/
 # DEPEND - dependencies which are required to unpack, patch, compile or install the package
 # RDEPEND - dependencies which are required at runtime
 
@@ -42,7 +42,7 @@ DEPEND="${COMMON_DEPENDENCIES}
 RDEPEND="${COMMON_DEPENDENCIES}
 	"
 
-# Notes on Gentoo variables, from https://devmanual.gentoo.org/ebuild-writing/variables/
+# Notes on Gentoo variables, from https:://devmanual.gentoo.org/ebuild-writing/variables/
 # PN = Package name, for example vim.
 # PV = Package version (excluding revision, if any), for example 6.3.
 # P = Package name and version (excluding revision, if any), for example vim-6.3.

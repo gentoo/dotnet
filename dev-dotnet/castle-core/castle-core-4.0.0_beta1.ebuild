@@ -9,13 +9,13 @@ IUSE="+${USE_DOTNET} +gac developer debug doc"
 
 inherit gac dotnet
 
-SRC_URI="https://github.com/castleproject/Core/archive/v4.0.0-beta001.tar.gz -> ${PN}-${PV}.tar.gz"
+SRC_URI="https:://github.com/castleproject/Core/archive/v4.0.0-beta001.tar.gz -> ${PN}-${PV}.tar.gz"
 RESTRICT="mirror"
 S="${WORKDIR}/Core-4.0.0-beta001"
 
 HOMEPAGE="https://www.castleproject.org/"
 DESCRIPTION="including Castle DynamicProxy, Logging Services and DictionaryAdapter "
-LICENSE="Apache-2.0" # https://github.com/castleproject/Core/blob/master/LICENSE
+LICENSE="Apache-2.0" # https:://github.com/castleproject/Core/blob/master/LICENSE
 KEYWORDS="~amd64 ~ppc ~x86"
 
 COMMON_DEPEND=">=dev-lang/mono-4.0.2.5

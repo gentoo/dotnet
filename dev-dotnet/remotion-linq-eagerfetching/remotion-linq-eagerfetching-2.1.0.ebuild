@@ -13,14 +13,14 @@ USE_DOTNET="net45"
 inherit dotnet msbuild gac
 
 NAME="Relinq-EagerFetching"
-HOMEPAGE="https://github.com/re-motion/${NAME}"
+HOMEPAGE="https:://github.com/re-motion/${NAME}"
 EGIT_COMMIT="9c3fe22e35f3f66becc197829d8e3bdf8e3dd622"
 SRC_URI="${HOMEPAGE}/archive/${EGIT_COMMIT}.tar.gz -> ${NAME}-${PV}.tar.gz
-	https://github.com/mono/mono/raw/master/mcs/class/mono.snk"
+	https:://github.com/mono/mono/raw/master/mcs/class/mono.snk"
 S="${WORKDIR}/${NAME}-${EGIT_COMMIT}"
 
 DESCRIPTION="Library to create full-featured LINQ providers (fetching)."
-LICENSE="LGPL-2.1" # https://github.com/re-motion/Relinq-EagerFetching/blob/develop/license/LGPLv2.1.txt
+LICENSE="LGPL-2.1" # https:://github.com/re-motion/Relinq-EagerFetching/blob/develop/license/LGPLv2.1.txt
 
 IUSE="+${USE_DOTNET} +msbuild debug developer doc"
 
@@ -32,7 +32,7 @@ RDEPEND="${COMMON_DEPEND}
 DEPEND="${COMMON_DEPEND}
 "
 
-# https://github.com/re-motion/Relinq/blob/82fdca6a4bfd942bb4a71dd20ab9c5af0aea0541/How%20to%20build.txt
+# https:://github.com/re-motion/Relinq/blob/82fdca6a4bfd942bb4a71dd20ab9c5af0aea0541/How%20to%20build.txt
 # We cannot provide the official remotion.snk keyfile, so you will need to create your own.
 KEY2="${DISTDIR}/mono.snk"
 

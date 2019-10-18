@@ -16,12 +16,12 @@ NAME="Core"
 HOMEPAGE="https://www.castleproject.org"
 
 EGIT_COMMIT="9a033d8a69535e9078a3344e1ceddf18b60f9324"
-SRC_URI="https://github.com/castleproject/${NAME}/archive/${EGIT_COMMIT}.tar.gz -> ${PF}.tar.gz
-	https://github.com/mono/mono/raw/master/mcs/class/mono.snk"
+SRC_URI="https:://github.com/castleproject/${NAME}/archive/${EGIT_COMMIT}.tar.gz -> ${PF}.tar.gz
+	https:://github.com/mono/mono/raw/master/mcs/class/mono.snk"
 S="${WORKDIR}/${NAME}-${EGIT_COMMIT}"
 
 DESCRIPTION="simple set of tools to speed up the development"
-LICENSE="Apache-2.0" # https://github.com/castleproject/Core/blob/master/LICENSE
+LICENSE="Apache-2.0" # https:://github.com/castleproject/Core/blob/master/LICENSE
 
 CDEPEND="|| ( >=dev-lang/mono-5.4.0.167 <dev-lang/mono-9999 )
 	"

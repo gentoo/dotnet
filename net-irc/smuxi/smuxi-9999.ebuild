@@ -46,7 +46,7 @@ pkg_preinst() {
 src_prepare() {
 	default
 
-	# https://github.com/meebey/smuxi/issues/86
+	# https:://github.com/meebey/smuxi/issues/86
 	# eautoreconf
 	./autogen.sh || die "Could not run autogen.sh"
 }

@@ -16,18 +16,18 @@ inherit nupkg gac
 
 NAME="Newtonsoft.Json"
 NUSPEC_ID="${NAME}"
-HOMEPAGE="https://github.com/JamesNK/${NAME}"
+HOMEPAGE="https:://github.com/JamesNK/${NAME}"
 
 EGIT_COMMIT="05710874cd61adabfb635085b1b45cf31882df3d"
 SRC_URI="${HOMEPAGE}/archive/${EGIT_COMMIT}.zip -> ${P}.zip
-	https://github.com/mono/mono/raw/master/mcs/class/mono.snk"
+	https:://github.com/mono/mono/raw/master/mcs/class/mono.snk"
 S="${WORKDIR}/${NAME}-${EGIT_COMMIT}"
 
 SLOT="0"
 
 DESCRIPTION="Json.NET is a popular high-performance JSON framework for .NET"
 LICENSE="MIT"
-LICENSE_URL="https://raw.github.com/JamesNK/Newtonsoft.Json/master/LICENSE.md"
+LICENSE_URL="https:://raw.github.com/JamesNK/Newtonsoft.Json/master/LICENSE.md"
 
 KEYWORDS="~amd64 ~x86"
 COMMON_DEPENDENCIES="|| ( >=dev-lang/mono-4.2 <dev-lang/mono-9999 )"
@@ -117,7 +117,7 @@ patch_nuspec_file()
 			DIR="Release"
 		fi
 		FILES_STRING=`sed 's/[\/&]/\\\\&/g' <<-EOF || die "escaping replacement string characters"
-		  <files> <!-- https://docs.nuget.org/create/nuspec-reference -->
+		  <files> <!-- https:://docs.nuget.org/create/nuspec-reference -->
 		    <file src="Src/Newtonsoft.Json/bin/${DIR}/Net45/Newtonsoft.Json.*" target="lib\net45\" />
 		  </files>
 		EOF

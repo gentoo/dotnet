@@ -6,7 +6,7 @@ EAPI="5"
 inherit git-2 elisp
 
 DESCRIPTION="A modern list api for Emacs. No 'cl required."
-HOMEPAGE="https://github.com/magnars/dash.el"
+HOMEPAGE="https:://github.com/magnars/dash.el"
 EGIT_REPO_URI="git://github.com/magnars/dash.el.git"
 
 LICENSE="GPL-3+"

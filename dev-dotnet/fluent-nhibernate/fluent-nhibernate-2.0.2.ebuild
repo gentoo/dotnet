@@ -15,12 +15,12 @@ NAME="fluent-nhibernate"
 HOMEPAGE="https://www.fluentnhibernate.org/"
 
 EGIT_COMMIT="0ac6335d2068798f6b38b98aacade07bc702d68f"
-SRC_URI="https://github.com/jagregory/${NAME}/archive/${EGIT_COMMIT}.tar.gz -> ${PF}.tar.gz
-	https://github.com/mono/mono/raw/master/mcs/class/mono.snk"
+SRC_URI="https:://github.com/jagregory/${NAME}/archive/${EGIT_COMMIT}.tar.gz -> ${PF}.tar.gz
+	https:://github.com/mono/mono/raw/master/mcs/class/mono.snk"
 S="${WORKDIR}/${NAME}-${EGIT_COMMIT}"
 
 DESCRIPTION="XML-less, compile safe, automated, convention-based mappings for NHibernate"
-LICENSE="BSD" # https://github.com/jagregory/fluent-nhibernate/blob/master/LICENSE.txt
+LICENSE="BSD" # https:://github.com/jagregory/fluent-nhibernate/blob/master/LICENSE.txt
 
 CDEPEND="|| ( >=dev-lang/mono-5.4.0.167 <dev-lang/mono-9999 )
 	dev-dotnet/nhibernate-core

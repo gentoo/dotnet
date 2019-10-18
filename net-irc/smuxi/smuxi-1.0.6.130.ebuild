@@ -7,7 +7,7 @@ inherit eutils gnome2-utils mono-env versionator
 DESCRIPTION="A flexible, irssi-like and user-friendly IRC client for the Gnome Desktop"
 HOMEPAGE="https://www.smuxi.org/main/"
 
-SRC_URI="https://github.com/ArsenShnurkov/shnurise-tarballs/archive/${CATEGORY}/${PN}/${PN}-${PV}.tar.gz"
+SRC_URI="https:://github.com/ArsenShnurkov/shnurise-tarballs/archive/${CATEGORY}/${PN}/${PN}-${PV}.tar.gz"
 S="${WORKDIR}/shnurise-tarballs-${CATEGORY}-${PN}-${PN}-${PV}"
 
 SLOT="0"

@@ -13,14 +13,14 @@ USE_DOTNET="net45"
 inherit dotnet xbuild
 
 NAME="roslyn"
-HOMEPAGE="https://github.com/dotnet/${NAME}"
+HOMEPAGE="https:://github.com/dotnet/${NAME}"
 EGIT_COMMIT="ec1cde8b77c7bca654888681037f55aa0e62dd19"
 SRC_URI="${HOMEPAGE}/archive/${EGIT_COMMIT}.tar.gz -> ${NAME}-${PV}.tar.gz
-	https://github.com/mono/mono/raw/master/mcs/class/mono.snk"
+	https:://github.com/mono/mono/raw/master/mcs/class/mono.snk"
 S="${WORKDIR}/${NAME}-${EGIT_COMMIT}"
 
 DESCRIPTION="C# compiler with rich code analysis APIs"
-LICENSE="Apache-2.0" # https://github.com/dotnet/roslyn/blob/master/License.txt
+LICENSE="Apache-2.0" # https:://github.com/dotnet/roslyn/blob/master/License.txt
 
 IUSE="+${USE_DOTNET} +debug developer doc"
 

@@ -15,16 +15,16 @@ IUSE="${USE_DOTNET} debug test +developer +aot +nupkg +gac +pkg-config"
 
 inherit gac nupkg
 
-HOMEPAGE="https://github.com/mgrosperrin/commandlineparser/releases"
+HOMEPAGE="https:://github.com/mgrosperrin/commandlineparser/releases"
 DESCRIPTION="command line parser on System.ComponentModel.DataAnnotations"
 LICENSE="MIT"
-LICENSE_URL="https://raw.githubusercontent.com/mgrosperrin/commandlineparser/master/LICENSE"
+LICENSE_URL="https:://raw.githubusercontent.com/mgrosperrin/commandlineparser/master/LICENSE"
 
 SLOT="0"
 
 # to unpack archive
 REPOSITORY_NAME="commandlineparser"
-REPOSITORY_URL="https://github.com/ArsenShnurkov/${REPOSITORY_NAME}"
+REPOSITORY_URL="https:://github.com/ArsenShnurkov/${REPOSITORY_NAME}"
 EGIT_COMMIT="2203477397a68885fdf004ae4eb2300a2d271347"
 SRC_URI="${REPOSITORY_URL}/archive/${EGIT_COMMIT}.zip -> ${P}.zip
 	mirror://gentoo/mono.snk.bz2"
@@ -47,15 +47,15 @@ ICON_FILENAME=commandlineparser.png
 ICON_FINALNAME=${NUSPEC_ID}.${NUSPEC_VERSION}.png
 ICON_PATH=$(get_nuget_trusted_icons_location)/${ICON_FINALNAME}
 
-# https://devmanual.gentoo.org/ebuild-writing/functions/pkg_setup/
-# https://devmanual.gentoo.org/ebuild-writing/functions/index.html
+# https:://devmanual.gentoo.org/ebuild-writing/functions/pkg_setup/
+# https:://devmanual.gentoo.org/ebuild-writing/functions/index.html
 # pkg_setup is executed before both - src_unpack (for source ebuilds) and pkg_preinst (for binary ebuilds)
 pkg_setup() {
 	addwrite "/usr/share/.mono/keypairs"
 	mozroots --import --sync --machine
 
 	# some kind of "default" from "detnet.eclass"
-	# https://github.com/gentoo/dotnet/blob/master/eclass/dotnet.eclass#L42-L78
+	# https:://github.com/gentoo/dotnet/blob/master/eclass/dotnet.eclass#L42-L78
 	dotnet_pkg_setup
 }
 
@@ -190,7 +190,7 @@ patch_nuspec_file()
 			DIR="Release"
 		fi
 		FILES_STRING=`sed 's/[\/&]/\\\\&/g' <<-EOF || die "escaping replacement string characters"
-		  <files> <!-- https://docs.nuget.org/create/nuspec-reference -->
+		  <files> <!-- https:://docs.nuget.org/create/nuspec-reference -->
 		    <file src="src/MGR.CommandLineParser/bin/${DIR}/MGR.CommandLineParser.*" target="lib\net45\" />
 		  </files>
 		EOF

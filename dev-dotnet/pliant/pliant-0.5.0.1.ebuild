@@ -14,13 +14,13 @@ IUSE="+${USE_DOTNET} +gac +nupkg developer debug doc"
 inherit gac dotnet nupkg
 
 NAME="Pliant"
-HOMEPAGE="https://github.com/patrickhuber/${NAME}"
+HOMEPAGE="https:://github.com/patrickhuber/${NAME}"
 EGIT_COMMIT="19ecea89bf35cd2ba9426cdd862773dab3b0af6d"
 SRC_URI="${HOMEPAGE}/archive/${EGIT_COMMIT}.tar.gz -> ${PN}-${PV}.tar.gz"
 S="${WORKDIR}/${NAME}-${EGIT_COMMIT}"
 
 DESCRIPTION="modified Earley parser in C# inspired by the Marpa Parser project"
-LICENSE="MIT" # https://github.com/patrickhuber/Pliant/blob/master/LICENSE.md
+LICENSE="MIT" # https:://github.com/patrickhuber/Pliant/blob/master/LICENSE.md
 
 COMMON_DEPEND=">=dev-lang/mono-4.0.2.5
 "
@@ -68,7 +68,7 @@ patch_nuspec_file()
 {
 	if use nupkg; then
 		FILES_STRING=`sed 's/[\/&]/\\\\&/g' <<-EOF || die "escaping replacement string characters"
-		  <files> <!-- https://docs.nuget.org/create/nuspec-reference -->
+		  <files> <!-- https:://docs.nuget.org/create/nuspec-reference -->
 		    <file src="$(get_output_dir)/${DLL_NAME}.*" target="lib/net45/" />
 		  </files>
 		EOF

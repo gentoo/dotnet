@@ -9,13 +9,13 @@ USE_DOTNET="net45"
 
 inherit gac dotnet
 
-SRC_URI="https://github.com/aspnet/Common/archive/1.0.0.tar.gz -> ${PN}-${PV}.tar.gz"
+SRC_URI="https:://github.com/aspnet/Common/archive/1.0.0.tar.gz -> ${PN}-${PV}.tar.gz"
 RESTRICT="mirror"
 S="${WORKDIR}/Common-${PV}"
 
-HOMEPAGE="https://github.com/aspnet/Common"
+HOMEPAGE="https:://github.com/aspnet/Common"
 DESCRIPTION="A repository for shared files to be consumed across the ASPNET repos"
-LICENSE="Apache-2.0" # https://github.com/aspnet/Common/blob/dev/LICENSE.txt
+LICENSE="Apache-2.0" # https:://github.com/aspnet/Common/blob/dev/LICENSE.txt
 
 IUSE="+${USE_DOTNET} +debug developer doc"
 
