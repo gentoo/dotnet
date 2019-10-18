@@ -10,7 +10,7 @@ IUSE="net45 +gac +nupkg +pkg-config debug developer"
 
 inherit versionator gac nupkg
 
-HOMEPAGE="https:://github.com/kpi-ua/X.PagedList/"
+HOMEPAGE="https://github.com/kpi-ua/X.PagedList/"
 DESCRIPTION="Nugget for easily paging through any IEnumerable/IQueryable in Asp.Net MVC"
 LICENSE="MIT"
 SLOT="0"
@@ -27,7 +27,7 @@ RDEPEND="${COMMON_DEPEND}
 "
 
 NAME="X.PagedList"
-REPOSITORY="https:://github.com/ArsenShnurkov/${NAME}"
+REPOSITORY="https://github.com/ArsenShnurkov/${NAME}"
 EGIT_BRANCH="master"
 LICENSE_URL="${REPOSITORY}/blob/${EGIT_BRANCH}/LICENSE"
 ICONMETA="https://uxrepo.com/static/icon-sets/iconic/svg/list.svg"
@@ -93,7 +93,7 @@ patch_nuspec_file()
 		if use debug; then
 			DIR="Debug"
 			FILES_STRING=`sed 's/[\/&]/\\\\&/g' <<-EOF || die "escaping replacement string characters"
-			  <files> <!-- https:://docs.nuget.org/create/nuspec-reference -->
+			  <files> <!-- https://docs.nuget.org/create/nuspec-reference -->
 			    <file src="X.PagedList/bin/${DIR}/X.PagedList.dll" target="lib/net45" />
 			    <file src="X.PagedList.Mvc/bin/${DIR}/X.PagedList.Mvc.dll" target="lib/net45" />
 			    <file src="X.PagedList/bin/${DIR}/X.PagedList.dll.mdb" target="lib/net45" />
@@ -104,7 +104,7 @@ patch_nuspec_file()
 		else
 			DIR="Release"
 			FILES_STRING=`sed 's/[\/&]/\\\\&/g' <<-EOF || die "escaping replacement string characters"
-			  <files> <!-- https:://docs.nuget.org/create/nuspec-reference -->
+			  <files> <!-- https://docs.nuget.org/create/nuspec-reference -->
 			    <file src="X.PagedList/bin/${DIR}/X.PagedList.dll" target="lib\net45" />
 			    <file src="X.PagedList.Mvc/bin/${DIR}/X.PagedList.Mvc.dll" target="lib\net45" />
 			  </files>

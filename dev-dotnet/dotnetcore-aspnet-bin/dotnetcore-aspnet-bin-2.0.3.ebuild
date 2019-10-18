@@ -6,11 +6,11 @@ EAPI="6"
 inherit eutils
 
 DESCRIPTION=".NET Core ASP.NET Runtime Store - binary precompiled for glibc"t
-HOMEPAGE="https:://www.microsoft.com/net/core"
+HOMEPAGE="https://www.microsoft.com/net/core"
 LICENSE="MIT"
 
 SRC_URI="
-amd64? ( https:://dist.asp.net/runtimestore/${PV}/linux-x64/aspnetcore.runtimestore.tar.gz -> aspnetcore.runtimestore.tar.gz )
+amd64? ( https://dist.asp.net/runtimestore/${PV}/linux-x64/aspnetcore.runtimestore.tar.gz -> aspnetcore.runtimestore.tar.gz )
 "
 
 SLOT="0"

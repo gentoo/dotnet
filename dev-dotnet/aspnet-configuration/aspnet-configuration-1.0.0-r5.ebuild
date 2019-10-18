@@ -9,13 +9,13 @@ IUSE="+${USE_DOTNET} +gac developer debug doc"
 
 inherit gac dotnet
 
-SRC_URI="https:://github.com/aspnet/Configuration/archive/1.0.0.tar.gz -> ${PN}-${PV}.tar.gz"
+SRC_URI="https://github.com/aspnet/Configuration/archive/1.0.0.tar.gz -> ${PN}-${PV}.tar.gz"
 RESTRICT="mirror"
 S="${WORKDIR}/Configuration-1.0.0"
 
-HOMEPAGE="https:://github.com/aspnet/Configuration"
+HOMEPAGE="https://github.com/aspnet/Configuration"
 DESCRIPTION="Interfaces and providers for accessing configuration files"
-LICENSE="Apache-2.0" # https:://github.com/aspnet/Configuration/blob/dev/LICENSE.txt
+LICENSE="Apache-2.0" # https://github.com/aspnet/Configuration/blob/dev/LICENSE.txt
 KEYWORDS="~amd64 ~ppc ~x86"
 
 COMMON_DEPEND=">=dev-lang/mono-4.0.2.5

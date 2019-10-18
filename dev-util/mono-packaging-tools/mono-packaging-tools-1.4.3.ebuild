@@ -31,7 +31,7 @@ get_dlldir() {
 NAME="mono-packaging-tools"
 HOMEPAGE="https://arsenshnurkov.github.io/mono-packaging-tools"
 
-REPOSITORY_URL="https:://github.com/ArsenShnurkov/${NAME}"
+REPOSITORY_URL="https://github.com/ArsenShnurkov/${NAME}"
 
 EGIT_COMMIT="98dfea6ddcc47de78a59014728f823bfe773fb25"
 SRC_URI="${REPOSITORY_URL}/archive/${EGIT_COMMIT}.tar.gz -> ${PN}-${PV}.tar.gz"
@@ -41,7 +41,7 @@ SLOT="0"
 
 DESCRIPTION="Command line utilities for packaging mono assemblies with portage"
 LICENSE="GPL-3"
-LICENSE_URL="https:://raw.githubusercontent.com/ArsenShnurkov/mono-packaging-tools/master/LICENSE"
+LICENSE_URL="https://raw.githubusercontent.com/ArsenShnurkov/mono-packaging-tools/master/LICENSE"
 
 COMMON_DEPENDENCIES="|| ( >=dev-lang/mono-4.2 <dev-lang/mono-9999 )
 	dev-dotnet/mono-options[gac]

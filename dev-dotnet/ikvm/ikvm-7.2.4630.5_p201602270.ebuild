@@ -15,7 +15,7 @@ EGIT_COMMIT="00252c18fc0a4a206e45461736a890acb785a9d8"
 GITHUBACC=${GITHUBNAME%/*}
 GITHUBREPO=${GITHUBNAME#*/}
 GITFILENAME=${GITHUBREPO}-${GITHUBACC}-${PV}-${EGIT_COMMIT}
-GITHUB_ZIP="https:://api.github.com/repos/${GITHUBACC}/${GITHUBREPO}/zipball/${EGIT_COMMIT} -> ${GITFILENAME}.zip"
+GITHUB_ZIP="https://api.github.com/repos/${GITHUBACC}/${GITHUBREPO}/zipball/${EGIT_COMMIT} -> ${GITFILENAME}.zip"
 S="${WORKDIR}/${GITFILENAME}"
 
 SRC_URI="https://www.frijters.net/openjdk-7u4-stripped.zip

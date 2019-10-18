@@ -13,10 +13,10 @@ inherit dotnet msbuild eutils
 
 DESCRIPTION="An Open Source reimplementation of Windows PowerShell"
 
-LICENSE="BSD || ( GPL-2+ )"   # LICENSE syntax is defined in https:://wiki.gentoo.org/wiki/GLEP:23
+LICENSE="BSD || ( GPL-2+ )"   # LICENSE syntax is defined in https://wiki.gentoo.org/wiki/GLEP:23
 
 PROJECTNAME="Pash"
-HOMEPAGE="https:://github.com/Pash-Project/${PROJECTNAME}"
+HOMEPAGE="https://github.com/Pash-Project/${PROJECTNAME}"
 EGIT_COMMIT="8d6a48f5ed70d64f9b49e6849b3ee35b887dc254"
 SRC_URI="${HOMEPAGE}/archive/${EGIT_COMMIT}.tar.gz -> ${P}-${PR}.tar.gz"
 S="${WORKDIR}/${PROJECTNAME}-${EGIT_COMMIT}"

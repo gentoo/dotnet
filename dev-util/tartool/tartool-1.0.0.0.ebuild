@@ -14,14 +14,14 @@ IUSE="+${USE_DOTNET} developer debug nupkg gac doc"
 inherit msbuild eutils
 
 NAME="tartool"
-HOMEPAGE="https:://github.com/senthilrajasek/${NAME}"
+HOMEPAGE="https://github.com/senthilrajasek/${NAME}"
 
 EGIT_COMMIT="7b22774e464e1a0de547e776236a1631db9f1037"
 SRC_URI="${HOMEPAGE}/archive/${EGIT_COMMIT}.tar.gz -> ${PN}-${PV}.tar.gz"
 S="${WORKDIR}/${NAME}-${EGIT_COMMIT}"
 
 DESCRIPTION="command line tool to uncompress and untar .tar.gz (.tgz) files"
-LICENSE="MIT" # https:://github.com/senthilrajasek/tartool/blob/master/LICENSE
+LICENSE="MIT" # https://github.com/senthilrajasek/tartool/blob/master/LICENSE
 
 CDEPEND=">=dev-lang/mono-5.4.0.167 <dev-lang/mono-9999
 	dev-dotnet/sharpziplib

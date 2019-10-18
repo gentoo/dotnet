@@ -7,16 +7,12 @@ USE_DOTNET="net45"
 inherit dotnet eutils gac
 
 # This ebuild provides a forked version of nuget modified to work with MonoDevelop.
-# See https:://bugzilla.xamarin.com/show_bug.cgi?id=27693
+# See https://bugzilla.xamarin.com/show_bug.cgi?id=27693
 # dev-dotnet/nuget-codeplex provides the upstream version.
 
 DESCRIPTION="Nuget - .NET Package Manager"
 HOMEPAGE="https://nuget.codeplex.com"
-<<<<<<< HEAD
 SRC_URI="https://github.com/mrward/nuget/archive/Release-${PV}-MonoDevelop.tar.gz -> ${P}.tar.gz"
-=======
-SRC_URI="https:://github.com/mrward/nuget/archive/Release-${PV}-MonoDevelop.tar.gz -> ${P}.tar.gz"
->>>>>>> hopefully corrected all uri.https problems
 S=${WORKDIR}/nuget-Release-${PV}-MonoDevelop
 
 LICENSE="Apache-2.0"

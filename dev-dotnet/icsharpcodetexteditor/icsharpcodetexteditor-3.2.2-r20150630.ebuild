@@ -9,7 +9,7 @@ DESCRIPTION="ICSharpCode.TextEditor library"
 LICENSE="MIT"
 
 PROJECTNAME="ICSharpCode.TextEditor"
-HOMEPAGE="https:://github.com/ArsenShnurkov/${PROJECTNAME}"
+HOMEPAGE="https://github.com/ArsenShnurkov/${PROJECTNAME}"
 EGIT_COMMIT="24903d58cddab7d0ff17fc96a8bb25f66e6eea56"
 SRC_URI="${HOMEPAGE}/archive/${EGIT_COMMIT}.zip -> ${P}-${PR}.zip"
 
@@ -24,7 +24,7 @@ S="${WORKDIR}/${PROJECTNAME}-${EGIT_COMMIT}"
 
 METAFILETOBUILD=ICSharpCode.TextEditor.sln
 
-# https:://devmanual.gentoo.org/ebuild-writing/variables/
+# https://devmanual.gentoo.org/ebuild-writing/variables/
 #
 # PN = Package name, for example vim.
 # P = Package name and version (excluding revision, if any), for example vim-6.3.

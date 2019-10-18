@@ -5,9 +5,9 @@ EAPI=5
 inherit autotools mono-env dotnet eutils
 
 DESCRIPTION="D-Bus for .NET"
-HOMEPAGE="https:://github.com/mono/dbus-sharp"
+HOMEPAGE="https://github.com/mono/dbus-sharp"
 SRC_URI="mirror://github/mono/${PN}/${P}.tar.gz"
-SRC_URI="https:://github.com/mono/dbus-sharp/archive/v${PV}.tar.gz"
+SRC_URI="https://github.com/mono/dbus-sharp/archive/v${PV}.tar.gz"
 
 LICENSE="MIT"
 SLOT="0"
@@ -35,6 +35,6 @@ src_prepare() {
 
 src_compile() {
     default
-    # https:://github.com/gentoo/dotnet/issues/305
+    # https://github.com/gentoo/dotnet/issues/305
     sn -R src/dbus-sharp.dll dbus-sharp.snk
 }

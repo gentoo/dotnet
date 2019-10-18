@@ -12,17 +12,17 @@ USE_DOTNET="net45"
 inherit msbuild gac mono-pkg-config
 
 NAME="Autofac"
-HOMEPAGE="https:://github.com/Autofac/${NAME}"
+HOMEPAGE="https://github.com/Autofac/${NAME}"
 
 EGIT_COMMIT="c985cda5483dcd4d2fbc395a4001be12cc07ee84"
 SRC_URI="${HOMEPAGE}/archive/${EGIT_COMMIT}.tar.gz -> ${PN}-${PV}.tar.gz
-	https:://github.com/mono/mono/raw/master/mcs/class/mono.snk"
+	https://github.com/mono/mono/raw/master/mcs/class/mono.snk"
 RESTRICT="mirror"
 S="${WORKDIR}/${NAME}-${EGIT_COMMIT}"
 
-HOMEPAGE="https:://github.com/autofac/Autofac"
+HOMEPAGE="https://github.com/autofac/Autofac"
 DESCRIPTION="An addictive .NET IoC container"
-LICENSE="MIT" # https:://github.com/autofac/Autofac/blob/develop/LICENSE
+LICENSE="MIT" # https://github.com/autofac/Autofac/blob/develop/LICENSE
 
 IUSE="+${USE_DOTNET} +debug developer doc"
 

@@ -7,11 +7,11 @@ USE_DOTNET="net45"
 inherit dotnet eutils gac
 
 DESCRIPTION="Microsoft's Xml Document Transformation library"
-HOMEPAGE="https:://github.com/mrward/xdt"
+HOMEPAGE="https://github.com/mrward/xdt"
 LICENSE="Apache-2.0"
 SLOT="0"
 
-SRC_URI="https:://github.com/mrward/xdt/archive/Release-NuGet-${PV}-Mono.tar.gz -> xdt-for-monodevelop-${PV}.tar.gz"
+SRC_URI="https://github.com/mrward/xdt/archive/Release-NuGet-${PV}-Mono.tar.gz -> xdt-for-monodevelop-${PV}.tar.gz"
 S=${WORKDIR}/xdt-Release-NuGet-${PV}-Mono
 
 KEYWORDS="~amd64 ~x86 ~ppc"

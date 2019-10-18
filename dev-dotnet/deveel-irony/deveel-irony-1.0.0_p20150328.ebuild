@@ -17,7 +17,7 @@ KEYWORDS="~amd64 ~x86"
 
 inherit versionator gac nupkg
 
-HOMEPAGE=https:://github.com/deveel/irony
+HOMEPAGE=https://github.com/deveel/irony
 NAME=irony
 EGIT_COMMIT=7bc3f3e70af5bdd6a095ba06de31e0929751b48e
 # P	Package name and version (excluding revision, if any), for example vim-6.3.
@@ -53,7 +53,7 @@ src_prepare() {
 
 # PR 	Package revision, or r0 if no revision exists.
 NUSPEC_VERSION=$(get_version_component_range 1-3)"${PR//r/.}"
-ICON_URL=https:://raw.githubusercontent.com/ArsenShnurkov/dotnet/deveeldb/dev-dotnet/${PN}/files/deveel-irony.png
+ICON_URL=https://raw.githubusercontent.com/ArsenShnurkov/dotnet/deveeldb/dev-dotnet/${PN}/files/deveel-irony.png
 NUSPEC_FILE_NAME="Irony.nuspec"
 NUSPEC_ID="deveel-irony"
 
@@ -72,7 +72,7 @@ epatch_nuspec_file()
 		if use debug; then
 			DIR="Debug"
 FILES_STRING=`cat <<-EOF || die "${DIR} files at patch_nuspec_file()"
-	<files> <!-- https:://docs.nuget.org/create/nuspec-reference -->
+	<files> <!-- https://docs.nuget.org/create/nuspec-reference -->
 		<file src="Irony/bin/${DIR}/Irony.dll" target="lib\net45\" />
 		<file src="Irony/bin/${DIR}/Irony.dll.mdb" target="lib\net45\" />
 	</files>
@@ -81,7 +81,7 @@ EOF
 	else
 		DIR="Release"
 FILES_STRING=`cat <<-EOF || die "${DIR} files at patch_nuspec_file()"
-	<files> <!-- https:://docs.nuget.org/create/nuspec-reference -->
+	<files> <!-- https://docs.nuget.org/create/nuspec-reference -->
 		<file src="Irony/bin/${DIR}/Irony.dll" target="lib\net45\" />
 	</files>
 EOF

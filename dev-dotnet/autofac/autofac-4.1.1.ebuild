@@ -9,13 +9,13 @@ USE_DOTNET="net45"
 
 inherit gac dotnet
 
-SRC_URI="https:://github.com/autofac/Autofac/archive/v4.1.1.tar.gz -> ${PN}-${PV}.tar.gz"
+SRC_URI="https://github.com/autofac/Autofac/archive/v4.1.1.tar.gz -> ${PN}-${PV}.tar.gz"
 RESTRICT="mirror"
 S="${WORKDIR}/Autofac-${PV}"
 
-HOMEPAGE="https:://github.com/autofac/Autofac"
+HOMEPAGE="https://github.com/autofac/Autofac"
 DESCRIPTION="An addictive .NET IoC container"
-LICENSE="MIT" # https:://github.com/autofac/Autofac/blob/develop/LICENSE
+LICENSE="MIT" # https://github.com/autofac/Autofac/blob/develop/LICENSE
 
 IUSE="+${USE_DOTNET} +debug developer doc"
 

@@ -9,7 +9,7 @@ USE_DOTNET="net45"
 
 inherit gac dotnet
 
-HOMEPAGE="https:://github.com/loresoft/msbuildtasks"
+HOMEPAGE="https://github.com/loresoft/msbuildtasks"
 EGIT_COMMIT="014ed0f7a69f4936d7b3b438a5ceca78f902e0ef"
 SRC_URI="${HOMEPAGE}/archive/${EGIT_COMMIT}.tar.gz -> ${PN}-${PV}.tar.gz"
 RESTRICT="mirror"
@@ -17,7 +17,7 @@ NAME="msbuildtasks"
 S="${WORKDIR}/${NAME}-${EGIT_COMMIT}"
 
 DESCRIPTION="The MSBuild Community Tasks Project is an open source project for MSBuild tasks."
-LICENSE="BSD" # https:://github.com/loresoft/msbuildtasks/blob/master/LICENSE
+LICENSE="BSD" # https://github.com/loresoft/msbuildtasks/blob/master/LICENSE
 
 IUSE="+${USE_DOTNET} +debug developer doc"
 

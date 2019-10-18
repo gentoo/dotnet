@@ -5,12 +5,12 @@ EAPI=5
 inherit dotnet eutils
 
 DESCRIPTION="A simple, zero-config DLNA media server, just fire up and be done with it."
-HOMEPAGE="https:://github.com/nmaier/${PN}"
-SRC_URI="https:://github.com/nmaier/${PN}/archive/v${PV}.tar.gz -> ${P}.tar.gz"
+HOMEPAGE="https://github.com/nmaier/${PN}"
+SRC_URI="https://github.com/nmaier/${PN}/archive/v${PV}.tar.gz -> ${P}.tar.gz"
 
-# Need patched version until upstream merges https:://github.com/nmaier/simpleDLNA/pull/29
+# Need patched version until upstream merges https://github.com/nmaier/simpleDLNA/pull/29
 # I tried to epatch locally, but it chokes on mixed line endings (some LF, some CRLF)
-SRC_URI="https:://github.com/piedar/${PN}/archive/v${PV}.tar.gz -> ${P}.tar.gz"
+SRC_URI="https://github.com/piedar/${PN}/archive/v${PV}.tar.gz -> ${P}.tar.gz"
 
 LICENSE="BSD-2" # simpleDLNA, GetOptNet
 LICENSE+=" MIT" # Microsoft.IO.RecyclableMemoryStream

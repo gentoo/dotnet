@@ -6,14 +6,14 @@ EAPI=6
 # !!! since its EAPI is higher than this portage version's. Please upgrade
 # !!! to a portage version that supports EAPI '6'.
 # 2015-11-17, portage-2.2.25 has been committed and it comes with complete EAPI 6 support
-# https:://archives.gentoo.org/gentoo-dev/message/73cc181e4949b88abfbd68f8a8ca9254
+# https://archives.gentoo.org/gentoo-dev/message/73cc181e4949b88abfbd68f8a8ca9254
 
 inherit versionator vcs-snapshot gac nupkg
 
-HOMEPAGE="https:://bitbucket.org/dadhi/dryioc"
+HOMEPAGE="https://bitbucket.org/dadhi/dryioc"
 DESCRIPTION="fast, small, full-featured IoC Container for .NET"
 LICENSE="MIT"
-LICENSE_URL="https:://bitbucket.org/dadhi/dryioc/src/tip/LICENSE.txt"
+LICENSE_URL="https://bitbucket.org/dadhi/dryioc/src/tip/LICENSE.txt"
 SLOT="0"
 KEYWORDS="~amd64 ~x86"
 
@@ -39,13 +39,13 @@ DEPEND="${COMMON_DEPEND}
 
 NAME=DryIoc
 REPOSITORY_NAME="dadhi/dryioc"
-REPOSITORY_URL="https:://bitbucket.org/dadhi/dryioc"
+REPOSITORY_URL="https://bitbucket.org/dadhi/dryioc"
 EHG_REVISION="9f1954dd921acc432c22f1feff108c4d7ff87ffd"
 HG_COMMIT="${EHG_REVISION:0:8}"
 
 # PF 	Full package name, ${PN}-${PVR}, for example vim-6.3-r1
 SRC_URI="${REPOSITORY_URL}/get/${HG_COMMIT}.tar.gz -> ${PF}.tar.gz
-	nupkg? ( https:://raw.githubusercontent.com/ArsenShnurkov/dotnet/dryioc/dev-dotnet/dryioc/files/icon.png -> ${PF}.icon.png )
+	nupkg? ( https://raw.githubusercontent.com/ArsenShnurkov/dotnet/dryioc/dev-dotnet/dryioc/files/icon.png -> ${PF}.icon.png )
 	gac? ( mirror://gentoo/mono.snk.bz2 )
 	"
 #RESTRICT="mirror"
@@ -58,9 +58,9 @@ NUSPEC_FILE_NAME=DryIoc.nuspec
 # get_version_component_range is from inherit versionator
 # PR 	Package revision, or r0 if no revision exists.
 NUSPEC_VERSION=$(get_version_component_range 1-3)"${PR//r/.}"
-#ICON_URL="https:://bitbucket.org/account/dadhi/avatar/256/?ts=1451481107"
+#ICON_URL="https://bitbucket.org/account/dadhi/avatar/256/?ts=1451481107"
 #ICON_URL=""
-ICON_URL="https:://raw.githubusercontent.com/gentoo/dotnet/master/dev-dotnet/dryioc/files/icon.png"
+ICON_URL="https://raw.githubusercontent.com/gentoo/dotnet/master/dev-dotnet/dryioc/files/icon.png"
 
 # rm -rf /var/tmp/portage/dev-dotnet/dryioc-*
 # emerge -v =dryioc-2.1.0-r201512110
@@ -126,7 +126,7 @@ patch_nuspec_file()
 		if use debug; then
 			DIR="Debug"
 			FILES_STRING=`sed 's/[\/&]/\\\\&/g' <<-EOF || die "escaping replacement string characters"
-			  <files> <!-- https:://docs.nuget.org/create/nuspec-reference -->
+			  <files> <!-- https://docs.nuget.org/create/nuspec-reference -->
 			    <file src="bin/${DIR}/DryIoc.dll" target="lib\net45\" />
 			    <file src="bin/${DIR}/DryIoc.dll.mdb" target="lib\net45\" />
 			  </files>
@@ -135,7 +135,7 @@ patch_nuspec_file()
 		else
 			DIR="Release"
 			FILES_STRING=`sed 's/[\/&]/\\\\&/g' <<-EOF || die "escaping replacement string characters"
-			  <files> <!-- https:://docs.nuget.org/create/nuspec-reference -->
+			  <files> <!-- https://docs.nuget.org/create/nuspec-reference -->
 			    <file src="bin/${DIR}/DryIoc.dll" target="lib\net45\" />
 			  </files>
 			EOF

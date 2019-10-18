@@ -17,15 +17,15 @@ IUSE="+${USE_DOTNET} +debug developer doc"
 inherit versionator msbuild gac mono-pkg-config
 
 GITHUB_REPONAME="Autofac"
-HOMEPAGE="https:://github.com/autofac/Autofac.Configuration"
+HOMEPAGE="https://github.com/autofac/Autofac.Configuration"
 DESCRIPTION="An addictive .NET IoC container"
-LICENSE="MIT" # https:://github.com/autofac/Autofac/blob/develop/LICENSE
+LICENSE="MIT" # https://github.com/autofac/Autofac/blob/develop/LICENSE
 
 EGIT_COMMIT="5ad2d85df4e99d3588589d89874672856ba7b60e"
 PV4="$(get_version_component_range 1-4)"
 TARBALL_EXT=".tar.gz"
-SRC_URI="https:://github.com/autofac/${GITHUB_REPONAME}/archive/${EGIT_COMMIT}${TARBALL_EXT} -> ${GITHUB_REPONAME}-${PV4}${TARBALL_EXT}
-	https:://github.com/mono/mono/raw/master/mcs/class/mono.snk"
+SRC_URI="https://github.com/autofac/${GITHUB_REPONAME}/archive/${EGIT_COMMIT}${TARBALL_EXT} -> ${GITHUB_REPONAME}-${PV4}${TARBALL_EXT}
+	https://github.com/mono/mono/raw/master/mcs/class/mono.snk"
 S="${WORKDIR}/${GITHUB_REPONAME}-${EGIT_COMMIT}"
 
 COMMON_DEPEND=">=dev-lang/mono-4.0.2.5

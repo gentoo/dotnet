@@ -12,14 +12,14 @@ USE_DOTNET="net45"
 
 inherit dotnet gac mono-pkg-config xbuild
 
-SRC_URI="https:://github.com/haf/DotNetZip.Semverd/archive/v1.9.3.tar.gz -> ${PV}.tar.gz
-	https:://github.com/mono/mono/raw/master/mcs/class/mono.snk"
+SRC_URI="https://github.com/haf/DotNetZip.Semverd/archive/v1.9.3.tar.gz -> ${PV}.tar.gz
+	https://github.com/mono/mono/raw/master/mcs/class/mono.snk"
 
 S="${WORKDIR}/DotNetZip.Semverd-${PV}"
 
-HOMEPAGE="https:://github.com/haf/DotNetZip.Semverd"
+HOMEPAGE="https://github.com/haf/DotNetZip.Semverd"
 DESCRIPTION="create, extract, or update zip files with C# (=DotNetZip+SemVer)"
-LICENSE="MS-PL" # https:://github.com/haf/DotNetZip.Semverd/blob/master/LICENSE
+LICENSE="MS-PL" # https://github.com/haf/DotNetZip.Semverd/blob/master/LICENSE
 
 IUSE="net45 +gac +nupkg developer debug doc"
 

@@ -17,17 +17,17 @@ inherit versionator dotnet msbuild
 
 IUSE="+${USE_DOTNET} +debug developer +msbuild +xbuild +symlink"
 
-HOMEPAGE="https:://github.com/loresoft/msbuildtasks"
+HOMEPAGE="https://github.com/loresoft/msbuildtasks"
 EGIT_COMMIT="abaab03d71fc07b020a860f6d407f6814cb0f6d5"
 TARBALL_FILENAME="${PN}-$(get_version_component_range 1-4)"
 TARBALL_EXT=".tar.gz"
 SRC_URI="${HOMEPAGE}/archive/${EGIT_COMMIT}${TARBALL_EXT} -> ${TARBALL_FILENAME}${TARBALL_EXT}
-	https:://github.com/mono/mono/raw/master/mcs/class/mono.snk"
+	https://github.com/mono/mono/raw/master/mcs/class/mono.snk"
 GITHUB_REPONAME="msbuildtasks"
 S="${WORKDIR}/${GITHUB_REPONAME}-${EGIT_COMMIT}"
 
 DESCRIPTION="The MSBuild Community Tasks Project is an open source project for MSBuild tasks."
-LICENSE="BSD" # https:://github.com/loresoft/msbuildtasks/blob/master/LICENSE
+LICENSE="BSD" # https://github.com/loresoft/msbuildtasks/blob/master/LICENSE
 
 COMMON_DEPEND=">=dev-lang/mono-4.0.2.5
 	>=dev-dotnet/dotnetzip-semverd-1.9.3-r2

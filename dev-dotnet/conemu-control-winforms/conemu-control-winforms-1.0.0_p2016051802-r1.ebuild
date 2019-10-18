@@ -20,7 +20,7 @@ SRC_URI="${HOMEPAGE}/archive/${EGIT_COMMIT}.tar.gz -> ${P}.tar.gz"
 RESTRICT="mirror"
 S="${WORKDIR}/${NAME}-${EGIT_COMMIT}"
 
-LICENSE="BSD" # https:://github.com/Maximus5/ConEmu/blob/master/Release/ConEmu/License.txt
+LICENSE="BSD" # https://github.com/Maximus5/ConEmu/blob/master/Release/ConEmu/License.txt
 SLOT="0"
 
 src_prepare() {

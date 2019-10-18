@@ -5,16 +5,11 @@ EAPI=6
 
 inherit rpm
 
-HOMEPAGE="https:://developer.xamarin.com/guides/cross-platform/application_fundamentals/pcl/"
+HOMEPAGE="https://developer.xamarin.com/guides/cross-platform/application_fundamentals/pcl/"
 DESCRIPTION=".NET Portable Class Library reference assemblies"
 SRC_URI="https://download.mono-project.com/repo/centos/r/referenceassemblies-pcl/referenceassemblies-pcl-${PV}-0.noarch.rpm"
-<<<<<<< HEAD
 # https://www.microsoft.com/net/dotnet_library_license.htm
 # https://www.microsoft.com/web/webpi/eula/net_library_eula_enu.htm
-=======
-# https:://www.microsoft.com/net/dotnet_library_license.htm
-# https:://www.microsoft.com/web/webpi/eula/net_library_eula_enu.htm
->>>>>>> hopefully corrected all uri.https problems
 LICENSE="TODO"
 
 SLOT="0"

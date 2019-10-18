@@ -76,7 +76,7 @@ src_prepare() {
 }
 
 src_configure() {
-	# env vars are added as the fix for https:://github.com/gentoo/dotnet/issues/29
+	# env vars are added as the fix for https://github.com/gentoo/dotnet/issues/29
 	MCS=/usr/bin/dmcs CSC=/usr/bin/dmcs GMCS=/usr/bin/dmcs econf \
 		--disable-update-mimedb \
 		--disable-update-desktopdb \
@@ -89,10 +89,10 @@ src_configure() {
 
 	# Main.sln file was created on the fly during econf
 
-	# https:://github.com/mrward/xdt/issues/4
+	# https://github.com/mrward/xdt/issues/4
 	epatch -p2 "${FILESDIR}/mrward-xdt-issue-4.patch"
 
-	# https:://github.com/gentoo/dotnet/issues/38
+	# https://github.com/gentoo/dotnet/issues/38
 	sed -i -E -e 's#(EXE_PATH=")(.*)(/lib/monodevelop/bin/MonoDevelop.exe")#\1'${EPREFIX}'/usr\3#g' "${S}/monodevelop" || die
 }
 
