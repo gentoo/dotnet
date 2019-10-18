@@ -20,10 +20,10 @@ RDEPEND="
 S=${WORKDIR}
 
 src_install() {
-    local dest="opt/pwsh"
-    dodir "${dest}"
-
-    local ddest="${D}/${dest}"
-    cp -a "${S}"/* "${ddest}/" || die
-    dosym "/${dest}/pwsh" "/usr/bin/pwsh"
+	local dest="opt/pwsh"
+	dodir "${dest}"
+	local ddest="${D}/${dest}"
+	cp -a "${S}"/* "${ddest}/" || die
+	fperms 0755 "/${dest}/pwsh"
+	dosym "/${dest}/pwsh" "/usr/bin/pwsh"
 }
