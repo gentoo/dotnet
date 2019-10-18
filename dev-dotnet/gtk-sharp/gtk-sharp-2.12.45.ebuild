@@ -9,7 +9,7 @@ SLOT="2"
 DESCRIPTION="gtk bindings for mono"
 LICENSE="GPL-2"
 HOMEPAGE="https://www.mono-project.com/GtkSharp"
-KEYWORDS="~amd64 ~x86 ~ppc"
+KEYWORDS="~amd64 ~ppc ~x86"
 SRC_URI="https://download.mono-project.com/sources/gtk-sharp212/${P}.tar.gz"
 IUSE="debug"
 

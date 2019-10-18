@@ -13,7 +13,7 @@ SRC_URI="https://download.mono-project.com/repo/centos/r/referenceassemblies-pcl
 LICENSE="TODO"
 
 SLOT="0"
-KEYWORDS="~x86 ~amd64"
+KEYWORDS="~amd64 ~x86"
 IUSE=""
 
 DEPEND=">=dev-lang/mono-4.0"

@@ -18,7 +18,7 @@ HOMEPAGE="https://github.com/Pash-Project/${PROJECTNAME}"
 EGIT_COMMIT="33ffa8c6172175e678310598adcc261a4e3b22a0"
 SRC_URI="${HOMEPAGE}/archive/${EGIT_COMMIT}.zip -> ${P}-${PR}.zip"
 
-KEYWORDS="~x86 ~amd64 ~ppc"
+KEYWORDS="~amd64 ~ppc ~x86"
 DEPEND="|| ( >=dev-lang/mono-3.12.0 <dev-lang/mono-9999 )"
 RDEPEND="${DEPEND}"
 

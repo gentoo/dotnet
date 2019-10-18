@@ -27,7 +27,6 @@ SRC_URI="https://github.com/autofac/${GITHUB_REPONAME}/archive/${EGIT_COMMIT}${T
 	https://github.com/mono/mono/raw/master/mcs/class/mono.snk"
 S="${WORKDIR}/${GITHUB_REPONAME}-${EGIT_COMMIT}"
 
-
 IUSE="+${USE_DOTNET} +debug developer doc"
 
 COMMON_DEPEND=">=dev-lang/mono-4.0.2.5

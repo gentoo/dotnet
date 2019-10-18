@@ -27,7 +27,7 @@ if [[ ${PV} == "9999" ]] ; then
 	EGIT_REPO_URI="https://github.com/mono/gnome-sharp.git"
 	inherit git-r3
 else
-	KEYWORDS="~amd64 ~x86 ~ppc"
+	KEYWORDS="~amd64 ~ppc ~x86"
 	SRC_URI="https://github.com/mono/${PN}/archive/${PV}.tar.gz"
 fi
 
