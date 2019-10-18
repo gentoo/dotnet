@@ -16,11 +16,11 @@ inherit gac machine nupkg
 
 NAME="npgsql"
 NUSPEC_ID="${NAME}"
-HOMEPAGE="https://github.com/npgsql/${NAME}"
+HOMEPAGE="https:://github.com/npgsql/${NAME}"
 
 EGIT_COMMIT="a7e147759c3756b6d22f07f5602aacd21f93d48d"
 SRC_URI="${HOMEPAGE}/archive/${EGIT_COMMIT}.tar.gz -> ${P}.tar.gz
-	nupkg? ( http://www.npgsql.org/css/img/postgresql-header.png )
+	nupkg? ( https://www.npgsql.org/css/img/postgresql-header.png )
 	gac? ( mirror://gentoo/mono.snk.bz2 )"
 RESTRICT="mirror"
 S="${WORKDIR}/${NAME}-${EGIT_COMMIT}"
@@ -29,7 +29,7 @@ SLOT="0"
 
 DESCRIPTION="allows any program developed for .NET framework to access a PostgreSQL database"
 LICENSE="npgsql"
-LICENSE_URL="https://github.com/npgsql/npgsql/blob/develop/LICENSE.txt"
+LICENSE_URL="https:://github.com/npgsql/npgsql/blob/develop/LICENSE.txt"
 
 KEYWORDS="~amd64"
 COMMON_DEPENDENCIES="|| ( >=dev-lang/mono-4.2 <dev-lang/mono-9999 )
@@ -51,7 +51,7 @@ COMMIT_DATESTAMP=$(get_version_component_range $COMMIT_DATESTAMP_INDEX ${PV} )
 NUSPEC_VERSION=$(get_version_component_range 1-3)"${COMMIT_DATESTAMP//p/.}${PR//r/}"
 
 ICON_FILENAME=postgresql-header.png
-#ICON_URL=http://www.npgsql.org/css/img/postgresql-header.png
+#ICON_URL=https://www.npgsql.org/css/img/postgresql-header.png
 ICON_URL=$(get_nuget_trusted_icons_location)/${NUSPEC_ID}.${NUSPEC_VERSION}.png
 
 src_unpack() {
@@ -131,7 +131,7 @@ patch_nuspec_file()
 			DIR="Release"
 		fi
 		FILES_STRING=`sed 's/[\/&]/\\\\&/g' <<-EOF || die "escaping replacement string characters"
-		  <files> <!-- https://docs.nuget.org/create/nuspec-reference -->
+		  <files> <!-- https:://docs.nuget.org/create/nuspec-reference -->
 		    <file src="src/Npgsql/bin/${DIR}/Npgsql.dll" target="lib\net45\" />
 		  </files>
 		EOF

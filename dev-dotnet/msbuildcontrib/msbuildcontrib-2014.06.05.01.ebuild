@@ -9,7 +9,7 @@ USE_DOTNET="net45"
 
 inherit gac dotnet
 
-HOMEPAGE="https://github.com/scottdorman/MSBuildContrib"
+HOMEPAGE="https:://github.com/scottdorman/MSBuildContrib"
 EGIT_COMMIT="47806b8bd67bb481f63cecd1b7e7d681f8d05ef4"
 SRC_URI="${HOMEPAGE}/archive/${EGIT_COMMIT}.tar.gz -> ${PN}-${PV}.tar.gz"
 RESTRICT="mirror"
@@ -17,7 +17,7 @@ NAME="MSBuildContrib"
 S="${WORKDIR}/${NAME}-${EGIT_COMMIT}"
 
 DESCRIPTION="A project for tasks and tools that aren't part of the main MSBuild release."
-LICENSE="GPL-3" # https://github.com/scottdorman/MSBuildContrib/blob/master/LICENSE
+LICENSE="GPL-3" # https:://github.com/scottdorman/MSBuildContrib/blob/master/LICENSE
 
 IUSE="+${USE_DOTNET} +debug developer doc"
 

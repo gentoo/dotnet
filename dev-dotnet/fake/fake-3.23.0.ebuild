@@ -9,8 +9,8 @@ NUGET_NO_DEPEND="1"
 inherit nuget dotnet eutils
 
 DESCRIPTION="FAKE - F# Make"
-HOMEPAGE="http://nuget.org/packages/FAKE"
-SRC_URI="https://github.com/fsharp/FAKE/archive/${NPV}.tar.gz"
+HOMEPAGE="https://nuget.org/packages/FAKE"
+SRC_URI="https:://github.com/fsharp/FAKE/archive/${NPV}.tar.gz"
 
 LICENSE="MS-PL"
 SLOT="0"

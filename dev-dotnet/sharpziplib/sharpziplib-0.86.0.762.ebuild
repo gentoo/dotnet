@@ -12,15 +12,15 @@ inherit msbuild gac
 IUSE="+${USE_DOTNET}"
 
 NAME="SharpZipLib"
-HOMEPAGE="https://github.com/icsharpcode/${NAME}"
+HOMEPAGE="https:://github.com/icsharpcode/${NAME}"
 
 EGIT_COMMIT="4ad264b562579fc8d0c1f73812f69b78b49ebdee"
 SRC_URI="${HOMEPAGE}/archive/${EGIT_COMMIT}.tar.gz -> ${PF}.tar.gz
-	https://github.com/mono/mono/raw/master/mcs/class/mono.snk"
+	https:://github.com/mono/mono/raw/master/mcs/class/mono.snk"
 S="${WORKDIR}/${NAME}-${EGIT_COMMIT}"
 
 DESCRIPTION="Zip, GZip, Tar and BZip2 library written entirely in C# for the .NET platform"
-LICENSE="MIT" # Actually not, it is GPL with exception - http://icsharpcode.github.io/SharpZipLib/
+LICENSE="MIT" # Actually not, it is GPL with exception - https://icsharpcode.github.io/SharpZipLib/
 
 #	dev-dotnet/system-security-cryptography-algorithms
 CDEPEND="|| ( >=dev-lang/mono-5.4.0.167 <dev-lang/mono-9999 )

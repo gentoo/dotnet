@@ -13,15 +13,15 @@ IUSE="+net45 developer debug nupkg gac doc"
 inherit mono-env xbuild gac nupkg
 
 NAME="nunit"
-HOMEPAGE="https://github.com/nunit/${NAME}"
+HOMEPAGE="https:://github.com/nunit/${NAME}"
 
 EGIT_COMMIT="dd39deaa2c805783cb069878b58b0447d0849849"
 SRC_URI="${HOMEPAGE}/archive/${EGIT_COMMIT}.tar.gz -> ${PN}-${PV}.tar.gz"
-#	https://github.com/mono/mono/raw/master/mcs/class/mono.snk"
+#	https:://github.com/mono/mono/raw/master/mcs/class/mono.snk"
 S="${WORKDIR}/${NAME}-${EGIT_COMMIT}"
 
 DESCRIPTION="NUnit test suite for mono applications"
-LICENSE="MIT" # https://github.com/nunit/nunit/blob/master/LICENSE.txt
+LICENSE="MIT" # https:://github.com/nunit/nunit/blob/master/LICENSE.txt
 
 CDEPEND=">=dev-lang/mono-4.0.2.5
 	net45? (
@@ -104,7 +104,7 @@ src_install() {
 
 	make_wrapper nunit "mono ${SLOTTEDDIR}/nunit3-console.exe"
 
-	# https://stackoverflow.com/questions/36430417/is-there-a-nunit-console-runner-dll-for-nunit-3-0
+	# https:://stackoverflow.com/questions/36430417/is-there-a-nunit-console-runner-dll-for-nunit-3-0
 	# egacinstall "${S}/bin/${DIR}/nunit-console-runner.dll"
 	sn -R "bin/${DIR}/net-4.5/nunit.framework.dll" src/nunit.snk || die
 	egacinstall "bin/${DIR}/net-4.5/nunit.framework.dll"

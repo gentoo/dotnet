@@ -6,12 +6,12 @@ EAPI=6
 inherit eutils dotnet flag-o-matic git-r3
 
 DESCRIPTION="Library for using System.Drawing with mono"
-HOMEPAGE="http://www.mono-project.com"
+HOMEPAGE="https://www.mono-project.com"
 
 LICENSE="MIT"
 SLOT="0"
 KEYWORDS=""
-EGIT_REPO_URI="http://github.com/mono/${PN}.git"
+EGIT_REPO_URI="https://github.com/mono/${PN}.git"
 
 IUSE="cairo"
 

@@ -7,10 +7,10 @@ RESTRICT+=" mirror"
 
 inherit nupkg gac
 
-HOMEPAGE="http://cecil.pe/"
+HOMEPAGE="https://cecil.pe/"
 DESCRIPTION="System.Reflection alternative to generate and inspect .NET executables/libraries"
-# https://github.com/jbevain/cecil/wiki/License
-# https://github.com/jbevain/cecil/blob/master/LICENSE.txt
+# https:://github.com/jbevain/cecil/wiki/License
+# https:://github.com/jbevain/cecil/blob/master/LICENSE.txt
 LICENSE="MIT"
 SLOT="0"
 KEYWORDS="~amd64 ~x86"
@@ -29,14 +29,14 @@ DEPEND="${COMMON_DEPEND}
 
 REPO_OWNER="jbevain"
 NAME="cecil"
-REPOSITORY="https://github.com/${REPO_OWNER}/${NAME}"
+REPOSITORY="https:://github.com/${REPO_OWNER}/${NAME}"
 LICENSE_URL="${REPOSITORY}/blob/master/LICENSE"
-ICONMETA="https://github.com/lontivero/Open.NAT/tree/gh-pages/images/logos"
+ICONMETA="https:://github.com/lontivero/Open.NAT/tree/gh-pages/images/logos"
 ICON_URL="file://${FILESDIR}/nuget_icon_64x64.png"
 
 EGIT_BRANCH="master"
 EGIT_COMMIT="0e24ced7e3e9dd8320f450b6cb1d981bf9412cf8"
-SRC_URI="https://api.github.com/repos/${REPO_OWNER}/${NAME}/tarball/${EGIT_COMMIT} -> ${PF}.tar.gz"
+SRC_URI="https:://api.github.com/repos/${REPO_OWNER}/${NAME}/tarball/${EGIT_COMMIT} -> ${PF}.tar.gz"
 #S="${WORKDIR}/${NAME}-${EGIT_COMMIT}"
 S="${WORKDIR}/${NAME}-${EGIT_BRANCH}"
 

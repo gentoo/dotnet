@@ -8,8 +8,8 @@ inherit gac nupkg
 IUSE+=" +net45 debug"
 
 DESCRIPTION="assembly that lets you dynamically register HTTP modules at run time"
-HOMEPAGE="https://www.asp.net/"
-SRC_URI="http://download.mono-project.com/sources/mono/mono-4.6.0.150.tar.bz2"
+HOMEPAGE="https:://www.asp.net/"
+SRC_URI="https://download.mono-project.com/sources/mono/mono-4.6.0.150.tar.bz2"
 
 NAME=Microsoft.Web.Infrastructure
 

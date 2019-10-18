@@ -5,7 +5,7 @@ EAPI=6
 
 inherit versionator gac nupkg
 
-HOMEPAGE="https://github.com/kpi-ua/X.PagedList/"
+HOMEPAGE="https:://github.com/kpi-ua/X.PagedList/"
 DESCRIPTION="Nugget for easily paging through any IEnumerable/IQueryable in Asp.Net MVC"
 LICENSE="MIT"
 SLOT="0"
@@ -24,11 +24,11 @@ DEPEND="${COMMON_DEPEND}
 "
 
 NAME="X.PagedList"
-REPOSITORY="https://github.com/ArsenShnurkov/${NAME}"
+REPOSITORY="https:://github.com/ArsenShnurkov/${NAME}"
 EGIT_BRANCH="master"
 LICENSE_URL="${REPOSITORY}/blob/${EGIT_BRANCH}/LICENSE"
-ICONMETA="http://uxrepo.com/static/icon-sets/iconic/svg/list.svg"
-ICON_URL="https://github.com/ArsenShnurkov/X.PagedList/blob/switching-from-pcl/misc/list.svg"
+ICONMETA="https://uxrepo.com/static/icon-sets/iconic/svg/list.svg"
+ICON_URL="https:://github.com/ArsenShnurkov/X.PagedList/blob/switching-from-pcl/misc/list.svg"
 
 EGIT_COMMIT="48bc7da1bc3b6b294c69796bd9573e670edd3c64"
 SRC_URI="${REPOSITORY}/archive/${EGIT_BRANCH}/${EGIT_COMMIT}.zip -> ${PF}.zip
@@ -103,7 +103,7 @@ patch_nuspec_file()
 		if use debug; then
 			DIR="Debug"
 			FILES_STRING=`sed 's/[\/&]/\\\\&/g' <<-EOF || die "escaping replacement string characters"
-			  <files> <!-- https://docs.nuget.org/create/nuspec-reference -->
+			  <files> <!-- https:://docs.nuget.org/create/nuspec-reference -->
 			    <file src="src/X.PagedList/bin/${DIR}/X.PagedList.dll" target="lib\net45\" />
 			    <file src="src/X.PagedList.Mvc/bin/${DIR}/X.PagedList.Mvc.dll" target="lib\net45\" />
 			    <file src="src/X.PagedList/bin/${DIR}/X.PagedList.dll.mdb" target="lib\net45\" />
@@ -114,7 +114,7 @@ patch_nuspec_file()
 		else
 			DIR="Release"
 			FILES_STRING=`sed 's/[\/&]/\\\\&/g' <<-EOF || die "escaping replacement string characters"
-			  <files> <!-- https://docs.nuget.org/create/nuspec-reference -->
+			  <files> <!-- https:://docs.nuget.org/create/nuspec-reference -->
 			    <file src="src/X.PagedList/bin/${DIR}/X.PagedList.dll" target="lib\net45\" />
 			    <file src="src/X.PagedList.Mvc/bin/${DIR}/X.PagedList.Mvc.dll" target="lib\net45\" />
 			  </files>

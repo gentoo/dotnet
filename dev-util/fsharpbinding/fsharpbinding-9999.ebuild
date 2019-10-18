@@ -8,7 +8,7 @@ inherit git-2 elisp-common autotools dotnet eutils
 EGIT_REPO_URI="git://github.com/fsharp/fsharpbinding.git"
 
 DESCRIPTION="The F# Compiler"
-HOMEPAGE="https://github.com/fsharp/fsharpbinding"
+HOMEPAGE="https:://github.com/fsharp/fsharpbinding"
 SRC_URI=""
 
 LICENSE="Apache-2.0"
@@ -105,7 +105,7 @@ pkg_postinst() {
 		if declare -f readme.gentoo_print_elog >/dev/null; then
 			readme.gentoo_print_elog
 		fi
-		ewarn "To install fsharpbindings in emacs add the following lines to your init.el and read https://github.com/fsharp/fsharpbinding/tree/master/emacs"
+		ewarn "To install fsharpbindings in emacs add the following lines to your init.el and read https:://github.com/fsharp/fsharpbinding/tree/master/emacs"
 		ewarn "(autoload 'fsharp-mode \"fsharp-mode\"     \"Major mode for editing F# code.\" t)"
 		ewarn "(add-to-list 'auto-mode-alist '(\"\\.fs[iylx]?$\" . fsharp-mode))"
 	fi

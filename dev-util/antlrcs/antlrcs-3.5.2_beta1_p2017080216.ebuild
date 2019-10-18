@@ -13,13 +13,13 @@ USE_DOTNET="net45"
 inherit multilib dotbuildtask eutils
 
 NAME="antlrcs"
-HOMEPAGE="https://github.com/antlr/${NAME}"
+HOMEPAGE="https:://github.com/antlr/${NAME}"
 EGIT_COMMIT="ca331b7109e1faa5a6aa7336bb6281ce9363e62b"
-SRC_URI="https://github.com/ArsenShnurkov/shnurise-tarballs/raw/dev-utils/${PN}-${SLOT}/${PN}-${PV}.tar.gz -> ${NAME}-${PV}.tar.gz"
+SRC_URI="https:://github.com/ArsenShnurkov/shnurise-tarballs/raw/dev-utils/${PN}-${SLOT}/${PN}-${PV}.tar.gz -> ${NAME}-${PV}.tar.gz"
 S="${WORKDIR}"
 
 DESCRIPTION="The C# port of ANTLR 3"
-LICENSE="BSD" # https://github.com/antlr/antlrcs/blob/master/LICENSE.txt
+LICENSE="BSD" # https:://github.com/antlr/antlrcs/blob/master/LICENSE.txt
 
 IUSE="+${USE_DOTNET} debug developer doc"
 

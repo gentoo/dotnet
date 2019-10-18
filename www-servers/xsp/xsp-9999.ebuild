@@ -9,7 +9,7 @@ PATCHDIR="${FILESDIR}/2.2/"
 inherit eutils dotnet user git-r3 autotools-utils
 
 DESCRIPTION="XSP is a small web server that can host ASP.NET pages"
-HOMEPAGE="http://www.mono-project.com/ASP.NET"
+HOMEPAGE="https://www.mono-project.com/ASP.NET"
 
 EGIT_REPO_URI="git://github.com/mono/${PN}.git"
 

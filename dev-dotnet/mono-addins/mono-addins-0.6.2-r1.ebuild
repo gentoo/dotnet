@@ -6,8 +6,8 @@ EAPI=5
 inherit eutils mono-env multilib
 
 DESCRIPTION="A generic framework for creating extensible applications"
-HOMEPAGE="http://www.mono-project.com/Mono.Addins"
-SRC_URI="http://download.mono-project.com/sources/${PN}/${P}.tar.bz2"
+HOMEPAGE="https://www.mono-project.com/Mono.Addins"
+SRC_URI="https://download.mono-project.com/sources/${PN}/${P}.tar.bz2"
 
 LICENSE="GPL-2"
 SLOT="0"

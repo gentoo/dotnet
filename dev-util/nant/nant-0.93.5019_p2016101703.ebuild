@@ -16,7 +16,7 @@ IUSE="+${USE_DOTNET} developer nupkg debug"
 
 inherit versionator xbuild nupkg
 
-HOMEPAGE="https://github.com/nant/${NAME}"
+HOMEPAGE="https:://github.com/nant/${NAME}"
 DESCRIPTION=".NET build tool"
 LICENSE="GPL-2"
 
@@ -26,7 +26,7 @@ GITHUBNAME="nant/nant"
 GITHUBACC=${GITHUBNAME%/*}
 GITHUBREPO=${GITHUBNAME#*/}
 GITFILENAME=${GITHUBREPO}-${GITHUBACC}-${PV}-${EGIT_COMMIT}
-GITHUB_ZIP="https://api.github.com/repos/${GITHUBACC}/${GITHUBREPO}/zipball/${EGIT_COMMIT} -> ${GITFILENAME}.zip"
+GITHUB_ZIP="https:://api.github.com/repos/${GITHUBACC}/${GITHUBREPO}/zipball/${EGIT_COMMIT} -> ${GITFILENAME}.zip"
 SRC_URI="${GITHUB_ZIP}"
 S="${WORKDIR}/${GITFILENAME}"
 

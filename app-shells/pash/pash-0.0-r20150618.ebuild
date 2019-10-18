@@ -7,14 +7,14 @@ inherit dotnet
 
 DESCRIPTION="An Open Source reimplementation of Windows PowerShell"
 
-LICENSE="BSD || ( GPL-2+ )"   # LICENSE syntax is defined in https://wiki.gentoo.org/wiki/GLEP:23
+LICENSE="BSD || ( GPL-2+ )"   # LICENSE syntax is defined in https:://wiki.gentoo.org/wiki/GLEP:23
 
 SLOT="0"
 
 IUSE="debug"
 
 PROJECTNAME="Pash"
-HOMEPAGE="https://github.com/Pash-Project/${PROJECTNAME}"
+HOMEPAGE="https:://github.com/Pash-Project/${PROJECTNAME}"
 EGIT_COMMIT="33ffa8c6172175e678310598adcc261a4e3b22a0"
 SRC_URI="${HOMEPAGE}/archive/${EGIT_COMMIT}.zip -> ${P}-${PR}.zip"
 
@@ -27,7 +27,7 @@ S="${WORKDIR}/${PROJECTNAME}-${EGIT_COMMIT}"
 METAFILETOBUILD=${PROJECTNAME}.proj
 
 src_compile() {
-	# https://bugzilla.xamarin.com/show_bug.cgi?id=9340
+	# https:://bugzilla.xamarin.com/show_bug.cgi?id=9340
 	if use debug; then
 		exbuild /p:DebugSymbols=True ${METAFILETOBUILD}
 	else

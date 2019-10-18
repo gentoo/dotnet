@@ -13,14 +13,14 @@ IUSE="+${USE_DOTNET} developer debug +gac nupkg doc"
 inherit mono-env xbuild gac nupkg
 
 NAME="nunitv2"
-HOMEPAGE="https://github.com/nunit/${NAME}"
+HOMEPAGE="https:://github.com/nunit/${NAME}"
 
 EGIT_COMMIT="1b549f4f8b067518c7b54a5b263679adb83ccda4"
 SRC_URI="${HOMEPAGE}/archive/${EGIT_COMMIT}.zip -> ${PN}-${PV}.zip"
 S="${WORKDIR}/${NAME}-${EGIT_COMMIT}"
 
 DESCRIPTION="NUnit test suite for mono applications"
-LICENSE="NUnit-License" # http://nunit.org/nuget/license.html
+LICENSE="NUnit-License" # https://nunit.org/nuget/license.html
 
 RDEPEND=">=dev-lang/mono-4.0.2.5
 	dev-util/nant[nupkg]

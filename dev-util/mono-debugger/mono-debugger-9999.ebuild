@@ -6,7 +6,7 @@ EAPI=6
 inherit dotnet autotools flag-o-matic eutils git-r3
 
 DESCRIPTION="Debugger for .NET managed and unmanaged applications"
-HOMEPAGE="http://www.mono-project.com/"
+HOMEPAGE="https://www.mono-project.com/"
 
 EGIT_REPO_URI="git://github.com/mono/debugger.git"
 

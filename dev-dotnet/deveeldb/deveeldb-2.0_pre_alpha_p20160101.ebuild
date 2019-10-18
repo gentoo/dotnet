@@ -20,11 +20,11 @@ inherit nupkg
 # Package's homepage. Mandatory (except for virtuals).
 # Never refer to a variable name in the string; include only raw text. 
 # (q) https://devmanual.gentoo.org/ebuild-writing/variables/
-HOMEPAGE=http://deveel.github.io/deveeldb/
+HOMEPAGE=https://deveel.github.io/deveeldb/
 
 DESCRIPTION="DeveelDB is a complete SQL DBMS, primarly developed for CLR/CLI frameworks"
 LICENSE="Apache-2.0"
-LICENSE_URL="http://www.apache.org/licenses/LICENSE-2.0"
+LICENSE_URL="https://www.apache.org/licenses/LICENSE-2.0"
 SLOT="0"
 KEYWORDS="~amd64 ~x86"
 
@@ -102,7 +102,7 @@ src_unpack()
 
 	# rename folder to disable line
 	# <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
-	# in .csproj file, see http://bartwullems.blogspot.ru/2012/08/disable-nuget-package-restore.html
+	# in .csproj file, see https://bartwullems.blogspot.ru/2012/08/disable-nuget-package-restore.html
 	mv "${S}/src/.nuget" "${S}/src/nuget-config" || die
 	# NuGet.Config NuGet.targets packages.config
 }

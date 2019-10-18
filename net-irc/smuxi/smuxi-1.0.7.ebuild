@@ -5,13 +5,13 @@ EAPI=6
 inherit eutils gnome2-utils mono-env dotnet versionator autotools git-r3
 
 DESCRIPTION="A flexible, irssi-like and user-friendly IRC client for the Gnome Desktop"
-HOMEPAGE="http://www.smuxi.org/main/"
-EGIT_REPO_URI="https://github.com/meebey/smuxi"
-# https://github.com/meebey/smuxi/releases/tag/1.0.7
+HOMEPAGE="https://www.smuxi.org/main/"
+EGIT_REPO_URI="https:://github.com/meebey/smuxi"
+# https:://github.com/meebey/smuxi/releases/tag/1.0.7
 EGIT_COMMIT="a63e6236bb241c018633c380c99554c38a83f6ad"
 EGIT_BRANCH="release/1.0"
 
-SRC_URI="https://github.com/meebey/smuxi/archive/${PV}.tar.gz -> ${P}.tar.gz"
+SRC_URI="https:://github.com/meebey/smuxi/archive/${PV}.tar.gz -> ${P}.tar.gz"
 SLOT="0"
 KEYWORDS="~amd64 ~x86"
 IUSE="dbus debug gtk libnotify spell nls"
@@ -42,7 +42,7 @@ pkg_preinst() {
 src_prepare() {
 	default
 
-	# https://github.com/meebey/smuxi/issues/86
+	# https:://github.com/meebey/smuxi/issues/86
 	# eautoreconf
 	./autogen.sh || die "Could not run autogen.sh"
 }

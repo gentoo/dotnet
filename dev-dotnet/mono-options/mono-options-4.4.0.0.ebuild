@@ -11,11 +11,11 @@ IUSE="+gac +nupkg"
 SLOT="0"
 
 DESCRIPTION="A Getopt::Long-inspired option parsing library for C#"
-HOMEPAGE="http://tirania.org/blog/archive/2008/Oct-14.html"
+HOMEPAGE="https://tirania.org/blog/archive/2008/Oct-14.html"
 LICENSE="MIT"
 
 S="${WORKDIR}/mono-4.5.2"
-SRC_URI="https://github.com/ArsenShnurkov/shnurise-tarballs/raw/master/mono-4.5.2_p2016061606.tar.bz2
+SRC_URI="https:://github.com/ArsenShnurkov/shnurise-tarballs/raw/master/mono-4.5.2_p2016061606.tar.bz2
 	"
 RESTRICT="mirror"
 

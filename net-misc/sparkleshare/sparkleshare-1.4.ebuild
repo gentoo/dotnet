@@ -12,8 +12,8 @@ MY_P="SparkleShare-${PV}"
 S="${WORKDIR}/${MY_P}"
 
 DESCRIPTION="Git-based collaboration and file sharing tool"
-HOMEPAGE="http://www.sparkleshare.org"
-SRC_URI="https://github.com/hbons/${MY_PN}/archive/${PV}.tar.gz -> ${MY_P}.tar.gz"
+HOMEPAGE="https://www.sparkleshare.org"
+SRC_URI="https:://github.com/hbons/${MY_PN}/archive/${PV}.tar.gz -> ${MY_P}.tar.gz"
 
 LICENSE="GPL-3"
 KEYWORDS="~amd64 ~x86"

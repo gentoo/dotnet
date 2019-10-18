@@ -9,12 +9,12 @@ inherit autotools apache-module eutils go-mono mono-env
 KEYWORDS="~amd64 ~x86"
 
 DESCRIPTION="Apache module for Mono"
-HOMEPAGE="http://www.mono-project.com/Mod_mono"
+HOMEPAGE="https://www.mono-project.com/Mod_mono"
 LICENSE="Apache-2.0"
 SLOT="0"
 IUSE="debug"
 EGIT_COMMIT="33498058e334349a9483f51c9d571d05af2760ed"
-SRC_URI="https://github.com/mono/mod_mono/archive/${EGIT_COMMIT}.tar.gz -> ${PN}-${PV}.tar.gz"
+SRC_URI="https:://github.com/mono/mod_mono/archive/${EGIT_COMMIT}.tar.gz -> ${PN}-${PV}.tar.gz"
 RESTRICT="mirror"
 S="${WORKDIR}/mod_mono-${EGIT_COMMIT}"
 

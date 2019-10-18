@@ -8,7 +8,7 @@ USE_DOTNET="net40"
 inherit dotnet multilib
 
 DESCRIPTION="R6RS conforming Scheme-like implementation based on the Microsoft DLR"
-HOMEPAGE="http://ironscheme.codeplex.com/"
+HOMEPAGE="https://ironscheme.codeplex.com/"
 SRC_URI=""
 
 LICENSE="Ms-PL"

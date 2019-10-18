@@ -5,7 +5,7 @@ EAPI=6
 
 inherit versionator gac nupkg
 
-HOMEPAGE="https://github.com/deveel/deveel-math/"
+HOMEPAGE="https:://github.com/deveel/deveel-math/"
 DESCRIPTION="A library for handling big numbers and decimals under Mono/.NET frameworks"
 LICENSE="Apache-2.0"
 SLOT="0"
@@ -32,7 +32,7 @@ DEPEND="${COMMON_DEPEND}
 
 NAME="deveel-math"
 REPOSITORY_NAME="ArsenShnurkov/${NAME}"
-REPOSITORY_URL="https://github.com/${REPOSITORY_NAME}"
+REPOSITORY_URL="https:://github.com/${REPOSITORY_NAME}"
 EGIT_BRANCH="portage-packaging"
 EGIT_COMMIT="4635fb321ac931d0b381547d06ca6625a57ea343"
 
@@ -59,9 +59,9 @@ NUSPEC_FILE_NAME=nuget/dmath.noplatform.tmpl.nuspec
 # PR 	Package revision, or r0 if no revision exists.
 NUSPEC_VERSION=$(get_version_component_range 1-3)"${PR//r/.}"
 
-# see https://github.com/mrward/monodevelop-nuget-addin/issues/59
+# see https:://github.com/mrward/monodevelop-nuget-addin/issues/59
 #ICON_URL="file://${FILESDIR}/Deveel.Math.png"
-ICON_URL="https://raw.githubusercontent.com/ArsenShnurkov/dotnet/deveel-math/dev-dotnet/deveel-math/files/Deveel.Math.png"
+ICON_URL="https:://raw.githubusercontent.com/ArsenShnurkov/dotnet/deveel-math/dev-dotnet/deveel-math/files/Deveel.Math.png"
 
 # rm -rf /var/tmp/portage/dev-dotnet/deveel-math-*
 # emerge =deveel-math-1.5.66-r201507280
@@ -121,7 +121,7 @@ patch_nuspec_file()
 		if use debug; then
 			DIR="Debug"
 			FILES_STRING=`sed 's/[\/&]/\\\\&/g' <<-EOF || die "escaping replacement string characters"
-			  <files> <!-- https://docs.nuget.org/create/nuspec-reference -->
+			  <files> <!-- https:://docs.nuget.org/create/nuspec-reference -->
 			    <file src="src/Deveel.Math/bin/AnyCPU/${DIR}/Deveel.Math.dll" target="lib\net45\" />
 			    <file src="src/Deveel.Math/bin/AnyCPU/${DIR}/Deveel.Math.dll.mdb" target="lib\net45\" />
 			  </files>
@@ -130,7 +130,7 @@ patch_nuspec_file()
 		else
 			DIR="Release"
 			FILES_STRING=`sed 's/[\/&]/\\\\&/g' <<-EOF || die "escaping replacement string characters"
-			  <files> <!-- https://docs.nuget.org/create/nuspec-reference -->
+			  <files> <!-- https:://docs.nuget.org/create/nuspec-reference -->
 			    <file src="src/Deveel.Math/bin/AnyCPU/${DIR}/Deveel.Math.dll" target="lib\net45\" />
 			  </files>
 			EOF

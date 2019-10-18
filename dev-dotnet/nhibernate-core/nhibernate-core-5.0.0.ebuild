@@ -12,15 +12,15 @@ inherit msbuild gac
 IUSE="+${USE_DOTNET}"
 
 NAME="nhibernate-core"
-HOMEPAGE="http://nhibernate.info/"
+HOMEPAGE="https://nhibernate.info/"
 
 EGIT_COMMIT="c2c93d979611463b5a3fb12c4d27bb78d86de9d4"
-SRC_URI="https://github.com/nhibernate/${NAME}/archive/${EGIT_COMMIT}.tar.gz -> ${PF}.tar.gz
-	https://github.com/mono/mono/raw/master/mcs/class/mono.snk"
+SRC_URI="https:://github.com/nhibernate/${NAME}/archive/${EGIT_COMMIT}.tar.gz -> ${PF}.tar.gz
+	https:://github.com/mono/mono/raw/master/mcs/class/mono.snk"
 S="${WORKDIR}/${NAME}-${EGIT_COMMIT}"
 
 DESCRIPTION="NHibernate Object Relational Mapper"
-LICENSE="LGPL-2.1" # https://github.com/nhibernate/nhibernate-core/blob/master/LICENSE.txt
+LICENSE="LGPL-2.1" # https:://github.com/nhibernate/nhibernate-core/blob/master/LICENSE.txt
 
 CDEPEND="|| ( >=dev-lang/mono-5.4.0.167 <dev-lang/mono-9999 )
 	"

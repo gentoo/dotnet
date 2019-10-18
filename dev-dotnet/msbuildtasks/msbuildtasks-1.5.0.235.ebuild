@@ -9,13 +9,13 @@ USE_DOTNET="net45"
 
 inherit gac dotnet
 
-SRC_URI="https://github.com/loresoft/msbuildtasks/archive/1.5.0.235.tar.gz -> ${PN}-${PV}.tar.gz"
+SRC_URI="https:://github.com/loresoft/msbuildtasks/archive/1.5.0.235.tar.gz -> ${PN}-${PV}.tar.gz"
 RESTRICT="mirror"
 S="${WORKDIR}/${PN}-${PV}"
 
-HOMEPAGE="https://github.com/loresoft/msbuildtasks"
+HOMEPAGE="https:://github.com/loresoft/msbuildtasks"
 DESCRIPTION="The MSBuild Community Tasks Project is an open source project for MSBuild tasks."
-LICENSE="BSD" # https://github.com/loresoft/msbuildtasks/blob/master/LICENSE
+LICENSE="BSD" # https:://github.com/loresoft/msbuildtasks/blob/master/LICENSE
 
 IUSE="+${USE_DOTNET} +debug developer doc"
 

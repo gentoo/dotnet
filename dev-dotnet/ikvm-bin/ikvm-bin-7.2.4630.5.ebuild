@@ -9,8 +9,8 @@ MY_P=${P/-bin/}
 MY_PN=${PN/-bin/}
 
 DESCRIPTION="Java VM for .NET"
-HOMEPAGE="http://www.ikvm.net/ http://weblog.ikvm.net/"
-SRC_URI="http://www.frijters.net/${MY_PN}bin-${PV}.zip"
+HOMEPAGE="https://www.ikvm.net/ http://weblog.ikvm.net/"
+SRC_URI="https://www.frijters.net/${MY_PN}bin-${PV}.zip"
 LICENSE="ZLIB GPL-2-with-linking-exception"
 
 SLOT="0"

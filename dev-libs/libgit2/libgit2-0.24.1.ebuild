@@ -6,15 +6,15 @@ EAPI=6
 inherit cmake-utils multilib
 
 if [[ ${PV} == "9999" ]] ; then
-	EGIT_REPO_URI="https://github.com/${PN}/${PN}.git"
+	EGIT_REPO_URI="https:://github.com/${PN}/${PN}.git"
 	inherit git-r3
 else
-	SRC_URI="https://github.com/${PN}/${PN}/archive/v${PV}.tar.gz -> ${P}.tar.gz"
+	SRC_URI="https:://github.com/${PN}/${PN}/archive/v${PV}.tar.gz -> ${P}.tar.gz"
 	KEYWORDS="~amd64 ~arm ~x86 ~ppc-macos"
 fi
 
 DESCRIPTION="A linkable library for Git"
-HOMEPAGE="https://libgit2.github.com/"
+HOMEPAGE="https:://libgit2.github.com/"
 
 LICENSE="GPL-2-with-linking-exception"
 SLOT="0/24"

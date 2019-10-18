@@ -13,14 +13,14 @@ SLOT="0"
 inherit mono-env gac nupkg
 
 NAME="NLog"
-HOMEPAGE="https://github.com/NLog/${NAME}"
+HOMEPAGE="https:://github.com/NLog/${NAME}"
 
 EGIT_COMMIT="71c8b60b25cab4cdb56c58ab042c68502e9dbbb0"
 SRC_URI="${HOMEPAGE}/archive/${EGIT_COMMIT}.tar.gz -> ${PN}-${PV}.tar.gz"
 S="${WORKDIR}/${NAME}-${EGIT_COMMIT}"
 
 DESCRIPTION=" NLog - Advanced .NET and Silverlight Logging"
-LICENSE="BSD" # https://github.com/NLog/NLog/blob/master/LICENSE.txt
+LICENSE="BSD" # https:://github.com/NLog/NLog/blob/master/LICENSE.txt
 
 COMMON_DEPEND=">=dev-lang/mono-4.0.2.5
 	>=dev-dotnet/msbuildtasks-1.5.0.196

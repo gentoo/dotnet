@@ -6,7 +6,7 @@ EAPI="6"
 inherit eutils dotnet multilib java-pkg-2
 
 DESCRIPTION="Java VM for .NET"
-HOMEPAGE="http://www.ikvm.net/ http://weblog.ikvm.net/"
+HOMEPAGE="https://www.ikvm.net/ http://weblog.ikvm.net/"
 LICENSE="ZLIB GPL-2-with-linking-exception"
 
 GITHUBNAME="mono/ikvm-fork"
@@ -15,10 +15,10 @@ EGIT_COMMIT="00252c18fc0a4a206e45461736a890acb785a9d8"
 GITHUBACC=${GITHUBNAME%/*}
 GITHUBREPO=${GITHUBNAME#*/}
 GITFILENAME=${GITHUBREPO}-${GITHUBACC}-${PV}-${EGIT_COMMIT}
-GITHUB_ZIP="https://api.github.com/repos/${GITHUBACC}/${GITHUBREPO}/zipball/${EGIT_COMMIT} -> ${GITFILENAME}.zip"
+GITHUB_ZIP="https:://api.github.com/repos/${GITHUBACC}/${GITHUBREPO}/zipball/${EGIT_COMMIT} -> ${GITFILENAME}.zip"
 S="${WORKDIR}/${GITFILENAME}"
 
-SRC_URI="http://www.frijters.net/openjdk-7u4-stripped.zip
+SRC_URI="https://www.frijters.net/openjdk-7u4-stripped.zip
 	mirror://gentoo/mono.snk.bz2
 	${GITHUB_ZIP}"
 

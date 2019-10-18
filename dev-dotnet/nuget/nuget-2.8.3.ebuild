@@ -7,8 +7,8 @@ USE_DOTNET="net45"
 inherit dotnet eutils gac
 
 DESCRIPTION="Nuget - .NET Package Manager"
-HOMEPAGE="http://nuget.codeplex.com"
-SRC_URI="https://github.com/mrward/nuget/archive/Release-${PV}-MonoDevelop.tar.gz -> ${P}.tar.gz"
+HOMEPAGE="https://nuget.codeplex.com"
+SRC_URI="https:://github.com/mrward/nuget/archive/Release-${PV}-MonoDevelop.tar.gz -> ${P}.tar.gz"
 S=${WORKDIR}/nuget-Release-${PV}-MonoDevelop
 
 LICENSE="Apache-2.0"
@@ -17,7 +17,7 @@ SLOT="0"
 KEYWORDS="~x86 ~amd64"
 IUSE=""
 
-# Mask 3.2.0 because of mcs compiler bug : http://stackoverflow.com/a/17926731/238232
+# Mask 3.2.0 because of mcs compiler bug : https://stackoverflow.com/a/17926731/238232
 # it fixed in 3.2.3
 DEPEND=">=dev-lang/mono-3.2.3
 	<=dev-dotnet/xdt-for-monodevelop-2.8.2
@@ -26,7 +26,7 @@ RDEPEND="${DEPEND}"
 
 # note about blocking nuget:
 # there are at least two versions of it - on from mono, one from mrward
-# see https://bugzilla.xamarin.com/show_bug.cgi?id=27693
+# see https:://bugzilla.xamarin.com/show_bug.cgi?id=27693
 # i think version from mrward is enough for now, 
 # that is why there is no slotted install or two different names/locations
 

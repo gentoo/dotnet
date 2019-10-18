@@ -5,7 +5,7 @@ EAPI=6
 inherit mono-env gac nupkg
 
 REPO_NAME="aspnetwebstack"
-HOMEPAGE="https://github.com/ASP-NET-MVC/aspnetwebstack"
+HOMEPAGE="https:://github.com/ASP-NET-MVC/aspnetwebstack"
 
 EGIT_BRANCH="master"
 EGIT_COMMIT="4e40cdef9c8a8226685f95ef03b746bc8322aa92"
@@ -61,7 +61,7 @@ patch_nuspec_file()
 			DIR="Release"
 		fi
 		FILES_STRING=`sed 's/[\/&]/\\\\&/g' <<-EOF || die "escaping replacement string characters"
-		  <files> <!-- https://docs.nuget.org/create/nuspec-reference -->
+		  <files> <!-- https:://docs.nuget.org/create/nuspec-reference -->
 		    <file src="${DLL_PATH}/${DIR}/${DLL_NAME}.*" target="lib/net45/" />
 		    <file src="${DLL_PATH}/${DIR}/System.Web.WebPages.Deployment.*" target="lib/net45/" />
 		    <file src="${DLL_PATH}/${DIR}/System.Web.Helpers.*" target="lib/net45/" />

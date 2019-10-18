@@ -5,8 +5,8 @@ EAPI=5
 inherit autotools dotnet
 
 DESCRIPTION="GIO API C# binding"
-HOMEPAGE="http://github.com/mono/gio-sharp"
-SRC_URI="http://github.com/mono/${PN}/tarball/${PV} -> ${P}.tar.gz"
+HOMEPAGE="https://github.com/mono/gio-sharp"
+SRC_URI="https://github.com/mono/${PN}/tarball/${PV} -> ${P}.tar.gz"
 
 LICENSE="MIT"
 SLOT="0"

@@ -9,10 +9,10 @@ PATCHDIR="${FILESDIR}/2.2/"
 inherit eutils systemd dotnet user autotools msbuild
 
 DESCRIPTION="XSP is a small web server that can host ASP.NET pages"
-HOMEPAGE="https://www.mono-project.com/docs/web/aspnet/"
+HOMEPAGE="https:://www.mono-project.com/docs/web/aspnet/"
 
 EGIT_COMMIT="e1494fcb8c12e329631f8f335732bcaf318a4ec7"
-SRC_URI="https://codeload.github.com/mono/xsp/tar.gz/${EGIT_COMMIT} -> ${PN}-${PV}.tar.gz"
+SRC_URI="https:://codeload.github.com/mono/xsp/tar.gz/${EGIT_COMMIT} -> ${PN}-${PV}.tar.gz"
 RESTRICT="mirror"
 S="${WORKDIR}/xsp-${EGIT_COMMIT}"
 

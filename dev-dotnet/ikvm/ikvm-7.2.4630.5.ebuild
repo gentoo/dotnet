@@ -6,9 +6,9 @@ EAPI="4"
 inherit eutils dotnet multilib java-pkg-2
 
 DESCRIPTION="Java VM for .NET"
-HOMEPAGE="http://www.ikvm.net/ http://weblog.ikvm.net/"
-SRC_URI="http://www.frijters.net/openjdk-7u4-stripped.zip
-	http://www.frijters.net/${PN}src-${PV}.zip"
+HOMEPAGE="https://www.ikvm.net/ http://weblog.ikvm.net/"
+SRC_URI="https://www.frijters.net/openjdk-7u4-stripped.zip
+	https://www.frijters.net/${PN}src-${PV}.zip"
 LICENSE="ZLIB GPL-2-with-linking-exception"
 
 SLOT="0"

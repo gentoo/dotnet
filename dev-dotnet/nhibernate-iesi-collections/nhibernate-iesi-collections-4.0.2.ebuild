@@ -14,12 +14,12 @@ inherit gac dotnet
 GITHUB_ACCOUNT="nhibernate"
 GITHUB_PROJECTNAME="iesi.collections"
 EGIT_COMMIT="3e183dd3316baedac508d0171b67c3dee05f6da0"
-SRC_URI="https://github.com/${GITHUB_ACCOUNT}/${GITHUB_PROJECTNAME}/archive/${EGIT_COMMIT}.tar.gz -> ${PN}-${PV}.tar.gz"
+SRC_URI="https:://github.com/${GITHUB_ACCOUNT}/${GITHUB_PROJECTNAME}/archive/${EGIT_COMMIT}.tar.gz -> ${PN}-${PV}.tar.gz"
 S="${WORKDIR}/${GITHUB_PROJECTNAME}-${EGIT_COMMIT}"
 
-HOMEPAGE="https://www.codeproject.com/Articles/3190/Add-Support-for-quot-Set-quot-Collections-to-NET"
+HOMEPAGE="https:://www.codeproject.com/Articles/3190/Add-Support-for-quot-Set-quot-Collections-to-NET"
 DESCRIPTION='C#, LinkedHashSet<T>, SynchronizedSet<T>, ReadOnlySet<T>'
-LICENSE="TODO" # https://github.com/nhibernate/iesi.collections/blob/master/LICENSE.txt
+LICENSE="TODO" # https:://github.com/nhibernate/iesi.collections/blob/master/LICENSE.txt
 
 COMMON_DEPEND=">=dev-lang/mono-5.2.0.196
 "

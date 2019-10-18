@@ -7,7 +7,7 @@ inherit dotnet autotools versionator
 
 SLOT="2"
 DESCRIPTION="gnome-desktop mono bindings"
-HOMEPAGE="http://www.mono-project.com/GtkSharp"
+HOMEPAGE="https://www.mono-project.com/GtkSharp"
 LICENSE="GPL-2"
 KEYWORDS="~amd64 ~x86 ~ppc"
 MVER="$(get_version_component_range 1-2)"

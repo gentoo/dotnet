@@ -8,8 +8,8 @@ inherit gac dotnet
 IUSE+=" +net45 +pkg-config debug"
 
 DESCRIPTION="Framework for developing web-applications"
-HOMEPAGE="https://www.asp.net/"
-SRC_URI="http://download.mono-project.com/sources/mono/mono-4.6.0.150.tar.bz2"
+HOMEPAGE="https:://www.asp.net/"
+SRC_URI="https://download.mono-project.com/sources/mono/mono-4.6.0.150.tar.bz2"
 
 NAME=System.Web
 

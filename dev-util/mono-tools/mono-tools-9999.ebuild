@@ -6,7 +6,7 @@ EAPI=6
 inherit dotnet autotools git-r3
 
 DESCRIPTION="Set of useful Mono related utilities"
-HOMEPAGE="http://www.mono-project.com/"
+HOMEPAGE="https://www.mono-project.com/"
 
 EGIT_REPO_URI="git://github.com/mono/${PN}.git"
 

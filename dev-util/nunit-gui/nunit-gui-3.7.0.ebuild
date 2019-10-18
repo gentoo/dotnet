@@ -13,14 +13,14 @@ IUSE="+net45 developer debug nupkg gac doc"
 inherit mono-env gac nupkg mpt-r20150903
 
 NAME="nunit-gui"
-HOMEPAGE="https://github.com/nunit/${NAME}"
+HOMEPAGE="https:://github.com/nunit/${NAME}"
 
 EGIT_COMMIT="df9dd76fcaad5679c08cca0775b6f43e96852a21"
 SRC_URI="${HOMEPAGE}/archive/${EGIT_COMMIT}.tar.gz -> ${PN}-${PV}.tar.gz"
 S="${WORKDIR}/${NAME}-${EGIT_COMMIT}"
 
 DESCRIPTION="NUnit test suite for mono applications"
-LICENSE="MIT" # https://github.com/nunit/nunit/blob/master/LICENSE.txt
+LICENSE="MIT" # https:://github.com/nunit/nunit/blob/master/LICENSE.txt
 
 CDEPEND=">=dev-lang/mono-5.0.1.1
 	>=dev-dotnet/nunit-framework-3.7.0

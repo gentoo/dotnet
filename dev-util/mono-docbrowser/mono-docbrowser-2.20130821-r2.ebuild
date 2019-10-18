@@ -6,7 +6,7 @@ EAPI=6
 inherit dotnet autotools git-r3
 
 DESCRIPTION="monodoc stripped from mono-tools"
-HOMEPAGE="http://www.mono-project.com/"
+HOMEPAGE="https://www.mono-project.com/"
 
 EGIT_REPO_URI="git://github.com/mono/mono-tools.git"
 EGIT_COMMIT="3d28f26e1ca93ea7ead9ff2aae1897ec01c1ceb8"
