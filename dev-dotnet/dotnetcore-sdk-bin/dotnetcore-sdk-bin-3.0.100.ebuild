@@ -40,7 +40,7 @@ src_install() {
 	local dest="opt/dotnet_core"
 	dodir "${dest}"
 
-	local ddest="${D}${dest}"
+	local ddest="${D}/${dest}"
 	cp -a "${S}"/* "${ddest}/" || die
 	dosym "/${dest}/dotnet" "/usr/bin/dotnet"
 }
