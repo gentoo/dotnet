@@ -1,4 +1,4 @@
-# Copyright 1999-2019 Gentoo Foundation
+Copyright 1999-2019 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=5
@@ -14,7 +14,7 @@ SLOT="0"
 KEYWORDS="amd64 ~ppc ~x86"
 IUSE="+gtk"
 
-RDEPEND=">=dev-lang/mono-3
+RDEPEND=">=dev-lang/mono-6.0.0.334
 	gtk? ( >=dev-dotnet/gtk-sharp-2.12.21:2 )"
 DEPEND="${RDEPEND}
 	virtual/pkgconfig"
