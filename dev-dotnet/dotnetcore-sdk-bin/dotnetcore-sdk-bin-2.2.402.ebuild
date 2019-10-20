@@ -10,16 +10,20 @@ HOMEPAGE="https://www.microsoft.com/net/core"
 LICENSE="MIT"
 
 SRC_URI="
-amd64? ( https://download.visualstudio.microsoft.com/download/pr/886b4a4c-30af-454b-8bec-81c72b7b4e1f/d1a0c8de9abb36d8535363ede4a15de6/dotnet-sdk-${PV}-linux-x64.tar.gz -> dotnet-sdk-${PV}-linux-x64.tar.gz )
+amd64? ( https://download.visualstudio.microsoft.com/download/pr/46411df1-f625-45c8-b5e7-08ab736d3daa/0fbc446088b471b0a483f42eb3cbf7a2/dotnet-sdk-${PV}-linux-x64.tar.gz )
 "
 
-SLOT="0"
+SLOT="2.2"
 KEYWORDS="~amd64"
+
+QA_PREBUILT="*"
+RESTRICT="splitdebug"
 
 # The sdk includes the runtime-bin and aspnet-bin so prevent from installing at the same time
 # dotnetcore-sdk is the source based build
 
 RDEPEND="
+	>=dev-dotnet/dotnetcore-sdk-bin-common-${PV}
 	>=sys-apps/lsb-release-1.4
 	>=sys-devel/llvm-4.0
 	>=dev-util/lldb-4.0
@@ -31,10 +35,26 @@ RDEPEND="
 	>=app-crypt/mit-krb5-1.14.2
 	>=sys-libs/zlib-1.2.8-r1
 	!dev-dotnet/dotnetcore-sdk
+	!dev-dotnet/dotnetcore-sdk-bin:0
 	!dev-dotnet/dotnetcore-runtime-bin
 	!dev-dotnet/dotnetcore-aspnet-bin"
 
 S=${WORKDIR}
+
+src_prepare() {
+	default
+
+	# For current .NET Core versions, all the directories contain versioned files,
+	# but the top-level files (the dotnet binary for example) are shared between versions,
+	# and those are backward-compatible.
+	# These common files are installed by the non-slotted dev-dotnet/dotnetcore-sdk-bin-common
+	# package, while the directories are installed by dev-dotnet/dotnetcore-sdk-bin which uses
+	# slots depending on major .NET Core version.
+	# This makes it possible to install multiple major versions at the same time.
+
+	# Skip the common files
+	find . -maxdepth 1 -type f -exec rm -f {} \; || die
+}
 
 src_install() {
 	local dest="opt/dotnet_core"
@@ -42,5 +62,4 @@ src_install() {
 
 	local ddest="${D}/${dest}"
 	cp -a "${S}"/* "${ddest}/" || die
-	dosym "/${dest}/dotnet" "/usr/bin/dotnet"
 }
