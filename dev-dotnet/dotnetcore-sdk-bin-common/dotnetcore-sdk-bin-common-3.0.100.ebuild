@@ -23,7 +23,7 @@ RESTRICT="splitdebug"
 # dotnetcore-sdk is the source based build
 
 RDEPEND="
-	=dev-dotnet/dotnetcore-sdk-bin-${PV}
+	~dev-dotnet/dotnetcore-sdk-bin-${PV}
 	!dev-dotnet/dotnetcore-sdk-bin:0"
 
 S=${WORKDIR}
