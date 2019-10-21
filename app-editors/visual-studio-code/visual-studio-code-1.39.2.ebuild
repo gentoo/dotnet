@@ -26,6 +26,7 @@ DEPEND=">=gnome-base/gconf-3.2.6-r4:2
 RDEPEND="${DEPEND}
 >=app-crypt/libsecret-0.18.5:0[crypt]
 >=net-print/cups-2.1.4:0
+>=dev-libs/libdbusmenu-16.04.0
 >=x11-libs/libnotify-0.7.7:0
 >=x11-libs/libXScrnSaver-1.2.2-r1:0"
 
