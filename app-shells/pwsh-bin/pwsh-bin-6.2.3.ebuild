@@ -8,14 +8,25 @@ HOMEPAGE="https://powershell.org/"
 LICENSE="MIT"
 
 SRC_URI="
-amd64? ( https://github.com/PowerShell/PowerShell/releases/download/v${PV}/powershell-${PV}-linux-x64.tar.gz -> powershell-${PV}-linux-x64.tar.gz )
+amd64? ( https://github.com/PowerShell/PowerShell/releases/download/v${PV}/powershell-${PV}-linux-x64.tar.gz )
 "
 
 SLOT="0"
 KEYWORDS="~amd64"
 
-RDEPEND="
-"
+QA_PREBUILT="*"
+
+DEPEND=""
+RDEPEND="${DEPEND}
+	>=sys-apps/lsb-release-1.4
+	>=sys-libs/libunwind-1.1-r1
+	>=dev-libs/icu-57.1
+	>=dev-util/lttng-ust-2.8.1
+	|| ( dev-libs/openssl-compat:1.0.0 =dev-libs/openssl-1.0*:0 )
+	>=net-misc/curl-7.49.0
+	>=app-crypt/mit-krb5-1.14.2
+	>=sys-libs/zlib-1.2.8-r1"
+BDEPEND=""
 
 S=${WORKDIR}
 
