@@ -3,7 +3,7 @@
 
 EAPI=6
 
-inherit dotnet autotools flag-o-matic eutils git-r3
+inherit dotnet autotools flag-o-matic git-r3
 
 DESCRIPTION="Debugger for .NET managed and unmanaged applications"
 HOMEPAGE="https://www.mono-project.com/"
@@ -25,13 +25,11 @@ DEPEND="${RDEPEND}
 	!dev-lang/mercury"
 
 src_prepare() {
-	base_src_prepare
+	default
 
 	# Allow compilation against system libbfd, bnc#662581
-	epatch "${FILESDIR}/${PN}-2.8-system-bfd.patch"
+	eapply "${FILESDIR}/${PN}-2.8-system-bfd.patch"
 	eautoreconf
-
-	default
 }
 
 src_configure() {
