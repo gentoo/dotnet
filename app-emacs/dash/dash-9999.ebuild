@@ -1,9 +1,9 @@
-# Copyright 1999-2019 Gentoo Authors
+# Copyright 1999-2020 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI="5"
 
-inherit git-2 elisp
+inherit git-r3 elisp
 
 DESCRIPTION="A modern list api for Emacs. No 'cl required."
 HOMEPAGE="https://github.com/magnars/dash.el"
