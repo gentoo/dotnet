@@ -8,11 +8,11 @@ HOMEPAGE="https://powershell.org/"
 LICENSE="MIT"
 
 SRC_URI="
-amd64? ( https://github.com/PowerShell/PowerShell/releases/download/v7.0.0-preview.6/powershell-7.0.0-preview.6-linux-x64.tar.gz )
+amd64? ( https://github.com/PowerShell/PowerShell/releases/download/v${PV}/powershell-${PV}-linux-x64.tar.gz )
 "
 
 SLOT="0"
-KEYWORDS=""
+KEYWORDS="~amd64"
 
 QA_PREBUILT="*"
 
@@ -29,6 +29,11 @@ RDEPEND="${DEPEND}
 BDEPEND=""
 
 S=${WORKDIR}
+
+src_prepare() {
+	default
+	rm libcrypto.so.1.0.0 libssl.so.1.0.0 || die
+}
 
 src_install() {
 	local dest="opt/pwsh"
