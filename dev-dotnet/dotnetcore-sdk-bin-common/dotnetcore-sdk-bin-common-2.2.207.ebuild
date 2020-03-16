@@ -50,4 +50,8 @@ src_install() {
 	local ddest="${D}/${dest}"
 	cp -a "${S}"/* "${ddest}/" || die
 	dosym "/${dest}/dotnet" "/usr/bin/dotnet"
+
+	# set an env-variable for 3rd party tools
+	echo -n "DOTNET_ROOT=/${dest}" > "${T}/90dotnet"
+	doenvd "${T}/90dotnet"
 }
