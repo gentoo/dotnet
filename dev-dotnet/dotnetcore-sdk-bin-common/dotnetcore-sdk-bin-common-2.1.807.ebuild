@@ -5,15 +5,15 @@ EAPI="7"
 
 inherit eutils
 
-DESCRIPTION=".NET Core SDK - binary precompiled for glibc"
+DESCRIPTION="Common files shared between multiple slots of .NET Core"
 HOMEPAGE="https://www.microsoft.com/net/core"
 LICENSE="MIT"
 
 SRC_URI="
-amd64? ( https://download.visualstudio.microsoft.com/download/pr/490da2e4-8f32-433d-8c2e-dd2a11088acd/cfba2ec3df2dedc2dd060b0f79f44b4e/dotnet-sdk-${PV}-linux-x64.tar.gz )
+amd64? ( https://download.visualstudio.microsoft.com/download/pr/8f959005-4742-44c0-8b30-17d394c0b954/348d5acbfe2a9879e39529be18b29f2d/dotnet-sdk-${PV}-linux-x64.tar.gz )
 "
 
-SLOT="2.1"
+SLOT="0"
 KEYWORDS="~amd64"
 
 QA_PREBUILT="*"
@@ -23,21 +23,8 @@ RESTRICT="splitdebug"
 # dotnetcore-sdk is the source based build
 
 RDEPEND="
-	>=dev-dotnet/dotnetcore-sdk-bin-common-${PV}
-	>=sys-apps/lsb-release-1.4
-	>=sys-devel/llvm-4.0
-	>=dev-util/lldb-4.0
-	>=sys-libs/libunwind-1.1-r1
-	>=dev-libs/icu-57.1
-	>=dev-util/lttng-ust-2.8.1
-	>=dev-libs/openssl-1.0.2h-r2
-	>=net-misc/curl-7.49.0
-	>=app-crypt/mit-krb5-1.14.2
-	>=sys-libs/zlib-1.2.8-r1
-	!dev-dotnet/dotnetcore-sdk
-	!dev-dotnet/dotnetcore-sdk-bin:0
-	!dev-dotnet/dotnetcore-runtime-bin
-	!dev-dotnet/dotnetcore-aspnet-bin"
+	~dev-dotnet/dotnetcore-sdk-bin-${PV}
+	!dev-dotnet/dotnetcore-sdk-bin:0"
 
 S=${WORKDIR}
 
@@ -52,8 +39,8 @@ src_prepare() {
 	# slots depending on major .NET Core version.
 	# This makes it possible to install multiple major versions at the same time.
 
-	# Skip the common files
-	find . -maxdepth 1 -type f -exec rm -f {} \; || die
+	# Skip the versioned files (which are located inside sub-directories)
+	find . -maxdepth 1 -type d ! -name . -exec rm -rf {} \; || die
 }
 
 src_install() {
@@ -62,4 +49,9 @@ src_install() {
 
 	local ddest="${D}/${dest}"
 	cp -a "${S}"/* "${ddest}/" || die
+	dosym "/${dest}/dotnet" "/usr/bin/dotnet"
+
+	# set an env-variable for 3rd party tools
+	echo -n "DOTNET_ROOT=/${dest}" > "${T}/90dotnet"
+	doenvd "${T}/90dotnet"
 }
