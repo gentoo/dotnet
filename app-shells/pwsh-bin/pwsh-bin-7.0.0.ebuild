@@ -9,6 +9,8 @@ LICENSE="MIT"
 
 SRC_URI="
 amd64? ( https://github.com/PowerShell/PowerShell/releases/download/v${PV}/powershell-${PV}-linux-x64.tar.gz )
+arm?   ( https://github.com/PowerShell/PowerShell/releases/download/v${PV}/powershell-${PV}-linux-arm32.tar.gz )
+arm64? ( https://github.com/PowerShell/PowerShell/releases/download/v${PV}/powershell-${PV}-linux-arm64.tar.gz )
 "
 
 SLOT="0"
@@ -32,7 +34,7 @@ S=${WORKDIR}
 
 src_prepare() {
 	default
-	rm libcrypto.so.1.0.0 libssl.so.1.0.0 || die
+	use amd64 && rm libcrypto.so.1.0.0 libssl.so.1.0.0 || die
 }
 
 src_install() {
