@@ -14,7 +14,7 @@ arm64? ( https://github.com/PowerShell/PowerShell/releases/download/v${PV}/power
 "
 
 SLOT="0"
-KEYWORDS="~amd64"
+KEYWORDS="~amd64 ~arm ~arm64"
 
 QA_PREBUILT="*"
 
