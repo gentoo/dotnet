@@ -11,7 +11,8 @@ LICENSE="MIT"
 
 SRC_URI="
 amd64? ( https://download.visualstudio.microsoft.com/download/pr/c58adb8a-49cf-466c-9b72-e4c51edae0e5/f915b953a5bfdafc300bd277d80c3513/dotnet-sdk-5.0.100-preview.8.20417.9-linux-x64.tar.gz )
-"
+arm? ( https://download.visualstudio.microsoft.com/download/pr/372de9c1-b63c-4df8-9250-00e107c1d6f7/ee94093420b5c001eaabecdb41621950/dotnet-sdk-5.0.100-preview.8.20417.9-linux-arm.tar.gz )
+arm64? ( https://download.visualstudio.microsoft.com/download/pr/a1e93182-8026-4330-b78a-ee7d721107a2/003c59fc228a220df40d90d5ac434873/dotnet-sdk-5.0.100-preview.8.20417.9-linux-arm64.tar.gz )"
 
 SLOT="5.0"
 KEYWORDS=""
