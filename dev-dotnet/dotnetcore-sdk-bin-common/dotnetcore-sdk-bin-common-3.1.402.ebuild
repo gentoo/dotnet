@@ -11,10 +11,12 @@ LICENSE="MIT"
 
 SRC_URI="
 amd64? ( https://download.visualstudio.microsoft.com/download/pr/f01e3d97-c1c3-4635-bc77-0c893be36820/6ec6acabc22468c6cc68b61625b14a7d/dotnet-sdk-${PV}-linux-x64.tar.gz )
+arm? ( https://download.visualstudio.microsoft.com/download/pr/8f0dffe3-18f0-4d32-beb0-dbcb9a0d91a1/abe9a34e3f8916478f0bd80402b01b38/dotnet-sdk-${PV}-linux-arm.tar.gz )
+arm64? ( https://download.visualstudio.microsoft.com/download/pr/186257d9-bca2-4dda-be74-006205965ec9/b2b63d45482701473d9731abc41ecc2a/dotnet-sdk-${PV}-linux-arm64.tar.gz )
 "
 
 SLOT="0"
-KEYWORDS="~amd64"
+KEYWORDS="~amd64 ~arm ~arm64"
 
 QA_PREBUILT="*"
 RESTRICT="splitdebug"
