@@ -1,4 +1,4 @@
-# Copyright 1999-2019 Gentoo Authors
+# Copyright 1999-2021 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI="7"
@@ -10,13 +10,13 @@ HOMEPAGE="https://www.microsoft.com/net/core"
 LICENSE="MIT"
 
 SRC_URI="
-amd64? ( https://download.visualstudio.microsoft.com/download/pr/7f736160-9f34-4595-8d72-13630c437aef/b9c4513afb0f8872eb95793c70ac52f6/dotnet-sdk-${PV}-linux-x64.tar.gz )
-arm? ( https://download.visualstudio.microsoft.com/download/pr/726e260e-ce94-46c3-a169-57b2ebf5433d/5fb2a00b04b3509a0a6db63e302523a8/dotnet-sdk-${PV}-linux-arm.tar.gz )
-arm64? ( https://download.visualstudio.microsoft.com/download/pr/4fdd4708-8990-42db-998d-36ccfa593070/d67cb90c382e4eedbca8af1aebcbbe19/dotnet-sdk-${PV}-linux-arm64.tar.gz )
+amd64? ( https://download.visualstudio.microsoft.com/download/pr/579aac9e-53dd-404e-9452-9910bc9be422/1c47683215dd54a3837fc4b338ddb6a6/dotnet-sdk-6.0.100-preview.1.21103.13-linux-x64.tar.gz )
+arm? ( https://download.visualstudio.microsoft.com/download/pr/3b62cfcf-589e-43b3-993b-517c70c93a22/0ecae846884376fecc5de8a4f6d6c927/dotnet-sdk-6.0.100-preview.1.21103.13-linux-arm.tar.gz )
+arm64? ( https://download.visualstudio.microsoft.com/download/pr/9143768a-e997-45b5-b818-e5b96ac0c24c/b5c7eb4476e9cdb56deb62d2a26f729d/dotnet-sdk-6.0.100-preview.1.21103.13-linux-arm64.tar.gz )
 "
 
-SLOT="5.0"
-KEYWORDS="~amd64"
+SLOT="6.0"
+KEYWORDS=""
 
 QA_PREBUILT="*"
 RESTRICT="splitdebug"
