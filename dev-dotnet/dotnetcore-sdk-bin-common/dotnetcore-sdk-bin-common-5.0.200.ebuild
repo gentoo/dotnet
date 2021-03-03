@@ -3,9 +3,9 @@
 
 EAPI="7"
 
-MY_PV="${PV}"
-
 inherit eutils
+
+MY_PV="${PV}"
 
 DESCRIPTION="Common files shared between multiple slots of .NET Core"
 HOMEPAGE="https://www.microsoft.com/net/core"
