@@ -4,7 +4,7 @@
 EAPI=6
 USE_DOTNET="net45"
 
-inherit dotnet eutils gac
+inherit xbuild eutils gac
 
 DESCRIPTION="Microsoft's Xml Document Transformation library"
 HOMEPAGE="https://github.com/mrward/xdt"
