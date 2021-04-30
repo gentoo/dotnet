@@ -4,7 +4,7 @@
 EAPI="5"
 AUTOTOOLS_PRUNE_LIBTOOL_FILES="all"
 
-inherit linux-info mono-env flag-o-matic pax-utils autotools-utils git-r3
+inherit linux-info mono-env flag-o-matic pax-utils autotools git-r3
 
 DESCRIPTION="Mono runtime and class libraries, a C# compiler/interpreter"
 HOMEPAGE="https://www.mono-project.com/Main_Page"
