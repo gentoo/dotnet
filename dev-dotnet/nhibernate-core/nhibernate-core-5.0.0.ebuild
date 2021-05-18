@@ -16,7 +16,7 @@ HOMEPAGE="https://nhibernate.info/"
 
 EGIT_COMMIT="c2c93d979611463b5a3fb12c4d27bb78d86de9d4"
 SRC_URI="https://github.com/nhibernate/${NAME}/archive/${EGIT_COMMIT}.tar.gz -> ${PF}.tar.gz
-	https://github.com/mono/mono/raw/master/mcs/class/mono.snk"
+	https://github.com/mono/mono/raw/main/mcs/class/mono.snk"
 S="${WORKDIR}/${NAME}-${EGIT_COMMIT}"
 
 DESCRIPTION="NHibernate Object Relational Mapper"

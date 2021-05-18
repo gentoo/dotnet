@@ -14,7 +14,7 @@ IUSE="+${USE_DOTNET} +debug developer doc xbuild"
 HOMEPAGE="https://github.com/loresoft/msbuildtasks"
 EGIT_COMMIT="014ed0f7a69f4936d7b3b438a5ceca78f902e0ef"
 SRC_URI="${HOMEPAGE}/archive/${EGIT_COMMIT}.tar.gz -> ${PN}-${PV}.tar.gz
-	https://github.com/mono/mono/raw/master/mcs/class/mono.snk"
+	https://github.com/mono/mono/raw/main/mcs/class/mono.snk"
 RESTRICT="mirror"
 NAME="msbuildtasks"
 S="${WORKDIR}/${NAME}-${EGIT_COMMIT}"

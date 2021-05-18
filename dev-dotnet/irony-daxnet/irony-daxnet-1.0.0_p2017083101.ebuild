@@ -23,7 +23,7 @@ HOMEPAGE="https://github.com/daxnet/${NAME}"
 
 EGIT_COMMIT="ed2aa3ed74b53b1655a2b196d34a1bc20d4e6ce1"
 SRC_URI="${HOMEPAGE}/archive/${EGIT_COMMIT}.tar.gz -> ${PF}.tar.gz
-	https://github.com/mono/mono/raw/master/mcs/class/mono.snk"
+	https://github.com/mono/mono/raw/main/mcs/class/mono.snk"
 S="${WORKDIR}/${NAME}-${EGIT_COMMIT}"
 
 DESCRIPTION="parsing framework for C# on LALR(1)"

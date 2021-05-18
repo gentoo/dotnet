@@ -20,7 +20,7 @@ HOMEPAGE="https://github.com/JamesNK/${NAME}"
 
 EGIT_COMMIT="865c08d95d89565b4f6b463b57da8f5324f6ce7c"
 SRC_URI="${HOMEPAGE}/archive/${EGIT_COMMIT}.zip -> ${P}.zip
-	https://github.com/mono/mono/raw/master/mcs/class/mono.snk"
+	https://github.com/mono/mono/raw/main/mcs/class/mono.snk"
 S="${WORKDIR}/${NAME}-${EGIT_COMMIT}"
 
 SLOT="0"

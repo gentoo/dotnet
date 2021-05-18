@@ -16,7 +16,7 @@ NAME="Relinq-EagerFetching"
 HOMEPAGE="https://github.com/re-motion/${NAME}"
 EGIT_COMMIT="9c3fe22e35f3f66becc197829d8e3bdf8e3dd622"
 SRC_URI="${HOMEPAGE}/archive/${EGIT_COMMIT}.tar.gz -> ${NAME}-${PV}.tar.gz
-	https://github.com/mono/mono/raw/master/mcs/class/mono.snk"
+	https://github.com/mono/mono/raw/main/mcs/class/mono.snk"
 S="${WORKDIR}/${NAME}-${EGIT_COMMIT}"
 
 DESCRIPTION="Library to create full-featured LINQ providers (fetching)."

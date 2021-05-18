@@ -17,7 +17,7 @@ HOMEPAGE="https://github.com/pruiz/nhibernate-contrib-old"
 
 EGIT_COMMIT="eada73cce086a6457e5e64b0413b97a8f53863ac"
 SRC_URI="https://github.com/pruiz/${NAME}/archive/${EGIT_COMMIT}.tar.gz -> ${PF}.tar.gz
-	https://github.com/mono/mono/raw/master/mcs/class/mono.snk"
+	https://github.com/mono/mono/raw/main/mcs/class/mono.snk"
 S="${WORKDIR}/${NAME}-${EGIT_COMMIT}"
 
 DESCRIPTION="Contributions to NHibernate"

@@ -16,7 +16,7 @@ HOMEPAGE="https://github.com/icsharpcode/${NAME}"
 
 EGIT_COMMIT="cfc69a68fefbc5858fe70b35f7b69fc505b8c2d6"
 SRC_URI="${HOMEPAGE}/archive/${EGIT_COMMIT}.tar.gz -> ${PF}.tar.gz
-	https://github.com/mono/mono/raw/master/mcs/class/mono.snk"
+	https://github.com/mono/mono/raw/main/mcs/class/mono.snk"
 S="${WORKDIR}/${NAME}-${EGIT_COMMIT}"
 
 DESCRIPTION="Zip, GZip, Tar and BZip2 library written entirely in C# for the .NET platform"
