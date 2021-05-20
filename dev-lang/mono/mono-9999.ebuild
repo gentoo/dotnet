@@ -4,12 +4,12 @@
 EAPI="5"
 AUTOTOOLS_PRUNE_LIBTOOL_FILES="all"
 
-inherit linux-info mono-env flag-o-matic pax-utils autotools-utils git-r3
+inherit linux-info mono-env flag-o-matic pax-utils autotools git-r3
 
 DESCRIPTION="Mono runtime and class libraries, a C# compiler/interpreter"
 HOMEPAGE="https://www.mono-project.com/Main_Page"
 
-EGIT_REPO_URI="git://github.com/mono/${PN}.git"
+EGIT_REPO_URI="https://github.com/mono/${PN}.git"
 
 LICENSE="MIT LGPL-2.1 GPL-2 BSD-4 NPL-1.1 Ms-PL GPL-2-with-linking-exception IDPL"
 SLOT="0"
@@ -59,8 +59,8 @@ src_prepare() {
 
 	# Remove this at your own peril. Mono will barf in unexpected ways.
 	append-flags -fno-strict-aliasing
-
-	autotools-utils_src_prepare
+	eautoconf
+	eautomake
 }
 
 src_configure() {
@@ -89,7 +89,7 @@ src_configure() {
 		$(use_with doc mcs-docs)
 	)
 
-	autotools-utils_src_configure
+	econf ${myeconfargs}
 }
 
 src_make() {
@@ -103,7 +103,7 @@ src_test() {
 }
 
 src_install() {
-	autotools-utils_src_install
+	emake DESTDIR="${D}" install
 
 	# Remove files not respecting LDFLAGS and that we are not supposed to provide, see Fedora
 	# mono.spec and https://www.mail-archive.com/mono-devel-list@lists.ximian.com/msg24870.html
