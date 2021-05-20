@@ -3,7 +3,7 @@
 
 EAPI=5
 
-inherit eutils dotnet multilib autotools-utils
+inherit eutils dotnet multilib autotools
 
 DESCRIPTION="A generic framework for creating extensible applications"
 HOMEPAGE="https://www.mono-project.com/Mono.Addins"
@@ -24,7 +24,6 @@ S="${WORKDIR}/${PN}-${P}"
 
 src_prepare() {
 	eautoreconf
-	autotools-utils_src_prepare
 	## with dev-dotnet/gtk-sharp-2.99.1
 	## it gives
 	## checking for GTK_SHARP_20... no

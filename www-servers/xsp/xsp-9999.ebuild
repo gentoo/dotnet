@@ -1,12 +1,12 @@
 # Copyright 1999-2019 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI="5"
+EAPI="6"
 
 USE_DOTNET="net35 net40 net45"
 PATCHDIR="${FILESDIR}/2.2/"
 
-inherit eutils dotnet user git-r3 autotools-utils
+inherit eutils dotnet user git-r3 autotools
 
 DESCRIPTION="XSP is a small web server that can host ASP.NET pages"
 HOMEPAGE="https://www.mono-project.com/ASP.NET"
@@ -36,18 +36,11 @@ src_prepare() {
 	fi
 	eapply_user
 	eautoconf
-}
 
-src_configure() {
 	myeconfargs=("--enable-maintainer-mode")
 	use test && myeconfargs+=("--with_unit_tests")
 	use doc || myeconfargs+=("--disable-docs")
 	eautomake --gnu --add-missing --force --copy #nowarn
-	autotools-utils_src_configure
-}
-
-src_compile() {
-	autotools-utils_src_compile
 }
 
 pkg_preinst() {
@@ -56,7 +49,8 @@ pkg_preinst() {
 }
 
 src_install() {
-	mv_command="cp -ar" autotools-utils_src_install
+	emake DESTDIR="${D}" install
+
 	newinitd "${PATCHDIR}"/xsp.initd xsp
 	newinitd "${PATCHDIR}"/mod-mono-server-r1.initd mod-mono-server
 	newconfd "${PATCHDIR}"/xsp.confd xsp
