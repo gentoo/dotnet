@@ -22,7 +22,7 @@ EGIT_COMMIT="abaab03d71fc07b020a860f6d407f6814cb0f6d5"
 TARBALL_FILENAME="${PN}-$(get_version_component_range 1-4)"
 TARBALL_EXT=".tar.gz"
 SRC_URI="${HOMEPAGE}/archive/${EGIT_COMMIT}${TARBALL_EXT} -> ${TARBALL_FILENAME}${TARBALL_EXT}
-	https://github.com/mono/mono/raw/master/mcs/class/mono.snk"
+	https://github.com/mono/mono/raw/main/mcs/class/mono.snk"
 GITHUB_REPONAME="msbuildtasks"
 S="${WORKDIR}/${GITHUB_REPONAME}-${EGIT_COMMIT}"
 

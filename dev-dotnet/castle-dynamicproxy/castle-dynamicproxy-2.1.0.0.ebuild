@@ -17,7 +17,7 @@ HOMEPAGE="https://www.castleproject.org"
 
 EGIT_COMMIT="9a033d8a69535e9078a3344e1ceddf18b60f9324"
 SRC_URI="https://github.com/castleproject/${NAME}/archive/${EGIT_COMMIT}.tar.gz -> ${PF}.tar.gz
-	https://github.com/mono/mono/raw/master/mcs/class/mono.snk"
+	https://github.com/mono/mono/raw/main/mcs/class/mono.snk"
 S="${WORKDIR}/${NAME}-${EGIT_COMMIT}"
 
 DESCRIPTION="simple set of tools to speed up the development"

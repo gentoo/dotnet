@@ -16,7 +16,7 @@ NAME="roslyn"
 HOMEPAGE="https://github.com/dotnet/${NAME}"
 EGIT_COMMIT="ec1cde8b77c7bca654888681037f55aa0e62dd19"
 SRC_URI="${HOMEPAGE}/archive/${EGIT_COMMIT}.tar.gz -> ${NAME}-${PV}.tar.gz
-	https://github.com/mono/mono/raw/master/mcs/class/mono.snk"
+	https://github.com/mono/mono/raw/main/mcs/class/mono.snk"
 S="${WORKDIR}/${NAME}-${EGIT_COMMIT}"
 
 DESCRIPTION="C# compiler with rich code analysis APIs"

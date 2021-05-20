@@ -16,7 +16,7 @@ HOMEPAGE="https://www.specflow.org/"
 
 EGIT_COMMIT="d79e211e94860f0c98fb43264e4358714da1fd95"
 SRC_URI="https://github.com/techtalk/${NAME}/archive/${EGIT_COMMIT}.tar.gz -> ${PF}.tar.gz
-	https://github.com/mono/mono/raw/master/mcs/class/mono.snk"
+	https://github.com/mono/mono/raw/main/mcs/class/mono.snk"
 S="${WORKDIR}/${NAME}-${EGIT_COMMIT}"
 
 DESCRIPTION="Binding business requirements to .Net code"

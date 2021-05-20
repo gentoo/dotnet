@@ -18,7 +18,7 @@ IUSE+=" +gac pkg-config"
 DEPEND+=" dev-lang/mono"
 RDEPEND+=" dev-lang/mono"
 
-# SRC_URI+=" https://github.com/mono/mono/raw/master/mcs/class/mono.snk"
+# SRC_URI+=" https://github.com/mono/mono/raw/main/mcs/class/mono.snk"
 # I was unable to setup it this ^^ way
 
 # @FUNCTION: egacinstall

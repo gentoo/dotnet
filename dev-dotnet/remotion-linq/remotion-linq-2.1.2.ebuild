@@ -16,7 +16,7 @@ NAME="Relinq"
 HOMEPAGE="https://github.com/re-motion/${NAME}"
 EGIT_COMMIT="88b1055e0a737faff26c9d5e2789f520ac73ca86"
 SRC_URI="${HOMEPAGE}/archive/${EGIT_COMMIT}.tar.gz -> ${NAME}-${PV}.tar.gz
-	https://github.com/mono/mono/raw/master/mcs/class/mono.snk"
+	https://github.com/mono/mono/raw/main/mcs/class/mono.snk"
 S="${WORKDIR}/${NAME}-${EGIT_COMMIT}"
 
 DESCRIPTION="Library to create full-featured LINQ providers."

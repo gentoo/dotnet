@@ -17,7 +17,7 @@ HOMEPAGE="https://github.com/nunit/${NAME}"
 
 EGIT_COMMIT="dd39deaa2c805783cb069878b58b0447d0849849"
 SRC_URI="${HOMEPAGE}/archive/${EGIT_COMMIT}.tar.gz -> ${PN}-${PV}.tar.gz"
-#	https://github.com/mono/mono/raw/master/mcs/class/mono.snk"
+#	https://github.com/mono/mono/raw/main/mcs/class/mono.snk"
 S="${WORKDIR}/${NAME}-${EGIT_COMMIT}"
 
 DESCRIPTION="NUnit test suite for mono applications"

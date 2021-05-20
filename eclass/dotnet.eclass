@@ -26,7 +26,7 @@ inherit eutils versionator mono-env
 DEPEND+=" dev-lang/mono"
 IUSE+=" debug developer"
 
-# SRC_URI+=" https://github.com/mono/mono/raw/master/mcs/class/mono.snk"
+# SRC_URI+=" https://github.com/mono/mono/raw/main/mcs/class/mono.snk"
 # I was unable to setup it this ^^ way
 
 # SET default use flags according on DOTNET_TARGETS
