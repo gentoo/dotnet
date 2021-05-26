@@ -5,9 +5,9 @@ EAPI="7"
 
 inherit eutils
 
-MY_PV="${PV/_pre/-preview.}.21202.5"
+MY_PV="${PV/_pre/-preview.}.21255.9"
 
-DESCRIPTION=".NET Core SDK - binary precompiled for glibc"
+DESCRIPTION="Common files shared between multiple slots of .NET Core"
 HOMEPAGE="https://www.microsoft.com/net/core"
 LICENSE="MIT"
 
@@ -17,7 +17,7 @@ arm? ( https://dotnetcli.azureedge.net/dotnet/Sdk/${MY_PV}/dotnet-sdk-${MY_PV}-l
 arm64? ( https://dotnetcli.azureedge.net/dotnet/Sdk/${MY_PV}/dotnet-sdk-${MY_PV}-linux-arm64.tar.gz )
 "
 
-SLOT="6.0"
+SLOT="0"
 KEYWORDS=""
 
 QA_PREBUILT="*"
@@ -27,21 +27,8 @@ RESTRICT="splitdebug"
 # dotnetcore-sdk is the source based build
 
 RDEPEND="
-	>=dev-dotnet/dotnetcore-sdk-bin-common-${PV}
-	>=sys-apps/lsb-release-1.4
-	>=sys-devel/llvm-4.0
-	>=dev-util/lldb-4.0
-	>=sys-libs/libunwind-1.1-r1
-	>=dev-libs/icu-57.1
-	>=dev-util/lttng-ust-2.8.1
-	|| ( >=dev-libs/openssl-1.0.2h-r2 >=dev-libs/openssl-compat-1.0.2h-r2 )
-	>=net-misc/curl-7.49.0
-	>=app-crypt/mit-krb5-1.14.2
-	>=sys-libs/zlib-1.2.8-r1
-	!dev-dotnet/dotnetcore-sdk
-	!dev-dotnet/dotnetcore-sdk-bin:0
-	!dev-dotnet/dotnetcore-runtime-bin
-	!dev-dotnet/dotnetcore-aspnet-bin"
+	~dev-dotnet/dotnetcore-sdk-bin-${PV}
+	!dev-dotnet/dotnetcore-sdk-bin:0"
 
 S=${WORKDIR}
 
@@ -57,9 +44,9 @@ src_prepare() {
 	# slots depending on major .NET Core version.
 	# This makes it possible to install multiple major versions at the same time.
 
-	# Skip the common files
-	find . -maxdepth 1 -type f -exec rm -f {} \; || die
-	rm -rf ./packs/NETStandard.Library.Ref || die
+	# Skip the versioned files (which are located inside sub-directories)
+	find . -maxdepth 1 -type d ! -name . ! -name packs -exec rm -rf {} \; || die
+	find ./packs -maxdepth 1 -type d ! -name packs ! -name NETStandard.Library.Ref -exec rm -rf {} \; || die
 }
 
 src_install() {
@@ -68,4 +55,9 @@ src_install() {
 
 	local ddest="${D}/${dest}"
 	cp -a "${S}"/* "${ddest}/" || die
+	dosym "/${dest}/dotnet" "/usr/bin/dotnet"
+
+	# set an env-variable for 3rd party tools
+	echo -n "DOTNET_ROOT=/${dest}" > "${T}/90dotnet"
+	doenvd "${T}/90dotnet"
 }
