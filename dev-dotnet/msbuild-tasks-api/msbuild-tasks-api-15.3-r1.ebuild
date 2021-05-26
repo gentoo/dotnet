@@ -20,7 +20,7 @@ S="${WORKDIR}/${GITHUB_PROJECTNAME}-${EGIT_COMMIT}"
 
 HOMEPAGE="https://github.com/mono/linux-packaging-msbuild"
 DESCRIPTION="msbuild libraries for writing Task-derived classes"
-LICENSE="MIT" # https://github.com/mono/linux-packaging-msbuild/blob/master/LICENSE
+LICENSE="MIT" # https://github.com/mono/linux-packaging-msbuild/blob/main/LICENSE
 
 COMMON_DEPEND=">=dev-lang/mono-5.2.0.196
 "
