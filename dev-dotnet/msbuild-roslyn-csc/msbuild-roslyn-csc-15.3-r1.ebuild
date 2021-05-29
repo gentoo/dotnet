@@ -49,6 +49,7 @@ function output_filename ( ) {
 
 src_prepare() {
 	cp "${FILESDIR}/mono-MSBuildTask.csproj" "${METAFILE_FO_BUILD}" || die
+	eapply "${FILESDIR}/Initialize_Guid.patch"
 	eapply_user
 }
 
