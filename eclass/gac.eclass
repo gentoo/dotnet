@@ -28,14 +28,12 @@ egacinstall() {
 	if use gac; then
 		if use pkg-config; then
 			gacutil -i "${1}" \
-				-root "${ED}"/usr/$(get_libdir) \
-				-gacdir /usr/$(get_libdir) \
+				-root "${ED}"/usr/lib \
 				-package ${2:-${GACPN:-${PN}}} \
 				|| die "installing ${1} into the Global Assembly Cache failed"
 		else
 			gacutil -i "${1}" \
-				-root "${ED}"/usr/$(get_libdir) \
-				-gacdir /usr/$(get_libdir) \
+				-root "${ED}"/usr/lib \
 				|| die "installing ${1} into the Global Assembly Cache failed"
 		fi
 	fi
@@ -45,12 +43,11 @@ egacinstall() {
 # @DESCRIPTION:  install package to GAC
 egacadd() {
 	if use gac; then
-		GACROOT="${PREFIX}/usr/$(get_libdir)"
+		GACROOT="${PREFIX}/usr/lib"
 		GACDIR="/usr/$(get_libdir)/mono/gac"
-		einfo gacutil -i "${PREFIX}/${1}" -root "${GACROOT}" -gacdir "${GACDIR}"
+		einfo gacutil -i "${PREFIX}/${1}" -root "${GACROOT}"
 		gacutil -i "${PREFIX}/${1}" \
 			-root ${GACROOT} \
-			-gacdir ${GACDIR} \
 			|| die "installing ${1} into the Global Assembly Cache failed"
 	fi
 }
@@ -59,12 +56,11 @@ egacadd() {
 # @DESCRIPTION:  remove package from GAC
 egacdel() {
 	if use gac; then
-		GACROOT="${PREFIX}/usr/$(get_libdir)"
+		GACROOT="${PREFIX}/usr/lib"
 		GACDIR="/usr/$(get_libdir)/mono/gac"
-		einfo gacutil -u "${1}" -root "${GACROOT}" -gacdir "${GACDIR}"
+		einfo gacutil -u "${1}" -root "${GACROOT}"
 		gacutil -u "${1}" \
 			-root ${GACROOT} \
-			-gacdir ${GACDIR}
 		# don't die
 	fi
 }

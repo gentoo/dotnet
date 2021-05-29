@@ -73,6 +73,6 @@ src_install() {
 	insinto "/usr/lib/mono/xbuild"
 	doins "${S}/src/Microsoft.DotNet.Build.Tasks/PackageFiles/resources.targets"
 	if use symlink; then
-		dosym "/usr/$(get_libdir)/mono/gac/${PROJ1}/1.0.27.0__0738eb9f132ed756/${PROJ1}.dll" "/usr/lib/mono/xbuild/${PROJ1}.dll"
+		dosym "/usr/lib/mono/gac/${PROJ1}/1.0.27.0__0738eb9f132ed756/${PROJ1}.dll" "/usr/lib/mono/xbuild/${PROJ1}.dll"
 	fi
 }
