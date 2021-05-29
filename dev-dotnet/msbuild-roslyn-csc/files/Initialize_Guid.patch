@@ -1,0 +1,11 @@
+--- roslyn-ec1cde8b77c7bca654888681037f55aa0e62dd19/src/Compilers/Core/MSBuildTask/CopyRefAssembly.cs.old	2021-05-28 11:58:08.767635621 +0200
++++ roslyn-ec1cde8b77c7bca654888681037f55aa0e62dd19/src/Compilers/Core/MSBuildTask/CopyRefAssembly.cs	2021-05-28 11:59:03.840933543 +0200
+@@ -40,7 +40,7 @@
+ 
+             if (File.Exists(DestinationPath))
+             {
+-                Guid source;
++                Guid source = Guid.Empty;
+                 try
+                 {
+                     source = ExtractMvid(SourcePath);
