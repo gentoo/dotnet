@@ -32,11 +32,8 @@ Finally add the following USE flags if relevant.
  - Fork & Contribute & Pull Request
  - Open requests on https://bugs.gentoo.org with solutions from this overlay
 
-Dotnet Core
+.NET Core
 -----------
 
-For using dotnet core see
-
- - [Dotnet Core Binary packages](Documentation/DotnetCore-Bin.md)
- - [Dotnet Core Source Build Notes](Documentation/DotnetCore-Src.md)
-
+To use .NET Core, install the `dev-dotnet/dotnetcore-sdk-bin` package.
+Multiple major .NET Core versions can also be installed using the different slots of that package.
