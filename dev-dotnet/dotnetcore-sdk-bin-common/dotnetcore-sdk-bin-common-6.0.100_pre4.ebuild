@@ -26,9 +26,7 @@ RESTRICT="splitdebug"
 # The sdk includes the runtime-bin and aspnet-bin so prevent from installing at the same time
 # dotnetcore-sdk is the source based build
 
-RDEPEND="
-	~dev-dotnet/dotnetcore-sdk-bin-${PV}
-	!dev-dotnet/dotnetcore-sdk-bin:0"
+RDEPEND="~dev-dotnet/dotnetcore-sdk-bin-${PV}"
 
 S=${WORKDIR}
 
