@@ -5,7 +5,7 @@ EAPI="7"
 
 inherit eutils
 
-MY_PV="${PV/_pre/-preview.}.21255.9"
+MY_PV="${PV/_pre/-preview.}.21302.13"
 
 DESCRIPTION=".NET Core SDK - binary precompiled for glibc"
 HOMEPAGE="https://www.microsoft.com/net/core"
