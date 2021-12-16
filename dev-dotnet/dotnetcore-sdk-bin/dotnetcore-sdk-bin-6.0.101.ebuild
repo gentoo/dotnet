@@ -56,6 +56,12 @@ src_prepare() {
 	# Skip the common files
 	find . -maxdepth 1 -type f -exec rm -f {} \; || die
 	rm -rf ./packs/NETStandard.Library.Ref || die
+
+	# 6.0.100 is SDK feature band which will not change between minor increases, so 6.0.101, 6.102
+	# will still have same 6.0.100 SDK feature band in the name. Thus I have to hard code this
+	# https://github.com/dotnet/sdk/pull/18823#issuecomment-915603684
+	local workloads="metadata/workloads/${SLOT}.100"
+	{ mkdir -p "${workloads}" && touch "${workloads}/userlocal"; } || die
 }
 
 src_install() {
