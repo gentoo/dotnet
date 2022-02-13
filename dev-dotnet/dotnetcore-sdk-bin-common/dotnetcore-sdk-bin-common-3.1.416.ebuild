@@ -18,7 +18,7 @@ arm64? ( https://dotnetcli.azureedge.net/dotnet/Sdk/${MY_PV}/dotnet-sdk-${MY_PV}
 "
 
 SLOT="0"
-KEYWORDS="~amd64"
+KEYWORDS=""
 
 QA_PREBUILT="*"
 RESTRICT="splitdebug"

@@ -33,7 +33,7 @@ Finally add the following USE flags if relevant.
  - Open requests on https://bugs.gentoo.org with solutions from this overlay
 
 .NET Core
------------
+---------
 
-To use .NET Core, install the `dev-dotnet/dotnetcore-sdk-bin` package.
-Multiple major .NET Core versions can also be installed using the different slots of that package.
+The `dev-dotnet/dotnetcore-sdk-bin` package in this overlay is deprecated and will not be maintained.
+Please use the [dev-dotnet/dotnet-sdk-bin](https://packages.gentoo.org/packages/dev-dotnet/dotnet-sdk-bin) package that's already available upstream.
