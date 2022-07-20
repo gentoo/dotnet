@@ -16,7 +16,7 @@ S="${WORKDIR}/Configuration-1.0.0"
 HOMEPAGE="https://github.com/aspnet/Configuration"
 DESCRIPTION="Interfaces and providers for accessing configuration files"
 LICENSE="Apache-2.0" # https://github.com/aspnet/Configuration/blob/dev/LICENSE.txt
-KEYWORDS="~amd64 ~ppc ~x86"
+KEYWORDS="~amd64 ~x86"
 
 COMMON_DEPEND=">=dev-lang/mono-4.0.2.5
 	dev-dotnet/aspnet-common

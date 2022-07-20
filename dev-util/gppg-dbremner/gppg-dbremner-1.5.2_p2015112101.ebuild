@@ -4,7 +4,7 @@
 EAPI=6
 SLOT="0"
 
-KEYWORDS="~amd64 ~ppc ~x86"
+KEYWORDS="~amd64 ~x86"
 USE_DOTNET="net45"
 
 inherit dotnet

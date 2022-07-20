@@ -11,7 +11,7 @@ SRC_URI="https://github.com/mono/dbus-sharp/archive/v${PV}.tar.gz -> ${P}.tar.gz
 
 LICENSE="MIT"
 SLOT="0"
-KEYWORDS="~amd64 ~ppc ~x86"
+KEYWORDS="~amd64 ~x86"
 
 RDEPEND=">=dev-lang/mono-4.0.2.5
 	sys-apps/dbus"
