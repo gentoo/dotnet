@@ -1,17 +1,19 @@
 # Copyright 1999-2019 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=5
+EAPI=7
 
-inherit dotnet autotools versionator
+WANT_AUTOMAKE=1.11
+inherit dotnet autotools
 
-SLOT="2"
+MVER="$(ver_cut 1-2)"
 DESCRIPTION="gnome-desktop mono bindings"
 HOMEPAGE="https://www.mono-project.com/GtkSharp"
-LICENSE="GPL-2"
-KEYWORDS="~amd64 ~ppc ~x86"
-MVER="$(get_version_component_range 1-2)"
 SRC_URI="mirror://gnome/sources/gnome-desktop-sharp/${MVER}/${P}.tar.bz2"
+
+LICENSE="GPL-2"
+SLOT="2"
+KEYWORDS="~amd64 ~ppc ~x86"
 IUSE="debug print gtksourceview rsvg vte wnck"
 
 RESTRICT="test"
@@ -34,13 +36,11 @@ RDEPEND="
 	!dev-dotnet/vte-sharp
 	!dev-dotnet/wnck-sharp
 	"
-DEPEND="${RDEPEND}
-	sys-devel/automake:1.11"
+DEPEND="${RDEPEND}"
 
 src_prepare() {
-	base_src_prepare
+	default
 	eautoreconf
-	elibtoolize
 }
 
 src_configure() {
