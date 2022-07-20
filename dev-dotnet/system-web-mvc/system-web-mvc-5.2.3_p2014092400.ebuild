@@ -2,7 +2,7 @@
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=6
-inherit mono-env gac nupkg
+inherit mono-env gac nupkg versionator
 
 REPO_NAME="aspnetwebstack"
 HOMEPAGE="https://github.com/ASP-NET-MVC/aspnetwebstack"
