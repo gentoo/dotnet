@@ -14,7 +14,7 @@ KEYWORDS="~amd64 ~x86"
 USE_DOTNET="net45"
 IUSE="${USE_DOTNET} debug developer test +nupkg +gac +pkg-config"
 
-inherit nupkg gac
+inherit nupkg gac versionator
 
 NAME="Newtonsoft.Json"
 NUSPEC_ID="${NAME}"
