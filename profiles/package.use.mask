@@ -1,0 +1,2 @@
+# dev-dotnet/notify-sharp no longer packaged
+net-irc/smuxi libnotify
