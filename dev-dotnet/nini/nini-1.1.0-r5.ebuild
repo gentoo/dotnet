@@ -11,7 +11,7 @@ SRC_URI="mirror://sourceforge/nini/Nini-${PV}.zip"
 
 LICENSE="MIT"
 SLOT="0"
-KEYWORDS="~amd64 ~x86"
+KEYWORDS="~amd64"
 IUSE="debug"
 
 RDEPEND=">=dev-lang/mono-4.0.2.5"

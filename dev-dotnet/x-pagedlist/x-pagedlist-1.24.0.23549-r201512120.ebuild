@@ -9,7 +9,7 @@ HOMEPAGE="https://github.com/kpi-ua/X.PagedList/"
 DESCRIPTION="Nugget for easily paging through any IEnumerable/IQueryable in Asp.Net MVC"
 LICENSE="MIT"
 SLOT="0"
-KEYWORDS="~amd64 ~x86"
+KEYWORDS="~amd64"
 IUSE="net45 +gac +nupkg +pkg-config debug developer"
 USE_DOTNET="net45"
 

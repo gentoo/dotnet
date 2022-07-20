@@ -14,7 +14,7 @@ SRC_URI="mirror://apache/logging/log4net/source/${P}-src.zip
 
 LICENSE="Apache-2.0"
 SLOT="0"
-KEYWORDS="~amd64 ~x86"
+KEYWORDS="~amd64"
 IUSE=""
 
 RDEPEND=">=dev-lang/mono-4.0.2.5"

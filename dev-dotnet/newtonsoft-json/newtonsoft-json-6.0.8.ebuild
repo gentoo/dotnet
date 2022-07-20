@@ -3,7 +3,7 @@
 
 EAPI=6
 
-KEYWORDS="~amd64 ~x86"
+KEYWORDS="~amd64"
 
 # debug = debug configuration (symbols and defines for debugging)
 # developer = generate symbols information (to view line numbers in stack traces, either in debug or release configuration)

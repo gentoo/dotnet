@@ -7,7 +7,7 @@ USE_DOTNET="net45"
 inherit gac dotnet
 IUSE+=" +net45 +pkg-config debug"
 
-KEYWORDS="~amd64 ~x86"
+KEYWORDS="~amd64"
 
 DESCRIPTION="console emulator control, embeds a console view in a Windows Forms window"
 

@@ -16,7 +16,7 @@ NAME=Microsoft.Web.Infrastructure
 LICENSE="Apache-2.0"
 SLOT="0"
 
-KEYWORDS="~amd64 ~x86"
+KEYWORDS="~amd64"
 
 # dependency on mono is included in dotnet.eclass which is inherited with nupkg.eclass (so no need to include >=dev-lang/mono-4.0.2.5 here)
 # dependency on nuget is included in nupkg.eclass when USE="nupkg" is set

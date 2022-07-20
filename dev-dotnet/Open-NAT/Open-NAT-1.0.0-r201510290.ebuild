@@ -9,7 +9,7 @@ HOMEPAGE="https://lontivero.github.io/Open.NAT"
 DESCRIPTION="Class library to use port forwarding in NAT devices with UPNP and/or PMP"
 LICENSE="MIT"
 SLOT="0"
-KEYWORDS="~amd64 ~x86"
+KEYWORDS="~amd64"
 IUSE="net45 +gac +nupkg +pkg-config debug developer"
 USE_DOTNET="net45"
 

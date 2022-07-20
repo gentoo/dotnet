@@ -13,7 +13,7 @@ EAPI=6
 USE_DOTNET="net45"
 IUSE="net45 debug +developer test +nupkg +gac +pkg-config"
 
-KEYWORDS="~amd64 ~x86"
+KEYWORDS="~amd64"
 
 inherit versionator gac nupkg
 

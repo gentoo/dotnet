@@ -20,7 +20,7 @@ SLOT="0"
 
 DESCRIPTION="CLI parser with API, recursive descent, LL(k), for BNF, EBNF and Gold Grammars"
 LICENSE="MIT" # https://raw.githubusercontent.com/picoe/Eto.Parse/master/LICENSE
-KEYWORDS="~amd64 ~x86"
+KEYWORDS="~amd64"
 
 # notes on testing, from https://devmanual.gentoo.org/ebuild-writing/functions/src_test/index.html
 # FEATURES+="test"

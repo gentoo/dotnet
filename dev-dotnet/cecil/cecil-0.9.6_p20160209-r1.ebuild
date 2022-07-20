@@ -13,7 +13,7 @@ DESCRIPTION="System.Reflection alternative to generate and inspect .NET executab
 # https://github.com/jbevain/cecil/blob/master/LICENSE.txt
 LICENSE="MIT"
 SLOT="0"
-KEYWORDS="~amd64 ~x86"
+KEYWORDS="~amd64"
 USE_DOTNET="net35 net40 net45"
 IUSE="net35 net40 net45 +gac +nupkg +pkg-config debug developer"
 

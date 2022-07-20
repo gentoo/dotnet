@@ -18,7 +18,7 @@ SLOT="0"
 
 DESCRIPTION="parser and code generation infrastructure for Razor markup syntax"
 LICENSE="Apache-2.0"
-KEYWORDS="~amd64 ~x86"
+KEYWORDS="~amd64"
 #USE_DOTNET="net45 net40 net20"
 USE_DOTNET="net45"
 

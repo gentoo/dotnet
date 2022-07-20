@@ -11,7 +11,7 @@ SRC_URI="https://github.com/ArsenShnurkov/shnurise-tarballs/archive/${CATEGORY}/
 S="${WORKDIR}/shnurise-tarballs-${CATEGORY}-${PN}-${PN}-${PV}"
 
 SLOT="0"
-KEYWORDS="~amd64 ~x86"
+KEYWORDS="~amd64"
 IUSE="dbus debug gtk libnotify spell"
 LICENSE="|| ( GPL-2 GPL-3 )"
 

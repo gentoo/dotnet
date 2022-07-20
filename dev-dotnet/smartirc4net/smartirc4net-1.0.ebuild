@@ -13,7 +13,7 @@ SRC_URI="https://github.com/meebey/SmartIrc4net/archive/${PV}.tar.gz -> ${P}.tar
 DESCRIPTION="Multi-threaded and thread-safe IRC library written in C#"
 
 SLOT="0"
-KEYWORDS="~amd64 ~x86"
+KEYWORDS="~amd64"
 IUSE=""
 LICENSE="|| ( LGPL-2.1 LGPL-3 )"
 

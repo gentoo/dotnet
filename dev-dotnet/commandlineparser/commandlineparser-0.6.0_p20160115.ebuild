@@ -5,7 +5,7 @@ EAPI=6 # >=portage-2.2.25
 
 inherit versionator
 
-KEYWORDS="~amd64 ~x86"
+KEYWORDS="~amd64"
 
 USE_DOTNET="net45"
 # debug = debug configuration (symbols and defines for debugging)

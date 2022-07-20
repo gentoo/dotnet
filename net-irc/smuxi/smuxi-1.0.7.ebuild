@@ -13,7 +13,7 @@ EGIT_BRANCH="release/1.0"
 
 SRC_URI="https://github.com/meebey/smuxi/archive/${PV}.tar.gz -> ${P}.tar.gz"
 SLOT="0"
-KEYWORDS="~amd64 ~x86"
+KEYWORDS="~amd64"
 IUSE="dbus debug gtk libnotify spell nls"
 LICENSE="|| ( GPL-2 GPL-3 )"
 

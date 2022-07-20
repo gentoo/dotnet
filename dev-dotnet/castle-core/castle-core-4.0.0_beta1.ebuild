@@ -16,7 +16,7 @@ S="${WORKDIR}/Core-4.0.0-beta001"
 HOMEPAGE="https://www.castleproject.org/"
 DESCRIPTION="including Castle DynamicProxy, Logging Services and DictionaryAdapter "
 LICENSE="Apache-2.0" # https://github.com/castleproject/Core/blob/master/LICENSE
-KEYWORDS="~amd64 ~x86"
+KEYWORDS="~amd64"
 
 COMMON_DEPEND=">=dev-lang/mono-4.0.2.5
 "

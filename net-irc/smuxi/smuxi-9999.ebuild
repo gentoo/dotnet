@@ -13,7 +13,7 @@ EGIT_REPO_URI="https://github.com/meebey/smuxi"
 
 SRC_URI=""
 SLOT="0"
-KEYWORDS="~amd64 ~x86"
+KEYWORDS="~amd64"
 IUSE="dbus debug gtk libnotify spell nls"
 LICENSE="|| ( GPL-2 GPL-3 )"
 

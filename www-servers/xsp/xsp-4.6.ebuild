@@ -18,7 +18,7 @@ S="${WORKDIR}/xsp-${EGIT_COMMIT}"
 
 LICENSE="MIT"
 SLOT="0"
-KEYWORDS="~amd64 ~x86"
+KEYWORDS="~amd64"
 IUSE="+${USE_DOTNET} systemd openrc +xsp +modmono fastcgi examples doc test"
 # systemd = install .service files
 # openrc = install init.d scripts

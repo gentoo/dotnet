@@ -15,7 +15,7 @@ DESCRIPTION="fast, small, full-featured IoC Container for .NET"
 LICENSE="MIT"
 LICENSE_URL="https://bitbucket.org/dadhi/dryioc/src/tip/LICENSE.txt"
 SLOT="0"
-KEYWORDS="~amd64 ~x86"
+KEYWORDS="~amd64"
 
 # debug = debug configuration (symbols and defines for debugging)
 # developer = generate symbols information (to view line numbers in stack traces, either in debug or release configuration)

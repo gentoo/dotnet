@@ -6,7 +6,7 @@ EAPI=6
 # Watch the order of these!
 inherit nupkg
 
-KEYWORDS="~amd64 ~x86"
+KEYWORDS="~amd64"
 IUSE="+gac +nupkg"
 SLOT="0"
 

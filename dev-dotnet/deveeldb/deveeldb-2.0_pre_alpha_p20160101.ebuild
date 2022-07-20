@@ -26,7 +26,7 @@ DESCRIPTION="DeveelDB is a complete SQL DBMS, primarly developed for CLR/CLI fra
 LICENSE="Apache-2.0"
 LICENSE_URL="https://www.apache.org/licenses/LICENSE-2.0"
 SLOT="0"
-KEYWORDS="~amd64 ~x86"
+KEYWORDS="~amd64"
 
 # debug = debug configuration (symbols and defines for debugging)
 # developer = generate symbols information (to view line numbers in stack traces, either in debug or release configuration)

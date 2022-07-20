@@ -4,7 +4,7 @@
 EAPI=6
 SLOT="4"
 
-KEYWORDS="~amd64 ~x86"
+KEYWORDS="~amd64"
 USE_DOTNET="net45"
 
 inherit gac dotnet

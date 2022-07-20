@@ -29,7 +29,7 @@ DESCRIPTION="Json.NET is a popular high-performance JSON framework for .NET"
 LICENSE="MIT"
 LICENSE_URL="https://raw.github.com/JamesNK/Newtonsoft.Json/master/LICENSE.md"
 
-KEYWORDS="~amd64 ~x86"
+KEYWORDS="~amd64"
 COMMON_DEPENDENCIES="|| ( >=dev-lang/mono-4.2 <dev-lang/mono-9999 )"
 RDEPEND="${COMMON_DEPENDENCIES}
 "
