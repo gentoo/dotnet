@@ -17,7 +17,7 @@ IUSE="+${USE_DOTNET} debug +developer test +aot doc"
 
 TOOLS_VERSION=14.0
 
-inherit gac nupkg
+inherit gac nupkg versionator
 
 get_revision()
 {

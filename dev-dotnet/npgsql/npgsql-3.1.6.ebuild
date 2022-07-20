@@ -12,7 +12,7 @@ EAPI=6
 USE_DOTNET="net45"
 IUSE="${USE_DOTNET} debug developer test +pkg-config"
 
-inherit gac machine nupkg
+inherit gac machine nupkg versionator
 
 NAME="npgsql"
 NUSPEC_ID="${NAME}"

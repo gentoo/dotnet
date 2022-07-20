@@ -10,7 +10,7 @@ SLOT="3"
 USE_DOTNET="net45"
 IUSE="+net45 developer debug nupkg gac doc"
 
-inherit mono-env gac nupkg mpt-r20150903
+inherit mono-env gac nupkg mpt-r20150903 versionator
 
 NAME="nunit-gui"
 HOMEPAGE="https://github.com/nunit/${NAME}"

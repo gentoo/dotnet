@@ -11,7 +11,7 @@ SLOT="0"
 USE_DOTNET="net45"
 IUSE="+${USE_DOTNET} +gac +nupkg developer debug doc"
 
-inherit gac dotnet nupkg
+inherit gac dotnet nupkg versionator
 
 NAME="Pliant"
 HOMEPAGE="https://github.com/patrickhuber/${NAME}"

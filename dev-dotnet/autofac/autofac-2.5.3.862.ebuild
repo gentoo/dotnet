@@ -13,7 +13,7 @@ fi
 
 USE_DOTNET="net45"
 
-inherit msbuild gac mono-pkg-config
+inherit msbuild gac mono-pkg-config versionator
 
 GITHUB_REPONAME="Autofac"
 HOMEPAGE="https://github.com/autofac/Autofac"

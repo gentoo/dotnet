@@ -4,7 +4,7 @@
 EAPI=6
 
 USE_DOTNET="net45"
-inherit mono-env gac nupkg
+inherit mono-env gac nupkg versionator
 
 IUSE="${USE_DOTNET} developer nupkg debug"
 

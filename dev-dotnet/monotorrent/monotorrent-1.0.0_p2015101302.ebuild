@@ -8,7 +8,7 @@ RESTRICT="mirror"
 USE_DOTNET="net45"
 IUSE="+${USE_DOTNET} +gac +nupkg +pkg-config debug developer"
 
-inherit dotnet gac nupkg
+inherit dotnet gac nupkg versionator
 
 SLOT="0"
 

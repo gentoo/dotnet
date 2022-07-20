@@ -10,7 +10,7 @@ RESTRICT="mirror"
 USE_DOTNET="net45"
 IUSE="+net45 developer debug nupkg gac doc"
 
-inherit mono-env gac nupkg
+inherit mono-env gac nupkg versionator
 
 NAME="nunit"
 HOMEPAGE="https://github.com/nunit/${NAME}"

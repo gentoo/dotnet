@@ -11,7 +11,7 @@ IUSE="+net45 developer debug nupkg gac doc"
 
 SLOT="3"
 
-inherit mono-env gac nupkg
+inherit mono-env gac nupkg versionator
 
 NAME="nunit-console"
 HOMEPAGE="https://github.com/nunit/${NAME}"

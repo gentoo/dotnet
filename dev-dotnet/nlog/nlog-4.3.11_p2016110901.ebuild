@@ -10,7 +10,7 @@ IUSE="+${USE_DOTNET} +gac +nupkg developer debug doc"
 
 SLOT="0"
 
-inherit mono-env gac nupkg
+inherit mono-env gac nupkg versionator
 
 NAME="NLog"
 HOMEPAGE="https://github.com/NLog/${NAME}"
