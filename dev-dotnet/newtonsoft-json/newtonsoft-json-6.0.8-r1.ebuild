@@ -1,7 +1,7 @@
 # Copyright 1999-2019 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=6
+EAPI=7
 
 KEYWORDS="~amd64"
 SLOT="0"
@@ -17,7 +17,7 @@ USE_DOTNET="net45"
 # pkg-config = register in pkg-config database
 IUSE="${USE_DOTNET} debug developer +gac pkg-config nupkg test"
 
-inherit dotnet gac xbuild versionator
+inherit dotnet gac xbuild
 
 NAME="Newtonsoft.Json"
 HOMEPAGE="https://github.com/JamesNK/${NAME}"

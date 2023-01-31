@@ -1,7 +1,7 @@
 # Copyright 1999-2019 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=6 # >=portage-2.2.25
+EAPI=7 # >=portage-2.2.25
 KEYWORDS="~amd64"
 RESTRICT="mirror"
 

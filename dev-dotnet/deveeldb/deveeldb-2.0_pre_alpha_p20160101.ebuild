@@ -1,7 +1,7 @@
 # Copyright 1999-2019 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=6
+EAPI=7
 # !!! Unable to do any operations on 'dev-dotnet/DeveelDB-2.0_prealpha-r201601010',
 # !!! since its EAPI is higher than this portage version's. Please upgrade
 # !!! to a portage version that supports EAPI '6'.
