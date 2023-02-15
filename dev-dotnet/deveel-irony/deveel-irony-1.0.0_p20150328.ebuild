@@ -15,7 +15,7 @@ IUSE="net45 debug +developer test +nupkg +gac +pkg-config"
 
 KEYWORDS="~amd64"
 
-inherit versionator gac nupkg
+inherit gac nupkg
 
 HOMEPAGE=https://github.com/deveel/irony
 NAME=irony
@@ -52,12 +52,12 @@ src_prepare() {
 }
 
 # PR 	Package revision, or r0 if no revision exists.
-NUSPEC_VERSION=$(get_version_component_range 1-3)"${PR//r/.}"
 ICON_URL=https://raw.githubusercontent.com/ArsenShnurkov/dotnet/deveeldb/dev-dotnet/${PN}/files/deveel-irony.png
 NUSPEC_FILE_NAME="Irony.nuspec"
 NUSPEC_ID="deveel-irony"
 
 src_compile() {
+	NUSPEC_VERSION=$(get_version_component_range 1-3)"${PR//r/.}"
 	exbuild /p:SignAssembly=true "/p:AssemblyOriginatorKeyFile=${WORKDIR}/mono.snk" "${METAFILETOBUILD}"
 
 	# run nuget_pack
@@ -94,6 +94,7 @@ EOF
 }
 
 src_install() {
+	NUSPEC_VERSION=$(get_version_component_range 1-3)"${PR//r/.}"
 	enupkg "${WORKDIR}/${NUSPEC_ID}.${NUSPEC_VERSION}.nupkg"
 
 	egacinstall "Irony/bin/${DIR}/Irony.dll"
