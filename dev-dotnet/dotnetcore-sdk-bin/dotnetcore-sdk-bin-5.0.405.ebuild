@@ -3,8 +3,6 @@
 
 EAPI="7"
 
-inherit eutils
-
 MY_PV="${PV}"
 
 DESCRIPTION=".NET Core SDK - binary precompiled for glibc"

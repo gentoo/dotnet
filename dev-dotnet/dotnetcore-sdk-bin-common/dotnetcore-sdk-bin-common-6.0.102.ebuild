@@ -3,8 +3,6 @@
 
 EAPI="7"
 
-inherit eutils
-
 MY_PV="${PV}"
 
 DESCRIPTION="Common files shared between multiple slots of .NET Core"
