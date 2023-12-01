@@ -1,4 +1,4 @@
-gentoo-dotnet official overlay
+gentoo-dotnet old overlay
 ==============================
 
 note that this overlay is community driven, any help is very welcome, since so it could be unstable
@@ -21,19 +21,32 @@ Finally add the following USE flags if relevant.
 
 <hr/>
 
+
+Github way
+--------------------
+
+ - Join #gentoo-dotnet channel on Freenode
+ - Open issues here https://github.com/gentoo/dotnet
+ - Try to fix upstream issues
+ - Fork & Contribute & Pull Request
+ - Add dotnet@gentoo.org to Watching on https://bugs.gentoo.org/userprefs.cgi?tab=email
+ - Open requests on https://bugs.gentoo.org with solutions from this overlay
+
  - some unofficial docs: http://arsenshnurkov.github.io/gentoo-mono-handbook/index.htm
 
 <hr/>
 
- - Join #gentoo-dotnet channel on Freenode
- - Open issues here https://github.com/gentoo/dotnet
- - Add dotnet@gentoo.org to Watching on https://bugs.gentoo.org/userprefs.cgi?tab=email
- - Try to fix upstream issues
- - Fork & Contribute & Pull Request
- - Open requests on https://bugs.gentoo.org with solutions from this overlay
+Gentoo way
+--------------------
 
-.NET Core
----------
+https://wiki.gentoo.org/wiki/Project:Dotnet
+git clone git+ssh://git@git.gentoo.org/repo/proj/dotnet.git
+git remote add gentoo-mirror https://github.com/gentoo-mirror/dotnet.git
 
-The `dev-dotnet/dotnetcore-sdk-bin` package in this overlay is deprecated and will not be maintained.
-Please use the [dev-dotnet/dotnet-sdk-bin](https://packages.gentoo.org/packages/dev-dotnet/dotnet-sdk-bin) package that's already available upstream.
+https://gitweb.gentoo.org/repo/proj/dotnet.git/tree/
+
+You push everything to git.gentoo.org, and then GH will be updated.
+The sync is one direction only, anything that happens on GH is overwritten.
+You can use [app-portage/pram](https://packages.gentoo.org/packages/app-portage/pram) to merge PRs easily
+(see https://wiki.gentoo.org/wiki/GitHub_Pull_Requests ).
+
