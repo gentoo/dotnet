@@ -5,7 +5,7 @@ EAPI="7"
 
 MY_PV="${PV}"
 
-DESCRIPTION="Common files shared between multiple slots of .NET Core"
+DESCRIPTION=".NET Core SDK - binary precompiled for glibc"
 HOMEPAGE="https://www.microsoft.com/net/core"
 LICENSE="MIT"
 
@@ -15,7 +15,7 @@ arm? ( https://dotnetcli.azureedge.net/dotnet/Sdk/${MY_PV}/dotnet-sdk-${MY_PV}-l
 arm64? ( https://dotnetcli.azureedge.net/dotnet/Sdk/${MY_PV}/dotnet-sdk-${MY_PV}-linux-arm64.tar.gz )
 "
 
-SLOT="0"
+SLOT="7.0"
 KEYWORDS=""
 
 QA_PREBUILT="*"
@@ -25,10 +25,17 @@ RESTRICT="splitdebug"
 # dotnetcore-sdk is the source based build
 
 RDEPEND="
-	~dev-dotnet/dotnetcore-sdk-bin-${PV}
-	!dev-dotnet/dotnet-sdk[dotnet-symlink(+)]
-	!dev-dotnet/dotnet-sdk-bin[dotnet-symlink(+)]
-"
+	app-crypt/mit-krb5
+	>=dev-dotnet/dotnetcore-sdk-bin-common-${PV}
+	dev-libs/icu
+	|| ( dev-libs/openssl dev-libs/openssl-compat:1.0.0 )
+	dev-util/lldb
+	dev-util/lttng-ust
+	net-misc/curl
+	sys-apps/lsb-release
+	sys-devel/llvm
+	sys-libs/libunwind
+	sys-libs/zlib"
 
 S=${WORKDIR}
 
@@ -44,9 +51,15 @@ src_prepare() {
 	# slots depending on major .NET Core version.
 	# This makes it possible to install multiple major versions at the same time.
 
-	# Skip the versioned files (which are located inside sub-directories)
-	find . -maxdepth 1 -type d ! -name . ! -name packs -exec rm -rf {} \; || die
-	find ./packs -maxdepth 1 -type d ! -name packs ! -name NETStandard.Library.Ref -exec rm -rf {} \; || die
+	# Skip the common files
+	find . -maxdepth 1 -type f -exec rm -f {} \; || die
+	rm -rf ./packs/NETStandard.Library.Ref || die
+
+	# 6.0.100 is SDK feature band which will not change between minor increases, so 6.0.101, 6.102
+	# will still have same 6.0.100 SDK feature band in the name. Thus I have to hard code this
+	# https://github.com/dotnet/sdk/pull/18823#issuecomment-915603684
+	local workloads="metadata/workloads/${SLOT}.100"
+	{ mkdir -p "${workloads}" && touch "${workloads}/userlocal"; } || die
 }
 
 src_install() {
@@ -55,9 +68,4 @@ src_install() {
 
 	local ddest="${D}/${dest}"
 	cp -a "${S}"/* "${ddest}/" || die
-	dosym "/${dest}/dotnet" "/usr/bin/dotnet"
-
-	# set an env-variable for 3rd party tools
-	echo -n "DOTNET_ROOT=/${dest}" > "${T}/90dotnet"
-	doenvd "${T}/90dotnet"
 }
